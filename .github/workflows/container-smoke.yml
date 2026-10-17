@@ -21,12 +21,20 @@ jobs:
       - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
         with:
           persist-credentials: false
+      - name: Check out the Distrobox version tested on Ubuntu 26.10
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          repository: 89luca89/distrobox
+          ref: 40c3cd724faa434aeb0a23e28776665b92de68bd # 1.8.2.5
+          path: .ci/distrobox
+          persist-credentials: false
       - name: Install supported host packages
         # https://distrobox.it/#installation
         # https://podman.io/docs/installation#installing-on-linux
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends podman distrobox uidmap slirp4netns fuse-overlayfs python3-venv
+          sudo apt-get install -y --no-install-recommends podman uidmap slirp4netns fuse-overlayfs python3-venv
+          (cd .ci/distrobox && sudo ./install --prefix /usr/local)
           python3 -m venv .venv
           .venv/bin/python -m pip install --disable-pip-version-check .
       - name: Confirm rootless runtime

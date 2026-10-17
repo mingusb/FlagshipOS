@@ -73,6 +73,7 @@ def main():
         execute(base + ["status", "--json"])
     except BaseException as error:
         failure = error
+        execute(["podman", "logs", "--tail", "100", "flagship-kali"], check=False)
     finally:
         if cleanup_required:
             cleanup = execute(base + ["remove", "kali", "--yes"], check=False)
