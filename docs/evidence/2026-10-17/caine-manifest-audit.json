@@ -1,0 +1,841 @@
+{
+  "archive": "/home/flagship-test/flagship-artifacts/caine14-rootfs.tar",
+  "archive_sha256": "902ce5f4f509a09d2839f0f600dd8fbc9a9e2193949c4b9653fcc9730219de8e",
+  "source_iso": "/home/flagship-test/flagship-artifacts/caine14.0.iso",
+  "source_checksum_algorithm": "sha256",
+  "source_checksum": "2702226cf9ee131ee54e9649d6d90008f3fe851ba35939f43ae8cb614a00d564",
+  "conversion_receipt": "/home/flagship-test/flagship-artifacts/caine14-rootfs.tar.omissions.json",
+  "archive_entries": 481144,
+  "publisher_manifest": "/home/flagship-test/flagship-artifacts/caine-filesystem.manifest",
+  "publisher_manifest_iso_member": "/casper/filesystem.manifest",
+  "publisher_manifest_sha256": "6f5a008edf587c39be13d4b5238b77a2397c02713946dca626ca126c2657e393",
+  "publisher_manifest_records": 4561,
+  "dpkg_status_records": 4561,
+  "dpkg_installed_records": 4468,
+  "installed_manifest_match": false,
+  "all_status_manifest_match": true,
+  "manifest_not_installed": [
+    {
+      "package": "acpi-support",
+      "version": "0.144",
+      "count": 1
+    },
+    {
+      "package": "arctica-greeter",
+      "version": "0.99.5.0-3ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "ayatana-indicator-a11y",
+      "version": "23.10.3-1build2",
+      "count": 1
+    },
+    {
+      "package": "compiz-mate",
+      "version": "1:0.9.13.1+18.04.20180302-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "e2fslibs-dev",
+      "version": "1.45.5-2ubuntu1.1",
+      "count": 1
+    },
+    {
+      "package": "flatpak",
+      "version": "1.14.6-1ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "fuse",
+      "version": "2.9.9-8.1build1",
+      "count": 1
+    },
+    {
+      "package": "gconf2",
+      "version": "3.2.6-7ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "gconf2-common",
+      "version": "3.2.6-7ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "gnustep-base-runtime",
+      "version": "1.26.0-7",
+      "count": 1
+    },
+    {
+      "package": "grub-efi-amd64",
+      "version": "2.12-1ubuntu7",
+      "count": 1
+    },
+    {
+      "package": "gtk-doc-tools",
+      "version": "1.27-3",
+      "count": 1
+    },
+    {
+      "package": "gtk-recordmydesktop",
+      "version": "0.3.8-4.1ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "indicator-messages",
+      "version": "13.10.1+18.10.20180918-0ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "indicator-power",
+      "version": "12.10.6+17.10.20170829.1-0ubuntu5",
+      "count": 1
+    },
+    {
+      "package": "indicator-session",
+      "version": "17.3.20+19.10.20190921-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "indicator-sound",
+      "version": "12.10.2+18.10.20180612-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "kaccounts-providers",
+      "version": "4:19.12.3-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "kde-config-gtk-style",
+      "version": "4:5.18.4.1-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "kde-config-sddm",
+      "version": "4:5.18.4.1-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "kdeconnect",
+      "version": "1.4-0ubuntu5",
+      "count": 1
+    },
+    {
+      "package": "kinfocenter",
+      "version": "4:5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "kscreen",
+      "version": "4:5.18.4.1-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "ksysguard-data",
+      "version": "4:5.18.4.1-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "kwin-common",
+      "version": "4:5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "libblockdev2",
+      "version": "2.26-1",
+      "count": 1
+    },
+    {
+      "package": "libbonobo2-common",
+      "version": "2.32.1-3",
+      "count": 1
+    },
+    {
+      "package": "libglib2.0-0",
+      "version": "2.72.4-0ubuntu2.3",
+      "count": 1
+    },
+    {
+      "package": "libgnome-keyring0",
+      "version": "3.12.0-1build1",
+      "count": 1
+    },
+    {
+      "package": "libgnomevfs2-common",
+      "version": "1:2.24.4-6.1ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "libgssapi-krb5-2",
+      "version": "1.20.1-6ubuntu2.1",
+      "count": 1
+    },
+    {
+      "package": "libgtk-3-0",
+      "version": "3.24.33-1ubuntu2.2",
+      "count": 1
+    },
+    {
+      "package": "libgtk2.0-0",
+      "version": "2.24.33-2ubuntu2.1",
+      "count": 1
+    },
+    {
+      "package": "libkf5kdelibs4support-data",
+      "version": "5.68.0-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "libkf5purpose-bin",
+      "version": "5.68.0-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "libmagic1",
+      "version": "1:5.41-3ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "libmdbsql3",
+      "version": "1.0.0+dfsg-1",
+      "count": 1
+    },
+    {
+      "package": "libmpich-dev",
+      "version": "4.0-3",
+      "count": 1
+    },
+    {
+      "package": "libnfc5",
+      "version": "1.7.1-4build1",
+      "count": 1
+    },
+    {
+      "package": "libobasis6.3-core",
+      "version": "6.3.2.2-2",
+      "count": 1
+    },
+    {
+      "package": "libopenmpi-dev",
+      "version": "4.1.2-2ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "libpython3.10-minimal",
+      "version": "3.10.12-1~22.04.5",
+      "count": 1
+    },
+    {
+      "package": "libqt5core5a",
+      "version": "5.15.3+dfsg-2ubuntu0.2",
+      "count": 1
+    },
+    {
+      "package": "libqt5gui5",
+      "version": "5.15.3+dfsg-2ubuntu0.2",
+      "count": 1
+    },
+    {
+      "package": "libqtcore4",
+      "version": "4:4.8.7+dfsg-7ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "libreoffice-avmedia-backend-gstreamer",
+      "version": "1:6.4.5-0ubuntu0.20.04.1",
+      "count": 1
+    },
+    {
+      "package": "libreoffice6.3-debian-menus",
+      "version": "6.3.2-2",
+      "count": 1
+    },
+    {
+      "package": "libsensors4",
+      "version": "1:3.4.0-4",
+      "count": 1
+    },
+    {
+      "package": "libsmi2ldbl",
+      "version": "0.4.8+dfsg2-16",
+      "count": 1
+    },
+    {
+      "package": "libssl3",
+      "version": "3.0.2-0ubuntu1.18",
+      "count": 2
+    },
+    {
+      "package": "libtirpc1",
+      "version": "0.2.5-1.2ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "libtirpc3t64",
+      "version": "1.3.4+ds-1.1build1",
+      "count": 1
+    },
+    {
+      "package": "linux-image-4.15.0-39-generic",
+      "version": "4.15.0-39.42",
+      "count": 1
+    },
+    {
+      "package": "linux-image-5.0.0-32-generic",
+      "version": "5.0.0-32.34~18.04.2",
+      "count": 1
+    },
+    {
+      "package": "linux-image-5.15.0-119-generic",
+      "version": "5.15.0-119.129",
+      "count": 1
+    },
+    {
+      "package": "linux-image-5.15.0-48-generic",
+      "version": "5.15.0-48.54",
+      "count": 1
+    },
+    {
+      "package": "mirage",
+      "version": "0.9.5.2-1",
+      "count": 1
+    },
+    {
+      "package": "mlocate",
+      "version": "1.1.15-1ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "nautilus",
+      "version": "1:3.26.4-0~ubuntu18.04.5",
+      "count": 1
+    },
+    {
+      "package": "network-manager-openconnect",
+      "version": "1.2.6-4",
+      "count": 1
+    },
+    {
+      "package": "obex-data-server",
+      "version": "0.4.6-1",
+      "count": 1
+    },
+    {
+      "package": "open-vm-tools",
+      "version": "2:11.3.5-1ubuntu4.1",
+      "count": 1
+    },
+    {
+      "package": "open-vm-tools-desktop",
+      "version": "2:11.3.5-1ubuntu4.1",
+      "count": 1
+    },
+    {
+      "package": "openmpi-bin",
+      "version": "4.1.2-2ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "oracle-java8-set-default",
+      "version": "8u191-1~webupd8~1",
+      "count": 1
+    },
+    {
+      "package": "pinguybuilder",
+      "version": "5.1-8",
+      "count": 1
+    },
+    {
+      "package": "pipewire-media-session",
+      "version": "0.4.1-2ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "plasma-browser-integration",
+      "version": "5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "plasma-desktop",
+      "version": "4:5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "plasma-discover",
+      "version": "5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "plasma-discover-backend-snap",
+      "version": "5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "plasma-discover-common",
+      "version": "5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "plasma-workspace",
+      "version": "4:5.18.5-0ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "plocate",
+      "version": "1.1.19-2ubuntu2",
+      "count": 1
+    },
+    {
+      "package": "pocl-opencl-icd",
+      "version": "1.4-6",
+      "count": 1
+    },
+    {
+      "package": "polkit-kde-agent-1",
+      "version": "4:5.18.4.1-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "popularity-contest",
+      "version": "1.69ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "pulseaudio",
+      "version": "1:16.1+dfsg1-2ubuntu10",
+      "count": 1
+    },
+    {
+      "package": "python",
+      "version": "2.7.15~rc1-1",
+      "count": 1
+    },
+    {
+      "package": "python-pbr",
+      "version": "3.1.1-3ubuntu3",
+      "count": 1
+    },
+    {
+      "package": "python-twisted",
+      "version": "17.9.0-2ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "python-twisted-core",
+      "version": "17.9.0-2ubuntu0.1",
+      "count": 1
+    },
+    {
+      "package": "python3-pbr",
+      "version": "5.11.1-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "python3.10-minimal",
+      "version": "3.10.12-1~22.04.5",
+      "count": 1
+    },
+    {
+      "package": "python3.7-minimal",
+      "version": "3.7.5-2~18.04",
+      "count": 1
+    },
+    {
+      "package": "remastersys-gui",
+      "version": "4.9-1",
+      "count": 1
+    },
+    {
+      "package": "resource-agents-common",
+      "version": "1:4.13.0-1ubuntu4",
+      "count": 1
+    },
+    {
+      "package": "sni-qt",
+      "version": "0.2.7+17.04.20170112-0ubuntu1",
+      "count": 1
+    },
+    {
+      "package": "tk8.5",
+      "version": "8.5.19-3",
+      "count": 1
+    },
+    {
+      "package": "unar",
+      "version": "1.10.1-2build7",
+      "count": 1
+    },
+    {
+      "package": "vlc-plugin-samba",
+      "version": "3.0.8-0ubuntu18.04.1",
+      "count": 1
+    },
+    {
+      "package": "xdg-desktop-portal",
+      "version": "1.18.4-1ubuntu2.24.04.1",
+      "count": 1
+    }
+  ],
+  "installed_not_manifest": [],
+  "manifest_not_in_status": [],
+  "status_not_in_manifest": [],
+  "dpkg_inventory": "/home/flagship-test/flagship-artifacts/caine14-dpkg-inventory-20261017T183034Z.json",
+  "dpkg_inventory_sha256": "6447d422759a4ac6ba3e2d0e439693888cb9db46b68ba54daa6074de824eb5d0",
+  "package_comparison": "Multiset of Package+Version; publisher manifest omits Architecture and duplicate records are retained",
+  "custom_directory_scope": "Observed archive entries under /opt, /usr/local, /usr/share/caine, /home/caine; no upstream exhaustive custom-tool baseline is available",
+  "custom_directories": {
+    "opt/containerd": {
+      "entries": 3,
+      "regular_files": 0,
+      "regular_file_bytes": 0,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "opt/containerd",
+        "opt/containerd/bin",
+        "opt/containerd/lib"
+      ]
+    },
+    "opt/fqlite": {
+      "entries": 242,
+      "regular_files": 201,
+      "regular_file_bytes": 156014012,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "opt/fqlite",
+        "opt/fqlite/bin",
+        "opt/fqlite/bin/fqlite",
+        "opt/fqlite/lib",
+        "opt/fqlite/lib/app"
+      ]
+    },
+    "opt/libreoffice6.3": {
+      "entries": 264,
+      "regular_files": 245,
+      "regular_file_bytes": 73259107,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "opt/libreoffice6.3",
+        "opt/libreoffice6.3/program",
+        "opt/libreoffice6.3/program/__pycache__",
+        "opt/libreoffice6.3/program/__pycache__/pythonloader.cpython-35.pyc",
+        "opt/libreoffice6.3/program/__pycache__/uno.cpython-35.pyc"
+      ]
+    },
+    "usr/local/bin": {
+      "entries": 672,
+      "regular_files": 633,
+      "regular_file_bytes": 266221445,
+      "symlinks": 27,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/bin",
+        "usr/local/bin/BEViewer",
+        "usr/local/bin/BEViewer.jar",
+        "usr/local/bin/BTCscan",
+        "usr/local/bin/CHANGELOG.txt"
+      ]
+    },
+    "usr/local/etc": {
+      "entries": 19,
+      "regular_files": 14,
+      "regular_file_bytes": 240647,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/etc",
+        "usr/local/etc/ImageMagick-7",
+        "usr/local/etc/ImageMagick-7/colors.xml",
+        "usr/local/etc/ImageMagick-7/delegates.xml",
+        "usr/local/etc/ImageMagick-7/log.xml"
+      ]
+    },
+    "usr/local/games": {
+      "entries": 1,
+      "regular_files": 0,
+      "regular_file_bytes": 0,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/games"
+      ]
+    },
+    "usr/local/include": {
+      "entries": 586,
+      "regular_files": 527,
+      "regular_file_bytes": 3066503,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/include",
+        "usr/local/include/ImageMagick-7",
+        "usr/local/include/ImageMagick-7/Magick++",
+        "usr/local/include/ImageMagick-7/Magick++/Blob.h",
+        "usr/local/include/ImageMagick-7/Magick++/CoderInfo.h"
+      ]
+    },
+    "usr/local/lib": {
+      "entries": 487,
+      "regular_files": 390,
+      "regular_file_bytes": 689144479,
+      "symlinks": 38,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/lib",
+        "usr/local/lib/ImageMagick-7.0.10",
+        "usr/local/lib/ImageMagick-7.0.10/config-Q16HDRI",
+        "usr/local/lib/ImageMagick-7.0.10/config-Q16HDRI/configure.xml",
+        "usr/local/lib/libMagick++-7.Q16HDRI.a"
+      ]
+    },
+    "usr/local/man": {
+      "entries": 1,
+      "regular_files": 0,
+      "regular_file_bytes": 0,
+      "symlinks": 1,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/man"
+      ]
+    },
+    "usr/local/sbin": {
+      "entries": 2,
+      "regular_files": 1,
+      "regular_file_bytes": 250808,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/sbin",
+        "usr/local/sbin/usbmuxd"
+      ]
+    },
+    "usr/local/share": {
+      "entries": 2377,
+      "regular_files": 2239,
+      "regular_file_bytes": 50256158,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/share",
+        "usr/local/share/ImageMagick-7",
+        "usr/local/share/ImageMagick-7/english.xml",
+        "usr/local/share/ImageMagick-7/francais.xml",
+        "usr/local/share/ImageMagick-7/locale.xml"
+      ]
+    },
+    "usr/local/src": {
+      "entries": 272,
+      "regular_files": 269,
+      "regular_file_bytes": 982664,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/local/src",
+        "usr/local/src/regripper",
+        "usr/local/src/regripper/.gitattributes",
+        "usr/local/src/regripper/Base.pm",
+        "usr/local/src/regripper/File.pm"
+      ]
+    },
+    "usr/share/caine/Manual": {
+      "entries": 67,
+      "regular_files": 60,
+      "regular_file_bytes": 1720164,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/share/caine/Manual",
+        "usr/share/caine/Manual/CAINE Live CD_DVD - computer forensics digital forensics_files",
+        "usr/share/caine/Manual/CAINE Live CD_DVD - computer forensics digital forensics_files/88x31.png",
+        "usr/share/caine/Manual/CAINE Live CD_DVD - computer forensics digital forensics_files/950.css",
+        "usr/share/caine/Manual/CAINE Live CD_DVD - computer forensics digital forensics_files/bannersite.png"
+      ]
+    },
+    "usr/share/caine/afro": {
+      "entries": 56,
+      "regular_files": 43,
+      "regular_file_bytes": 270595,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/share/caine/afro",
+        "usr/share/caine/afro/.gitignore",
+        "usr/share/caine/afro/.pylintrc",
+        "usr/share/caine/afro/.travis.yml",
+        "usr/share/caine/afro/Makefile"
+      ]
+    },
+    "usr/share/caine/btrForensics": {
+      "entries": 29,
+      "regular_files": 27,
+      "regular_file_bytes": 14929464,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/share/caine/btrForensics",
+        "usr/share/caine/btrForensics/.gitignore",
+        "usr/share/caine/btrForensics/CMakeLists.txt",
+        "usr/share/caine/btrForensics/Doxyfile",
+        "usr/share/caine/btrForensics/LICENSE"
+      ]
+    },
+    "usr/share/caine/newscripts": {
+      "entries": 416,
+      "regular_files": 374,
+      "regular_file_bytes": 5347135,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/share/caine/newscripts",
+        "usr/share/caine/newscripts/automactc",
+        "usr/share/caine/newscripts/automactc/AUTHORS",
+        "usr/share/caine/newscripts/automactc/CHANGELOG.md",
+        "usr/share/caine/newscripts/automactc/LICENSE"
+      ]
+    },
+    "usr/share/caine/pacchetti": {
+      "entries": 686,
+      "regular_files": 593,
+      "regular_file_bytes": 28518158,
+      "symlinks": 0,
+      "hardlinks": 0,
+      "sample_paths": [
+        "usr/share/caine/pacchetti",
+        "usr/share/caine/pacchetti/Carbon14",
+        "usr/share/caine/pacchetti/Carbon14/.gitignore",
+        "usr/share/caine/pacchetti/Carbon14/LICENSE",
+        "usr/share/caine/pacchetti/Carbon14/README.md"
+      ]
+    }
+  },
+  "omitted_runtime_sockets": [
+    {
+      "path": "./var/lib/heartbeat/log_daemon",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/dev/log",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/anvil",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bounce",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bsmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/defer",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/discard",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/error",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/ifmail",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/lmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/local",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/maildrop",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/mailman",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxymap",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxywrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/relay",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/retry",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/rewrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scache",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scalemail-backend",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/smtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/tlsmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/trace",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/uucp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/verify",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/virtual",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/cleanup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/flush",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/pickup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/qmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/showq",
+      "type": "socket"
+    }
+  ],
+  "checked_at": "2026-10-17T18:30:34.786923+00:00",
+  "execution": "Read-only archive metadata and dpkg status; no archive programs executed and no container imports or state writes"
+}

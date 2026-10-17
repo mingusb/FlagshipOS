@@ -3,120 +3,99 @@
 [![CI](https://github.com/mingusb/FlagshipOS/actions/workflows/ci.yml/badge.svg)](https://github.com/mingusb/FlagshipOS/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**A unified CTF workbench for Ubuntu on WSL2.**
+**Seven Debian-family tool collections, one workspace and shell, on Ubuntu WSL2.**
 
-FlagshipOS makes Debian-family security and forensic tool collections available through one terminal command. Each collection keeps its own package database, libraries and home directory. Your projects live in a shared workspace. Ubuntu's APT sources stay Ubuntu-only.
+FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
-The `flagship` command manages rootless Podman containers through Distrobox. It includes seven profiles: **Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi**.
+**Status: experimental.** Full collection recipes and the unified interface are implemented; full builds and a live seven-environment demonstration remain pending. The latest code passes 107 automated tests on fresh Ubuntu 26.10. An earlier [manual Kali base smoke run at `99ec67e`](https://github.com/mingusb/FlagshipOS/actions/runs/39055672350) also passed. These checks do not establish complete toolkit installation or production readiness. See [validation scope](docs/validation.md).
 
-This is an environment manager built on Ubuntu, not a bootable replacement operating system. Version 0.1 provides three official container profiles and four experimental import profiles. It does not claim to install every package from seven distributions or make every tool compatible with WSL.
+## Start on Ubuntu WSL2
 
-## Quick start
-
-Start with a fresh **Ubuntu 26.10 on WSL2**, signed in as a normal Linux user. Obtain the WSL image from [Ubuntu's official release directory](https://releases.ubuntu.com/26.10/), verify it against the publisher's checksums, and follow [Ubuntu's WSL installation instructions](https://documentation.ubuntu.com/wsl/latest/guides/install-ubuntu-wsl2/). Python 3.11 or newer is required.
-
-Run inside Ubuntu, keeping the checkout and work files in the Linux filesystem:
+Use a fresh **Ubuntu 26.10 WSL2** installation and a normal Linux user. Follow [Ubuntu's WSL instructions](https://documentation.ubuntu.com/wsl/latest/guides/install-ubuntu-wsl2/) and verify the image from the [official release directory](https://releases.ubuntu.com/26.10/). Keep the checkout, container storage and workspace in the Linux filesystem. Python 3.11 or newer is required.
 
 ```bash
 git clone https://github.com/mingusb/FlagshipOS.git
 cd FlagshipOS
 bash scripts/bootstrap.sh --yes
 export PATH="$HOME/.local/bin:$PATH"
-
 flagship doctor
 flagship profiles
-flagship plan kali
-flagship create kali
-flagship run kali -- cat /etc/os-release
 ```
 
-The bootstrap installs Ubuntu's Podman, Distrobox and Python prerequisites, then installs FlagshipOS into a private virtual environment. It requests sudo only for Ubuntu package installation. It does not create tool environments or alter your shell configuration. Review the script first; omit `--yes` to retain APT's installation prompt. Use `--skip-system-packages` when an administrator has already installed the prerequisites.
+Review the bootstrap before running it. It installs Ubuntu prerequisites and a private Python environment; it does not create tool environments or edit your shell configuration. Omit `--yes` to retain APT's prompt. Use `--skip-system-packages` if prerequisites are already installed.
 
-The official Kali container starts with a minimal filesystem. Provision its headless tool collection explicitly:
+## Prepare collections
+
+`prepare` builds a local toolkit image before Distrobox connects it to your workspace. Builds can require substantial downloads, disk space and time. Review the recipe and dry run first:
 
 ```bash
-flagship --dry-run provision kali
-flagship provision kali
+flagship --dry-run prepare kali
+flagship prepare kali
+flagship create kali
 flagship check kali
 ```
 
-Provisioning may download substantial data. `check` runs representative version commands, not network scans, and does not certify every installed tool.
+Repeat `prepare` and `create` for `parrot`, `remnux`, `sift` and `backbox`. Creation uses the recorded immutable image ID; repeating `create` reuses a matching managed container.
 
-## Collections
+| Profile | Full collection method |
+| --- | --- |
+| `kali` | Official pinned Kali base plus `kali-linux-everything`, including recommends |
+| `parrot` | Official pinned Security base plus `parrot-tools-full`, including recommends |
+| `remnux` | Official pinned Noble container expanded with the upstream full installer |
+| `sift` | Ubuntu 24.04 plus the upstream SIFT desktop installation through Cast |
+| `backbox` | Ubuntu 24.04 plus the signed BackBox 9 repository and `backbox-tools`, including recommends |
+| `caine` | Extract and import the verified CAINE 14 release filesystem |
+| `tsurugi` | Extract and import the verified Tsurugi LAB 26.03 release filesystem |
 
-| Profile | Source | Initial coverage |
-| --- | --- | --- |
-| `kali` | Official Kali container, pinned by digest | Minimal base; `provision` adds Kali's headless metapackage |
-| `parrot` | Official Parrot Security container, pinned by digest | Upstream's command-line collection; GUI tools excluded |
-| `remnux` | Official REMnux Noble container, pinned by digest | Upstream's container collection, with documented exclusions |
-| `sift` | Import a genuine, provisioned SIFT root filesystem | Experimental import path |
-| `backbox` | Import a verified BackBox filesystem | Experimental import path |
-| `caine` | Import a verified CAINE filesystem | Experimental import path |
-| `tsurugi` | Import a verified Tsurugi LAB filesystem | Experimental import path |
+Only CAINE and Tsurugi need official ISO extraction in this workflow. Follow the [profile and import guide](docs/profiles.md). Full collection means the selected upstream collection or release filesystem, not every historical package or guaranteed WSL functionality.
 
-See [profile sources, image digests and import instructions](docs/profiles.md). An import profile is never silently replaced with an empty Ubuntu container. No distribution images are redistributed by this repository.
+Direct `create` on Kali, Parrot or REMnux without `prepare` uses an upstream image with omissions. `provision` installs only that profile's explicitly listed packages; it does not replace all five recipes. Existing containers must be removed before preparing replacements. See [persistence and replacement](docs/operations.md).
 
-## One workspace, separate dependencies
+## Use one terminal
 
-```bash
-flagship create parrot
-flagship create remnux
-flagship run parrot -- bash
-flagship run remnux -- yara --version
-```
-
-The host workspace defaults to `~/flagship` and appears as `/workspace` inside every environment. Commands start in `/workspace`; pass paths under that directory when referring to shared files.
+After creating environments, discover their executable commands:
 
 ```bash
-printf 'example\n' > ~/flagship/example.txt
-flagship run kali -- cat /workspace/example.txt
+flagship tools --refresh
+flagship which nmap
+flagship exec nmap -- --version
+flagship exec --profile parrot nmap -- --version
+flagship prefer nmap parrot
+flagship shell
 ```
 
-To use another directory, provide the same `--workspace` when creating an environment. Existing environments retain their recorded workspace; FlagshipOS refuses a conflicting path instead of silently changing mounts. Keep runtime state and Podman storage on the Linux filesystem, not under `/mnt/c`.
+The shell starts in your shared workspace. Host commands and shell builtins keep priority; an indexed specialist command missing on the host routes to a container. `flagship exec` explicitly selects a container tool even when a host command has the same name. `which` explains the choice and alternatives.
 
-Distrobox builds shell commands internally. For dependable path handling, FlagshipOS requires absolute Linux home, state and workspace paths containing only letters, digits, `/`, `_`, `.` and `-`. Paths with spaces or shell characters, custom Distrobox configuration and remote Podman connections are rejected with an explanation.
+Without an override or saved preference, providers follow catalog order: Kali, Parrot, REMnux, SIFT, BackBox, CAINE, Tsurugi. Clear a choice with `flagship prefer nmap --clear`. Refresh the inventory after installing tools or replacing containers. Discovery confirms executable presence, not complete application functionality.
 
-Container names are `flagship-<profile>`. State, image locks and per-profile homes are stored under `${XDG_DATA_HOME:-~/.local/share}/flagship`. Each container has an installation identity and ownership labels; FlagshipOS refuses to adopt or remove an unrelated container with the same name.
+The default workspace is `~/flagship`, mounted as `/workspace` in every environment. Routed commands preserve a current subdirectory inside the workspace; from elsewhere they start at `/workspace`. File arguments are passed literally. Direct profile execution remains available with `flagship run remnux -- yara --version`.
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `flagship profiles --json` | Inspect all profile metadata |
-| `flagship doctor --json` | Check host dependencies and rootless engine readiness |
-| `flagship plan kali` | Print the proposed creation steps without making changes |
-| `flagship create kali` | Create a managed environment; repeating it is safe |
-| `flagship provision kali` | Install the profile's explicitly listed packages |
-| `flagship run kali -- COMMAND ...` | Run a command using that environment's dependencies |
-| `flagship check kali` | Run the profile's representative version checks |
-| `flagship status --json` | Inspect managed environments |
-| `flagship import-rootfs caine rootfs.tar --sha256 HASH` | Verify and register a real root filesystem |
-| `flagship remove kali --yes` | Remove that managed container while retaining home/workspace data |
+| `profiles`, `doctor`, `status` | Inspect metadata, prerequisites and state; each accepts `--json` |
+| `plan PROFILE` | Preview container creation |
+| `prepare PROFILE` | Build and register a bundled full collection recipe |
+| `create PROFILE` | Create or reuse a matching managed container |
+| `provision PROFILE` | Install that profile's listed packages in an existing container |
+| `run PROFILE -- COMMAND ...` | Run directly in one environment |
+| `check PROFILE` | Run representative local version checks |
+| `tools --refresh`, `tools --json` | Refresh or inspect the executable inventory |
+| `which TOOL`, `which --profile PROFILE TOOL` | Explain selection; supports `--json` |
+| `exec [--profile PROFILE] TOOL -- ARG ...` | Run the selected indexed executable |
+| `prefer TOOL PROFILE`, `prefer TOOL --clear` | Save or clear a provider preference |
+| `shell`, `shell -- COMMAND ...` | Open a shell or run a command with routing available |
+| `import-rootfs PROFILE FILE --sha256 HASH` | Verify and register a genuine distribution filesystem |
+| `remove PROFILE --yes` | Remove the managed container, retaining home/workspace files |
 
-Use `--dry-run` to review mutating operations. Global options are best placed before the subcommand, especially for `run`: everything after its profile and optional `--` is command input. Run `flagship --help` for the complete interface.
+Put `--state-dir`, `--workspace` and `--dry-run` before the subcommand. For `exec`, put `--profile` before the tool name; later arguments belong to the tool. Dry runs execute no commands.
 
-## Imports
+## Boundaries and license
 
-For an import profile, first obtain a clean upstream filesystem and verify its authenticity. The SHA-256 argument records the exact artifact used; a hash calculated from an untrusted download does not establish its origin.
+Linux home, state and workspace paths must contain only letters, digits, `/`, `_`, `.` and `-`. Custom Distrobox configuration and remote Podman connections are rejected. Containers are named `flagship-PROFILE`; state defaults to `${XDG_DATA_HOME:-$HOME/.local/share}/flagship`. Use consistent state/workspace options.
 
-Importing makes a private temporary copy while hashing, then sends those exact verified bytes to Podman. Allow free space for another copy of the archive in the state directory as well as Podman's unpacked image storage.
-
-```bash
-flagship import-rootfs caine /path/to/verified-rootfs.tar --sha256 FULL_SHA256
-flagship create caine
-flagship check caine
-```
-
-For supported live-ISO layouts, `scripts/iso-to-rootfs.py` converts the embedded SquashFS into a tar archive using `xorriso` and `sqfs2tar`. It does not mount the image or extract its filesystem tree onto the host. It makes a private copy, verifies that copy against the supplied ISO checksum, and refuses to overwrite output. Allow disk space for the ISO copy, embedded SquashFS and output tar together. [Full import guide](docs/profiles.md#import-profiles).
-
-## Operational boundaries
-
-- **Dependency separation is not a malware sandbox.** Distrobox intentionally integrates with the host, including access to host files. Separate homes prevent ordinary configuration collisions but do not conceal your host home. Use a separately isolated VM when executing untrusted samples.
-- **WSL and containers share a kernel.** Custom kernels, forensic write-blocking guarantees, Wi-Fi features, some services and device workflows do not transfer automatically.
-- **Image identity is pinned; installed packages remain mutable.** Distrobox installs integration prerequisites, and explicit provisioning uses upstream repositories. Preserve artifacts and package inventories when exact software reproducibility matters.
-- **No silent updates.** Image changes are reviewed changes to the profile catalog. Existing local image locks remain recorded. See [maintenance and recovery](docs/operations.md).
-
-## Development and verification
+Distrobox deliberately integrates with host files. Separate dependencies and homes are **not a malware sandbox**. WSL's shared kernel does not reproduce distribution kernels, forensic write blocking or every device/service workflow. Image pins identify source filesystems, but live package repositories make builds mutable. See [operations and recovery](docs/operations.md).
 
 ```bash
 PYTHONPATH=src python3 -m unittest discover -s tests -v
@@ -124,8 +103,4 @@ python3 -m pip wheel --no-deps . --wheel-dir dist
 python3 tests/check_wheel.py dist
 ```
 
-Tests cover command arguments, dry runs, ownership, checksums, file locking, atomic writes and import failure handling. Pull-request CI also builds and checks the installable wheel. A manually triggered container workflow exercises a real Kali base environment on hosted Ubuntu. That workflow is distinct from WSL verification. See [validation evidence](docs/validation.md) for the precise release scope.
-
-## License
-
-FlagshipOS code is [MIT-licensed](LICENSE). Upstream distributions, container images and packaged tools retain their own licenses. FlagshipOS is an independent project and is not endorsed by Canonical or the listed distributions.
+FlagshipOS's own code is [MIT-licensed](LICENSE). Upstream distributions, images and tools retain their individual licenses. This repository does not redistribute those images and is not endorsed by Canonical or the listed distributions.

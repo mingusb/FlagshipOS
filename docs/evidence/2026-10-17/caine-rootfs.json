@@ -1,0 +1,423 @@
+{
+  "iso": "/home/flagship-test/flagship-artifacts/caine14.0.iso",
+  "iso_sha256": "2702226cf9ee131ee54e9649d6d90008f3fe851ba35939f43ae8cb614a00d564",
+  "archive": "/home/flagship-test/flagship-artifacts/caine14-rootfs.tar",
+  "archive_bytes": 13383929856,
+  "archive_sha256": "902ce5f4f509a09d2839f0f600dd8fbc9a9e2193949c4b9653fcc9730219de8e",
+  "archive_entries": 481144,
+  "dpkg_status_records": 4561,
+  "dpkg_installed_packages": 4468,
+  "os_release": "PRETTY_NAME=\"CAINE\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.1 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "metadata_members": {
+    "etc/os-release": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o777",
+      "size": 0,
+      "type": "2",
+      "linkname": "../usr/lib/os-release"
+    },
+    "etc/passwd": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "size": 3920,
+      "type": "0",
+      "linkname": ""
+    },
+    "usr/lib/os-release": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "size": 387,
+      "type": "0",
+      "linkname": ""
+    },
+    "var/lib/dpkg/status": {
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "size": 4742816,
+      "type": "0",
+      "linkname": ""
+    }
+  },
+  "numeric_ownership": [
+    {
+      "uid": 0,
+      "gid": 0,
+      "entries": 469450
+    },
+    {
+      "uid": 0,
+      "gid": 1,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 5,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 7,
+      "entries": 14
+    },
+    {
+      "uid": 0,
+      "gid": 8,
+      "entries": 2
+    },
+    {
+      "uid": 0,
+      "gid": 30,
+      "entries": 6
+    },
+    {
+      "uid": 0,
+      "gid": 42,
+      "entries": 5
+    },
+    {
+      "uid": 0,
+      "gid": 43,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 44,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 50,
+      "entries": 4
+    },
+    {
+      "uid": 0,
+      "gid": 105,
+      "entries": 2
+    },
+    {
+      "uid": 0,
+      "gid": 106,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 107,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 110,
+      "entries": 2
+    },
+    {
+      "uid": 0,
+      "gid": 117,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 118,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 119,
+      "entries": 3
+    },
+    {
+      "uid": 0,
+      "gid": 128,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 131,
+      "entries": 2
+    },
+    {
+      "uid": 0,
+      "gid": 132,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 143,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 149,
+      "entries": 1
+    },
+    {
+      "uid": 0,
+      "gid": 996,
+      "entries": 2
+    },
+    {
+      "uid": 0,
+      "gid": 1000,
+      "entries": 36
+    },
+    {
+      "uid": 1,
+      "gid": 1,
+      "entries": 3
+    },
+    {
+      "uid": 6,
+      "gid": 12,
+      "entries": 245
+    },
+    {
+      "uid": 102,
+      "gid": 4,
+      "entries": 1
+    },
+    {
+      "uid": 104,
+      "gid": 0,
+      "entries": 5
+    },
+    {
+      "uid": 105,
+      "gid": 111,
+      "entries": 1
+    },
+    {
+      "uid": 106,
+      "gid": 112,
+      "entries": 1
+    },
+    {
+      "uid": 110,
+      "gid": 115,
+      "entries": 33
+    },
+    {
+      "uid": 116,
+      "gid": 124,
+      "entries": 1
+    },
+    {
+      "uid": 118,
+      "gid": 126,
+      "entries": 5
+    },
+    {
+      "uid": 120,
+      "gid": 127,
+      "entries": 1
+    },
+    {
+      "uid": 123,
+      "gid": 0,
+      "entries": 11
+    },
+    {
+      "uid": 123,
+      "gid": 130,
+      "entries": 16
+    },
+    {
+      "uid": 123,
+      "gid": 131,
+      "entries": 2
+    },
+    {
+      "uid": 128,
+      "gid": 135,
+      "entries": 1
+    },
+    {
+      "uid": 129,
+      "gid": 0,
+      "entries": 1
+    },
+    {
+      "uid": 129,
+      "gid": 65534,
+      "entries": 1
+    },
+    {
+      "uid": 130,
+      "gid": 136,
+      "entries": 2
+    },
+    {
+      "uid": 131,
+      "gid": 137,
+      "entries": 1
+    },
+    {
+      "uid": 134,
+      "gid": 0,
+      "entries": 1
+    },
+    {
+      "uid": 137,
+      "gid": 146,
+      "entries": 1
+    },
+    {
+      "uid": 140,
+      "gid": 148,
+      "entries": 3
+    },
+    {
+      "uid": 141,
+      "gid": 149,
+      "entries": 9
+    },
+    {
+      "uid": 1000,
+      "gid": 115,
+      "entries": 1
+    },
+    {
+      "uid": 1000,
+      "gid": 1000,
+      "entries": 11257
+    },
+    {
+      "uid": 65534,
+      "gid": 65534,
+      "entries": 1
+    }
+  ],
+  "conversion_log": "/home/flagship-test/flagship-artifacts/caine14-conversion-20261017T182317Z.log",
+  "helper_sha256": "bcc8740b09b166d949821c069a69c3a0f2bffccca0d08f516663ba8f96054bcd",
+  "omissions_receipt": "/home/flagship-test/flagship-artifacts/caine14-rootfs.tar.omissions.json",
+  "omitted_runtime_sockets": [
+    {
+      "path": "./var/lib/heartbeat/log_daemon",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/dev/log",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/anvil",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bounce",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bsmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/defer",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/discard",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/error",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/ifmail",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/lmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/local",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/maildrop",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/mailman",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxymap",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxywrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/relay",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/retry",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/rewrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scache",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scalemail-backend",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/smtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/tlsmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/trace",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/uucp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/verify",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/virtual",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/cleanup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/flush",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/pickup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/qmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/showq",
+      "type": "socket"
+    }
+  ],
+  "checked_at": "2026-10-17T18:30:43.997876+00:00",
+  "inspection": "Read-only tar iteration; no files from the archive extracted or executed; no container import/create"
+}

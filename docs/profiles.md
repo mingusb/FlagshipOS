@@ -1,95 +1,84 @@
-# Distribution profiles
+# Collection sources and preparation
 
-Flagship keeps each distribution's package database and libraries in its own container. The Ubuntu WSL host keeps its Ubuntu repositories. This prevents cross-distribution APT dependency conflicts; it does not guarantee that every upstream application works in a container.
+The Ubuntu WSL host keeps its Ubuntu repositories. Each environment has its own libraries, package database and repositories. Recipes build images before Distrobox connects them to your workspace.
 
-The catalog contains all seven requested Debian-family collections. Three have official registry images; four require an actual distribution artifact. An import profile is not a preinstalled toolkit and is never silently replaced by bare Ubuntu.
+**Full builds and a live unified seven-profile demonstration are pending.** The methods below describe implemented recipes and verified upstream sources, not completed installation results.
 
-| Profile | Source and base | Delivery | Coverage boundary |
-| --- | --- | --- | --- |
-| `kali` | [Official Kali image](https://www.kali.org/docs/containers/official-kalilinux-docker-images/), Debian | Digest-pinned registry image | Minimal base; explicitly provision `kali-linux-headless` for the headless collection. This is not all Kali packages. |
-| `parrot` | [Official Parrot Security image](https://www.parrotsec.org/docs/containers/parrot-on-docker/), Debian | Digest-pinned registry image | Command-line collection; upstream excludes GUI applications. |
-| `remnux` | [Official REMnux container](https://docs.remnux.org/install-distro/remnux-as-a-container), Ubuntu 24.04 | Digest-pinned registry image | Upstream omits VS Code and Wine-dependent tools. Some configuration expects the stock `remnux` user. |
-| `sift` | [SANS SIFT](https://www.sans.org/tools/sift-workstation), Ubuntu | Import an installed rootfs | Prepare with upstream's supported Ubuntu release and installer. Current instructions specify Ubuntu 22.04, not the 26.10 host. |
-| `backbox` | [BackBox Linux](https://linux.backbox.org/), Ubuntu | Import verified ISO or rootfs | Desktop, service and hardware behavior is not guaranteed. |
-| `caine` | [CAINE downloads](https://www.caine-live.net/page5/page5.html), Ubuntu | Import verified ISO or rootfs | User-space tools only; live-boot write blocking does not transfer. |
-| `tsurugi` | [Tsurugi LAB](https://tsurugi-linux.org/tsurugi_linux.php), Ubuntu | Import verified ISO or rootfs | User-space tools only; its custom kernel and write blocking do not transfer. |
+## Five build recipes
+
+Use `flagship prepare PROFILE`, then `flagship create PROFILE` and `flagship check PROFILE` for Kali, Parrot, REMnux, SIFT and BackBox. Preview with `flagship --dry-run prepare PROFILE`. Preparation refuses an existing same-name container and records a successful build's recipe SHA-256 and immutable image ID.
+
+| Profile | Recipe and upstream evidence | Scope |
+| --- | --- | --- |
+| Kali | Official image plus [`kali-linux-everything`](https://www.kali.org/docs/general-use/metapackages/), with recommends | Full selected metapackage; the upstream image alone is minimal |
+| Parrot | Official Security image plus [`parrot-tools-full`](https://github.com/ParrotSec/parrot-tools/blob/master/debian/control), with recommends | Adds tools omitted from the command-line image; recommends are essential |
+| REMnux | Official Ubuntu 24.04 container plus its [documented full installer expansion](https://docs.remnux.org/install-distro/remnux-as-a-container) | Dedicated mode, release `v2026.42.3`; intended to add VS Code and Wine-dependent tools omitted from the base |
+| SIFT | Ubuntu 24.04, Cast `v1.0.42`, SIFT [`v2026.04.21` desktop mode](https://github.com/teamdfir/sift-saltstack/releases/download/v2026.04.21/manifest.yml) | Release manifest supports Ubuntu 22.04 and 24.04; current recipe requires amd64. Some introductory SANS instructions still name 22.04 |
+| BackBox | Ubuntu 24.04 plus the official [BackBox nine/noble archive](https://api.launchpad.net/1.0/~backbox/+archive/ubuntu/nine), `backbox-tools` with recommends | Full tool metapackage, observed version 9.0.1 on 2026-10-17; desktop appearance/settings are separate |
+
+Inspect the bundled [Containerfiles](../src/flagship/recipes). Recipes check APT dependencies and pending dpkg problems and save `/usr/local/share/flagship/package-inventory.tsv`. This does not enumerate every custom `/opt` or user-installed tool. REMnux/SIFT installer service and home assumptions still need live verification.
+
+BackBox's repository key fingerprint is `F10FF8AFAF205A39312C0A20F2B4C9A44882013D`, checked against official Launchpad metadata. The repository is configured inside that image only. Never add these sources to the Ubuntu host or another collection.
 
 ## Registry provenance
 
-The following tag-to-digest mappings were checked on **2026-10-17** using Docker Hub's public tag metadata and then confirmed against the Docker Registry API's `Docker-Content-Digest` response header. These are multi-platform image index digests, not architecture-specific layer hashes. All three indexes include Linux `amd64` and `arm64`; this observation does not certify every tool on both architectures.
+These mappings were verified on **2026-10-17** against official image references, public tag metadata and Docker Registry digest headers. They are multi-platform index digests; architecture presence does not certify every tool.
 
-| Upstream reference observed | Immutable digest used | Upstream tag last pushed |
+| Upstream reference | Digest |
+| --- | --- |
+| `docker.io/kalilinux/kali-rolling:latest` | `sha256:02f5d6c019e549b0f55da58e835cad5355ef1030c6b2645265a324e37dfc4acc` |
+| `docker.io/parrotsec/security:latest` | `sha256:2fe6606fed814618a6bc91a07f193a5b6aa9660b774fc319e6c8fd4b569e2f06` |
+| `docker.io/remnux/remnux-distro:noble` | `sha256:880089abf02feb5240607545ab601e2d97d7b1c213d6341aa2e7ce356f65c8c2` |
+
+Publisher references: [Kali](https://www.kali.org/docs/containers/official-kalilinux-docker-images/), [Parrot](https://www.parrotsec.org/docs/containers/parrot-on-docker/), [REMnux](https://docs.remnux.org/install-distro/remnux-as-a-container). Ubuntu base digests and installer checksums are recorded in the recipes. Digest identity is not publisher-signature verification or a runtime test.
+
+Creating these registry profiles without preparation uses the original upstream image and its omissions. SIFT and BackBox can use recipes even where catalog source kind is `import`: preparation registers a local image for creation. Genuine preinstalled rootfs imports remain possible.
+
+## Import profiles: CAINE and Tsurugi
+
+Only these two collections require official ISO extraction in the documented workflow. No current complete public package installer was verified. Preserve the release filesystem, including custom files outside dpkg.
+
+| Profile | Verified artifact | Coverage boundary |
 | --- | --- | --- |
-| `docker.io/kalilinux/kali-rolling:latest` | `sha256:02f5d6c019e549b0f55da58e835cad5355ef1030c6b2645265a324e37dfc4acc` | 2026-10-11 |
-| `docker.io/parrotsec/security:latest` | `sha256:2fe6606fed814618a6bc91a07f193a5b6aa9660b774fc319e6c8fd4b569e2f06` | 2026-05-15 |
-| `docker.io/remnux/remnux-distro:noble` | `sha256:880089abf02feb5240607545ab601e2d97d7b1c213d6341aa2e7ce356f65c8c2` | 2026-10-15 |
+| CAINE | [CAINE 14 Lightstream](https://www.caine-live.net/page5/page5.html), Ubuntu 24.04, released 2025-03-24 | Current release intentionally omits Autopsy and Gimp. Its public tools page describes CAINE 11, not an exhaustive CAINE 14 manifest |
+| Tsurugi | [LAB 26.03](https://tsurugi-linux.org/downloads.php), Ubuntu 24.04 lineage, released 2026-04-04 | [Current FAQ](https://tsurugi-linux.org/documentation_faq1.php) still places a public custom repository on the roadmap; custom files also live in `/usr/bin` and `/opt` |
 
-Metadata evidence: [Kali tag](https://hub.docker.com/v2/repositories/kalilinux/kali-rolling/tags/latest), [Parrot tag](https://hub.docker.com/v2/repositories/parrotsec/security/tags/latest), [REMnux tag](https://hub.docker.com/v2/repositories/remnux/remnux-distro/tags/noble). The mappings are recorded above because tags can move after verification. A digest establishes content identity; it is not a publisher-signature verification or a vulnerability assessment.
+CAINE-FROM-DEB targets Ubuntu 10.04 and is unsuitable here. Tsurugi's newest published tool list is 25.11, preceding its current release. Complete release userspace is the baseline; additional desired tools are a separate supplement.
 
-Registry verification is not an end-to-end runtime test. Consult the project's test documentation and release notes for the environments actually exercised. Smoke commands check Bash, the Debian package-query utility, and representative toolkit commands where an upstream inventory supports them. They do not assert that a distribution's complete tool collection is installed or functional.
+Verify the ISO against its publisher's checksum. CAINE 14's [published SHA-256](https://www.caine-live.net/page5/caine14.0.iso.sha256.txt) is:
 
-| Profile | Additional smoke command | Evidence and interpretation |
-| --- | --- | --- |
-| `kali` | `nmap --version` | [Headless metapackage inventory](https://www.kali.org/tools/kali-meta/#kali-linux-headless). Requires explicit provisioning; failure on the minimal base is expected. |
-| `parrot` | `nmap --version` | [Parrot metapackage inventory](https://github.com/ParrotSec/parrot-tools/blob/master/debian/control) includes Nmap in its information-gathering collection. |
-| `remnux` | `yara --version` | [REMnux tool inventory](https://docs.remnux.org/discover-the-tools/gather%2Band%2Banalyze%2Bdata) lists YARA. |
-| `sift` | `fls -V` | [SIFT inventory](https://www.sans.org/tools/sift-workstation) includes Sleuth Kit. |
-| `caine` | `fls -V` | [CAINE tool inventory](https://www.caine-live.net/page11/page11.html) includes Sleuth Kit. |
-| `tsurugi` | `fls -V` | [Tsurugi's changelog](https://tsurugi-linux.org/documentation_tsurugi_linux_changelog.php) records Sleuth Kit. |
-| `backbox` | None beyond the base checks | A current version-specific package manifest was not verified; inspect the imported artifact's tool inventory. |
+```text
+2702226cf9ee131ee54e9649d6d90008f3fe851ba35939f43ae8cb614a00d564
+```
 
-These commands display local versions and perform no network scanning or sample execution. The [Sleuth Kit manual](https://sleuthkit.org/sleuthkit/man/fls.html) documents `-V` as its version flag. Presence of one representative utility does not establish a distribution's identity; use verified upstream artifacts.
+Tsurugi publishes [signed SHA-512 hashes](https://tsurugi-linux.org/signed_hashes.sha512) and a [public key](https://tsurugi-linux.org/tsurugi_linux_pub_key.asc). Verify the signature and ISO hash first. The key retrieved on 2026-10-17 had fingerprint `68A60308FCD7BCA0F81E75016DF20CE124289711`, anchored to the official HTTPS site. Pass the verified publisher hash with the helper's `--sha512` option.
 
-Pinning freezes the source filesystem. Distrobox may install integration prerequisites on first entry, and explicit package provisioning uses that distribution's live repositories. The resulting mutable environment is therefore not a bit-for-bit reproducible build. Retain your exact imported artifacts and package inventories when that level of reproducibility matters.
+Install the Ubuntu conversion packages and inspect the actual layout:
 
-## Import profiles
+```bash
+sudo apt-get install xorriso squashfs-tools-ng
+xorriso -indev /path/to/verified.iso -find / -name '*.squashfs'
+```
 
-The absence of a verified image is stated narrowly: no current official, complete OCI workstation image was verified during this review. Community images may exist, but this project does not substitute an unreviewed third party image for an upstream distribution.
-
-For SIFT, the official [Dockerfiles repository](https://github.com/teamdfir/sift-dockerfiles) is archived and its README describes a deprecated Salt test image. That is not a complete SIFT workstation. Follow the current [SANS installation instructions](https://www.sans.org/tools/sift-workstation) in a separate supported installation, then export that installation's root filesystem. SIFT's OVA must first be installed or converted into a root filesystem; it is not directly a rootfs tar.
-
-For BackBox, CAINE and Tsurugi, obtain the ISO from the project's download page. Check its upstream checksum and signature where available before importing. CAINE provides SHA-256 hashes. [Tsurugi publishes signed SHA-512 hashes](https://tsurugi-linux.org/downloads.php); verify those, then calculate SHA-256 for this project's import record. A checksum you calculated yourself records identity but does not establish upstream authenticity.
-
-An ISO import uses the live user-space filesystem and does not boot its installer or kernel. It therefore cannot reproduce the full live distribution. Multi-layer live images or changed layouts can require a prepared rootfs tar. OVA, VMDK and other virtual disks are not accepted as rootfs archives. Use a clean installation without personal files or credentials when producing an archive.
-
-The repository includes an explicit ISO conversion helper. Install its Ubuntu prerequisites, `xorriso` and `squashfs-tools-ng`, then supply the ISO and the checksum obtained from upstream. Run it from the repository checkout, replacing the paths and checksum below:
+The helper defaults to `casper/filesystem.squashfs`; use `--squashfs-path PATH` if needed. Multiple layered filesystems require additional review: the helper converts one selected SquashFS only.
 
 ```bash
 python3 scripts/iso-to-rootfs.py \
-  --iso "$HOME/Downloads/distribution.iso" \
-  --sha256 '<verified-upstream-ISO-SHA256>' \
-  --output "$HOME/Downloads/distribution-rootfs.tar"
-```
+  --iso /path/to/verified.iso \
+  --sha256 VERIFIED_ISO_SHA256 \
+  --output /path/to/rootfs.tar
 
-The helper uses `xorriso` and `sqfs2tar`; it does not install the distribution onto the host. Use the resulting rootfs tar, together with its own SHA-256, for the profile import. The ISO checksum and the rootfs checksum identify different artifacts and are not interchangeable. For Tsurugi, first verify the published signed SHA-512 file, then calculate the verified ISO's SHA-256 for the helper input.
-
-For a CAINE artifact, the next steps are:
-
-```bash
-flagship import-rootfs caine "$HOME/Downloads/distribution-rootfs.tar" \
-  --sha256 '<rootfs-SHA256-reported-by-the-helper>'
+flagship import-rootfs caine /path/to/rootfs.tar --sha256 PRINTED_ROOTFS_SHA256
 flagship create caine
 flagship check caine
 ```
 
-Choose the matching profile ID for the artifact. If the ISO has a single live root filesystem at a different location, provide `--squashfs-path path/inside/image.squashfs` to the helper after inspecting its layout. Do not arbitrarily select one layer from a multi-layer image.
+For Tsurugi, replace `--sha256 VERIFIED_ISO_SHA256` with `--sha512 VERIFIED_ISO_SHA512` and use profile `tsurugi`. The resulting rootfs receipt and `import-rootfs` still use SHA-256. The helper verifies a private ISO copy, preserves numeric ownership in the tar and refuses existing output. It neither boots the image nor extracts a filesystem tree onto the host. Allow space for the source ISO, private copy, SquashFS, tar, import snapshot and unpacked Podman image. OVA and virtual-disk files are not rootfs tar archives.
 
-All four import profiles are experimental until the particular artifact is tested on the target host. Tool availability comes from the artifact; this project does not download an unspecified collection after import. Upstream software keeps its own licenses. This repository distributes launcher/configuration code, not repackaged distribution binaries.
+The default conversion stops on unsupported filesystem entries. CAINE 14 contains a Unix socket, which tar cannot represent. For that case, explicitly add `--omit-runtime-sockets`: the helper independently verifies every omitted inode is a socket, rejects other omissions or ambiguous metadata, and writes `rootfs.tar.omissions.json` with the exact paths and archive hash. Retain this receipt with the rootfs. This option does not omit packages or regular tool files; it also does not recreate the corresponding running services.
 
-## Host integration and limits
+## Verification boundaries
 
-The target is a fresh Ubuntu 26.10 WSL2 host. Containers can retain an older supported Debian or Ubuntu user space. They share the WSL kernel, so they do not bring a distribution's custom kernel, kernel modules or boot-time protections with them. Raw devices, USB adapters, packet capture capabilities, GUI sessions and long-running services need separate support and testing.
+`check` runs representative local version commands. `tools --refresh` inventories discovered executables in created environments. Neither establishes complete application functionality. Live package repositories also mean a source pin does not make the final build reproducible.
 
-Separate profile homes avoid accidental dotfile collisions, but they do not make Distrobox a security sandbox. [Distrobox explicitly prioritizes host integration](https://distrobox.it/#security-implications), and its [custom-home option still mounts the host home](https://distrobox.it/usage/distrobox-create/). Use a separately isolated, disposable VM for executing untrusted malware. A forensic tool in these containers must not be assumed to provide the acquisition or write-blocking guarantees of the original live distribution.
-
-## Catalog contract
-
-`src/flagship/profiles.json` has `schema_version: 1` and a `profiles` object keyed by `kali`, `parrot`, `remnux`, `sift`, `backbox`, `caine` and `tsurugi`. Each entry contains:
-
-- `name`, `description`, `source_url` and `notes` for provenance and limitations.
-- `kind`: `registry` for a verified upstream OCI image or `import` for a user-supplied distribution filesystem.
-- `image`: an immutable, fully qualified OCI reference for registry profiles; `null` for import profiles.
-- `smoke_commands`: argument arrays for harmless local environment checks. They are not shell strings.
-- `packages`: optional packages installed only by an explicit provisioning action. An empty array means no additional collection package is requested.
-
-Update an image pin only after verifying its upstream source and architecture metadata, exercising the changed image, and recording the new digest and check date here. Do not replace import profiles with guessed image names or add a distribution's repositories to the host.
+Distrobox integrates with host files and is not malware containment. WSL's kernel does not provide CAINE/Tsurugi live write blocking, custom kernels or acquisition guarantees. Desktop, service and hardware behavior needs separate validation. All upstream components retain their own licenses; only FlagshipOS code is MIT-licensed.

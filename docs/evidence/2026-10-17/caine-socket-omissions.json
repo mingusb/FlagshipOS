@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "mode": "omit-runtime-sockets",
+  "source_iso": "/home/flagship-test/flagship-artifacts/caine14.0.iso",
+  "source_checksum_algorithm": "sha256",
+  "source_checksum": "2702226cf9ee131ee54e9649d6d90008f3fe851ba35939f43ae8cb614a00d564",
+  "squashfs_path": "/casper/filesystem.squashfs",
+  "archive": "/home/flagship-test/flagship-artifacts/caine14-rootfs.tar",
+  "archive_sha256": "902ce5f4f509a09d2839f0f600dd8fbc9a9e2193949c4b9653fcc9730219de8e",
+  "archive_entries": 481144,
+  "omitted": [
+    {
+      "path": "./var/lib/heartbeat/log_daemon",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/dev/log",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/anvil",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bounce",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bsmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/defer",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/discard",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/error",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/ifmail",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/lmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/local",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/maildrop",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/mailman",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxymap",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxywrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/relay",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/retry",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/rewrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scache",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scalemail-backend",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/smtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/tlsmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/trace",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/uucp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/verify",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/virtual",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/cleanup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/flush",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/pickup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/qmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/showq",
+      "type": "socket"
+    }
+  ]
+}

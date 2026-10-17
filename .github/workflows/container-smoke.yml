@@ -33,7 +33,7 @@ jobs:
         # https://podman.io/docs/installation#installing-on-linux
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends podman uidmap slirp4netns fuse-overlayfs python3-venv
+          sudo apt-get install -y --no-install-recommends podman uidmap passt slirp4netns fuse-overlayfs python3-venv
           (cd .ci/distrobox && sudo ./install --prefix /usr/local)
           python3 -m venv .venv
           .venv/bin/python -m pip install --disable-pip-version-check .

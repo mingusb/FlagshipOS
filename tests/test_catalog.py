@@ -49,9 +49,9 @@ class CatalogTests(unittest.TestCase):
                 for package in profile["packages"]:
                     self.assertIsNotNone(re.fullmatch(r"[a-z0-9][a-z0-9+.-]*", package))
 
-    def test_kali_toolkit_installation_is_explicit(self):
-        self.assertEqual(self.profiles["kali"]["packages"], ["kali-linux-headless"])
-        self.assertIn("not every Kali package", " ".join(self.profiles["kali"]["notes"]))
+    def test_full_kali_and_parrot_toolkit_installation_is_explicit(self):
+        self.assertEqual(self.profiles["kali"]["packages"], ["kali-linux-everything"])
+        self.assertEqual(self.profiles["parrot"]["packages"], ["parrot-tools-full"])
 
 
 if __name__ == "__main__":

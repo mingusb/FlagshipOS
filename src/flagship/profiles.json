@@ -6,40 +6,40 @@
       "kind": "registry",
       "image": "docker.io/kalilinux/kali-rolling@sha256:02f5d6c019e549b0f55da58e835cad5355ef1030c6b2645265a324e37dfc4acc",
       "source_url": "https://www.kali.org/docs/containers/official-kalilinux-docker-images/",
-      "description": "Official Debian-based Kali rolling base image, with an explicit optional headless toolkit provisioning step.",
+      "description": "Official Debian-based Kali rolling base image, with explicit kali-linux-everything provisioning.",
       "notes": [
         "Resolved from docker.io/kalilinux/kali-rolling:latest on 2026-10-17 and verified against Docker Registry API; index supports linux/amd64 and linux/arm64.",
-        "The upstream base image contains no default Kali toolkit. Creating this profile does not install kali-linux-headless; provision it explicitly.",
-        "The headless metapackage is not every Kali package. GUI, hardware, service and kernel-dependent tools need separate evaluation.",
+        "The upstream base image contains no default Kali toolkit. Provisioning explicitly installs kali-linux-everything with recommended packages.",
+        "The full metapackage installs the upstream collection; GUI, hardware, service and kernel-dependent tool functionality still requires separate evaluation.",
         "Image pinning freezes the initial filesystem only. Distrobox initialization and explicit APT provisioning use the container's current repositories."
       ],
       "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["nmap", "--version"]],
-      "packages": ["kali-linux-headless"]
+      "packages": ["kali-linux-everything"]
     },
     "parrot": {
       "name": "Parrot Security OS",
       "kind": "registry",
       "image": "docker.io/parrotsec/security@sha256:2fe6606fed814618a6bc91a07f193a5b6aa9660b774fc319e6c8fd4b569e2f06",
       "source_url": "https://www.parrotsec.org/docs/containers/parrot-on-docker/",
-      "description": "Official Debian-based Parrot Security command-line collection.",
+      "description": "Official Debian-based Parrot Security image, expanded with the full parrot-tools-full metapackage.",
       "notes": [
         "Resolved from docker.io/parrotsec/security:latest on 2026-10-17 and verified against Docker Registry API; index supports linux/amd64 and linux/arm64.",
-        "Upstream deliberately excludes graphical applications from this image. This is not the complete desktop Security Edition.",
+        "The initial upstream image excludes graphical applications; explicit provisioning installs parrot-tools-full including recommended packages.",
         "The selected tag was last pushed on 2026-05-15. Refreshing the image pin is a reviewed change; it does not track latest silently.",
-        "No extra toolkit package is installed by this profile. Distrobox may install its own integration prerequisites during initialization."
+        "A successful full-tool installation does not establish that every graphical, service or hardware-dependent application works under WSL."
       ],
       "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["nmap", "--version"]],
-      "packages": []
+      "packages": ["parrot-tools-full"]
     },
     "remnux": {
       "name": "REMnux",
       "kind": "registry",
       "image": "docker.io/remnux/remnux-distro@sha256:880089abf02feb5240607545ab601e2d97d7b1c213d6341aa2e7ce356f65c8c2",
       "source_url": "https://docs.remnux.org/install-distro/remnux-as-a-container",
-      "description": "Official REMnux container based on Ubuntu 24.04 Noble for static analysis and reverse engineering tools.",
+      "description": "Official Ubuntu 24.04 REMnux container, with a bundled recipe for its full dedicated installation.",
       "notes": [
         "Resolved from docker.io/remnux/remnux-distro:noble on 2026-10-17 and verified against Docker Registry API; index supports linux/amd64 and linux/arm64.",
-        "Upstream excludes VS Code and Wine-dependent tools from the container. Architecture-specific tool availability can differ.",
+        "The base container excludes VS Code and Wine-dependent tools. Run prepare remnux before create to apply the upstream full dedicated installer.",
         "Distrobox shares access with the host and is not a malware detonation sandbox, even with a separate profile home directory.",
         "The stock image assumes a remnux user and home; tools configured specifically there may require adjustment for Distrobox's mapped user."
       ],
@@ -51,11 +51,11 @@
       "kind": "import",
       "image": null,
       "source_url": "https://www.sans.org/tools/sift-workstation",
-      "description": "Import a root filesystem from a genuine SIFT installation prepared using upstream's supported Ubuntu release.",
+      "description": "Build the full SIFT desktop collection on supported Ubuntu 24.04 with the bundled Cast installer recipe, or import a genuine SIFT rootfs.",
       "notes": [
         "No current official full SIFT OCI image was verified. The archived teamdfir/sift-dockerfiles repository contains a Salt test image, not a complete workstation.",
-        "Upstream currently documents Ubuntu 22.04 and the Cast installer. Do not run that installer against the Ubuntu 26.10 host.",
-        "Prepare SIFT separately using upstream instructions, then supply a rootfs tar with its expected SHA-256. An OVA or virtual disk is not itself a rootfs tar.",
+        "The pinned v2026.04.21 release manifest supports Ubuntu 22.04 and 24.04. The bundled recipe uses 24.04 and full desktop mode, isolated from the Ubuntu 26.10 host.",
+        "Run prepare sift, then create sift. A verified rootfs tar from an upstream installation is also supported; an OVA or virtual disk is not itself a rootfs tar.",
         "Imported SIFT compatibility with Distrobox is experimental; its smoke check includes a Sleuth Kit version check, not full forensic validation."
       ],
       "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["fls", "-V"]],
@@ -66,10 +66,10 @@
       "kind": "import",
       "image": null,
       "source_url": "https://linux.backbox.org/download/",
-      "description": "Import a root filesystem from the Ubuntu-based BackBox distribution.",
+      "description": "Build the complete BackBox 9 toolkit on Ubuntu 24.04 using its official signed repository and backbox-tools metapackage.",
       "notes": [
-        "No current official full BackBox OCI image was verified. Supply an upstream ISO or an exported rootfs tar with its expected SHA-256.",
-        "Import preserves the distribution's user-space packages instead of adding its repositories to the Ubuntu host.",
+        "Run prepare backbox, then create backbox. The bundled recipe verifies the BackBox nine signing key and installs backbox-tools with recommended packages.",
+        "Its repository exists only inside the prepared image. The recipe installs the complete toolkit; it does not reproduce BackBox desktop branding and settings.",
         "Live desktop startup, GUI tools and services are not guaranteed to work inside Distrobox.",
         "Import support is experimental until the exact artifact has been created and tested on the target WSL host."
       ],

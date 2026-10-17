@@ -24,6 +24,11 @@ def main():
         required = {"kali", "parrot", "backbox", "remnux", "caine", "tsurugi", "sift"}
         if ids != required:
             raise SystemExit(f"Incomplete distribution catalog: {sorted(ids)}")
+        recipe_profiles = {"kali", "parrot", "backbox", "remnux", "sift"}
+        for profile in recipe_profiles:
+            recipe = f"flagship/recipes/{profile}.Containerfile"
+            if recipe not in names or not wheel.read(recipe).strip():
+                raise SystemExit(f"Wheel lacks the bundled full-install recipe: {profile}")
         if not any(name.endswith("/entry_points.txt") for name in names):
             raise SystemExit("Wheel has no console entry point metadata")
         entries = "\n".join(
@@ -33,7 +38,7 @@ def main():
         )
         if "flagship = flagship.cli:main" not in entries:
             raise SystemExit("Wheel lacks the flagship CLI entry point")
-    print(f"Verified {wheels[0].name}: seven profiles and the flagship entry point")
+    print(f"Verified {wheels[0].name}: seven profiles, five build recipes and the flagship entry point")
 
 
 if __name__ == "__main__":

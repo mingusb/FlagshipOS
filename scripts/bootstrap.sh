@@ -48,13 +48,15 @@ if [[ -e "$bin_dir/flagship" || -L "$bin_dir/flagship" ]]; then
 fi
 if (( system_packages )); then
   sudo apt-get update
+  # Podman 5 uses pasta for rootless builds; Ubuntu provides it in the passt package.
   sudo apt-get install "${accept[@]}" --no-install-recommends \
     python3 python3-venv podman distrobox uidmap dbus-user-session \
-    slirp4netns fuse-overlayfs ca-certificates
+    passt slirp4netns fuse-overlayfs ca-certificates
 fi
 for executable in python3 podman distrobox; do
   command -v "$executable" >/dev/null || { printf 'Missing dependency: %s\n' "$executable" >&2; exit 1; }
 done
+command -v pasta >/dev/null || { printf '%s\n' 'Missing dependency: pasta. Install the Ubuntu package passt.' >&2; exit 1; }
 python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 11) else "Python 3.11 or newer is required")'
 umask 077
 mkdir -p -- "$data_dir" "$bin_dir"

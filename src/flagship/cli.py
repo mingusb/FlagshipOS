@@ -98,7 +98,22 @@ def atomic_json(path, data):
             os.unlink(temporary)
 
 
-def require_runtime():
+def rootless_network_status(info):
+    host = info.get("host", {}) if isinstance(info, dict) else {}
+    command = host.get("rootlessNetworkCmd") if isinstance(host, dict) else None
+    if command not in ("pasta", "slirp4netns"):
+        return False, "Cannot determine Podman's rootless build network helper from podman info."
+    helper = host.get(command, {})
+    location = helper.get("executable") if isinstance(helper, dict) else None
+    available = bool((isinstance(location, str) and os.path.isabs(location) and os.access(location, os.X_OK))
+                     or shutil.which(command))
+    if not available:
+        package = "passt" if command == "pasta" else "slirp4netns"
+        return False, f"Podman selected {command} for rootless networking; install Ubuntu's {package} package."
+    return True, f"Podman rootless network helper: {command}."
+
+
+def require_runtime(*, build=False):
     if sys.platform != "linux":
         raise CommandError("Run this command inside Linux (Ubuntu WSL2 is supported).")
     if os.geteuid() == 0:
@@ -106,13 +121,18 @@ def require_runtime():
     missing = [tool for tool in ("podman", "distrobox") if not shutil.which(tool)]
     if missing:
         raise CommandError("Install the required tools first: " + ", ".join(missing))
-    info = capture(["podman", "info", "--format", "json"])
+    result = capture(["podman", "info", "--format", "json"])
     try:
-        rootless = json.loads(info.stdout)["host"]["security"]["rootless"]
+        info = json.loads(result.stdout)
+        rootless = info["host"]["security"]["rootless"]
     except (ValueError, KeyError, TypeError) as exc:
         raise CommandError("Cannot determine whether Podman is rootless.") from exc
     if rootless is not True:
         raise CommandError("Flagship requires rootless Podman; rootful or remote rootful engines are unsupported.")
+    if build:
+        ready, detail = rootless_network_status(info)
+        if not ready:
+            raise CommandError(detail)
 
 
 def validate_paths(ctx):
@@ -210,11 +230,13 @@ def stop_child(child, signum, grouped):
     child.wait()
 
 
-def stream(argv, *, stdin=None, supervise=False):
+def stream(argv, *, stdin=None, supervise=False, env=None, cwd=None):
     """Supervise noninteractive mutations without changing interactive job control."""
     grouped = supervise and sys.platform == "linux" and (stdin is not None or not (sys.stdin.isatty() and sys.stdout.isatty()))
     options = {"start_new_session": True} if grouped else {}
-    child = subprocess.Popen(argv, env=backend_env(), stdin=stdin, **options)
+    if cwd is not None:
+        options["cwd"] = str(cwd)
+    child = subprocess.Popen(argv, env=backend_env() if env is None else env, stdin=stdin, **options)
     requested_signal = None
     def terminate(signum, _frame):
         nonlocal requested_signal
@@ -364,7 +386,7 @@ def provision_argv(profile, definition):
         return []
     return [enter_argv(profile, ["sudo", "apt-get", "update"]),
             enter_argv(profile, ["sudo", "env", "DEBIAN_FRONTEND=noninteractive",
-                                 "apt-get", "install", "--yes", "--", *packages])]
+                                 "apt-get", "install", "--yes", "--install-recommends", "--", *packages])]
 
 
 def locked_image(record):
@@ -550,11 +572,14 @@ def doctor(as_json, dry_run=False):
         try:
             info = json.loads(result.stdout)
             checks["rootless"] = info["host"]["security"]["rootless"] is True
+            checks["rootless_network"], details["rootless_network"] = rootless_network_status(info)
         except (ValueError, KeyError, TypeError):
             checks["rootless"] = False
+            checks["rootless_network"] = False
             details["podman"] = result.stderr.strip() or "Cannot parse podman info"
     else:
         checks["rootless"] = False
+        checks["rootless_network"] = False
         if dry_run:
             details["rootless"] = "Engine checks skipped during dry run."
     result = {"ok": all(checks.values()), "checks": checks, "details": details}
@@ -590,7 +615,7 @@ def status(ctx, catalog, as_json):
                         item["detail"] = str(exc)
                 except CommandError:
                     item["status"] = "foreign-collision"
-            elif record.get("status") != "imported":
+            elif record.get("status") not in ("imported", "prepared"):
                 item["status"] = "absent"
         containers.append(item)
     if as_json:
@@ -613,12 +638,13 @@ def build_parser():
         target.add_argument("--dry-run", action="store_true", default=False if root else argparse.SUPPRESS)
     common(parser, root=True)
     subparsers = parser.add_subparsers(dest="command", required=True)
-    for name in ("profiles", "doctor", "status", "plan", "create", "provision", "run", "check", "import-rootfs", "remove"):
+    for name in ("profiles", "doctor", "status", "plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove",
+                 "tools", "which", "exec", "shell", "prefer"):
         sub = subparsers.add_parser(name)
         common(sub)
-        if name in ("profiles", "doctor", "status"):
+        if name in ("profiles", "doctor", "status", "tools", "which"):
             sub.add_argument("--json", action="store_true")
-        else:
+        if name in ("plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove"):
             sub.add_argument("profile")
         if name == "run":
             sub.add_argument("argv", nargs=argparse.REMAINDER)
@@ -627,6 +653,17 @@ def build_parser():
             sub.add_argument("--sha256", required=True)
         if name == "remove":
             sub.add_argument("--yes", action="store_true", help="Confirm removal of the managed container")
+        if name == "tools":
+            sub.add_argument("--refresh", action="store_true", help="Discover executable commands from existing environments")
+        if name in ("which", "exec", "prefer"):
+            sub.add_argument("tool")
+        if name in ("which", "exec"):
+            sub.add_argument("--profile", help="Select an explicit provider")
+        if name in ("exec", "shell"):
+            sub.add_argument("argv", nargs=argparse.REMAINDER)
+        if name == "prefer":
+            sub.add_argument("provider", nargs="?")
+            sub.add_argument("--clear", action="store_true", help="Clear a saved provider preference")
     return parser
 
 
@@ -645,12 +682,19 @@ def main(argv=None):
         validate_paths(ctx)
         if args.command == "status":
             return status(ctx, catalog, args.json)
+        if args.command in ("tools", "which", "exec", "shell", "prefer"):
+            from . import tooling
+            validate_backend_configuration()
+            return tooling.main(ctx, args, catalog)
         if not NAME_RE.fullmatch(args.profile) or args.profile not in catalog:
             raise CommandError("Unknown profile; use 'flagship profiles' to list available names.", 2)
         definition = catalog[args.profile]
         if args.command == "run":
             command_arguments(args)
         validate_backend_configuration()
+        if args.command == "prepare":
+            from . import preparation
+            return preparation.main(ctx, args.profile)
         if args.command == "plan" or args.dry_run:
             return print_plan(ctx, args, definition)
         if args.command == "remove" and not args.yes:

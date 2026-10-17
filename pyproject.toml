@@ -27,4 +27,4 @@ Issues = "https://github.com/mingusb/FlagshipOS/issues"
 where = ["src"]
 
 [tool.setuptools.package-data]
-flagship = ["profiles.json"]
+flagship = ["profiles.json", "recipes/*.Containerfile"]
