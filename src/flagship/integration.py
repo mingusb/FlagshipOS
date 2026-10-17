@@ -6,6 +6,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shlex
 import shutil
 import stat
 import tempfile
@@ -25,6 +26,43 @@ if command -v update-cracklib >/dev/null 2>&1 && [ ! -s /var/cache/cracklib/crac
     update-cracklib
     test -s /var/cache/cracklib/cracklib_dict.pwd
 fi
+'''
+
+# Some live images create their shadow databases only during a normal boot.
+# The standard converters preserve account identities and existing password data.
+ACCOUNT_DATABASE_SCRIPT = r'''
+set -eu
+if [ ! -e /etc/shadow ]; then
+    test ! -L /etc/shadow
+    pwconv
+    test -s /etc/shadow
+fi
+if [ ! -e /etc/gshadow ]; then
+    test ! -L /etc/gshadow
+    grpconv
+    test -s /etc/gshadow
+fi
+'''
+
+HOME_DIRECTORY_SCRIPT = r'''
+set -eu
+fail() { printf 'Flagship home: %s\n' "$1" >&2; exit 1; }
+[ ! -L "$home" ] && [ -d "$home" ] && [ "$uid" -gt 0 ] && [ "$gid" -ge 0 ] || fail 'Unexpected managed home or user identity.'
+for relative in .config .cache .local .local/share .local/state; do
+    path=$home/$relative
+    [ ! -L "$path" ] || fail 'Application directory is a symbolic link.'
+    if [ -e "$path" ]; then
+        [ -d "$path" ] || fail 'Application path is not a directory.'
+        owner=$(stat -c %u "$path")
+        [ "$owner" = 0 ] || [ "$owner" = "$uid" ] || fail 'Application directory belongs to another user.'
+    fi
+done
+for relative in .config .cache .local .local/share .local/state; do
+    path=$home/$relative
+    mkdir -p -m 0700 "$path"
+    chown --no-dereference "$uid:$gid" "$path"
+done
+printf '%s\n' 'Flagship application directories belong to the mapped user.'
 '''
 
 # Executed inside imported live-release containers, before Distrobox runs APT.
@@ -73,9 +111,20 @@ def media_source_hook():
     return "printf %s " + payload + " | base64 --decode | python3"
 
 
-def live_release_hook():
-    payload = base64.b64encode(CRACKLIB_CACHE_SCRIPT.encode()).decode("ascii")
-    return media_source_hook() + " && printf %s " + payload + " | base64 --decode | sh"
+def home_directory_hook(home, uid, gid):
+    script = 'home=' + shlex.quote(str(home)) + '\nuid=' + str(int(uid)) + '\ngid=' + str(int(gid)) + '\n' + HOME_DIRECTORY_SCRIPT
+    payload = base64.b64encode(script.encode()).decode('ascii')
+    return 'printf %s ' + payload + ' | base64 --decode | sh'
+
+
+def live_release_hook(profile=None):
+    payload = base64.b64encode((ACCOUNT_DATABASE_SCRIPT + CRACKLIB_CACHE_SCRIPT).encode()).decode("ascii")
+    hook = media_source_hook() + " && printf %s " + payload + " | base64 --decode | sh"
+    if profile == 'tsurugi':
+        from . import repository_keys
+        payload = base64.b64encode(Path(repository_keys.__file__).read_bytes()).decode('ascii')
+        hook += ' && printf %s ' + payload + ' | base64 --decode | python3'
+    return hook
 
 
 def patch_init(source):

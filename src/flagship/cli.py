@@ -375,9 +375,11 @@ def create_argv(ctx, profile, image, instance):
             "--image", image, "--home", str(ctx.home(profile)),
             "--volume", f"{ctx.workspace}:/workspace:rw", "--additional-flags", flags]
     if profile in ("caine", "tsurugi"):
-        argv += ["--pre-init-hooks", integration.live_release_hook()]
+        argv += ["--pre-init-hooks", integration.live_release_hook(profile)]
+    hooks = [integration.home_directory_hook(ctx.home(profile), os.getuid(), os.getgid())]
     if gpu.host_available():
-        argv += ["--init-hooks", gpu.setup_hook(with_runtime=True)]
+        hooks.append(gpu.setup_hook(with_runtime=True))
+    argv += ["--init-hooks", " && ".join(hooks)]
     return argv
 
 
@@ -658,7 +660,7 @@ def build_parser():
         if name in ("plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove", "gpu"):
             sub.add_argument("profile")
         if name == "gpu":
-            sub.add_argument("--setup", action="store_true", help="Connect the WSL driver and add a distribution NVRTC runtime when Hashcat needs it")
+            sub.add_argument("--setup", action="store_true", help="Connect the WSL driver and add a verified NVRTC runtime when Hashcat needs it")
         if name == "run":
             sub.add_argument("argv", nargs=argparse.REMAINDER)
         if name == "import-rootfs":

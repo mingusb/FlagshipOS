@@ -2,6 +2,7 @@
 
 import base64
 import json
+import os
 from pathlib import Path
 import platform
 
@@ -47,8 +48,8 @@ printf '%s\n' 'Flagship connected the Windows-provided WSL GPU driver. Per-tool 
 '''
 
 # Hashcat's packaged build dynamically opens the unversioned NVRTC development
-# name. Install only the distribution's compiler runtime when this application
-# is present; never install a display/kernel driver or remove collection tools.
+# name. Prefer the distribution's compiler runtime when this application is
+# present; never install a display/kernel driver or remove collection tools.
 HASHCAT_RUNTIME_SCRIPT = r'''
 set -eu
 command -v hashcat >/dev/null 2>&1 || exit 0
@@ -62,8 +63,8 @@ runtime_path() { ldconfig -p | awk '/libnvrtc\.so\.[0-9]+ .*x86-64/ { print $NF;
 library=$(runtime_path)
 if [ -z "$library" ]; then
     apt-get update
-    package=$(apt-cache pkgnames libnvrtc | awk '/^libnvrtc[0-9]+$/' | sort -V | tail -n 1)
-    case "$package" in libnvrtc[0-9]*) ;; *) printf '%s\n' 'Flagship GPU: no NVRTC runtime package is available from this collection.' >&2; exit 1 ;; esac
+    package=$(apt-cache pkgnames libnvrtc | awk '/^libnvrtc[0-9]+([.][0-9]+)*$/' | sort -V | tail -n 1)
+    case "$package" in libnvrtc[0-9]*) ;; *) exit 77 ;; esac
     DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-remove --no-install-recommends "$package"
     library=$(runtime_path)
 fi
@@ -163,16 +164,23 @@ def setup_hook(with_runtime=False):
     payload = base64.b64encode(WSL_GPU_SCRIPT.encode()).decode("ascii")
     hook = "printf %s " + payload + " | base64 --decode | sh"
     if with_runtime:
-        payload = base64.b64encode(HASHCAT_RUNTIME_SCRIPT.encode()).decode("ascii")
+        from . import gpu_nvrtc
+        distribution = base64.b64encode(HASHCAT_RUNTIME_SCRIPT.encode()).decode('ascii')
+        vendor = base64.b64encode(Path(gpu_nvrtc.__file__).read_bytes()).decode('ascii')
+        coordinator = ('set -eu\nif printf %s ' + distribution + ' | base64 --decode | sh; then exit 0; else result=$?; fi\n'
+                       + '[ "$result" -eq 77 ] || exit "$result"\n'
+                       + 'printf %s ' + vendor + ' | base64 --decode | python3\n')
+        payload = base64.b64encode(coordinator.encode()).decode("ascii")
         hook += " && printf %s " + payload + " | base64 --decode | sh"
     return hook
 
 
 def main(ctx, profile, setup=False, as_json=False):
     from . import cli as core
+    from . import integration
     if ctx.dry_run:
         print(json.dumps({'profile': profile, 'setup': setup,
-                          'scope': 'WSL host-driver bridge; distribution NVRTC runtime only when Hashcat is present; CUDA/OpenCL checks'}))
+                          'scope': 'WSL host-driver bridge; distribution or verified NVIDIA NVRTC runtime when Hashcat is present; CUDA/OpenCL checks'}))
         return 0
     core.require_runtime()
     core.managed_container(ctx, profile)
@@ -181,9 +189,9 @@ def main(ctx, profile, setup=False, as_json=False):
             raise core.CommandError('GPU setup requires an NVIDIA-capable WSL host with its Windows-provided driver.')
         with core.state_lock(ctx):
             core.managed_container(ctx, profile)
-            for relative in ('.config', '.cache', '.local/share', '.local/state'):
-                (ctx.home(profile) / relative).mkdir(mode=0o700, parents=True, exist_ok=True)
-            arguments = core.enter_argv(profile, ['sudo', 'sh', '-c', setup_hook(with_runtime=True)])
+            hook = integration.home_directory_hook(ctx.home(profile), os.getuid(), os.getgid())
+            hook += ' && ' + setup_hook(with_runtime=True)
+            arguments = core.enter_argv(profile, ['sudo', 'sh', '-c', hook])
             if as_json:
                 core.capture(arguments)
             else:

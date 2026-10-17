@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-17T21:01:12.185092+00:00",
+  "image_id": "sha256:b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd",
+  "script_sha256": "d178b0fd935762af275f571fca5f21b6bb0ce635833c880061de9e2532c83452",
+  "exit_code": 0,
+  "log": "/home/flagship-test/flagship-validation/tsurugi-preinit-check-20261017T210029Z.log",
+  "log_sha256": "1d290b6789e2d23b3bf93badc037c890da9a54e71cfa2859ccd0dc4e89f45f6e",
+  "scope": "Disposable real Tsurugi image; exact pre-init hook and authenticated APT update; no disabled signature checks"
+}

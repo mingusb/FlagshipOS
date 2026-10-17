@@ -28,6 +28,9 @@ RUN mkdir -p /var/cache/sift/archives \
 # Defer service activation during installation: github.com/systemd/systemd/blob/v255/docs/ENVIRONMENT.md
 # Desktop settings require Ubuntu Dock's real schema and a real UID 1000 D-Bus
 # session at the address hardcoded by upstream terminal/theme states.
+# Salt otherwise selects timedatectl merely because the executable exists. An
+# image build has no systemd PID 1: temporarily divert that executable so Salt
+# reads the real UTC files instead, then restore the packaged binary exactly.
 RUN mkdir -p /var/cache/cast/installer/salt/minion.d /var/cache/flagship/pillar \
     && printf '%s\n' 'pillar_roots:' '  base:' '    - /var/cache/flagship/pillar' \
         > /var/cache/cast/installer/salt/minion.d/flagship.conf \
@@ -37,8 +40,16 @@ RUN mkdir -p /var/cache/cast/installer/salt/minion.d /var/cache/flagship/pillar 
     && runuser -u sift -- dbus-daemon --session --fork --print-pid \
         --address=unix:path=/run/user/1000/bus > /tmp/flagship-sift-dbus.pid \
     && trap 'kill "$(cat /tmp/flagship-sift-dbus.pid)" 2>/dev/null || true' EXIT \
+    && sha256sum /usr/bin/timedatectl > /tmp/flagship-timedatectl.sha256 \
+    && dpkg-divert --local --rename --divert /usr/bin/timedatectl.flagship-build --add /usr/bin/timedatectl \
+    && ! command -v timedatectl \
+    && printf '0.0 0 0.0\n0\nUTC\n' > /etc/adjtime \
+    && cmp /etc/localtime /usr/share/zoneinfo/Etc/UTC \
     && (SYSTEMD_OFFLINE=1 cast install --user sift --mode desktop teamdfir/sift-saltstack@v2026.04.21 \
         || { cat /var/cache/cast/installer/logs/results.yaml; exit 1; }) \
+    && dpkg-divert --local --rename --remove /usr/bin/timedatectl \
+    && sha256sum --check /tmp/flagship-timedatectl.sha256 \
+    && rm -f /tmp/flagship-timedatectl.sha256 \
     && kill "$(cat /tmp/flagship-sift-dbus.pid)" && trap - EXIT \
     && rm -f /tmp/flagship-sift-dbus.pid /run/user/1000/bus \
     && rm -f /var/cache/cast/installer/salt/minion.d/flagship.conf \

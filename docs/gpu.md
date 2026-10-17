@@ -14,7 +14,9 @@ flagship run parrot -- hashcat -I
 
 Repeat the first two commands for each installed profile. Without `--setup`, the command performs checks without installing packages. `--dry-run gpu parrot --setup` describes the operation without contacting a container. The usual managed-container ownership and mount checks apply.
 
-The setup links the existing read-only WSL driver files into the environment and refreshes its library loader. If Hashcat is installed and lacks its NVRTC compiler library, setup obtains the collection's `libnvrtc` runtime package with package removals disabled, then supplies the unversioned loader name used by packaged Hashcat builds. It does not install a Linux NVIDIA display or kernel driver. Existing conflicting paths cause an explicit failure instead of replacement. Network access is needed when a runtime package is missing.
+The setup links the existing read-only WSL driver files into the environment and refreshes its library loader. If Hashcat is installed and lacks its NVRTC compiler library, setup first tries the collection's `libnvrtc` runtime package with package removals disabled. When no such package is available, it uses NVIDIA's own NVRTC 12.4.127 redistributable, pinned to the size and SHA-256 in the [official CUDA 12.4.1 manifest](https://developer.download.nvidia.com/compute/cuda/redist/redistrib_12.4.1.json). Its files and license remain under `/opt/flagship/nvrtc-12.4.127`; no foreign distribution repository is added.
+
+Setup supplies the unversioned loader name required by packaged Hashcat builds and repairs ownership of the managed home's standard application directories, without recursively changing their contents. It does not install a Linux NVIDIA display or kernel driver. Existing conflicting paths cause an explicit failure instead of replacement. Network access is needed when a runtime is missing.
 
 NVIDIA documents that WSL receives its CUDA driver from Windows and warns against installing a Linux GPU driver inside WSL. See the [CUDA on WSL guide](https://docs.nvidia.com/cuda/wsl-user-guide/index.html).
 
@@ -27,3 +29,5 @@ OpenCL enumeration is reported separately, including errors and the actual GPU d
 For an installed application, use its device-information command and retain the result. Hashcat's `-I`, John's `--list=opencl-devices` when supported by that build, and `clinfo -l` are discovery checks. They do not test cracking workloads, performance or all application features. A missing application is reported as absent; Flagship does not substitute another collection's binary for a profile-specific check.
 
 The [validation record](validation.md) distinguishes actual device checks from pending environments and untested application behavior. There is no claim that every GPU tool in all seven collections works under WSL.
+
+The [four-environment device report](evidence/2026-10-17/gpu-four-collections.json) records successful CUDA memory checks in Kali, Parrot, REMnux and BackBox. Hashcat identifies the RTX A5000 in Kali, Parrot and BackBox; REMnux has no Hashcat executable in this installation. None of those four environments reported an OpenCL GPU. The installed John commands did not provide a working OpenCL-device listing. These are discovery and memory checks, not application workload or performance tests.

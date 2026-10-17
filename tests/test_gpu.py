@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from flagship import cli, gpu
+from flagship import cli, gpu, integration
 
 
 @unittest.skipUnless(os.name == 'posix', 'requires POSIX symlinks and shell')
@@ -93,11 +93,15 @@ class GpuBridgeTests(unittest.TestCase):
     def test_creation_adds_only_the_wsl_hook_when_host_support_is_present(self):
         ctx = cli.Context(Path('/private-state'), Path('/shared-workspace'))
         with patch.object(gpu, 'host_available', return_value=False):
-            self.assertNotIn('--init-hooks', cli.create_argv(ctx, 'kali', 'image', 'instance'))
+            arguments = cli.create_argv(ctx, 'kali', 'image', 'instance')
+            self.assertEqual(arguments[arguments.index('--init-hooks') + 1],
+                             integration.home_directory_hook(ctx.home('kali'), os.getuid(), os.getgid()))
         with patch.object(gpu, 'host_available', return_value=True):
             arguments = cli.create_argv(ctx, 'caine', 'image', 'instance')
         self.assertIn('--pre-init-hooks', arguments)
-        self.assertEqual(arguments[arguments.index('--init-hooks') + 1], gpu.setup_hook(with_runtime=True))
+        self.assertEqual(arguments[arguments.index('--init-hooks') + 1],
+                         integration.home_directory_hook(ctx.home('caine'), os.getuid(), os.getgid())
+                         + ' && ' + gpu.setup_hook(with_runtime=True))
 
 
 @unittest.skipUnless(os.name == 'posix', 'requires POSIX symlinks and shell')

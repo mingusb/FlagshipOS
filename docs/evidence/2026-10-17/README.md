@@ -2,7 +2,16 @@
 
 These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 environment. Paths in receipts identify the disposable verification account. They are not installation instructions.
 
-The [code verification receipt](code-verification.json) records 132 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+The [code verification receipt](code-verification.json) records 139 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+
+## GPU and startup diagnostics
+
+- [Four real environments: CUDA memory round trips and application device listings](gpu-four-collections.json)
+- [SIFT timezone: reproduced failure and actual Salt-state success after correction](sift-timezone-check.json)
+- [CAINE password database: reproduced failure and successful standard conversion](caine-password-database-check.json)
+- [Tsurugi repository key: exact pre-init repair and authenticated APT update](tsurugi-repository-check.json)
+
+The GPU report retains absent tools and failed OpenCL-device commands. It establishes neither universal GPU-tool compatibility nor performance. The startup diagnostics are bounded tests; full managed-container acceptance is recorded separately.
 
 ## Intermediate full-collection package audits
 

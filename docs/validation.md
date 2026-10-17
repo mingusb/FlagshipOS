@@ -19,7 +19,7 @@ Testing uses an ordinary UID 1000 account, rootless Podman and a native Linux ch
 Verified on this fresh environment:
 
 - Bootstrap installation and repeated package installation succeeded.
-- **132 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings, container startup compatibility and guarded WSL GPU integration.
+- **139 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings, container startup compatibility and guarded WSL GPU integration.
 - Compilation, wheel creation, installation outside the checkout, all seven catalog entries, and the exact bytes of all five bundled recipes passed verification.
 - The first actual toolkit build exposed a missing `pasta` dependency in bootstrap. Podman stopped before Kali's package installation. Installing Ubuntu's `passt` package resolved that missing executable; bootstrap and readiness checks have been updated. A successful dependency check alone did not establish that image builds worked.
 - Strict CAINE conversion correctly refused a Unix socket in the release filesystem. The converter now offers an explicit, audited socket-only omission mode. A small real ISO fixture verified that this mode preserves file bytes, numeric ownership, permissions, hard links and a FIFO while recording the omitted socket. The full CAINE archive subsequently passed independent checksum and package-fidelity checks described below.
@@ -37,9 +37,9 @@ This work is **in progress**. A green unit suite or a base-container smoke test 
 | Parrot | parrot-tools-full, including recommendations | Full image and package-preservation audit passed; 2,074 installed packages |
 | REMnux | Upstream full dedicated installer | All 1,091 installer states, full image and managed package audit passed; 2,207 installed packages |
 | BackBox | BackBox 9 backbox-tools, including recommendations | Full image, managed runtime/package audit and isolated browser integration passed |
-| SIFT | Pinned upstream Cast release in desktop mode | Second installer passed 821/823 states; remaining timezone failure under repair |
-| CAINE | Complete verified CAINE 14 release filesystem | Archive verified and imported; missing password dictionary cache identified; corrected startup queued |
-| Tsurugi | Complete verified LAB 26.03 release filesystem | Explicit conversion of 22 unmappable owners verified; full import completed; first startup running |
+| SIFT | Pinned upstream Cast release in desktop mode | Timezone correction passed an isolated real Salt test; complete corrected rebuild running |
+| CAINE | Complete verified CAINE 14 release filesystem | Missing dictionary and shadow database repairs passed isolated checks; managed startup retry running |
+| Tsurugi | Complete verified LAB 26.03 release filesystem | Full import completed; expired repository key repair passed authenticated APT update; managed startup retry running |
 
 Shared-shell acceptance must run actual commands from all seven providers, preserve literal arguments and exit codes, work with shared files and directories containing spaces, demonstrate a pipeline, and record collision preferences and provider provenance. It has not yet passed.
 
@@ -73,6 +73,10 @@ Tests execute the corrected detection in a real POSIX shell with both package co
 
 The next CAINE attempt exposed a missing `/var/cache/cracklib` dictionary required by the release's existing PAM password-quality checks. A real networkless run rebuilt the dictionary from installed word lists and verified lookup. The live-release startup hook now rebuilds a missing cache with `update-cracklib`; it retains the password-quality checks. Another managed startup is queued.
 
+That attempt then exposed an absent `/etc/shadow`, normally constructed when the live system boots. A real networkless test reproduced `passwd` failure before conversion and successful password update after the standard `pwconv`/`grpconv` tools created missing databases. Account identity fields were unchanged. The hook performs conversion only when the corresponding database is absent; existing databases are preserved. The [diagnostic receipt](evidence/2026-10-17/caine-password-database-check.json) contains no test password.
+
+Tsurugi's first managed startup reached an expired signing subkey in its existing Tor keyring. The repair fetches the publisher's renewed key, requires exactly primary fingerprint `A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89`, authenticates the configured suite's signed metadata, and retains the original keyring. A [disposable-image check](evidence/2026-10-17/tsurugi-repository-check.json) then passed APT update across the configured repositories. It did not disable signature verification or change repository source lines. The upstream key location is documented in [Tor's installation guide](https://support.torproject.org/little-t-tor/getting-started/installing/).
+
 ### REMnux installer failure
 
 The first full dedicated installation reported 1,079 successful and 12 failed Salt states. Its first reported failure depended on the Thug package state. The failed image was not registered as prepared. A second complete installation with the same recipe passed all 1,091 states with zero failures. The [parsed result receipt](evidence/2026-10-17/remnux-installer-results.json) records every state result and the original YAML hash. The first failure's cause was not conclusively reproduced; this success does not establish an identified repair for it. The resulting full image and managed package audit also passed; the shared-shell demonstration remains pending.
@@ -81,13 +85,15 @@ The first full dedicated installation reported 1,079 successful and 12 failed Sa
 
 The first desktop installation reported 810 successful and 13 failed states. Its log contained an ExifTool archive download returning HTTP 404. The recipe now seeds the exact author-checksummed archive from the author's SourceForge distribution; Salt still performs its own verification and full installation. The upstream desktop states also require a real UID 1000 D-Bus session and Ubuntu Dock's schema. A disposable Ubuntu check reproduced the missing-session error and verified persistent settings with a real session. The corrected recipe supplies that session and the Dock package. Its complete retry passed 821 states and failed two: a timezone query attempted to use `timedatectl` without systemd as PID 1, and the aggregate configuration state depended on it. A file-based timezone correction is being tested; no failed installer has been registered as prepared.
 
+The [isolated timezone check](evidence/2026-10-17/sift-timezone-check.json) reproduced that exact Salt failure and then passed using the actual UTC configuration files. The recipe temporarily diverts `timedatectl` during image construction so Salt uses its existing file-based implementation, then restores the packaged executable and verifies its checksum. A complete rebuild with this correction is running; the isolated state test does not replace the full installer result.
+
 Full installation is distinct from every tool working under WSL. Kernel modules, device access, live-system write blocking, desktop integration and long-running services require their own validation. SIFT's default UID 1000 path has specific integration support; arbitrary host UIDs and migration of original distro home configuration remain unverified.
 
 ## NVIDIA GPU verification
 
 Windows and the fresh Ubuntu host identify an NVIDIA RTX A5000 Laptop GPU with 16 GiB of memory and Windows driver 616.92. Initial Parrot and BackBox checks exposed `/dev/dxg` but could not load `libcuda.so.1`. Connecting the existing Windows-provided WSL libraries made CUDA device discovery succeed in both.
 
-BackBox's Hashcat 6.2.6 then required its distribution NVRTC runtime and the unversioned library name used by that build. After setup, its real `hashcat -I` output identified the RTX A5000 through CUDA. The same output listed only a CPU through OpenCL. The host passed the separate 4 KiB CUDA device-memory round trip. Checks for every environment and each installed application's backend remain in progress; these results do not establish that all GPU tools work. See [GPU setup and diagnosis](gpu.md).
+BackBox's Hashcat 6.2.6 required its distribution NVRTC runtime and the unversioned library name used by that build. Parrot additionally needed writable application directories in its managed home. Kali's current repositories supplied no NVRTC package, so its setup used NVIDIA's checksum-pinned compiler redistributable without adding another distribution's repository. The [actual four-environment report](evidence/2026-10-17/gpu-four-collections.json) records passing 4 KiB CUDA device-memory round trips in Kali, Parrot, REMnux and BackBox. Hashcat identifies the RTX A5000 through CUDA in Kali, Parrot and BackBox; REMnux has no Hashcat executable. All four OpenCL probes returned no GPU, and the installed John commands did not provide a working OpenCL-device listing. The remaining three environments and complete application workloads are not yet verified. See [GPU setup and diagnosis](gpu.md).
 
 ## Earlier bounded checks
 

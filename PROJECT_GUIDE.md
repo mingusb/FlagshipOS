@@ -7,7 +7,7 @@
 
 FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
-**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 132 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `a90b908`](https://github.com/mingusb/FlagshipOS/actions/runs/39065750224) also passed. Kali, Parrot, REMnux and BackBox have passed full managed package audits. REMnux's full installer passed all 1,091 states, and BackBox's local browser integration passed. These checks do not establish complete seven-collection installation or production readiness. See [validation scope](docs/validation.md).
+**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 139 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `20ea30d`](https://github.com/mingusb/FlagshipOS/actions/runs/39067766998) also passed. Kali, Parrot, REMnux and BackBox have passed full managed package audits and bounded CUDA memory checks. REMnux's full installer passed all 1,091 states, and BackBox's local browser integration passed. These checks do not establish complete seven-collection installation or production readiness. See [validation scope](docs/validation.md).
 
 ## Start on Ubuntu WSL2
 
@@ -94,7 +94,7 @@ Put `--state-dir`, `--workspace` and `--dry-run` before the subcommand. For `exe
 
 ## Boundaries and license
 
-Full collection startup currently targets Distrobox 1.8.2.5. Flagship retains a private, content-addressed copy of the installed scripts with a narrow package-manager detection correction: Debian installations can include the `rpm` analysis tool without being mistaken for RPM-based systems. CAINE and Tsurugi startup disables unavailable CD-ROM package sources, retains the original source files as backups and rebuilds a missing password-quality dictionary cache from the release's installed word lists.
+Full collection startup currently targets Distrobox 1.8.2.5. Flagship retains a private, content-addressed copy of the installed scripts with a narrow package-manager detection correction: Debian installations can include the `rpm` analysis tool without being mistaken for RPM-based systems. Live-release startup disables unavailable CD-ROM sources with backups, reconstructs missing shadow databases with standard account tools, and rebuilds a missing password-quality dictionary cache. Tsurugi's existing Tor repository key is renewed only after verifying the expected primary fingerprint and signed repository metadata. Existing account databases and package-signature checks are retained.
 
 On an NVIDIA-capable WSL host, new environments connect the Windows-provided CUDA driver automatically. Existing environments use `flagship gpu PROFILE --setup`. CUDA, OpenCL and individual application support are checked separately; see [GPU setup and verification](docs/gpu.md).
 
