@@ -2,18 +2,24 @@
 
 These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 environment. Paths in receipts identify the disposable verification account. They are not installation instructions.
 
-The [code verification receipt](code-verification.json) records 140 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+The [code verification receipt](code-verification.json) records 142 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
 
 ## GPU and startup diagnostics
 
 - [Four real environments: CUDA memory round trips and application device listings](gpu-four-collections.json)
+- [Six real environments: original observations combined with timestamps and source hashes](gpu-six-collections.json)
 - [SIFT timezone: reproduced failure and actual Salt-state success after correction](sift-timezone-check.json)
 - [CAINE password database: reproduced failure and successful standard conversion](caine-password-database-check.json)
 - [CAINE default home: reproduced filename failure and preserved all 7,554 files](caine-skeleton-check.json)
+- [CAINE package repair: authenticated native package, original defect, actual repair and clean audits](caine-package-repair.json)
 - [Tsurugi repository key: exact pre-init repair and authenticated APT update](tsurugi-repository-check.json)
 - [Tsurugi precompiled locales: all 326 original variants actually activate](tsurugi-locales-check.json)
 
 The GPU report retains absent tools and failed OpenCL-device commands. It establishes neither universal GPU-tool compatibility nor performance. The startup diagnostics are bounded tests; full managed-container acceptance is recorded separately.
+
+CAINE's Hashcat 5.1.0 fails to discover an OpenCL platform. Tsurugi's Hashcat 7.0.0 identifies the RTX A5000 through CUDA. The six-environment report retains both results.
+
+CAINE's original image omitted the remastering package's control metadata. The actual managed container also lacked all 598 regular payload files in the maintainer's native Ubuntu 24.04 package. The repair upgraded only `wasta-remastersys`, from `4.7.2~ubuntu22.04.1` to `4.7.2~ubuntu24.04.1`, using a package bound to successfully verified signed repository metadata. No packages were removed. The subsequent package audit and dependency check passed; repeated repair performed no installation. The receipt's empty prior-configuration map means there were no existing regular configuration files to compare in this run.
 
 The locale report records package-managed configuration drift separately: the package update removes `ks_IN@devanagari` from the generation selection, but the precompiled package still provides it and the actual activation check passes. The original and updated configuration hashes and complete selection difference are retained.
 

@@ -133,6 +133,10 @@ def home_directory_hook(home, uid, gid):
 def live_release_hook(profile=None):
     payload = base64.b64encode((ACCOUNT_DATABASE_SCRIPT + CRACKLIB_CACHE_SCRIPT).encode()).decode("ascii")
     hook = media_source_hook() + " && printf %s " + payload + " | base64 --decode | sh"
+    if profile == 'caine':
+        from . import live_packages
+        payload = base64.b64encode(Path(live_packages.__file__).read_bytes()).decode('ascii')
+        hook += ' && printf %s ' + payload + ' | base64 --decode | python3'
     if profile == 'tsurugi':
         from . import repository_keys
         payload = base64.b64encode(Path(repository_keys.__file__).read_bytes()).decode('ascii')

@@ -30,4 +30,16 @@ For an installed application, use its device-information command and retain the 
 
 The [validation record](validation.md) distinguishes actual device checks from pending environments and untested application behavior. There is no claim that every GPU tool in all seven collections works under WSL.
 
-The [four-environment device report](evidence/2026-10-17/gpu-four-collections.json) records successful CUDA memory checks in Kali, Parrot, REMnux and BackBox. Hashcat identifies the RTX A5000 in Kali, Parrot and BackBox; REMnux has no Hashcat executable in this installation. None of those four environments reported an OpenCL GPU. The installed John commands did not provide a working OpenCL-device listing. These are discovery and memory checks, not application workload or performance tests.
+The [six-environment device report](evidence/2026-10-17/gpu-six-collections.json) preserves actual CUDA memory checks and application device listings with their original timestamps and source hashes:
+
+| Collection | CUDA memory test | Hashcat GPU discovery | OpenCL GPU discovery |
+| --- | --- | --- | --- |
+| Kali | Passed | RTX A5000 found through CUDA | No GPU |
+| Parrot | Passed | RTX A5000 found through CUDA | No GPU |
+| REMnux | Passed | Hashcat absent | No GPU |
+| BackBox | Passed | RTX A5000 found through CUDA | No GPU |
+| CAINE | Passed | Bundled 5.1.0 fails: no OpenCL platform | No GPU |
+| Tsurugi | Passed | RTX A5000 found through CUDA | No GPU |
+| SIFT | Pending full installation | Not yet checked | Not yet checked |
+
+The installed John commands did not provide a working OpenCL-device listing. CAINE's older Hashcat is an explicit compatibility failure, even though the CUDA memory test passes there. These are discovery and memory checks, not application workload or performance tests.

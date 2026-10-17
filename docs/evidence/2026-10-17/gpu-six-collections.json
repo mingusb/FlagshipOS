@@ -1,0 +1,380 @@
+{
+  "assembled_at": "2026-10-17T21:56:15.238571+00:00",
+  "scope": "Previously captured real CUDA memory and application discovery results, not a new run or every-application test",
+  "sources": [
+    {
+      "path": "/home/flagship-test/flagship-validation/gpu-managed-validation-20261017T210103Z.json",
+      "sha256": "a6009b8a9e91f8ae39ec82c7a6a3a12ffdc51f9746fc9a0ae0b14dd1b8ef2f77",
+      "started_at": "2026-10-17T21:01:03.245904+00:00",
+      "finished_at": "2026-10-17T21:02:34.557448+00:00"
+    },
+    {
+      "path": "/home/flagship-test/flagship-validation/gpu-managed-validation-20261017T214456Z.json",
+      "sha256": "542ecf17d54c91da6d476a39100531e3877c0ef887b63ba635fdd91342338378",
+      "started_at": "2026-10-17T21:44:56.619626+00:00",
+      "finished_at": "2026-10-17T21:46:01.406509+00:00"
+    },
+    {
+      "path": "/home/flagship-test/flagship-validation/gpu-managed-validation-20261017T215101Z.json",
+      "sha256": "def52c65a7c8935704a1ce1736577a39090c54a9850ca32caff22c54e7136491",
+      "started_at": "2026-10-17T21:51:01.911414+00:00",
+      "finished_at": "2026-10-17T21:52:58.378113+00:00"
+    }
+  ],
+  "profiles": {
+    "backbox": {
+      "setup_exit_code": 0,
+      "stderr": "",
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": []
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "backbox"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v6.2.6) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #1\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\nOpenCL Info:\n============\n\nOpenCL Platform ID #1\n  Vendor..: The pocl project\n  Name....: Portable Computing Language\n  Version.: OpenCL 3.0 PoCL 5.0+debian  Linux, None+Asserts, RELOC, SPIR, LLVM 16.0.6, SLEEF, DISTRO, POCL_DEBUG\n\n  Backend Device ID #2\n    Type...........: CPU\n    Vendor.ID......: 128\n    Vendor.........: GenuineIntel\n    Name...........: cpu-skylake-avx512-Intel(R) Xeon(R) W-11855M CPU @ 3.20GHz\n    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-pc-linux-gnu-skylake-avx512\n    Processor(s)...: 12\n    Clock..........: 3187\n    Memory.Total...: 70318 MB (limited to 16384 MB allocatable in one block)\n    Memory.Free....: 35127 MB\n    Local.Memory...: 1280 KB\n    OpenCL.Version.: OpenCL C 1.2 PoCL\n    Driver.Version.: 5.0+debian\n\n",
+          "stderr": ""
+        },
+        "john_opencl": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Unknown option: \"--list=opencl-devices\"\n"
+        }
+      }
+    },
+    "parrot": {
+      "setup_exit_code": 0,
+      "stderr": "",
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": []
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "parrot"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v6.2.6) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #1\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\nOpenCL Info:\n============\n\nOpenCL Platform ID #1\n  Vendor..: The pocl project\n  Name....: Portable Computing Language\n  Version.: OpenCL 3.0 PoCL 6.0+debian  Linux, None+Asserts, RELOC, SPIR-V, LLVM 18.1.8, SLEEF, DISTRO, POCL_DEBUG\n\n  Backend Device ID #2\n    Type...........: CPU\n    Vendor.ID......: 128\n    Vendor.........: GenuineIntel\n    Name...........: cpu-skylake-avx512-Intel(R) Xeon(R) W-11855M CPU @ 3.20GHz\n    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-pc-linux-gnu-skylake-avx512\n    Processor(s)...: 12\n    Clock..........: 3187\n    Memory.Total...: 70318 MB (limited to 16384 MB allocatable in one block)\n    Memory.Free....: 35127 MB\n    Local.Memory...: 1280 KB\n    OpenCL.Version.: OpenCL C 1.2 PoCL\n    Driver.Version.: 6.0+debian\n\n",
+          "stderr": ""
+        },
+        "john_opencl": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "help[:WHAT], subformats, inc-modes, rules, externals, ext-modes, ext-hybrids,\next-filters, ext-filters-only, build-info, encodings, formats, format-classes,\nformat-details, format-all-details, format-methods[:WHICH], format-tests,\nsections, parameters:SECTION, list-data:SECTION, <conf section name>\n",
+          "stderr": "Section [opencl-devices] not found.\n"
+        }
+      }
+    },
+    "kali": {
+      "setup_exit_code": 0,
+      "stderr": "",
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": []
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "kali"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v7.1.2) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #01\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Preferred.Thrd.: 32\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Memory.Unified.: 0\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\nOpenCL Info:\n============\n\nOpenCL Platform ID #1\n  Vendor..: The pocl project\n  Name....: Portable Computing Language\n  Version.: OpenCL 3.0 PoCL 7.1+debian  Linux, None+Asserts, RELOC, SPIR-V, LLVM 21.1.8, SLEEF, DISTRO, POCL_DEBUG\n\n  Backend Device ID #02\n    Type...........: CPU\n    Vendor.ID......: 128\n    Vendor.........: GenuineIntel\n    Name...........: cpu-skylake-avx512-Intel(R) Xeon(R) W-11855M CPU @ 3.20GHz\n    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-pc-linux-gnu-skylake-avx512\n    Processor(s)...: 12\n    Preferred.Thrd.: 1\n    Clock..........: 3187\n    Memory.Total...: 68270 MB (limited to 34135 MB allocatable in one block)\n    Memory.Free....: 34135 MB\n    Memory.Unified.: 1\n    Local.Memory...: 1280 KB\n    OpenCL.Version.: OpenCL C 1.2 PoCL\n    Driver.Version.: 7.1+debian\n\n",
+          "stderr": "nvmlDeviceGetFanSpeed(): Not Supported\n\n"
+        },
+        "john_opencl": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "help[:WHAT], subformats, inc-modes, rules, externals, ext-modes, ext-hybrids,\next-filters, ext-filters-only, build-info, encodings, formats, format-classes,\nformat-details, format-all-details, format-methods[:WHICH], format-tests,\nsections, parameters:SECTION, list-data:SECTION, <conf section name>\n",
+          "stderr": "Created directory: /home/flagship-test/.local/share/flagship/homes/kali/.john\nSection [opencl-devices] not found.\n"
+        }
+      }
+    },
+    "remnux": {
+      "setup_exit_code": 0,
+      "stderr": "",
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": null,
+          "john": null,
+          "clinfo": null
+        },
+        "profile": "remnux"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        }
+      }
+    },
+    "caine": {
+      "setup_exit_code": 0,
+      "stderr": "",
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/local/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "caine"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 255,
+          "stdout": "hashcat (v5.1.0) starting...\n\n",
+          "stderr": "\u001b[31mclGetPlatformIDs(): CL_PLATFORM_NOT_FOUND_KHR\u001b[0m\n\n"
+        },
+        "john_opencl": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Created directory: /home/flagship-test/.local/share/flagship/homes/caine/.john\nUnknown option: \"--list=opencl-devices\"\n"
+        }
+      }
+    },
+    "tsurugi": {
+      "setup_exit_code": 0,
+      "stderr": "",
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": "/usr/bin/clinfo"
+        },
+        "profile": "tsurugi"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v7.0.0) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #01\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Preferred.Thrd.: 32\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Memory.Unified.: 0\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\n",
+          "stderr": "clGetPlatformIDs(): CL_PLATFORM_NOT_FOUND_KHR\n\n"
+        },
+        "john_opencl": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Created directory: /home/flagship-test/.local/share/flagship/homes/tsurugi/.john\nUnknown option: \"--list=opencl-devices\"\n"
+        },
+        "clinfo": {
+          "argv": [
+            "clinfo",
+            "-l"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      }
+    }
+  }
+}
