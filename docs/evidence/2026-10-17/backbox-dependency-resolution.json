@@ -1,0 +1,63 @@
+{
+  "recorded_at": "2026-10-17T18:42:01.073326+00:00",
+  "scope": "BackBox full metapackage dependency resolution; no package installation or full build in this probe",
+  "initial_failure_log": "/home/flagship-test/flagship-validation/prebuild-backbox.log",
+  "initial_failure": "backbox-exploitation depends on metasploit-framework, which the BackBox nine/noble archive does not provide",
+  "sources": {
+    "backbox_archive_metadata": "https://api.launchpad.net/1.0/~backbox/+archive/ubuntu/nine",
+    "backbox_packages": "https://ppa.launchpadcontent.net/backbox/nine/ubuntu/dists/noble/main/binary-amd64/Packages.gz",
+    "rapid7_usage": "https://github.com/rapid7/metasploit-omnibus/blob/master/USAGE.md",
+    "rapid7_installer_pinned": "https://raw.githubusercontent.com/rapid7/metasploit-omnibus/25a202b4e6226631cb0f24716b2fff0136312805/config/templates/metasploit-framework-wrappers/msfupdate.erb",
+    "rapid7_key": "https://apt.metasploit.com/metasploit-framework.gpg.key",
+    "rapid7_repository": "https://apt.metasploit.com",
+    "rapid7_suite_components": "lucid main"
+  },
+  "signing_keys": {
+    "backbox_primary_fingerprint": "F10FF8AFAF205A39312C0A20F2B4C9A44882013D",
+    "rapid7_primary_fingerprint": "97B32012EA1176F053727A95C048F0B49DEEC457",
+    "rapid7_key_sha256": "ce09102f5c92b46a2115feb69a6687d78b2daa618c8e33289de2b5a31d1f8695",
+    "rapid7_key_bytes": 3155,
+    "rapid7_key_matches_embedded_pinned_installer_key": true,
+    "separate_signed_by_keyrings": true
+  },
+  "resolver_probe": {
+    "host": "FlagshipOS-Full, Ubuntu 26.10 WSL2",
+    "rootless": true,
+    "disposable_container": "flagship-backbox-resolver",
+    "image_id": "2eae91f9199e8c01a7c091f35ab25560edf51d060c02b8ab80fbeb727878ea24",
+    "host_bind_mounts": [],
+    "authenticated_apt_update_argv": [
+      "apt-get",
+      "update",
+      "--error-on=any"
+    ],
+    "authenticated_apt_update_exit_code": 0,
+    "resolver_argv": [
+      "apt-get",
+      "--simulate",
+      "--install-recommends",
+      "install",
+      "backbox-tools"
+    ],
+    "resolver_exit_code": 0,
+    "package_actions": 1077,
+    "removals": 0,
+    "backbox_tools_version": "9.0.1",
+    "required_backbox_submetapackages_resolved": 16,
+    "metasploit_framework_version": "6.5.3~20260818061200~1rapid7-1",
+    "packages_installed": false,
+    "tool_binaries_executed": false,
+    "full_build_retried": false
+  },
+  "source_recipe": {
+    "path": "C:\\Users\\refle\\Documents\\Codex\\2026-10-17\\fior\\outputs\\FlagshipOS\\src\\flagship\\recipes\\backbox.Containerfile",
+    "sha256": "212b23b134924a8ab226f5a3e5e147fd778e9cd008877ce89ef553a392380327",
+    "change": "Add verified Rapid7 signing key and its scoped package repository before unchanged full backbox-tools installation",
+    "installed_runtime_modified": false
+  },
+  "limits": [
+    "Resolver success does not establish completed full installation or tool runtime functionality.",
+    "The official Rapid7 bundled-package suite is named lucid; no Ubuntu Lucid OS repository was configured.",
+    "BackBox ISO repository configuration was not independently reproduced."
+  ]
+}

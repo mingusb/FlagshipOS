@@ -1,0 +1,58 @@
+{
+  "started_at": "2026-10-17T19:00:28.456447+00:00",
+  "finished_at": "2026-10-17T19:02:28.531004+00:00",
+  "distro": "FlagshipOS-Full",
+  "image_id": "sha256:ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa",
+  "recipe_sha256": "4404d703639973305bec20c063d51b4a2c46572a4fe6ca1458a48e0d36b11887",
+  "test_sha256": "d7864a54010ca5579afe87f02d640e02690594732480ab3bd5263927671f3283",
+  "argv": [
+    "podman",
+    "run",
+    "--rm",
+    "--network=none",
+    "--userns=keep-id",
+    "--user=1000:1000",
+    "--volume",
+    "/mnt/c/Users/refle/Documents/Codex/2026-10-17/fior/outputs/FlagshipOS/tests/integration/backbox_browser.py:/tmp/backbox_browser.py:ro",
+    "sha256:ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa",
+    "/usr/bin/python3",
+    "-I",
+    "/tmp/backbox_browser.py"
+  ],
+  "exit_code": 0,
+  "stdout": "{\n  \"passed\": true,\n  \"uid\": 1000,\n  \"versions\": {\n    \"chromium\": {\n      \"path\": \"/usr/local/bin/chromium\",\n      \"version\": \"Chromium 155.0.8059.79\"\n    },\n    \"chromium-browser\": {\n      \"path\": \"/usr/bin/chromium-browser\",\n      \"version\": \"Chromium 155.0.8059.79\"\n    },\n    \"chromedriver\": {\n      \"path\": \"/usr/local/bin/chromedriver\",\n      \"version\": \"ChromeDriver 155.0.8059.79 (a49e2e3d4addfd84e765b52afe230bedb81096db-refs/branch-heads/8059@{#1239})\"\n    }\n  },\n  \"payload\": {\n    \"publisher\": \"Canonical\",\n    \"snap\": \"chromium\",\n    \"revision\": 3559,\n    \"version\": \"155.0.8059.79\",\n    \"sha3_384\": \"216fd354bf39c175047d467dd0fc87c97c58395c9e156cd8bd221522a76742e63ac42c57700f9e90f67ebf729c6125e1\",\n    \"integration\": \"extracted payload with Ubuntu libraries; no sandbox-disabling flags\"\n  },\n  \"browser\": {\n    \"version\": \"155.0.8059.79\",\n    \"title\": \"FlagshipOS browser automation\",\n    \"result\": \"local-round-trip-passed\"\n  },\n  \"sandbox_disabling_flags\": [],\n  \"scope\": \"Real PATH launchers, default browser discovery and local Selenium interaction\"\n}\n",
+  "stderr": "",
+  "observed": {
+    "passed": true,
+    "uid": 1000,
+    "versions": {
+      "chromium": {
+        "path": "/usr/local/bin/chromium",
+        "version": "Chromium 155.0.8059.79"
+      },
+      "chromium-browser": {
+        "path": "/usr/bin/chromium-browser",
+        "version": "Chromium 155.0.8059.79"
+      },
+      "chromedriver": {
+        "path": "/usr/local/bin/chromedriver",
+        "version": "ChromeDriver 155.0.8059.79 (a49e2e3d4addfd84e765b52afe230bedb81096db-refs/branch-heads/8059@{#1239})"
+      }
+    },
+    "payload": {
+      "publisher": "Canonical",
+      "snap": "chromium",
+      "revision": 3559,
+      "version": "155.0.8059.79",
+      "sha3_384": "216fd354bf39c175047d467dd0fc87c97c58395c9e156cd8bd221522a76742e63ac42c57700f9e90f67ebf729c6125e1",
+      "integration": "extracted payload with Ubuntu libraries; no sandbox-disabling flags"
+    },
+    "browser": {
+      "version": "155.0.8059.79",
+      "title": "FlagshipOS browser automation",
+      "result": "local-round-trip-passed"
+    },
+    "sandbox_disabling_flags": [],
+    "scope": "Real PATH launchers, default browser discovery and local Selenium interaction"
+  }
+}

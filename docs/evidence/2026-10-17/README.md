@@ -4,6 +4,12 @@ These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 enviro
 
 The [code verification receipt](code-verification.json) records 107 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
 
+## BackBox dependency and browser checks
+
+The [dependency resolution receipt](backbox-dependency-resolution.json) records successful authenticated APT resolution after adding Rapid7's repository for the metapackage's required dependency. The subsequent full image build completed.
+
+The [browser acceptance receipt](backbox-browser-acceptance.json) records an actual rootless, networkless run of that image with Canonical's verified Chromium payload. UID 1000 ran the ordinary `chromium`, `chromium-browser` and `chromedriver` commands, then Selenium discovered the browser and clicked a generated local page. No sandbox-disabling flags were supplied. The receipt binds the image ID, build recipe and test script hashes. This is a browser integration check, not the complete seven-provider demonstration.
+
 ## CAINE 14 archive
 
 - [Rootfs checksum, release and ownership metadata](caine-rootfs.json)

@@ -36,12 +36,16 @@ This work is **in progress**. A green unit suite or a base-container smoke test 
 | Kali | kali-linux-everything, including recommendations | Pending |
 | Parrot | parrot-tools-full, including recommendations | Pending |
 | REMnux | Upstream full dedicated installer | Pending |
-| BackBox | BackBox 9 backbox-tools, including recommendations | Pending |
+| BackBox | BackBox 9 backbox-tools, including recommendations | Full image built; isolated browser integration passed; managed runtime audit pending |
 | SIFT | Pinned upstream Cast release in desktop mode | Pending |
 | CAINE | Complete verified CAINE 14 release filesystem | Archive verified; live import/integration pending |
 | Tsurugi | Complete verified LAB 26.03 release filesystem | Pending |
 
 Shared-shell acceptance must run actual commands from all seven providers, preserve literal arguments and exit codes, work with shared files and directories containing spaces, demonstrate a pipeline, and record collision preferences and provider provenance. It has not yet passed.
+
+### BackBox build corrections
+
+The actual build exposed two gaps: BackBox's archive did not supply its required `metasploit-framework` package, and Ubuntu's Chromium transitional package returned success after skipping the browser's Snap payload. The recipe now uses Rapid7's authenticated vendor repository and Canonical's checksum-pinned Chromium/ChromeDriver payload with the existing Ubuntu libraries. It retains the full metapackage and recommendations. The resulting image passed a real local Selenium interaction through the ordinary command names and default browser discovery as UID 1000, without sandbox-disabling flags. [Receipts and scope](evidence/2026-10-17/README.md) distinguish these completed checks from pending seven-provider acceptance.
 
 ### CAINE archive fidelity
 
@@ -59,6 +63,6 @@ Some preliminary unit tests ran on an existing Ubuntu 26.04 distribution. All ac
 
 ## Continuous integration
 
-[Package CI](https://github.com/mingusb/FlagshipOS/actions/runs/39055670007) and the [real Kali base-container smoke test](https://github.com/mingusb/FlagshipOS/actions/runs/39055672350) passed commit `99ec67e`. Those runs predate the new full preparation and shared-shell code. See [GitHub Actions](https://github.com/mingusb/FlagshipOS/actions) for later exact-commit results.
+[Package CI](https://github.com/mingusb/FlagshipOS/actions/runs/39058919479) and the [real Kali base-container smoke test](https://github.com/mingusb/FlagshipOS/actions/runs/39058929328) passed commit `e29d37e`, including full preparation and shared-shell code. Those runs predate the subsequent BackBox dependency/browser recipe correction. See [GitHub Actions](https://github.com/mingusb/FlagshipOS/actions) for later exact-commit results.
 
 The hosted container job uses Ubuntu 24.04 and a pinned Distrobox version. It validates a base container with harmless local commands; it does not prove seven full collections work on WSL.

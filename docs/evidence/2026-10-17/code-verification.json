@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "started_at": "2026-10-17T18:35:31.521529+00:00",
+  "started_at": "2026-10-17T19:01:06.719112+00:00",
   "passed": true,
   "environment": "FlagshipOS-Full / ordinary flagship-test / separate temporary checkout and venvs",
   "steps": [
@@ -13,13 +13,13 @@
     {
       "name": "install_source",
       "exit_code": 0,
-      "output_sha256": "718165e71c8ac6550aa41c358ffff1849fdad96b009358cae77f1f446f1832f9",
+      "output_sha256": "5dbbd7e727f284ed4fdffe3e4ae358c97db2d2253304bd1607e91a8dc6cc1f41",
       "output_bytes": 1159
     },
     {
       "name": "unit_tests",
       "exit_code": 0,
-      "output_sha256": "26233fe7d492845a02566a96f87aed39f3de232c864005c3ac0798b4e475faad",
+      "output_sha256": "7190a586ddb08ddff428742ca1a8f99d052faf1f9355d0be89fc97c8daf398b8",
       "output_bytes": 17012
     },
     {
@@ -31,7 +31,7 @@
     {
       "name": "build_wheel",
       "exit_code": 0,
-      "output_sha256": "bb19aeb463df70918ee088921393ec253334027a7edcd91321d15b977e5450d6",
+      "output_sha256": "2bbe12fe3d8855e7ab6fe342f2224753e4aab644b1ae801080fc4badb66f9641",
       "output_bytes": 846
     },
     {
@@ -61,27 +61,27 @@
     {
       "name": "installed_recipe_hashes_outside_checkout",
       "exit_code": 0,
-      "output_sha256": "57798868fcf64cf487ec83d549de668501474b2aabd0c3d5a5c0c21d8b8a40d9",
+      "output_sha256": "c62c607a28b4d04058f8ae01a6c346173dd2109afd3d8342ae6586b4f6c4cc42",
       "output_bytes": 388
     }
   ],
   "live_seven_environment_acceptance_run": false,
   "source": {
     "path": "/mnt/c/Users/refle/Documents/Codex/2026-10-17/fior/outputs/FlagshipOS",
-    "head": "99ec67ee96a1c278e79b39ceec67a7f391ee691d",
-    "tree_sha256": "df0e77021a53b62f9c084ec77cbc26c600cb269fba4b33d620f258e4aa2bd1f0",
-    "files": 42,
-    "bytes": 937445,
+    "head": "e29d37efe08f88f295efae87fe7dbd1df681802e",
+    "tree_sha256": "0821db9c515f52bc26d0dacd9cd8fd8c9ba0ab21b95623123e16a79fb96e1c1b",
+    "files": 44,
+    "bytes": 950937,
     "fingerprint_format": "SHA256 of sorted UTF8 relative path + NUL + content SHA256 hex + LF; tracked and nonignored untracked files",
-    "code_tree_sha256": "6a6d9785e8a218d9428f76584c6d2a844bb535a66b918f39093adc4c9c2ebfca",
+    "code_tree_sha256": "52d0ae88b8e0b2d13876631df0f4a800dbed05c9418d4cf6d1cd166c40c66d57",
     "changed_files": [],
     "unchanged_during_verification": true,
-    "final_tree_sha256": "df0e77021a53b62f9c084ec77cbc26c600cb269fba4b33d620f258e4aa2bd1f0",
-    "final_code_tree_sha256": "6a6d9785e8a218d9428f76584c6d2a844bb535a66b918f39093adc4c9c2ebfca",
+    "final_tree_sha256": "0821db9c515f52bc26d0dacd9cd8fd8c9ba0ab21b95623123e16a79fb96e1c1b",
+    "final_code_tree_sha256": "52d0ae88b8e0b2d13876631df0f4a800dbed05c9418d4cf6d1cd166c40c66d57",
     "code_unchanged_during_verification": true
   },
   "recipe_sha256": {
-    "backbox": "b0abc09a0231d5e95aeceb6260a8c4439b2ca8573804e94d5e98d2ccc16f8d1e",
+    "backbox": "4404d703639973305bec20c063d51b4a2c46572a4fe6ca1458a48e0d36b11887",
     "kali": "7301d266f67c4ccff2b8c2da0cafc7c0c52f72eef557ac2977942f675a2389da",
     "parrot": "ff4966d23858b0615b6b98b90b8b6dffc7be98dfe56f457dc12e1cd1a48c805e",
     "remnux": "ef3460a5fc44dc8125c71889faaa17480cf1ba738130fd974068d63ab3b21cdc",
@@ -90,14 +90,14 @@
   "catalog_sha256": "dfdd656827fd7edc1a5f5d9a09a7056834c61a70b06a6f4c44f2a8597fe4bd0d",
   "tests": {
     "count": 107,
-    "seconds": 10.461,
+    "seconds": 12.497,
     "skipped": 0,
     "passed": true
   },
   "wheel": {
     "filename": "flagshipos-0.1.0-py3-none-any.whl",
-    "bytes": 29463,
-    "sha256": "2bb29970983bcfc4f7c3ba5cd1360507603cb0d8dbaeedfb87c3cbebb1ad293a",
+    "bytes": 30444,
+    "sha256": "bda6e6d8413853ba5893b1d91ad8e4784bdf9bda0b7fa0c6d2fe99474f5781c5",
     "exact_source_recipes_and_catalog": true,
     "sift_remnux_offline_setting_invocation_only": true
   },
@@ -113,7 +113,7 @@
   "installed_recipe_sha256": {
     "kali": "7301d266f67c4ccff2b8c2da0cafc7c0c52f72eef557ac2977942f675a2389da",
     "parrot": "ff4966d23858b0615b6b98b90b8b6dffc7be98dfe56f457dc12e1cd1a48c805e",
-    "backbox": "b0abc09a0231d5e95aeceb6260a8c4439b2ca8573804e94d5e98d2ccc16f8d1e",
+    "backbox": "4404d703639973305bec20c063d51b4a2c46572a4fe6ca1458a48e0d36b11887",
     "sift": "d8fde65864dc7dc3578a557482369f1aa8e28e727a1c2b5681a5f9b761224e17",
     "remnux": "ef3460a5fc44dc8125c71889faaa17480cf1ba738130fd974068d63ab3b21cdc"
   },
@@ -124,5 +124,5 @@
     "missing_evidence": "Absent manifest/receipt/source binding reports unavailable; prepared or stopped providers are not started.",
     "interpretation": "Normal Distrobox upgrades can produce an audit failure for version drift despite a healthy dependency database; inspect paired before/after records."
   },
-  "finished_at": "2026-10-17T18:35:58.451434+00:00"
+  "finished_at": "2026-10-17T19:01:42.057482+00:00"
 }
