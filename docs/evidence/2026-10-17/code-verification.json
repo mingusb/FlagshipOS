@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "started_at": "2026-10-17T19:26:02.276528+00:00",
+  "started_at": "2026-10-17T19:35:45.489739+00:00",
   "passed": true,
   "environment": "FlagshipOS-Full / ordinary flagship-test / separate temporary checkout and venvs",
   "steps": [
@@ -13,14 +13,14 @@
     {
       "name": "install_source",
       "exit_code": 0,
-      "output_sha256": "a9d89307b6314146d00dff865fb2980ea810f710bf80c06c6d0b1d4174e2f83f",
+      "output_sha256": "62f0c150e4aecdb2dc19daab3c0d3f726d07f35cfea1191b2d2b9ec76b19818f",
       "output_bytes": 1159
     },
     {
       "name": "unit_tests",
       "exit_code": 0,
-      "output_sha256": "1dd7ea0a9591375a6cb04670d9ed0235c1dd81004732402ec5866c8f0250773f",
-      "output_bytes": 17198
+      "output_sha256": "9e0f23374e8e9a6bc2cfea3168870c29d18ab02113a436f753a7c57f4a57e5c5",
+      "output_bytes": 18116
     },
     {
       "name": "compile_sources",
@@ -31,7 +31,7 @@
     {
       "name": "build_wheel",
       "exit_code": 0,
-      "output_sha256": "bc2d29b7ba5b584a2cd9b9dd9579c68db95bd7bf74dad9eec6590ba6f653e2ff",
+      "output_sha256": "cb80b549a7484bb1cb8c54645fc1d3e9b69aa1fecd2089b7c5134843149a61b5",
       "output_bytes": 846
     },
     {
@@ -68,16 +68,16 @@
   "live_seven_environment_acceptance_run": false,
   "source": {
     "path": "/mnt/c/Users/refle/Documents/Codex/2026-10-17/fior/outputs/FlagshipOS",
-    "head": "53f955991a5818e634c9ffab9405d388b795c637",
-    "tree_sha256": "a0ffed858ebcd61670903707bd0d4749170fad13bb0e90a0be73831af27aa9a8",
-    "files": 46,
-    "bytes": 962177,
+    "head": "f6a50bdac93e7e78c8f83938f1e33ad129a0ed43",
+    "tree_sha256": "3117333588410d63b9c30227df425cdec21a204beff2150e49a9ef24ec7e15ac",
+    "files": 48,
+    "bytes": 976764,
     "fingerprint_format": "SHA256 of sorted UTF8 relative path + NUL + content SHA256 hex + LF; tracked and nonignored untracked files",
-    "code_tree_sha256": "9cc2f0a8953e2274a1e804a4f72c0e425f737bf7a9fb858ca6b1504981e9bf29",
+    "code_tree_sha256": "ad90e23dd14571bbf529b97c1c70e4bc21c0727152219581a371e606497f2670",
     "changed_files": [],
     "unchanged_during_verification": true,
-    "final_tree_sha256": "a0ffed858ebcd61670903707bd0d4749170fad13bb0e90a0be73831af27aa9a8",
-    "final_code_tree_sha256": "9cc2f0a8953e2274a1e804a4f72c0e425f737bf7a9fb858ca6b1504981e9bf29",
+    "final_tree_sha256": "3117333588410d63b9c30227df425cdec21a204beff2150e49a9ef24ec7e15ac",
+    "final_code_tree_sha256": "ad90e23dd14571bbf529b97c1c70e4bc21c0727152219581a371e606497f2670",
     "code_unchanged_during_verification": true
   },
   "recipe_sha256": {
@@ -89,15 +89,15 @@
   },
   "catalog_sha256": "dfdd656827fd7edc1a5f5d9a09a7056834c61a70b06a6f4c44f2a8597fe4bd0d",
   "tests": {
-    "count": 108,
-    "seconds": 10.757,
+    "count": 114,
+    "seconds": 10.685,
     "skipped": 0,
     "passed": true
   },
   "wheel": {
     "filename": "flagshipos-0.1.0-py3-none-any.whl",
-    "bytes": 30464,
-    "sha256": "ca39b0e1fd3c92867919076267a5c661b76925a2b7c247a6afb5227b2da7c01e",
+    "bytes": 33117,
+    "sha256": "e082e1df21defcadad9542a58fae41df7a0c1ac3dc4e65e153feffca606431d6",
     "exact_source_recipes_and_catalog": true,
     "sift_remnux_offline_setting_invocation_only": true
   },
@@ -124,5 +124,5 @@
     "missing_evidence": "Absent manifest/receipt/source binding reports unavailable; prepared or stopped providers are not started.",
     "interpretation": "Normal Distrobox upgrades can produce an audit failure for version drift despite a healthy dependency database; inspect paired before/after records."
   },
-  "finished_at": "2026-10-17T19:26:28.291829+00:00"
+  "finished_at": "2026-10-17T19:36:10.872420+00:00"
 }

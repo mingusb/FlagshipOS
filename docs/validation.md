@@ -19,7 +19,7 @@ Testing uses an ordinary UID 1000 account, rootless Podman and a native Linux ch
 Verified on this fresh environment:
 
 - Bootstrap installation and repeated package installation succeeded.
-- **108 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup and installation-evidence parsing.
+- **114 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing and container startup compatibility.
 - Compilation, wheel creation, installation outside the checkout, all seven catalog entries, and the exact bytes of all five bundled recipes passed verification.
 - The first actual toolkit build exposed a missing `pasta` dependency in bootstrap. Podman stopped before Kali's package installation. Installing Ubuntu's `passt` package resolved that missing executable; bootstrap and readiness checks have been updated. A successful dependency check alone did not establish that image builds worked.
 - Strict CAINE conversion correctly refused a Unix socket in the release filesystem. The converter now offers an explicit, audited socket-only omission mode. A small real ISO fixture verified that this mode preserves file bytes, numeric ownership, permissions, hard links and a FIFO while recording the omitted socket. The full CAINE archive subsequently passed independent checksum and package-fidelity checks described below.
@@ -38,7 +38,7 @@ This work is **in progress**. A green unit suite or a base-container smoke test 
 | REMnux | Upstream full dedicated installer | Installer failed; diagnosis and successful full retry required |
 | BackBox | BackBox 9 backbox-tools, including recommendations | Full image built; isolated browser integration passed; managed runtime audit pending |
 | SIFT | Pinned upstream Cast release in desktop mode | Full installer running |
-| CAINE | Complete verified CAINE 14 release filesystem | Archive verified and imported; runtime integration pending |
+| CAINE | Complete verified CAINE 14 release filesystem | Archive verified and imported; first startup failed; compatibility retry pending |
 | Tsurugi | Complete verified LAB 26.03 release filesystem | Publisher signature/checksum verified; full filesystem conversion running |
 
 Shared-shell acceptance must run actual commands from all seven providers, preserve literal arguments and exit codes, work with shared files and directories containing spaces, demonstrate a pipeline, and record collision preferences and provider provenance. It has not yet passed.
@@ -56,6 +56,12 @@ The explicit omission receipt lists exactly 31 Unix sockets from heartbeat and p
 ### Tsurugi package baseline
 
 The verified LAB 26.03 ISO contains an empty `filesystem.manifest`. The acceptance pipeline therefore reads `/var/lib/dpkg/status` directly from an independently extracted source SquashFS and records 4,147 package/version entries as a derived baseline. This is not a publisher manifest. The auditor requires the source ISO checksum, source SquashFS hash, matching source/archive package-database hashes, and the derived baseline hash before accepting this evidence. Full archive and runtime comparison remain pending.
+
+### Full-filesystem startup corrections
+
+CAINE's first startup failed because its APT configuration still referred to installation media. Its logs also showed Distrobox choosing APT-RPM because the complete toolkit includes `rpm`, despite using a Debian package database. The startup adapter now prefers `dpkg-query` in the two affected Distrobox 1.8.2.5 branches. It preserves the installed host scripts and writes a verified private copy for container mounts, retaining upstream license notices. The live-release pre-init hook disables CD-ROM entries with exact original-file backups; network repositories remain configured.
+
+Tests execute the corrected detection in a real POSIX shell with both package commands present, check the private runtime's integrity, and exercise source-file changes and Distrobox's additional shell parsing. CAINE's corrected real startup has not yet passed; those tests alone do not establish it.
 
 ### REMnux installer failure
 

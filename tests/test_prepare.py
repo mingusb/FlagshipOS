@@ -12,7 +12,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from flagship import cli, preparation
+from flagship import cli, integration, preparation
 
 
 class PreparationTests(unittest.TestCase):
@@ -170,6 +170,7 @@ class PreparationTests(unittest.TestCase):
                                     f"{cli.LABEL}.installation": previous["installation_id"]}},
             "Mounts": [{"Type": "bind", "Source": str(self.ctx.workspace), "Destination": "/workspace", "RW": True}]}
         with patch.object(cli, "inspect_container", side_effect=[None, container]), \
+                patch.object(integration, "distrobox_launcher", return_value="distrobox"), \
                 patch.object(cli, "checked_stream") as commands, \
                 patch.object(cli, "image_identity", return_value=self.image_id), contextlib.redirect_stdout(io.StringIO()):
             self.assertEqual(cli.create(self.ctx, "kali", cli.load_catalog()["kali"]), 0)

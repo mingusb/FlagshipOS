@@ -366,13 +366,17 @@ def managed_container(ctx, profile, verify=True):
 
 
 def create_argv(ctx, profile, image, instance):
+    from . import integration
     flags = " ".join([f"--label={LABEL}.managed=true",
                       f"--label={LABEL}.installation={instance}",
                       f"--label={LABEL}.profile={profile}"])
-    return ["distrobox", "create", "--yes", "--no-entry", "--name", f"flagship-{profile}",
+    argv = ["distrobox", "create", "--yes", "--no-entry", "--name", f"flagship-{profile}",
             "--hostname", f"flagship-{profile}",
             "--image", image, "--home", str(ctx.home(profile)),
             "--volume", f"{ctx.workspace}:/workspace:rw", "--additional-flags", flags]
+    if profile in ("caine", "tsurugi"):
+        argv += ["--pre-init-hooks", integration.media_source_hook()]
+    return argv
 
 
 def enter_argv(profile, command):
@@ -465,6 +469,7 @@ def image_identity(reference, registry):
 
 
 def create(ctx, profile, definition):
+    from . import integration
     name = f"flagship-{profile}"
     existing = inspect_container(name)
     if existing is not None:
@@ -490,7 +495,9 @@ def create(ctx, profile, definition):
                    "workspace": str(ctx.workspace), "home": str(ctx.home(profile)),
                    "status": "creating"})
     atomic_json(ctx.record_path(profile), record)
-    checked_stream(create_argv(ctx, profile, image, install["installation_id"]))
+    arguments = create_argv(ctx, profile, image, install["installation_id"])
+    arguments[0] = integration.distrobox_launcher(ctx)
+    checked_stream(arguments)
     created = inspect_container(name)
     if created is None:
         raise CommandError("Distrobox returned success but the container does not exist.")

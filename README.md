@@ -7,7 +7,7 @@
 
 FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
-**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 107 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `e29d37e`](https://github.com/mingusb/FlagshipOS/actions/runs/39058929328) also passed. The full BackBox image has built and passed a local browser integration check. These checks do not establish complete toolkit installation or production readiness. See [validation scope](docs/validation.md).
+**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 114 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `53f9559`](https://github.com/mingusb/FlagshipOS/actions/runs/39060775984) also passed. The full BackBox image has built and passed a local browser integration check. These checks do not establish complete toolkit installation or production readiness. See [validation scope](docs/validation.md).
 
 ## Start on Ubuntu WSL2
 
@@ -93,6 +93,8 @@ Put `--state-dir`, `--workspace` and `--dry-run` before the subcommand. For `exe
 
 ## Boundaries and license
 
+Full collection startup currently targets Distrobox 1.8.2.5. Flagship retains a private, content-addressed copy of the installed scripts with a narrow package-manager detection correction: Debian installations can include the `rpm` analysis tool without being mistaken for RPM-based systems. CAINE and Tsurugi startup disables unavailable CD-ROM package sources and retains the original source files as backups.
+
 Linux home, state and workspace paths must contain only letters, digits, `/`, `_`, `.` and `-`. Custom Distrobox configuration and remote Podman connections are rejected. Containers are named `flagship-PROFILE`; state defaults to `${XDG_DATA_HOME:-$HOME/.local/share}/flagship`. Use consistent state/workspace options.
 
 Distrobox deliberately integrates with host files. Separate dependencies and homes are **not a malware sandbox**. WSL's shared kernel does not reproduce distribution kernels, forensic write blocking or every device/service workflow. Image pins identify source filesystems, but live package repositories make builds mutable. See [operations and recovery](docs/operations.md).
@@ -103,4 +105,4 @@ python3 -m pip wheel --no-deps . --wheel-dir dist
 python3 tests/check_wheel.py dist
 ```
 
-FlagshipOS's own code is [MIT-licensed](LICENSE). Upstream distributions, images and tools retain their individual licenses. This repository does not redistribute those images and is not endorsed by Canonical or the listed distributions.
+FlagshipOS's own code is [MIT-licensed](LICENSE). Upstream distributions, images and tools retain their individual licenses. The locally copied Distrobox scripts retain their GPL-3.0 notices; the MIT license does not cover them. This repository does not redistribute those images or scripts and is not endorsed by Canonical or the listed distributions.
