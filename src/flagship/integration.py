@@ -127,11 +127,49 @@ def live_release_hook(profile=None):
     return hook
 
 
+SKEL_START = b'\tskel_files="$(find /etc/skel/ -type f || :)"\n'
+SKEL_END = b'\n\tdone'
+# Bind the adaptation to the installed upstream block without vendoring it.
+SKEL_COPY_SHA256 = '2ccfaf1f5d672bb274f07b21baec1741dc7cea573f52eed41428cf4594742027'
+
+# find passes each filename as an argument, preserving spaces, glob characters
+# and newlines. Existing files and links retain upstream's no-overwrite behavior.
+SKEL_COPY_FIXED = b'''\tfind /etc/skel/ -type f -exec sh -eu -c '
+\t\tuid=$1; gid=$2; home=$3; shift 3
+\t\tfor source do
+\t\t\trelative=${source#/etc/skel/}
+\t\t\ttarget=$home/$relative
+\t\t\tparent=${target%/*}
+\t\t\tif [ ! -d "$parent" ]; then
+\t\t\t\tmkdir -p -- "$parent"
+\t\t\t\tchown "$uid:$gid" "$parent"
+\t\t\tfi
+\t\t\tif [ ! -f "$target" ] && [ ! -L "$target" ]; then
+\t\t\t\tcp -- "$source" "$target"
+\t\t\t\tchown "$uid:$gid" "$target"
+\t\t\tfi
+\t\tdone
+\t' flagship-skel "$container_user_uid" "$container_user_gid" "$container_user_home" {} +'''
+
+
+def skeleton_copy_block(source):
+    if source.count(SKEL_START) != 1:
+        raise core.CommandError('Distrobox skeleton-copy layout is not recognized.')
+    start = source.index(SKEL_START)
+    end = source.find(SKEL_END, start)
+    block = source[start:end + len(SKEL_END)] if end >= 0 else b''
+    if hashlib.sha256(block).hexdigest() != SKEL_COPY_SHA256:
+        raise core.CommandError('Distrobox skeleton-copy block differs from the verified upstream version.')
+    return block
+
+
 def patch_init(source):
-    """Prefer the real Debian database when an analysis toolkit includes rpm."""
-    if not re.search(rb'^version="1\.8\.2\.5"$', source, re.MULTILINE) or source.count(RPM_PROBE) != 2:
-        raise core.CommandError("Flagship's full-collection startup currently requires Distrobox 1.8.2.5 with its known package-manager detection layout.")
-    return source.replace(RPM_PROBE, DEBIAN_FIRST_PROBE)
+    """Correct the known Debian-detection and skeleton-copy startup branches."""
+    if (not re.search(rb'^version="1\.8\.2\.5"$', source, re.MULTILINE)
+            or source.count(RPM_PROBE) != 2):
+        raise core.CommandError("Flagship's full-collection startup currently requires Distrobox 1.8.2.5 with its known package-manager and skeleton-copy layout.")
+    block = skeleton_copy_block(source)
+    return source.replace(RPM_PROBE, DEBIAN_FIRST_PROBE).replace(block, SKEL_COPY_FIXED, 1)
 
 
 def private_directory(path):
@@ -176,7 +214,7 @@ def distrobox_launcher(ctx):
             core.atomic_json(temporary / "provenance.json", {
                 "upstream_version": "1.8.2.5", "upstream_directory": str(directory),
                 "original_sha256": original_hashes, "runtime_sha256": hashes,
-                "adaptation": "Prefer dpkg-query over rpm for the two APT package-manager branches",
+                "adaptation": "Prefer dpkg-query over rpm for the two APT branches; preserve skeleton filenames as find-exec arguments",
                 "upstream_license": "GPL-3.0-only; original file notices retained"})
             # State lock serializes creation; the content-addressed directory is retained for mounts.
             os.rename(temporary, destination)

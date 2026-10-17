@@ -2,7 +2,7 @@
 
 These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 environment. Paths in receipts identify the disposable verification account. They are not installation instructions.
 
-The [code verification receipt](code-verification.json) records 139 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+The [code verification receipt](code-verification.json) records 140 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
 
 ## GPU and startup diagnostics
 

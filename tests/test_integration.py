@@ -1,6 +1,7 @@
 """Exercise startup compatibility with real shell parsing and temporary files."""
 
 import contextlib
+import hashlib
 import io
 import os
 from pathlib import Path
@@ -13,18 +14,49 @@ from unittest.mock import patch
 from flagship import cli, integration
 
 
+COPY_FIXTURE = (integration.SKEL_START + b'\tfor skel_file in ${skel_files}; do\n'
+                + b'\t\tcp "${skel_file}" "${container_user_home}/"' + integration.SKEL_END)
 INIT = b'''#!/bin/sh
 version="1.8.2.5"
 if command -v rpm; then echo rpm-exceptions; else echo deb-exceptions; fi
 if command -v rpm; then echo apt-rpm; else echo apt-deb; fi
-'''
+''' + b'if [ -n "${DISTROBOX_HOST_HOME-}" ]; then\n' + COPY_FIXTURE + b'\nfi\n'
 
 
 class IntegrationTests(unittest.TestCase):
+    def setUp(self):
+        expected = patch.object(integration, 'SKEL_COPY_SHA256', hashlib.sha256(COPY_FIXTURE).hexdigest())
+        expected.start()
+        self.addCleanup(expected.stop)
+
     def test_unknown_runtime_layout_is_rejected(self):
-        for source in (b"", INIT.replace(b'1.8.2.5', b'2.0.0'), INIT.replace(integration.RPM_PROBE, b'false', 1)):
+        for source in (b"", INIT.replace(b'1.8.2.5', b'2.0.0'), INIT.replace(integration.RPM_PROBE, b'false', 1),
+                       INIT.replace(COPY_FIXTURE, b':'), INIT.replace(b'\t\tcp ', b'\t\tcp -f ')):
             with self.subTest(source=source), self.assertRaises(cli.CommandError):
                 integration.patch_init(source)
+
+    @unittest.skipUnless(os.name == 'posix', 'requires POSIX filenames and ownership')
+    def test_skeleton_copy_preserves_literal_names_and_existing_user_files(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            skeleton, home = root / 'skel', root / 'managed home'
+            skeleton.mkdir()
+            home.mkdir()
+            names = ['Disk utility.desktop', 'literal [*] ;$().desktop', 'line\nbreak.desktop']
+            for name in names + ['existing', 'linked']:
+                (skeleton / name).write_text('original ' + name)
+            (home / 'existing').write_text('user changes')
+            (home / 'linked').symlink_to('existing')
+            script = integration.patch_init(INIT).replace(b'/etc/skel', str(skeleton).encode())
+            environment = dict(os.environ, DISTROBOX_HOST_HOME='present', container_user_home=str(home),
+                               container_user_uid=str(os.getuid()), container_user_gid=str(os.getgid()))
+            for _ in range(2):
+                result = subprocess.run(['/bin/sh'], input=script.decode(), env=environment, capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+            for name in names:
+                self.assertEqual((home / name).read_text(), 'original ' + name)
+            self.assertEqual((home / 'existing').read_text(), 'user changes')
+            self.assertEqual((home / 'linked').readlink(), Path('existing'))
 
     @unittest.skipUnless(os.name == "posix", "requires POSIX executables")
     def test_real_shell_prefers_debian_without_hiding_rpm(self):
