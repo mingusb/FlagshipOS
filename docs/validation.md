@@ -19,7 +19,7 @@ Testing uses an ordinary UID 1000 account, rootless Podman and a native Linux ch
 Verified on this fresh environment:
 
 - Bootstrap installation and repeated package installation succeeded.
-- **142 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings, container startup compatibility, bounded package repair and guarded WSL GPU integration.
+- **143 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings, container startup compatibility, bounded package repair and guarded WSL GPU integration.
 - Compilation, wheel creation, installation outside the checkout, all seven catalog entries, and the exact bytes of all five bundled recipes passed verification.
 - The first actual toolkit build exposed a missing `pasta` dependency in bootstrap. Podman stopped before Kali's package installation. Installing Ubuntu's `passt` package resolved that missing executable; bootstrap and readiness checks have been updated. A successful dependency check alone did not establish that image builds worked.
 - Strict CAINE conversion correctly refused a Unix socket in the release filesystem. The converter now offers an explicit, audited socket-only omission mode. A small real ISO fixture verified that this mode preserves file bytes, numeric ownership, permissions, hard links and a FIFO while recording the omitted socket. The full CAINE archive subsequently passed independent checksum and package-fidelity checks described below.
@@ -38,12 +38,14 @@ This work is **in progress**. A green unit suite or a base-container smoke test 
 | REMnux | Upstream full dedicated installer | All 1,091 installer states, full image and managed package audit passed; 2,207 installed packages |
 | BackBox | BackBox 9 backbox-tools, including recommendations | Full image, managed runtime/package audit and isolated browser integration passed |
 | SIFT | Pinned upstream Cast release in desktop mode | Timezone correction passed an isolated real Salt test; complete corrected rebuild running |
-| CAINE | Complete verified CAINE 14 release filesystem | Managed startup, package-database/dependency checks and CUDA memory check passed; final package-preservation audit pending |
-| Tsurugi | Complete verified LAB 26.03 release filesystem | Managed startup, package-database/dependency checks and CUDA memory check passed; final package-preservation audit pending |
+| CAINE | Complete verified CAINE 14 release filesystem | Managed startup, full package-preservation audit and CUDA memory check passed; 4,475 installed packages |
+| Tsurugi | Complete verified LAB 26.03 release filesystem | Managed startup, full package-preservation audit and CUDA memory check passed; 4,156 installed packages |
 
 Shared-shell acceptance must run actual commands from all seven providers, preserve literal arguments and exit codes, work with shared files and directories containing spaces, demonstrate a pipeline, and record collision preferences and provider provenance. It has not yet passed.
 
 The installation audit now distinguishes exact version fidelity from package preservation. Parrot's first Distrobox startup upgraded 30 base packages. The audit retains the original strict version differences and separately requires every originally installed package and architecture to remain installed at the same or a newer version, using Debian's version comparator. Missing packages, changed architectures and downgrades fail. ISO inventories must also match the conversion receipt and package baseline before this comparison is available.
+
+CAINE and Tsurugi's first preservation audits failed because Distrobox replaced their original `mtr-tiny` package with the conflicting `mtr` variant. The private startup adapter now retains `mtr-tiny` when already installed. In the existing environments, a checked two-package transaction restored the original variant and removed only Distrobox's replacement. The [resulting full audits](evidence/2026-10-17/live-release-package-audit.json) pass every package-preservation, dependency, package-database and source-binding check in both releases. The [actual adapter check](evidence/2026-10-17/mtr-adapter-check.json) selects the original variant and produces an empty APT installation plan in both real environments.
 
 The [intermediate audit receipts](evidence/2026-10-17/README.md) retain both successful profile results and the original failed or unavailable profiles. Their overall `passed` fields have not been rewritten. These snapshots precede GPU runtime setup; the final audit must be repeated after remaining installation changes.
 

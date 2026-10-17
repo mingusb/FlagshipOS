@@ -20,7 +20,7 @@ INIT = b'''#!/bin/sh
 version="1.8.2.5"
 if command -v rpm; then echo rpm-exceptions; else echo deb-exceptions; fi
 if command -v rpm; then echo apt-rpm; else echo apt-deb; fi
-''' + b'if [ -n "${DISTROBOX_HOST_HOME-}" ]; then\n' + COPY_FIXTURE + b'\nfi\n'
+''' + b'deps="\n' + integration.MTR_APT + b'"\n' + b'if [ -n "${DISTROBOX_HOST_HOME-}" ]; then\n' + COPY_FIXTURE + b'\nfi\n'
 
 
 class IntegrationTests(unittest.TestCase):
@@ -31,9 +31,24 @@ class IntegrationTests(unittest.TestCase):
 
     def test_unknown_runtime_layout_is_rejected(self):
         for source in (b"", INIT.replace(b'1.8.2.5', b'2.0.0'), INIT.replace(integration.RPM_PROBE, b'false', 1),
-                       INIT.replace(COPY_FIXTURE, b':'), INIT.replace(b'\t\tcp ', b'\t\tcp -f ')):
+                       INIT.replace(COPY_FIXTURE, b':'), INIT.replace(b'\t\tcp ', b'\t\tcp -f '),
+                       INIT.replace(integration.MTR_APT, b'')):
             with self.subTest(source=source), self.assertRaises(cli.CommandError):
                 integration.patch_init(source)
+
+    @unittest.skipUnless(os.name == 'posix', 'requires a real POSIX shell')
+    def test_apt_dependency_preserves_installed_mtr_tiny(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            query = directory / 'dpkg-query'
+            query.write_text('#!/bin/sh\nprintf %s "$MTR_STATUS"\nexit "$MTR_EXIT"\n')
+            query.chmod(0o755)
+            for status, code, expected in [('installed', '0', 'mtr-tiny'), ('config-files', '0', 'mtr'), ('', '1', 'mtr')]:
+                environment = dict(os.environ, PATH=str(directory), MTR_STATUS=status, MTR_EXIT=code)
+                script = 'selected="' + integration.MTR_CHOICE.decode() + '"\nprintf %s "$selected"'
+                result = subprocess.run(['/bin/sh', '-eu', '-c', script], env=environment, capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stdout, expected)
 
     @unittest.skipUnless(os.name == 'posix', 'requires POSIX filenames and ownership')
     def test_skeleton_copy_preserves_literal_names_and_existing_user_files(self):

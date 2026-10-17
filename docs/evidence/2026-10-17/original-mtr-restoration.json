@@ -1,0 +1,223 @@
+{
+  "started_at": "2026-10-17T22:00:10.420372+00:00",
+  "passed": true,
+  "profiles": {
+    "caine": {
+      "baseline_sha256": "6447d422759a4ac6ba3e2d0e439693888cb9db46b68ba54daa6074de824eb5d0",
+      "steps": [
+        {
+          "name": "verify-replacement-plan",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-caine",
+            "apt-get",
+            "--simulate",
+            "--no-install-recommends",
+            "install",
+            "mtr-tiny"
+          ],
+          "exit_code": 0,
+          "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages will be REMOVED:\n  mtr\nThe following NEW packages will be installed:\n  mtr-tiny\n0 upgraded, 1 newly installed, 1 to remove and 824 not upgraded.\nRemv mtr [0.95-1.1ubuntu0.1]\nInst mtr-tiny (0.95-1.1ubuntu0.1 Ubuntu:24.04/noble-updates [amd64])\nConf mtr-tiny (0.95-1.1ubuntu0.1 Ubuntu:24.04/noble-updates [amd64])\n",
+          "stderr": ""
+        },
+        {
+          "name": "restore-original-package",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-caine",
+            "apt-get",
+            "--yes",
+            "--no-install-recommends",
+            "install",
+            "mtr-tiny"
+          ],
+          "exit_code": 0,
+          "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages will be REMOVED:\n  mtr\nThe following NEW packages will be installed:\n  mtr-tiny\n0 upgraded, 1 newly installed, 1 to remove and 824 not upgraded.\nNeed to get 54.3 kB of archives.\nAfter this operation, 55.3 kB disk space will be freed.\nGet:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 mtr-tiny amd64 0.95-1.1ubuntu0.1 [54.3 kB]\nFetched 54.3 kB in 1s (58.1 kB/s)\n(Reading database ... \n(Reading database ... 5%\n(Reading database ... 10%\n(Reading database ... 15%\n(Reading database ... 20%\n(Reading database ... 25%\n(Reading database ... 30%\n(Reading database ... 35%\n(Reading database ... 40%\n(Reading database ... 45%\n(Reading database ... 50%\n(Reading database ... 55%\n(Reading database ... 60%\n(Reading database ... 65%\n(Reading database ... 70%\n(Reading database ... 75%\n(Reading database ... 80%\n(Reading database ... 85%\n(Reading database ... 90%\n(Reading database ... 95%\n(Reading database ... 100%\n(Reading database ... 459522 files and directories currently installed.)\nRemoving mtr (0.95-1.1ubuntu0.1) ...\nSelecting previously unselected package mtr-tiny.\n(Reading database ... \n(Reading database ... 5%\n(Reading database ... 10%\n(Reading database ... 15%\n(Reading database ... 20%\n(Reading database ... 25%\n(Reading database ... 30%\n(Reading database ... 35%\n(Reading database ... 40%\n(Reading database ... 45%\n(Reading database ... 50%\n(Reading database ... 55%\n(Reading database ... 60%\n(Reading database ... 65%\n(Reading database ... 70%\n(Reading database ... 75%\n(Reading database ... 80%\n(Reading database ... 85%\n(Reading database ... 90%\n(Reading database ... 95%\n(Reading database ... 100%\n(Reading database ... 459510 files and directories currently installed.)\nPreparing to unpack .../mtr-tiny_0.95-1.1ubuntu0.1_amd64.deb ...\nUnpacking mtr-tiny (0.95-1.1ubuntu0.1) ...\nSetting up mtr-tiny (0.95-1.1ubuntu0.1) ...\nProcessing triggers for man-db (2.12.0-4build2) ...\nProcessing triggers for runit (2.1.2-59ubuntu1) ...\nProcessing triggers for menu (2.1.50) ...\n",
+          "stderr": ""
+        },
+        {
+          "name": "package-audit",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-caine",
+            "dpkg",
+            "--audit"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "dependency-check",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-caine",
+            "apt-get",
+            "--simulate",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\n",
+          "stderr": ""
+        },
+        {
+          "name": "version-only",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-caine",
+            "mtr",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout": "mtr 0.95\n",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    },
+    "tsurugi": {
+      "baseline_sha256": "9751b255bc7d8087ebe66274e1aa8f4e78c9bd5b8cea2c8b35f2b21820b96c7e",
+      "steps": [
+        {
+          "name": "verify-replacement-plan",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-tsurugi",
+            "apt-get",
+            "--simulate",
+            "--no-install-recommends",
+            "install",
+            "mtr-tiny"
+          ],
+          "exit_code": 0,
+          "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following package was automatically installed and is no longer required:\n  libllvm20\nUse 'apt autoremove' to remove it.\nThe following packages will be REMOVED:\n  mtr\nThe following NEW packages will be installed:\n  mtr-tiny\n0 upgraded, 1 newly installed, 1 to remove and 560 not upgraded.\nRemv mtr [0.95-1.1ubuntu0.1]\nInst mtr-tiny (0.95-1.1ubuntu0.1 Ubuntu:24.04/noble-updates [amd64])\nConf mtr-tiny (0.95-1.1ubuntu0.1 Ubuntu:24.04/noble-updates [amd64])\n",
+          "stderr": ""
+        },
+        {
+          "name": "restore-original-package",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-tsurugi",
+            "apt-get",
+            "--yes",
+            "--no-install-recommends",
+            "install",
+            "mtr-tiny"
+          ],
+          "exit_code": 0,
+          "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following package was automatically installed and is no longer required:\n  libllvm20\nUse 'apt autoremove' to remove it.\nThe following packages will be REMOVED:\n  mtr\nThe following NEW packages will be installed:\n  mtr-tiny\n0 upgraded, 1 newly installed, 1 to remove and 560 not upgraded.\nNeed to get 54.3 kB of archives.\nAfter this operation, 55.3 kB disk space will be freed.\nGet:1 http://us.archive.ubuntu.com/ubuntu noble-updates/main amd64 mtr-tiny amd64 0.95-1.1ubuntu0.1 [54.3 kB]\nFetched 54.3 kB in 1s (97.3 kB/s)\n(Reading database ... \n(Reading database ... 5%\n(Reading database ... 10%\n(Reading database ... 15%\n(Reading database ... 20%\n(Reading database ... 25%\n(Reading database ... 30%\n(Reading database ... 35%\n(Reading database ... 40%\n(Reading database ... 45%\n(Reading database ... 50%\n(Reading database ... 55%\n(Reading database ... 60%\n(Reading database ... 65%\n(Reading database ... 70%\n(Reading database ... 75%\n(Reading database ... 80%\n(Reading database ... 85%\n(Reading database ... 90%\n(Reading database ... 95%\n(Reading database ... 100%\n(Reading database ... 523593 files and directories currently installed.)\nRemoving mtr (0.95-1.1ubuntu0.1) ...\nSelecting previously unselected package mtr-tiny.\n(Reading database ... \n(Reading database ... 5%\n(Reading database ... 10%\n(Reading database ... 15%\n(Reading database ... 20%\n(Reading database ... 25%\n(Reading database ... 30%\n(Reading database ... 35%\n(Reading database ... 40%\n(Reading database ... 45%\n(Reading database ... 50%\n(Reading database ... 55%\n(Reading database ... 60%\n(Reading database ... 65%\n(Reading database ... 70%\n(Reading database ... 75%\n(Reading database ... 80%\n(Reading database ... 85%\n(Reading database ... 90%\n(Reading database ... 95%\n(Reading database ... 100%\n(Reading database ... 523580 files and directories currently installed.)\nPreparing to unpack .../mtr-tiny_0.95-1.1ubuntu0.1_amd64.deb ...\nUnpacking mtr-tiny (0.95-1.1ubuntu0.1) ...\nSetting up mtr-tiny (0.95-1.1ubuntu0.1) ...\nProcessing triggers for man-db (2.12.0-4build2) ...\nProcessing triggers for menu (2.1.50) ...\n",
+          "stderr": ""
+        },
+        {
+          "name": "package-audit",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-tsurugi",
+            "dpkg",
+            "--audit"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        {
+          "name": "dependency-check",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-tsurugi",
+            "apt-get",
+            "--simulate",
+            "check"
+          ],
+          "exit_code": 0,
+          "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\n",
+          "stderr": ""
+        },
+        {
+          "name": "version-only",
+          "argv": [
+            "podman",
+            "exec",
+            "--user",
+            "0",
+            "--env",
+            "LC_ALL=C",
+            "--env",
+            "DEBIAN_FRONTEND=noninteractive",
+            "flagship-tsurugi",
+            "mtr",
+            "--version"
+          ],
+          "exit_code": 0,
+          "stdout": "mtr 0.95\n",
+          "stderr": ""
+        }
+      ],
+      "passed": true
+    }
+  },
+  "finished_at": "2026-10-17T22:01:36.900509+00:00"
+}

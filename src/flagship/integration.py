@@ -16,6 +16,10 @@ from . import cli as core
 
 RPM_PROBE = b"if command -v rpm; then"
 DEBIAN_FIRST_PROBE = b"if ! command -v dpkg-query >/dev/null 2>&1 && command -v rpm; then"
+MTR_APT = b'\t\tmanpages\n\t\tmtr\n\t\tncurses-base\n'
+# The full mtr package conflicts with the mtr-tiny already in both live releases.
+# Keep that original package while satisfying the same command dependency.
+MTR_CHOICE = b'''$(if [ "$(dpkg-query -W -f='${db:Status-Status}' mtr-tiny 2>/dev/null || :)" = installed ]; then printf %s mtr-tiny; else printf %s mtr; fi)'''
 
 # Live releases can omit /var/cache while retaining PAM's dictionary policy.
 # Rebuild the installed dictionary rather than disabling the password policy.
@@ -185,10 +189,11 @@ def skeleton_copy_block(source):
 def patch_init(source):
     """Correct the known Debian-detection and skeleton-copy startup branches."""
     if (not re.search(rb'^version="1\.8\.2\.5"$', source, re.MULTILINE)
-            or source.count(RPM_PROBE) != 2):
+            or source.count(RPM_PROBE) != 2 or source.count(MTR_APT) != 1):
         raise core.CommandError("Flagship's full-collection startup currently requires Distrobox 1.8.2.5 with its known package-manager and skeleton-copy layout.")
     block = skeleton_copy_block(source)
-    return source.replace(RPM_PROBE, DEBIAN_FIRST_PROBE).replace(block, SKEL_COPY_FIXED, 1)
+    return (source.replace(RPM_PROBE, DEBIAN_FIRST_PROBE).replace(block, SKEL_COPY_FIXED, 1)
+            .replace(MTR_APT, MTR_APT.replace(b'\t\tmtr\n', b'\t\t' + MTR_CHOICE + b'\n'), 1))
 
 
 def private_directory(path):

@@ -2,7 +2,7 @@
 
 These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 environment. Paths in receipts identify the disposable verification account. They are not installation instructions.
 
-The [code verification receipt](code-verification.json) records 142 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+The [code verification receipt](code-verification.json) records 143 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
 
 ## GPU and startup diagnostics
 
@@ -14,6 +14,8 @@ The [code verification receipt](code-verification.json) records 142 passing test
 - [CAINE package repair: authenticated native package, original defect, actual repair and clean audits](caine-package-repair.json)
 - [Tsurugi repository key: exact pre-init repair and authenticated APT update](tsurugi-repository-check.json)
 - [Tsurugi precompiled locales: all 326 original variants actually activate](tsurugi-locales-check.json)
+- [Original mtr-tiny restored in both releases, with exact package plans and clean audits](original-mtr-restoration.json)
+- [Patched upstream initialization: syntax and actual mtr-tiny selection in both releases](mtr-adapter-check.json)
 
 The GPU report retains absent tools and failed OpenCL-device commands. It establishes neither universal GPU-tool compatibility nor performance. The startup diagnostics are bounded tests; full managed-container acceptance is recorded separately.
 
@@ -25,11 +27,12 @@ The locale report records package-managed configuration drift separately: the pa
 
 ## Intermediate full-collection package audits
 
+- [CAINE and Tsurugi: complete package-preservation, dependency and source-binding audits passed](live-release-package-audit.json)
 - [Kali and REMnux passing profile results](four-collection-audit-kali-remnux.json); the same snapshot records unavailable CAINE, so its overall `passed` remains false.
 - [Parrot passing package-preservation audit](four-collection-audit-parrot.json), retaining the separate exact-version differences from Distrobox's upgrades.
 - [BackBox passing profile result](four-collection-audit-backbox.json); this earlier snapshot also retains Parrot's original strict-version failure, so its overall `passed` remains false.
 
-The original bytes and observations are retained. These audits precede the later GPU runtime additions; final acceptance must audit the completed environments again. They are not the seven-provider demonstration.
+The original bytes and observations are retained. The older four-collection audits precede GPU runtime additions; CAINE and Tsurugi's later audit includes their GPU setup and startup repairs. Final acceptance must audit all completed environments together. These reports are not the seven-provider demonstration.
 
 ## REMnux full installer
 

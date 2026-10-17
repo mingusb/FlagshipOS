@@ -1,0 +1,19 @@
+{
+  "captured_at": "2026-10-17T22:01:40.715286+00:00",
+  "passed": true,
+  "upstream_init_sha256": "c92d3922a8e83db497fa79a27203c45e6161b9f8634417b1d32acd61e0903d19",
+  "corrected_init_sha256": "b3e8f489e0ee134773ef238e16e5bf297b72e1e20413b4bf9ce46f2022d1d774",
+  "posix_shell_syntax_passed": true,
+  "profiles": {
+    "caine": {
+      "exit_code": 0,
+      "stdout": "mtr-tiny\nReading package lists...\nBuilding dependency tree...\nReading state information...\nmtr-tiny is already the newest version (0.95-1.1ubuntu0.1).\n0 upgraded, 0 newly installed, 0 to remove and 824 not upgraded.\n",
+      "stderr": ""
+    },
+    "tsurugi": {
+      "exit_code": 0,
+      "stdout": "mtr-tiny\nReading package lists...\nBuilding dependency tree...\nReading state information...\nmtr-tiny is already the newest version (0.95-1.1ubuntu0.1).\nThe following package was automatically installed and is no longer required:\n  libllvm20\nUse 'apt autoremove' to remove it.\n0 upgraded, 0 newly installed, 0 to remove and 560 not upgraded.\n",
+      "stderr": ""
+    }
+  }
+}
