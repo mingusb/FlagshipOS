@@ -68,6 +68,31 @@ class OwnerRemapTests(unittest.TestCase):
                     helper.remap(source, digest, output, {1146479719: 60000}, groups)
                 self.assertEqual(list(root.iterdir()), [source])
 
+    def test_binary_capability_xattr_survives_added_pax_encoding_marker(self):
+        with tempfile.TemporaryDirectory() as temporary, contextlib.redirect_stdout(io.StringIO()):
+            root = Path(temporary)
+            source = root / "binary-xattr.tar"
+            payload = b"\x01\x00\x00\x02\x00\x14\x80\x00" + b"\x00" * 12
+            with tarfile.open(source, "w", format=tarfile.PAX_FORMAT) as archive:
+                item = tarfile.TarInfo("./usr/bin/example")
+                item.uid = 1146479719
+                item.pax_headers = {"SCHILY.xattr.security.capability": payload.decode("utf-8", "surrogateescape")}
+                archive.addfile(item, io.BytesIO())
+            # Isolate the representational difference seen with sqfs2tar: its
+            # decoded header lacks hdrcharset, while Python adds that marker.
+            with tarfile.open(source) as archive:
+                before = archive.next()
+            after = before.replace()
+            before.pax_headers.pop("hdrcharset", None)
+            after.pax_headers["hdrcharset"] = "BINARY"
+            self.assertEqual(helper.metadata(before), helper.metadata(after))
+            digest = hashlib.sha256(source.read_bytes()).hexdigest()
+            output = root / "converted.tar"
+            helper.remap(source, digest, output, {1146479719: 60000}, {})
+            with tarfile.open(output) as archive:
+                value = archive.next().pax_headers["SCHILY.xattr.security.capability"]
+                self.assertEqual(value.encode("utf-8", "surrogateescape"), payload)
+
     def test_checksum_and_existing_output_are_checked_before_rewrite(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

@@ -19,7 +19,7 @@ Testing uses an ordinary UID 1000 account, rootless Podman and a native Linux ch
 Verified on this fresh environment:
 
 - Bootstrap installation and repeated package installation succeeded.
-- **120 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings and container startup compatibility.
+- **121 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings and container startup compatibility.
 - Compilation, wheel creation, installation outside the checkout, all seven catalog entries, and the exact bytes of all five bundled recipes passed verification.
 - The first actual toolkit build exposed a missing `pasta` dependency in bootstrap. Podman stopped before Kali's package installation. Installing Ubuntu's `passt` package resolved that missing executable; bootstrap and readiness checks have been updated. A successful dependency check alone did not establish that image builds worked.
 - Strict CAINE conversion correctly refused a Unix socket in the release filesystem. The converter now offers an explicit, audited socket-only omission mode. A small real ISO fixture verified that this mode preserves file bytes, numeric ownership, permissions, hard links and a FIFO while recording the omitted socket. The full CAINE archive subsequently passed independent checksum and package-fidelity checks described below.
@@ -85,6 +85,6 @@ Some preliminary unit tests ran on an existing Ubuntu 26.04 distribution. All ac
 
 ## Continuous integration
 
-[Package CI](https://github.com/mingusb/FlagshipOS/actions/runs/39063357715) and the [real Kali base-container smoke test](https://github.com/mingusb/FlagshipOS/actions/runs/39063360455) passed commit `741e383`, including the Tsurugi derived-baseline audit and private Distrobox startup correction. See [GitHub Actions](https://github.com/mingusb/FlagshipOS/actions) for later exact-commit results.
+[Package CI](https://github.com/mingusb/FlagshipOS/actions/runs/39064706990) and the [real Kali base-container smoke test](https://github.com/mingusb/FlagshipOS/actions/runs/39064740823) passed commit `20f7225`, including SIFT desktop setup and explicit rootfs ownership handling. See [GitHub Actions](https://github.com/mingusb/FlagshipOS/actions) for later exact-commit results.
 
 The hosted container job uses Ubuntu 24.04 and a pinned Distrobox version. It validates a base container with harmless local commands; it does not prove seven full collections work on WSL.

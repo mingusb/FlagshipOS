@@ -34,13 +34,16 @@ def mappings(values):
 
 
 def metadata(member):
-    # Standard PAX fields duplicate the effective TarInfo attributes. All other
-    # PAX metadata, including xattrs, is included verbatim in the comparison.
+    # Standard PAX fields duplicate the effective TarInfo attributes. hdrcharset
+    # describes header encoding, not filesystem metadata: tarfile adds BINARY
+    # when preserving non-UTF8 xattr bytes through surrogateescape. Compare the
+    # decoded values verbatim, including every binary xattr, rather than that
+    # representational marker.
     fields = ("name", "mode", "uid", "gid", "size", "mtime", "linkname", "uname", "gname", "devmajor", "devminor")
     value = {field: getattr(member, field) for field in fields}
     value["type"] = member.type.hex()
     value["pax"] = {key: val for key, val in member.pax_headers.items()
-                    if key not in (*fields, "path", "linkpath")}
+                    if key not in (*fields, "path", "linkpath", "hdrcharset")}
     return value
 
 
@@ -119,6 +122,7 @@ def rewrite(source, destination, uid_map, gid_map):
         raise ValueError("Output content or metadata differs beyond the requested owner mappings")
     return {"archive_entries": count, "ownership_changes": changes,
             "semantic_sha256": actual.hexdigest(), "content_and_metadata_verified": True,
+            "header_encoding_note": "PAX hdrcharset may be added for binary xattrs; decoded attribute values are compared exactly, including their surrogateescaped bytes",
             "verification": "Ordered effective tar metadata and SHA256 of every regular file, allowing only the explicit numeric owner changes and clearing their textual owner names"}
 
 
