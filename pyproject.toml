@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flagshipos"
+version = "0.1.0"
+description = "A rootless Debian-family CTF workbench for Ubuntu WSL"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+authors = [{name = "Brian Mingus"}]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: POSIX :: Linux",
+]
+
+[project.scripts]
+flagship = "flagship.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mingusb/FlagshipOS"
+Issues = "https://github.com/mingusb/FlagshipOS/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+flagship = ["profiles.json"]

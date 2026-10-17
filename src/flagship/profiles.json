@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "profiles": {
+    "kali": {
+      "name": "Kali Linux",
+      "kind": "registry",
+      "image": "docker.io/kalilinux/kali-rolling@sha256:02f5d6c019e549b0f55da58e835cad5355ef1030c6b2645265a324e37dfc4acc",
+      "source_url": "https://www.kali.org/docs/containers/official-kalilinux-docker-images/",
+      "description": "Official Debian-based Kali rolling base image, with an explicit optional headless toolkit provisioning step.",
+      "notes": [
+        "Resolved from docker.io/kalilinux/kali-rolling:latest on 2026-10-17 and verified against Docker Registry API; index supports linux/amd64 and linux/arm64.",
+        "The upstream base image contains no default Kali toolkit. Creating this profile does not install kali-linux-headless; provision it explicitly.",
+        "The headless metapackage is not every Kali package. GUI, hardware, service and kernel-dependent tools need separate evaluation.",
+        "Image pinning freezes the initial filesystem only. Distrobox initialization and explicit APT provisioning use the container's current repositories."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["nmap", "--version"]],
+      "packages": ["kali-linux-headless"]
+    },
+    "parrot": {
+      "name": "Parrot Security OS",
+      "kind": "registry",
+      "image": "docker.io/parrotsec/security@sha256:2fe6606fed814618a6bc91a07f193a5b6aa9660b774fc319e6c8fd4b569e2f06",
+      "source_url": "https://www.parrotsec.org/docs/containers/parrot-on-docker/",
+      "description": "Official Debian-based Parrot Security command-line collection.",
+      "notes": [
+        "Resolved from docker.io/parrotsec/security:latest on 2026-10-17 and verified against Docker Registry API; index supports linux/amd64 and linux/arm64.",
+        "Upstream deliberately excludes graphical applications from this image. This is not the complete desktop Security Edition.",
+        "The selected tag was last pushed on 2026-05-15. Refreshing the image pin is a reviewed change; it does not track latest silently.",
+        "No extra toolkit package is installed by this profile. Distrobox may install its own integration prerequisites during initialization."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["nmap", "--version"]],
+      "packages": []
+    },
+    "remnux": {
+      "name": "REMnux",
+      "kind": "registry",
+      "image": "docker.io/remnux/remnux-distro@sha256:880089abf02feb5240607545ab601e2d97d7b1c213d6341aa2e7ce356f65c8c2",
+      "source_url": "https://docs.remnux.org/install-distro/remnux-as-a-container",
+      "description": "Official REMnux container based on Ubuntu 24.04 Noble for static analysis and reverse engineering tools.",
+      "notes": [
+        "Resolved from docker.io/remnux/remnux-distro:noble on 2026-10-17 and verified against Docker Registry API; index supports linux/amd64 and linux/arm64.",
+        "Upstream excludes VS Code and Wine-dependent tools from the container. Architecture-specific tool availability can differ.",
+        "Distrobox shares access with the host and is not a malware detonation sandbox, even with a separate profile home directory.",
+        "The stock image assumes a remnux user and home; tools configured specifically there may require adjustment for Distrobox's mapped user."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["yara", "--version"]],
+      "packages": []
+    },
+    "sift": {
+      "name": "SANS SIFT Workstation",
+      "kind": "import",
+      "image": null,
+      "source_url": "https://www.sans.org/tools/sift-workstation",
+      "description": "Import a root filesystem from a genuine SIFT installation prepared using upstream's supported Ubuntu release.",
+      "notes": [
+        "No current official full SIFT OCI image was verified. The archived teamdfir/sift-dockerfiles repository contains a Salt test image, not a complete workstation.",
+        "Upstream currently documents Ubuntu 22.04 and the Cast installer. Do not run that installer against the Ubuntu 26.10 host.",
+        "Prepare SIFT separately using upstream instructions, then supply a rootfs tar with its expected SHA-256. An OVA or virtual disk is not itself a rootfs tar.",
+        "Imported SIFT compatibility with Distrobox is experimental; its smoke check includes a Sleuth Kit version check, not full forensic validation."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["fls", "-V"]],
+      "packages": []
+    },
+    "backbox": {
+      "name": "BackBox Linux",
+      "kind": "import",
+      "image": null,
+      "source_url": "https://linux.backbox.org/download/",
+      "description": "Import a root filesystem from the Ubuntu-based BackBox distribution.",
+      "notes": [
+        "No current official full BackBox OCI image was verified. Supply an upstream ISO or an exported rootfs tar with its expected SHA-256.",
+        "Import preserves the distribution's user-space packages instead of adding its repositories to the Ubuntu host.",
+        "Live desktop startup, GUI tools and services are not guaranteed to work inside Distrobox.",
+        "Import support is experimental until the exact artifact has been created and tested on the target WSL host."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"]],
+      "packages": []
+    },
+    "caine": {
+      "name": "CAINE",
+      "kind": "import",
+      "image": null,
+      "source_url": "https://www.caine-live.net/page5/page5.html",
+      "description": "Import user-space forensic tools from the Ubuntu-based CAINE distribution.",
+      "notes": [
+        "Upstream distributes CAINE as an ISO and publishes SHA-256 hashes. No current official full CAINE OCI image was verified.",
+        "Supply the verified ISO or an exported rootfs tar. A bare Ubuntu container is not a CAINE installation.",
+        "CAINE's boot-time write blocking and acquisition guarantees do not carry into a WSL container, which uses the WSL kernel.",
+        "Import support is experimental until the exact artifact has been created and tested on the target WSL host."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["fls", "-V"]],
+      "packages": []
+    },
+    "tsurugi": {
+      "name": "Tsurugi LAB",
+      "kind": "import",
+      "image": null,
+      "source_url": "https://tsurugi-linux.org/downloads.php",
+      "description": "Import user-space tools from Tsurugi LAB, an Ubuntu-based forensic and analysis distribution.",
+      "notes": [
+        "Upstream offers ISO and OVA artifacts and signed SHA-512 hashes. No current official full Tsurugi OCI image was verified.",
+        "Verify the upstream signature and checksum before importing the ISO or an exported rootfs tar; retain the resulting artifact SHA-256 for this project's import record.",
+        "The Tsurugi custom kernel, device write blocking and acquisition behavior are not provided by a WSL container.",
+        "Import support is experimental until the exact artifact has been created and tested on the target WSL host."
+      ],
+      "smoke_commands": [["bash", "--version"], ["dpkg-query", "--version"], ["fls", "-V"]],
+      "packages": []
+    }
+  }
+}

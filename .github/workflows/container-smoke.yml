@@ -1,0 +1,42 @@
+name: Manual rootless container smoke test
+
+# This is opt-in: it downloads a Kali base image and initializes one local
+# container. It does not provision large security tool sets or contact targets.
+# Hosted Ubuntu CI is not evidence of WSL or Ubuntu 26.10 compatibility.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      PYTHONUTF8: "1"
+      DBX_CONTAINER_MANAGER: podman
+      DBX_NON_INTERACTIVE: "1"
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+      - name: Install supported host packages
+        # https://distrobox.it/#installation
+        # https://podman.io/docs/installation#installing-on-linux
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends podman distrobox uidmap slirp4netns fuse-overlayfs python3-venv
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --disable-pip-version-check .
+      - name: Confirm rootless runtime
+        # Distrobox intentionally integrates with the host. Its internal
+        # privileged flag is within the unprivileged user's namespace; this
+        # workflow never starts rootful containers and is not a sandbox test.
+        run: |
+          test "$(id -u)" -ne 0
+          test "$(podman info --format '{{.Host.Security.Rootless}}')" = true
+          podman --version
+          distrobox --version
+      - name: Exercise create, run, idempotence, and removal
+        run: .venv/bin/python tests/integration/container_smoke.py

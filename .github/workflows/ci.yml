@@ -1,0 +1,42 @@
+name: Tests and package
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          persist-credentials: false
+      - name: Install into a disposable Python environment
+        run: |
+          python3 -m venv .venv
+          .venv/bin/python -m pip install --disable-pip-version-check -e .
+      - name: Unit and command-line tests
+        run: .venv/bin/python -m unittest discover -s tests -v
+      - name: Compile Python sources
+        run: .venv/bin/python -m compileall -q src tests scripts
+      - name: Build and inspect distributable wheel
+        run: |
+          .venv/bin/python -m pip wheel --disable-pip-version-check --no-deps --wheel-dir dist .
+          .venv/bin/python tests/check_wheel.py dist
+      - name: Verify installed wheel outside the checkout
+        run: |
+          python3 -m venv "$RUNNER_TEMP/flagship-wheel"
+          "$RUNNER_TEMP/flagship-wheel/bin/python" -m pip install --disable-pip-version-check --no-deps dist/*.whl
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/flagship-wheel/bin/flagship" profiles --json > profiles.json
+          "$RUNNER_TEMP/flagship-wheel/bin/python" -c 'import json; data = json.load(open("profiles.json")); assert data, "empty installed catalog"'
