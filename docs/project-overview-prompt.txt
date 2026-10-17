@@ -1,4 +1,4 @@
-Generation method: built-in image_gen tool, followed by one targeted edit.
+Generation method: built-in image_gen tool, followed by two targeted edits.
 Style references:
 https://github.com/mingusb/goalkeeper/blob/main/project-overview.png
 https://github.com/mingusb/decision-programs/blob/main/project-overview.png
@@ -38,3 +38,6 @@ Keep all copy exactly spelled, especially FlagshipOS, REMnux, BackBox, Tsurugi a
 
 Targeted refinement:
 Precise edit of this FlagshipOS README poster. Preserve the entire poster's typography, every word, spelling, all text layout, colors, lighting, dark navy background, chrome/glass materials, black marble platform, all six existing outer glass modules and the central flag-bearing hub exactly. Change only the top hero illustration: add one additional small separate chrome-and-clear-glass tool module on the front-center of the marble platform, between the two current foreground modules, connected to the central flag-bearing hub by a cyan light conduit. The new seventh outer module has an elegant cyan magnifying-glass icon for forensics. There must be exactly SEVEN separate outer tool modules plus the existing central flag-bearing hub, representing the seven collections around one Ubuntu host. Fit this added module in the existing hero region without covering the title or any text. Keep the flag, central hub, existing six modules, and all poster text unchanged. Do not add extra labels or any other objects.
+
+User-requested title-spacing edit:
+Make one precise typography edit to this existing FlagshipOS GitHub README poster. Change only the enormous main white headline from "FLAGSHIPOS" to "FLAGSHIP OS" with a clearly visible ordinary word space between FLAGSHIP and OS. Keep the new headline on one centered line in the same very large bold condensed white sans-serif style; reduce its size slightly only as needed to fit within the existing left and right margins. Preserve every other word exactly, including the footer repository name "mingusb/FlagshipOS" without a space and both lowercase flagship terminal commands. Preserve the entire original poster's layout, dimensions, seven outer glass modules and central flag hub, photoreal chrome and glass, all icons, navy background, cyan and amber lighting, subtitle, collection names, feature columns, technology strip, terminal panel, guide button, and footer. Do not redesign, add, remove, or restyle anything else. The only requested change is the main headline reading "FLAGSHIP OS" with an unmistakable space.
