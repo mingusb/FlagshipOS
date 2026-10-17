@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.png binary
 *.jpg binary
+# Evidence hashes bind the captured bytes, including original line endings.
+docs/evidence/**/*.json -text -whitespace
+docs/evidence/**/*.txt -text -whitespace

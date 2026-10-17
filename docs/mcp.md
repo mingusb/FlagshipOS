@@ -70,3 +70,5 @@ python3 -m unittest discover -s tests -v
 ```
 
 The MCP tests exercise a real subprocess handshake, tool and resource discovery, structured responses, schema rejection, descriptor-based file access, output limits, timeouts and cancellation. Tests with a temporary empty workspace do not establish live container functionality; the separately published live acceptance receipts identify that scope.
+
+On 2026-10-17, the [live seven-provider MCP check](evidence/2026-10-17/mcp-seven-providers.json) passed 27 protocol calls against the installed public package: discovery, resolution, fixed version queries, CUDA checks, and generated workspace-file inspection. CAINE's failing Hashcat device query remains exit 255 in the structured result. The [Windows configuration check](evidence/2026-10-17/windows-mcp.json) separately passed initialization and discovery through `wsl.exe`. See [the complete validation scope](validation.md#mcp-and-windows-entry-points).

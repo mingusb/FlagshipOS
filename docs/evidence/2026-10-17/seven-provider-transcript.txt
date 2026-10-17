@@ -1,0 +1,1458 @@
+Captured output with labeled generated annotations; not a PTY recording
+
+[generated command annotation: Require all seven real managed containers]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship status --json
+{
+  "containers": [
+    {
+      "profile": "kali",
+      "name": "flagship-kali",
+      "image": "sha256:9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f",
+      "status": "running",
+      "managed": true
+    },
+    {
+      "profile": "parrot",
+      "name": "flagship-parrot",
+      "image": "sha256:d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90",
+      "status": "running",
+      "managed": true
+    },
+    {
+      "profile": "remnux",
+      "name": "flagship-remnux",
+      "image": "sha256:5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087",
+      "status": "running",
+      "managed": true
+    },
+    {
+      "profile": "sift",
+      "name": "flagship-sift",
+      "image": "sha256:8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832",
+      "status": "running",
+      "managed": true
+    },
+    {
+      "profile": "backbox",
+      "name": "flagship-backbox",
+      "image": "sha256:ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa",
+      "status": "running",
+      "managed": true
+    },
+    {
+      "profile": "caine",
+      "name": "flagship-caine",
+      "image": "sha256:8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5",
+      "status": "running",
+      "managed": true
+    },
+    {
+      "profile": "tsurugi",
+      "name": "flagship-tsurugi",
+      "image": "sha256:b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd",
+      "status": "running",
+      "managed": true
+    }
+  ],
+  "state_dir": "/home/flagship-test/.local/share/flagship"
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Refresh real executable inventory]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship tools --refresh --json
+{
+  "refreshed_at": "2026-10-17T22:31:21.278534+00:00",
+  "tools": [
+    {
+      "tool": "0trace.sh",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/0trace.sh"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/0trace.sh"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/0trace.sh"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "1768.py",
+      "selected": {
+        "profile": "remnux",
+        "path": "/usr/local/bin/1768.py"
+      },
+      "candidates": [
+        {
+          "profile": "remnux",
+          "path": "/usr/local/bin/1768.py"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "1password2john",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/1password2john"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/1password2john"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/1password2john"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2ping",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/2ping"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/2ping"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2ping6",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/2ping6"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/2ping6"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2to3",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/local/bin/2to3"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/local/bin/2to3"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2to3-2.7",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/2to3-2.7"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/2to3-2.7"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2to3-3.10",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/local/bin/2to3-3.10"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/local/bin/2to3-3.10"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "3cpio",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/3cpio"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/3cpio"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "411toppm",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/411toppm"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/411toppm"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "7z",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/7z"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/7z"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/7z"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/7z"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/7z"
+        },
+     
+[output excerpt truncated]
+
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/sbin/zstream"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/sbin/zstream"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zstreamdump",
+      "selected": {
+        "profile": "caine",
+        "path": "/usr/sbin/zstreamdump"
+      },
+      "candidates": [
+        {
+          "profile": "caine",
+          "path": "/usr/sbin/zstreamdump"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/sbin/zstreamdump"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zui",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/bin/zui"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zui"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluCrypt-cli",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluCrypt-cli"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluCrypt-cli"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/zuluCrypt-cli"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluCrypt-cli"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluCrypt-gui",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluCrypt-gui"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluCrypt-gui"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/zuluCrypt-gui"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluCrypt-gui"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluMount-cli",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluMount-cli"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluMount-cli"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluMount-cli"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluMount-gui",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluMount-gui"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluMount-gui"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluMount-gui"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluPolkit",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluPolkit"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluPolkit"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/zuluPolkit"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluPolkit"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zutty",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zutty"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zutty"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/zutty"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zvol_wait",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/sbin/zvol_wait"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/sbin/zvol_wait"
+        }
+      ],
+      "selection": "catalog-priority"
+    }
+  ],
+  "profiles": [
+    "kali",
+    "parrot",
+    "remnux",
+    "sift",
+    "backbox",
+    "caine",
+    "tsurugi"
+  ]
+}
+
+[generated stderr annotation]
+Discovering commands in kali...
+Discovering commands in parrot...
+Discovering commands in remnux...
+Discovering commands in sift...
+Discovering commands in backbox...
+Discovering commands in caine...
+Discovering commands in tsurugi...
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Record actual container identities]
+$ podman container inspect --format '{{.Id}} {{.Name}} {{.Image}}' flagship-kali flagship-parrot flagship-remnux flagship-backbox flagship-sift flagship-caine flagship-tsurugi
+73bb7505530b852ea83d23c8b1be0b33709821c0bdc58d0067af38a515039d68 flagship-kali 9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f
+12c47c7418d3e86cca6f376c1452440cbad9706011419b1b038c951692879e85 flagship-parrot d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90
+439c9866c9fc02de448157b7a2d8b0b2e737dde2e117b63a50b0a12a418f54e1 flagship-remnux 5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087
+d655523691f825d0cc7aa24cecc31817bcbf7d7583b1d1992fe53da00ca9d3d9 flagship-backbox ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa
+85f9c492b12e2a9fc9cd4f491ffab5f5f9870a3bb632a2f23039ca827890d74b flagship-sift 8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832
+f41678d1c2bfd4bc84f98be88103a022bb11bf25c56f2edc0f67838c8a7da798 flagship-caine 8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5
+15bbe13c988936f0225849f8c681e5ded6e26042529d81a5bd0d4d7f7b2fd682 flagship-tsurugi b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer exiftool from kali]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer exiftool kali
+exiftool now uses kali.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve exiftool to kali]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which exiftool --json
+{
+  "tool": "exiftool",
+  "selected": {
+    "profile": "kali",
+    "path": "/usr/bin/exiftool"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/exiftool"
+    },
+    {
+      "profile": "remnux",
+      "path": "/usr/local/bin/exiftool"
+    },
+    {
+      "profile": "sift",
+      "path": "/usr/local/bin/exiftool"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/exiftool"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/exiftool"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer nmap from parrot]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer nmap parrot
+nmap now uses parrot.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve nmap to parrot]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which nmap --json
+{
+  "tool": "nmap",
+  "selected": {
+    "profile": "parrot",
+    "path": "/usr/bin/nmap"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/nmap"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer yara from remnux]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer yara remnux
+yara now uses remnux.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve yara to remnux]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which yara --json
+{
+  "tool": "yara",
+  "selected": {
+    "profile": "remnux",
+    "path": "/usr/bin/yara"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/yara"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/yara"
+    },
+    {
+      "profile": "remnux",
+      "path": "/usr/bin/yara"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/yara"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/yara"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/yara"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer foremost from backbox]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer foremost backbox
+foremost now uses backbox.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve foremost to backbox]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which foremost --json
+{
+  "tool": "foremost",
+  "selected": {
+    "profile": "backbox",
+    "path": "/usr/bin/foremost"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/foremost"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/foremost"
+    },
+    {
+      "profile": "sift",
+      "path": "/usr/bin/foremost"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/foremost"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/foremost"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/foremost"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer mmls from sift]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer mmls sift
+mmls now uses sift.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve mmls to sift]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which mmls --json
+{
+  "tool": "mmls",
+  "selected": {
+    "profile": "sift",
+    "path": "/usr/bin/mmls"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/mmls"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/mmls"
+    },
+    {
+      "profile": "remnux",
+      "path": "/usr/bin/mmls"
+    },
+    {
+      "profile": "sift",
+      "path": "/usr/bin/mmls"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/mmls"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/local/bin/mmls"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/mmls"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer dc3dd from caine]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer dc3dd caine
+dc3dd now uses caine.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve dc3dd to caine]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which dc3dd --json
+{
+  "tool": "dc3dd",
+  "selected": {
+    "profile": "caine",
+    "path": "/usr/bin/dc3dd"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/dc3dd"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/dc3dd"
+    },
+    {
+      "profile": "sift",
+      "path": "/usr/bin/dc3dd"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/dc3dd"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/dc3dd"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer fls from tsurugi]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer fls tsurugi
+fls now uses tsurugi.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve fls to tsurugi]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which fls --json
+{
+  "tool": "fls",
+  "selected": {
+    "profile": "tsurugi",
+    "path": "/usr/bin/fls"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/fls"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/fls"
+    },
+    {
+      "profile": "remnux",
+      "path": "/usr/bin/fls"
+    },
+    {
+      "profile": "sift",
+      "path": "/usr/bin/fls"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/fls"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/local/bin/fls"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/fls"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: All seven bare specialist commands in one shell]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- bash --noprofile --norc /home/flagship-test/flagship/flagship-seven-provider-vgst0e21/versions.sh /home/flagship-test/flagship/flagship-seven-provider-vgst0e21 /home/flagship-test/.local/share/flagship
+FLAGSHIP_SHIM_PROOF	nmap	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/nmap
+FLAGSHIP_SHIM_PROOF	exiftool	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/exiftool
+FLAGSHIP_SHIM_PROOF	yara	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/yara
+FLAGSHIP_SHIM_PROOF	foremost	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/foremost
+FLAGSHIP_SHIM_PROOF	mmls	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/mmls
+FLAGSHIP_SHIM_PROOF	dc3dd	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/dc3dd
+FLAGSHIP_SHIM_PROOF	fls	/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/fls
+
+[annotation: Kali / exiftool]
+13.55
+
+[annotation: Parrot / nmap]
+Nmap version 7.95 ( https://nmap.org )
+Platform: x86_64-pc-linux-gnu
+Compiled with: liblua-5.4.7 openssl-3.5.6 libssh2-1.11.1 libz-1.3.1 libpcre2-10.46 libpcap-1.10.5 nmap-libdnet-1.12 ipv6
+Compiled without:
+Available nsock engines: epoll poll select
+
+[annotation: REMnux / yara]
+4.5.0
+
+[annotation: BackBox / foremost]
+1.5.7
+This program is a work of the US Government. In accordance with 17 USC 105,
+copyright protection is not available for any work of the US Government.
+This is free software; see the source for copying conditions. There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+[annotation: SIFT / mmls]
+The Sleuth Kit ver 4.11.1
+
+[annotation: CAINE / dc3dd]
+dc3dd (dc3dd) 7.2.646
+Copyright (C) 2008 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Paul Rubin, David MacKenzie, Stuart Kemp,
+Jesse Kornblum, Andrew Medico, Richard Cordovano, Justin Lowe,
+Frank Westerman, and Joseph Lininger.
+
+[annotation: Tsurugi / fls]
+The Sleuth Kit ver 4.14.0
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer nmap from kali]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer nmap kali
+nmap now uses kali.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve nmap to kali]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which nmap --json
+{
+  "tool": "nmap",
+  "selected": {
+    "profile": "kali",
+    "path": "/usr/bin/nmap"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/nmap"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Same bare nmap name now runs Kali]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- nmap --version
+Nmap version 7.991 ( https://nmap.org )
+Platform: x86_64-pc-linux-gnu
+Compiled with: liblua-5.4.9 openssl-3.6.4 libssh2-1.11.1 libz-1.3.2 libpcre2-10.48 libpcap-1.10.7 nmap-libdnet-1.18.0 ipv6
+Compiled without:
+Available nsock engines: epoll poll select
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Prefer nmap from parrot]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer nmap parrot
+nmap now uses parrot.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Resolve nmap to parrot]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship which nmap --json
+{
+  "tool": "nmap",
+  "selected": {
+    "profile": "parrot",
+    "path": "/usr/bin/nmap"
+  },
+  "candidates": [
+    {
+      "profile": "kali",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "parrot",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "backbox",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "caine",
+      "path": "/usr/bin/nmap"
+    },
+    {
+      "profile": "tsurugi",
+      "path": "/usr/bin/nmap"
+    }
+  ],
+  "selection": "preference",
+  "host_command": null
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Same bare nmap name now runs Parrot]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- nmap --version
+Nmap version 7.95 ( https://nmap.org )
+Platform: x86_64-pc-linux-gnu
+Compiled with: liblua-5.4.7 openssl-3.5.6 libssh2-1.11.1 libz-1.3.1 libpcre2-10.46 libpcap-1.10.5 nmap-libdnet-1.12 ipv6
+Compiled without:
+Available nsock engines: epoll poll select
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Three-provider shared evidence workflow and two-provider pipeline]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- bash --noprofile --norc /home/flagship-test/flagship/flagship-seven-provider-vgst0e21/shared-workflow.sh /home/flagship-test/flagship/flagship-seven-provider-vgst0e21 'evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt' 'copied evidence with spaces.txt'
+
+[annotation: CAINE -> Kali, real stdin/stdout pipeline]
+[{
+  "SourceFile": "-",
+  "FileType": "TXT"
+}]
+
+[annotation: CAINE writes the shared evidence copy]
+
+[annotation: Kali reads metadata from the same shared file]
+[{
+  "SourceFile": "copied evidence with spaces.txt",
+  "FileName": "copied evidence with spaces.txt",
+  "FileType": "TXT"
+}]
+
+[annotation: REMnux matches a harmless text marker in the same file]
+FlagshipFixture copied evidence with spaces.txt
+
+[generated stderr annotation]
+
+dc3dd 7.2.646 started at 2026-10-17 16:33:54 -0600
+compiled options:
+command line /usr/bin/dc3dd if=evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt hash=sha256 log=dc3dd pipeline.log
+sector size: 512 bytes (assumed)
+                                                                                        75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s                                                                                         75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s 
+
+input results for file `evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt':
+   0 sectors + 75 bytes in
+   079e28378d25c70d57f9ab189fd544b3ae9fd230d6b26bd56ff2c5ac15b6e307 (sha256)
+
+output results for file `stdout':
+   0 sectors + 75 bytes out
+
+dc3dd completed at 2026-10-17 16:33:54 -0600
+
+
+dc3dd 7.2.646 started at 2026-10-17 16:33:58 -0600
+compiled options:
+command line /usr/bin/dc3dd if=evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt of=copied evidence with spaces.txt hash=sha256 log=dc3dd copy.log
+sector size: 512 bytes (assumed)
+                                                                                        75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s                                                                                         75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s 
+
+input results for file `evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt':
+   0 sectors + 75 bytes in
+   079e28378d25c70d57f9ab189fd544b3ae9fd230d6b26bd56ff2c5ac15b6e307 (sha256)
+
+output results for file `copied evidence with spaces.txt':
+   0 sectors + 75 bytes out
+
+dc3dd completed at 2026-10-17 16:33:58 -0600
+
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Bare exiftool reads the absolute host workspace filename]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- exiftool -j -FileName '/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt'
+[{
+  "SourceFile": "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt",
+  "FileName": "copied evidence with spaces.txt"
+}]
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Bare yara reads absolute host workspace filenames]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- yara '/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/fixture rules.yar' '/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt'
+FlagshipFixture /home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Direct provider failure status]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship exec --profile remnux yara -- 'rules file deliberately absent.yar' 'copied evidence with spaces.txt'
+
+[generated stderr annotation]
+error: could not open file: rules file deliberately absent.yar
+
+[generated exit-status annotation: 1]
+
+[generated command annotation: Bare command preserves failure status]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship shell -- bash --noprofile --norc -c 'cd -- "$1"; exec yara "$2" "$3"' flagship-local-failure /home/flagship-test/flagship/flagship-seven-provider-vgst0e21 'rules file deliberately absent.yar' 'copied evidence with spaces.txt'
+
+[generated stderr annotation]
+error: could not open file: rules file deliberately absent.yar
+
+[generated exit-status annotation: 1]
+
+[generated command annotation: Validate providers after demonstration]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship tools --json
+{
+  "refreshed_at": "2026-10-17T22:31:21.278534+00:00",
+  "tools": [
+    {
+      "tool": "0trace.sh",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/0trace.sh"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/0trace.sh"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/0trace.sh"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "1768.py",
+      "selected": {
+        "profile": "remnux",
+        "path": "/usr/local/bin/1768.py"
+      },
+      "candidates": [
+        {
+          "profile": "remnux",
+          "path": "/usr/local/bin/1768.py"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "1password2john",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/1password2john"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/1password2john"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/1password2john"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2ping",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/2ping"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/2ping"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2ping6",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/2ping6"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/2ping6"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2to3",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/local/bin/2to3"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/local/bin/2to3"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2to3-2.7",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/2to3-2.7"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/2to3-2.7"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "2to3-3.10",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/local/bin/2to3-3.10"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/local/bin/2to3-3.10"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "3cpio",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/3cpio"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/3cpio"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "411toppm",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/411toppm"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/411toppm"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/411toppm"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "7z",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/7z"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/7z"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/7z"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/7z"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/7z"
+        },
+     
+[output excerpt truncated]
+
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/sbin/zstream"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/sbin/zstream"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zstreamdump",
+      "selected": {
+        "profile": "caine",
+        "path": "/usr/sbin/zstreamdump"
+      },
+      "candidates": [
+        {
+          "profile": "caine",
+          "path": "/usr/sbin/zstreamdump"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/sbin/zstreamdump"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zui",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/bin/zui"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zui"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluCrypt-cli",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluCrypt-cli"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluCrypt-cli"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/zuluCrypt-cli"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluCrypt-cli"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluCrypt-gui",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluCrypt-gui"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluCrypt-gui"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/zuluCrypt-gui"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluCrypt-gui"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluMount-cli",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluMount-cli"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluMount-cli"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluMount-cli"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluMount-gui",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluMount-gui"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluMount-gui"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluMount-gui"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zuluPolkit",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zuluPolkit"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zuluPolkit"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/zuluPolkit"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/zuluPolkit"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zutty",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/zutty"
+      },
+      "candidates": [
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/zutty"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/zutty"
+        }
+      ],
+      "selection": "catalog-priority"
+    },
+    {
+      "tool": "zvol_wait",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/sbin/zvol_wait"
+      },
+      "candidates": [
+        {
+          "profile": "tsurugi",
+          "path": "/usr/sbin/zvol_wait"
+        }
+      ],
+      "selection": "catalog-priority"
+    }
+  ],
+  "profiles": [
+    "kali",
+    "parrot",
+    "remnux",
+    "sift",
+    "backbox",
+    "caine",
+    "tsurugi"
+  ]
+}
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for fls]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer fls --clear
+Cleared preference for fls.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for dc3dd]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer dc3dd --clear
+Cleared preference for dc3dd.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for mmls]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer mmls --clear
+Cleared preference for mmls.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for foremost]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer foremost --clear
+Cleared preference for foremost.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for yara]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer yara --clear
+Cleared preference for yara.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for nmap]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer nmap --clear
+Cleared preference for nmap.
+
+[generated exit-status annotation: 0]
+
+[generated command annotation: Restore original preference for exiftool]
+$ /home/flagship-test/.local/bin/flagship --state-dir /home/flagship-test/.local/share/flagship --workspace /home/flagship-test/flagship prefer exiftool --clear
+Cleared preference for exiftool.
+
+[generated exit-status annotation: 0]
+
+[generated result annotation: PASS]

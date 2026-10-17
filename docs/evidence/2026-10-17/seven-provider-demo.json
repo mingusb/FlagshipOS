@@ -1,0 +1,1432 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-17T22:28:17.602125+00:00",
+  "passed": true,
+  "workspace": "/home/flagship-test/flagship",
+  "artifacts": "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21",
+  "scope": "Seven real providers; version checks and newly generated local text fixtures only",
+  "transcript_kind": "Captured output with labeled generated annotations; not a PTY recording",
+  "steps": [
+    {
+      "label": "Require all seven real managed containers",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "status",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 3.327,
+      "stdout": {
+        "bytes": 1563,
+        "sha256": "c5de1314b3918d4f8a796c94fb659a8de1886858647e9e908a570618d51a743d",
+        "excerpt": "{\n  \"containers\": [\n    {\n      \"profile\": \"kali\",\n      \"name\": \"flagship-kali\",\n      \"image\": \"sha256:9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"parrot\",\n      \"name\": \"flagship-parrot\",\n      \"image\": \"sha256:d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"remnux\",\n      \"name\": \"flagship-remnux\",\n      \"image\": \"sha256:5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"sift\",\n      \"name\": \"flagship-sift\",\n      \"image\": \"sha256:8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"backbox\",\n      \"name\": \"flagship-backbox\",\n      \"image\": \"sha256:ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"caine\",\n      \"name\": \"flagship-caine\",\n      \"image\": \"sha256:8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"name\": \"flagship-tsurugi\",\n      \"image\": \"sha256:b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd\",\n      \"status\": \"running\",\n      \"managed\": true\n    }\n  ],\n  \"state_dir\": \"/home/flagship-test/.local/share/flagship\"\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Refresh real executable inventory",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "tools",
+        "--refresh",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 180.54,
+      "stdout": {
+        "bytes": 4884810,
+        "sha256": "31ba83729c4d079290d8b7bc76724d02d97a90511881dd8319fe6af96d7616f7",
+        "excerpt": "{\n  \"refreshed_at\": \"2026-10-17T22:31:21.278534+00:00\",\n  \"tools\": [\n    {\n      \"tool\": \"0trace.sh\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/0trace.sh\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/0trace.sh\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/0trace.sh\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"1768.py\",\n      \"selected\": {\n        \"profile\": \"remnux\",\n        \"path\": \"/usr/local/bin/1768.py\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/local/bin/1768.py\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"1password2john\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/1password2john\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/1password2john\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/1password2john\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2ping\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/2ping\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/2ping\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2ping6\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/2ping6\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/2ping6\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/local/bin/2to3\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/local/bin/2to3\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3-2.7\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/2to3-2.7\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/2to3-2.7\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3-3.10\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/local/bin/2to3-3.10\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/local/bin/2to3-3.10\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"3cpio\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/3cpio\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/3cpio\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"411toppm\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/411toppm\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"sift\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/411toppm\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"7z\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/7z\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"sift\",\n          \"path\": \"/usr/bin/7z\"\n        },\n     \n[output excerpt truncated]\n\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/sbin/zstream\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zstream\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zstreamdump\",\n      \"selected\": {\n        \"profile\": \"caine\",\n        \"path\": \"/usr/sbin/zstreamdump\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/sbin/zstreamdump\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zstreamdump\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zui\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/bin/zui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluCrypt-cli\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluCrypt-cli\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluCrypt-gui\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluCrypt-gui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluMount-cli\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluMount-cli\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluMount-cli\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluMount-cli\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluMount-gui\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluMount-gui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluMount-gui\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluMount-gui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluPolkit\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluPolkit\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zutty\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zutty\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zutty\"\n        },\n        {\n          \"profile\": \"backbox\",\n          \"path\": \"/usr/bin/zutty\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zvol_wait\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/sbin/zvol_wait\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zvol_wait\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    }\n  ],\n  \"profiles\": [\n    \"kali\",\n    \"parrot\",\n    \"remnux\",\n    \"sift\",\n    \"backbox\",\n    \"caine\",\n    \"tsurugi\"\n  ]\n}\n",
+        "truncated": true
+      },
+      "stderr": {
+        "bytes": 235,
+        "sha256": "57ceb878ed6f3e45eb427867be4d369fbb3c92dd0882d91133ae17aa04d2ee35",
+        "excerpt": "Discovering commands in kali...\nDiscovering commands in parrot...\nDiscovering commands in remnux...\nDiscovering commands in sift...\nDiscovering commands in backbox...\nDiscovering commands in caine...\nDiscovering commands in tsurugi...\n",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Record actual container identities",
+      "argv": [
+        "podman",
+        "container",
+        "inspect",
+        "--format",
+        "{{.Id}} {{.Name}} {{.Image}}",
+        "flagship-kali",
+        "flagship-parrot",
+        "flagship-remnux",
+        "flagship-backbox",
+        "flagship-sift",
+        "flagship-caine",
+        "flagship-tsurugi"
+      ],
+      "exit_code": 0,
+      "seconds": 0.722,
+      "stdout": {
+        "bytes": 1019,
+        "sha256": "71a69cd6748018e4f61e3f4a16d865ff5f3883a2fa7ad6a819f0428925936ac4",
+        "excerpt": "73bb7505530b852ea83d23c8b1be0b33709821c0bdc58d0067af38a515039d68 flagship-kali 9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f\n12c47c7418d3e86cca6f376c1452440cbad9706011419b1b038c951692879e85 flagship-parrot d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90\n439c9866c9fc02de448157b7a2d8b0b2e737dde2e117b63a50b0a12a418f54e1 flagship-remnux 5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087\nd655523691f825d0cc7aa24cecc31817bcbf7d7583b1d1992fe53da00ca9d3d9 flagship-backbox ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa\n85f9c492b12e2a9fc9cd4f491ffab5f5f9870a3bb632a2f23039ca827890d74b flagship-sift 8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832\nf41678d1c2bfd4bc84f98be88103a022bb11bf25c56f2edc0f67838c8a7da798 flagship-caine 8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5\n15bbe13c988936f0225849f8c681e5ded6e26042529d81a5bd0d4d7f7b2fd682 flagship-tsurugi b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer exiftool from kali",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "exiftool",
+        "kali"
+      ],
+      "exit_code": 0,
+      "seconds": 6.854,
+      "stdout": {
+        "bytes": 24,
+        "sha256": "45b64d9689f76b71206a1f1a244d528e53d6a72b9c3084d81cccc0d05e688404",
+        "excerpt": "exiftool now uses kali.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve exiftool to kali",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "exiftool",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.229,
+      "stdout": {
+        "bytes": 554,
+        "sha256": "59a504c351fabacbb2fec74e9067c0cf8cf8505d15c29b5e4e7c747b93983271",
+        "excerpt": "{\n  \"tool\": \"exiftool\",\n  \"selected\": {\n    \"profile\": \"kali\",\n    \"path\": \"/usr/bin/exiftool\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/exiftool\"\n    },\n    {\n      \"profile\": \"remnux\",\n      \"path\": \"/usr/local/bin/exiftool\"\n    },\n    {\n      \"profile\": \"sift\",\n      \"path\": \"/usr/local/bin/exiftool\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/exiftool\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/exiftool\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer nmap from parrot",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "nmap",
+        "parrot"
+      ],
+      "exit_code": 0,
+      "seconds": 3.777,
+      "stdout": {
+        "bytes": 22,
+        "sha256": "dadf25b64d9036e94f716f273cdc76ed47b23212788347d926b0f5b41ef9a8d6",
+        "excerpt": "nmap now uses parrot.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve nmap to parrot",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "nmap",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 3.727,
+      "stdout": {
+        "bytes": 519,
+        "sha256": "0759fa993ac97191de64e6ecdcf03cef07dfe11f150ee3b59ef30cad820ba445",
+        "excerpt": "{\n  \"tool\": \"nmap\",\n  \"selected\": {\n    \"profile\": \"parrot\",\n    \"path\": \"/usr/bin/nmap\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/nmap\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer yara from remnux",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "yara",
+        "remnux"
+      ],
+      "exit_code": 0,
+      "seconds": 3.979,
+      "stdout": {
+        "bytes": 22,
+        "sha256": "2f62a2bf0772cc36f236f18c35b29dcfc3fa9c74eec2a0d5d508673fe0fc07cc",
+        "excerpt": "yara now uses remnux.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve yara to remnux",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "yara",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 5.083,
+      "stdout": {
+        "bytes": 589,
+        "sha256": "deafb23599b10cca67b72d9df3577597baa25ae9a8774269a299ce4b1c3bb0e0",
+        "excerpt": "{\n  \"tool\": \"yara\",\n  \"selected\": {\n    \"profile\": \"remnux\",\n    \"path\": \"/usr/bin/yara\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/yara\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/yara\"\n    },\n    {\n      \"profile\": \"remnux\",\n      \"path\": \"/usr/bin/yara\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/yara\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/yara\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/yara\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer foremost from backbox",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "foremost",
+        "backbox"
+      ],
+      "exit_code": 0,
+      "seconds": 5.637,
+      "stdout": {
+        "bytes": 27,
+        "sha256": "43231e65252a6123dcbb356b9c5fe3d2b727590e734a66d43d5b2ba2d475d6b2",
+        "excerpt": "foremost now uses backbox.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve foremost to backbox",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "foremost",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.883,
+      "stdout": {
+        "bytes": 620,
+        "sha256": "d2987ef78f8955c62d42a12247ddaebb5aa1184db96cc4d37c795c5c552cdf74",
+        "excerpt": "{\n  \"tool\": \"foremost\",\n  \"selected\": {\n    \"profile\": \"backbox\",\n    \"path\": \"/usr/bin/foremost\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/foremost\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/foremost\"\n    },\n    {\n      \"profile\": \"sift\",\n      \"path\": \"/usr/bin/foremost\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/foremost\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/foremost\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/foremost\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer mmls from sift",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "mmls",
+        "sift"
+      ],
+      "exit_code": 0,
+      "seconds": 4.732,
+      "stdout": {
+        "bytes": 20,
+        "sha256": "dbbb07ca9c4883001e1f7171f0896ff8425fd51d86887046d85136fdea0e17ee",
+        "excerpt": "mmls now uses sift.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve mmls to sift",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "mmls",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 5.033,
+      "stdout": {
+        "bytes": 661,
+        "sha256": "a7022672a6048e16dcaa858538f16988d1911f0cbce8e3afcb351e1a405a1507",
+        "excerpt": "{\n  \"tool\": \"mmls\",\n  \"selected\": {\n    \"profile\": \"sift\",\n    \"path\": \"/usr/bin/mmls\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/mmls\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/mmls\"\n    },\n    {\n      \"profile\": \"remnux\",\n      \"path\": \"/usr/bin/mmls\"\n    },\n    {\n      \"profile\": \"sift\",\n      \"path\": \"/usr/bin/mmls\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/mmls\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/local/bin/mmls\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/mmls\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer dc3dd from caine",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "dc3dd",
+        "caine"
+      ],
+      "exit_code": 0,
+      "seconds": 4.732,
+      "stdout": {
+        "bytes": 22,
+        "sha256": "9aa19455cd65df2235affdfe59647bd7af24f0a6706d2e1e006508719839d5b4",
+        "excerpt": "dc3dd now uses caine.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve dc3dd to caine",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "dc3dd",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 6.339,
+      "stdout": {
+        "bytes": 522,
+        "sha256": "2fbd2c1779a4086f54f257e3a99ccc9c2f7a1bc1723a17c7d1cb5dd5c39ab4c4",
+        "excerpt": "{\n  \"tool\": \"dc3dd\",\n  \"selected\": {\n    \"profile\": \"caine\",\n    \"path\": \"/usr/bin/dc3dd\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/dc3dd\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/dc3dd\"\n    },\n    {\n      \"profile\": \"sift\",\n      \"path\": \"/usr/bin/dc3dd\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/dc3dd\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/dc3dd\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer fls from tsurugi",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "fls",
+        "tsurugi"
+      ],
+      "exit_code": 0,
+      "seconds": 5.69,
+      "stdout": {
+        "bytes": 22,
+        "sha256": "021b02a4e4d140476e5e7b47194252aaa11e28615d2ec034ed1d97b1b13209ad",
+        "excerpt": "fls now uses tsurugi.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve fls to tsurugi",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "fls",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.782,
+      "stdout": {
+        "bytes": 655,
+        "sha256": "10dbef270f565e18a7461a44f6cb05a7adb479bb3d1af84ebf272034ab5e2e62",
+        "excerpt": "{\n  \"tool\": \"fls\",\n  \"selected\": {\n    \"profile\": \"tsurugi\",\n    \"path\": \"/usr/bin/fls\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/fls\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/fls\"\n    },\n    {\n      \"profile\": \"remnux\",\n      \"path\": \"/usr/bin/fls\"\n    },\n    {\n      \"profile\": \"sift\",\n      \"path\": \"/usr/bin/fls\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/fls\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/local/bin/fls\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/fls\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "All seven bare specialist commands in one shell",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "bash",
+        "--noprofile",
+        "--norc",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/versions.sh",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21",
+        "/home/flagship-test/.local/share/flagship"
+      ],
+      "exit_code": 0,
+      "seconds": 34.838,
+      "stdout": {
+        "bytes": 1946,
+        "sha256": "fe32a8191ddae1c0ee06da6c5f071893cf7ea6995ffa0363aa6b9b13598e7b94",
+        "excerpt": "FLAGSHIP_SHIM_PROOF\tnmap\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/nmap\nFLAGSHIP_SHIM_PROOF\texiftool\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/exiftool\nFLAGSHIP_SHIM_PROOF\tyara\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/yara\nFLAGSHIP_SHIM_PROOF\tforemost\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/foremost\nFLAGSHIP_SHIM_PROOF\tmmls\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/mmls\nFLAGSHIP_SHIM_PROOF\tdc3dd\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/dc3dd\nFLAGSHIP_SHIM_PROOF\tfls\t/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/fls\n\n[annotation: Kali / exiftool]\n13.55\n\n[annotation: Parrot / nmap]\nNmap version 7.95 ( https://nmap.org )\nPlatform: x86_64-pc-linux-gnu\nCompiled with: liblua-5.4.7 openssl-3.5.6 libssh2-1.11.1 libz-1.3.1 libpcre2-10.46 libpcap-1.10.5 nmap-libdnet-1.12 ipv6\nCompiled without:\nAvailable nsock engines: epoll poll select\n\n[annotation: REMnux / yara]\n4.5.0\n\n[annotation: BackBox / foremost]\n1.5.7\nThis program is a work of the US Government. In accordance with 17 USC 105,\r\ncopyright protection is not available for any work of the US Government.\r\nThis is free software; see the source for copying conditions. There is NO\r\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n\n[annotation: SIFT / mmls]\nThe Sleuth Kit ver 4.11.1\n\n[annotation: CAINE / dc3dd]\ndc3dd (dc3dd) 7.2.646\nCopyright (C) 2008 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by Paul Rubin, David MacKenzie, Stuart Kemp,\nJesse Kornblum, Andrew Medico, Richard Cordovano, Justin Lowe,\nFrank Westerman, and Joseph Lininger.\n\n[annotation: Tsurugi / fls]\nThe Sleuth Kit ver 4.14.0\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer nmap from kali",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "nmap",
+        "kali"
+      ],
+      "exit_code": 0,
+      "seconds": 5.483,
+      "stdout": {
+        "bytes": 20,
+        "sha256": "9656044fb8dd2a3e6af6c96f336292a8b13f32de6a6efe20dfba6aa826cd1956",
+        "excerpt": "nmap now uses kali.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve nmap to kali",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "nmap",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 6.538,
+      "stdout": {
+        "bytes": 517,
+        "sha256": "7c8de2c14f0f2d4196ea255e575f13e14f99bc57652203e296035b492c9510c6",
+        "excerpt": "{\n  \"tool\": \"nmap\",\n  \"selected\": {\n    \"profile\": \"kali\",\n    \"path\": \"/usr/bin/nmap\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/nmap\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Same bare nmap name now runs Kali",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "nmap",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 11.312,
+      "stdout": {
+        "bytes": 254,
+        "sha256": "286c2684f0b2e68bd5993c7f1f6dbc12da7973ca664de4935321231c247caa9b",
+        "excerpt": "Nmap version 7.991 ( https://nmap.org )\nPlatform: x86_64-pc-linux-gnu\nCompiled with: liblua-5.4.9 openssl-3.6.4 libssh2-1.11.1 libz-1.3.2 libpcre2-10.48 libpcap-1.10.7 nmap-libdnet-1.18.0 ipv6\nCompiled without:\nAvailable nsock engines: epoll poll select\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Prefer nmap from parrot",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "nmap",
+        "parrot"
+      ],
+      "exit_code": 0,
+      "seconds": 4.731,
+      "stdout": {
+        "bytes": 22,
+        "sha256": "dadf25b64d9036e94f716f273cdc76ed47b23212788347d926b0f5b41ef9a8d6",
+        "excerpt": "nmap now uses parrot.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Resolve nmap to parrot",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "which",
+        "nmap",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.982,
+      "stdout": {
+        "bytes": 519,
+        "sha256": "0759fa993ac97191de64e6ecdcf03cef07dfe11f150ee3b59ef30cad820ba445",
+        "excerpt": "{\n  \"tool\": \"nmap\",\n  \"selected\": {\n    \"profile\": \"parrot\",\n    \"path\": \"/usr/bin/nmap\"\n  },\n  \"candidates\": [\n    {\n      \"profile\": \"kali\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"parrot\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"backbox\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"caine\",\n      \"path\": \"/usr/bin/nmap\"\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"path\": \"/usr/bin/nmap\"\n    }\n  ],\n  \"selection\": \"preference\",\n  \"host_command\": null\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Same bare nmap name now runs Parrot",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "nmap",
+        "--version"
+      ],
+      "exit_code": 0,
+      "seconds": 8.143,
+      "stdout": {
+        "bytes": 251,
+        "sha256": "d997ccab0e531fc5dfbd6221d38e30d60c7d14a806361c72e5fa7fb550c0905a",
+        "excerpt": "Nmap version 7.95 ( https://nmap.org )\nPlatform: x86_64-pc-linux-gnu\nCompiled with: liblua-5.4.7 openssl-3.5.6 libssh2-1.11.1 libz-1.3.1 libpcre2-10.46 libpcap-1.10.5 nmap-libdnet-1.12 ipv6\nCompiled without:\nAvailable nsock engines: epoll poll select\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Three-provider shared evidence workflow and two-provider pipeline",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "bash",
+        "--noprofile",
+        "--norc",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/shared-workflow.sh",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21",
+        "evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt",
+        "copied evidence with spaces.txt"
+      ],
+      "exit_code": 0,
+      "seconds": 17.373,
+      "stdout": {
+        "bytes": 462,
+        "sha256": "ec9c86a350a5b158bf756df61835df038082ae0e1d7345fa50a9383bec2295f8",
+        "excerpt": "\n[annotation: CAINE -> Kali, real stdin/stdout pipeline]\n[{\n  \"SourceFile\": \"-\",\n  \"FileType\": \"TXT\"\n}]\n\n[annotation: CAINE writes the shared evidence copy]\n\n[annotation: Kali reads metadata from the same shared file]\n[{\n  \"SourceFile\": \"copied evidence with spaces.txt\",\n  \"FileName\": \"copied evidence with spaces.txt\",\n  \"FileType\": \"TXT\"\n}]\n\n[annotation: REMnux matches a harmless text marker in the same file]\nFlagshipFixture copied evidence with spaces.txt\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 1648,
+        "sha256": "894979666052f64b8f2ed9bcb8e55dca119a24e509baa87f4764170062c12a07",
+        "excerpt": "\ndc3dd 7.2.646 started at 2026-10-17 16:33:54 -0600\ncompiled options:\ncommand line /usr/bin/dc3dd if=evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt hash=sha256 log=dc3dd pipeline.log\nsector size: 512 bytes (assumed)\n                                                                              \r          75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s \r                                                                              \r          75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s \n\ninput results for file `evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt':\n   0 sectors + 75 bytes in\n   079e28378d25c70d57f9ab189fd544b3ae9fd230d6b26bd56ff2c5ac15b6e307 (sha256)\n\noutput results for file `stdout':\n   0 sectors + 75 bytes out\n\ndc3dd completed at 2026-10-17 16:33:54 -0600\n\n\ndc3dd 7.2.646 started at 2026-10-17 16:33:58 -0600\ncompiled options:\ncommand line /usr/bin/dc3dd if=evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt of=copied evidence with spaces.txt hash=sha256 log=dc3dd copy.log\nsector size: 512 bytes (assumed)\n                                                                              \r          75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s \r                                                                              \r          75 bytes (  75 ) copied ( 100% ),    0 s, 0.7 K/s \n\ninput results for file `evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt':\n   0 sectors + 75 bytes in\n   079e28378d25c70d57f9ab189fd544b3ae9fd230d6b26bd56ff2c5ac15b6e307 (sha256)\n\noutput results for file `copied evidence with spaces.txt':\n   0 sectors + 75 bytes out\n\ndc3dd completed at 2026-10-17 16:33:58 -0600\n\n",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Bare exiftool reads the absolute host workspace filename",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "exiftool",
+        "-j",
+        "-FileName",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt"
+      ],
+      "exit_code": 0,
+      "seconds": 7.791,
+      "stdout": {
+        "bytes": 167,
+        "sha256": "9d6f3e802b427429909fac10b5ea0c9a9417d715ba341f828d18655d7a046b52",
+        "excerpt": "[{\n  \"SourceFile\": \"/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt\",\n  \"FileName\": \"copied evidence with spaces.txt\"\n}]\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Bare yara reads absolute host workspace filenames",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "yara",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/fixture rules.yar",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt"
+      ],
+      "exit_code": 0,
+      "seconds": 7.892,
+      "stdout": {
+        "bytes": 110,
+        "sha256": "e069c0514b0e33146765feb5a1623123bed33444a07b260ce144803462e5c545",
+        "excerpt": "FlagshipFixture /home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Direct provider failure status",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "exec",
+        "--profile",
+        "remnux",
+        "yara",
+        "--",
+        "rules file deliberately absent.yar",
+        "copied evidence with spaces.txt"
+      ],
+      "exit_code": 1,
+      "seconds": 3.528,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 63,
+        "sha256": "8092a7542fc022267457dffefcbf97294bcaf3e98cb1ff43c4fea0af88c3fc0e",
+        "excerpt": "error: could not open file: rules file deliberately absent.yar\n",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Bare command preserves failure status",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "shell",
+        "--",
+        "bash",
+        "--noprofile",
+        "--norc",
+        "-c",
+        "cd -- \"$1\"; exec yara \"$2\" \"$3\"",
+        "flagship-local-failure",
+        "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21",
+        "rules file deliberately absent.yar",
+        "copied evidence with spaces.txt"
+      ],
+      "exit_code": 1,
+      "seconds": 8.946,
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 63,
+        "sha256": "8092a7542fc022267457dffefcbf97294bcaf3e98cb1ff43c4fea0af88c3fc0e",
+        "excerpt": "error: could not open file: rules file deliberately absent.yar\n",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Validate providers after demonstration",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "tools",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 4.742,
+      "stdout": {
+        "bytes": 4884779,
+        "sha256": "770cc625fe4b2defe41f0753918234151fd85026084193514a9341b820655b07",
+        "excerpt": "{\n  \"refreshed_at\": \"2026-10-17T22:31:21.278534+00:00\",\n  \"tools\": [\n    {\n      \"tool\": \"0trace.sh\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/0trace.sh\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/0trace.sh\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/0trace.sh\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"1768.py\",\n      \"selected\": {\n        \"profile\": \"remnux\",\n        \"path\": \"/usr/local/bin/1768.py\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/local/bin/1768.py\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"1password2john\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/1password2john\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/1password2john\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/1password2john\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2ping\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/2ping\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/2ping\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2ping6\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/2ping6\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/2ping6\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/local/bin/2to3\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/local/bin/2to3\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3-2.7\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/2to3-2.7\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/2to3-2.7\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3-3.10\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/local/bin/2to3-3.10\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/local/bin/2to3-3.10\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"3cpio\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/3cpio\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/3cpio\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"411toppm\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/411toppm\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"sift\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/411toppm\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"7z\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/7z\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"sift\",\n          \"path\": \"/usr/bin/7z\"\n        },\n     \n[output excerpt truncated]\n\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/sbin/zstream\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zstream\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zstreamdump\",\n      \"selected\": {\n        \"profile\": \"caine\",\n        \"path\": \"/usr/sbin/zstreamdump\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/sbin/zstreamdump\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zstreamdump\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zui\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/bin/zui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluCrypt-cli\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluCrypt-cli\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluCrypt-gui\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluCrypt-gui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluMount-cli\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluMount-cli\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluMount-cli\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluMount-cli\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluMount-gui\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluMount-gui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluMount-gui\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluMount-gui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluPolkit\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluPolkit\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zutty\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zutty\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zutty\"\n        },\n        {\n          \"profile\": \"backbox\",\n          \"path\": \"/usr/bin/zutty\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zvol_wait\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/sbin/zvol_wait\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zvol_wait\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    }\n  ],\n  \"profiles\": [\n    \"kali\",\n    \"parrot\",\n    \"remnux\",\n    \"sift\",\n    \"backbox\",\n    \"caine\",\n    \"tsurugi\"\n  ]\n}\n",
+        "truncated": true
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for fls",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "fls",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.818,
+      "stdout": {
+        "bytes": 28,
+        "sha256": "55cd3c4a70bdbb22f454a64a7d7d9517a9f0523af9291db3c9786adec288c82a",
+        "excerpt": "Cleared preference for fls.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for dc3dd",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "dc3dd",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.818,
+      "stdout": {
+        "bytes": 30,
+        "sha256": "e16e068c67ffb4eff8228ce5692b125b384d60db1b96565421d8ca33f9ffa6c9",
+        "excerpt": "Cleared preference for dc3dd.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for mmls",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "mmls",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.818,
+      "stdout": {
+        "bytes": 29,
+        "sha256": "ecd21d5590a1363ecb209334527bf59e56f143e701e06cb4bca663ce5bd7df63",
+        "excerpt": "Cleared preference for mmls.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for foremost",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "foremost",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.818,
+      "stdout": {
+        "bytes": 33,
+        "sha256": "460820678ece14c7243b0e49ab410581a167bc5b6a4b8a4cc96f910bb3baebc1",
+        "excerpt": "Cleared preference for foremost.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for yara",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "yara",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.767,
+      "stdout": {
+        "bytes": 29,
+        "sha256": "dc3304f37c7b947354654bb1f579461d10c3305df1023c9d0274ab2c67b7db79",
+        "excerpt": "Cleared preference for yara.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for nmap",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "nmap",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.868,
+      "stdout": {
+        "bytes": 29,
+        "sha256": "0c9e102ecf22edc74b24dbcd2e13d577d0b7757c6e09ec1689d8716508b1d0ab",
+        "excerpt": "Cleared preference for nmap.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Restore original preference for exiftool",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "prefer",
+        "exiftool",
+        "--clear"
+      ],
+      "exit_code": 0,
+      "seconds": 0.868,
+      "stdout": {
+        "bytes": 33,
+        "sha256": "5979b96009e33e4f1f4d489d5ebb85aae7a7301beff1adab7c4e5c7b3bb1021f",
+        "excerpt": "Cleared preference for exiftool.\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    }
+  ],
+  "providers": {
+    "kali": {
+      "tool": "exiftool",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/exiftool"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/exiftool"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/local/bin/exiftool"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/local/bin/exiftool"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/exiftool"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/exiftool"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "parrot": {
+      "tool": "nmap",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/nmap"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/nmap"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "remnux": {
+      "tool": "yara",
+      "selected": {
+        "profile": "remnux",
+        "path": "/usr/bin/yara"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/yara"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/yara"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/yara"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/yara"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/yara"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/yara"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "backbox": {
+      "tool": "foremost",
+      "selected": {
+        "profile": "backbox",
+        "path": "/usr/bin/foremost"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/foremost"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/foremost"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/foremost"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/foremost"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/foremost"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/foremost"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "sift": {
+      "tool": "mmls",
+      "selected": {
+        "profile": "sift",
+        "path": "/usr/bin/mmls"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/mmls"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/mmls"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/mmls"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/mmls"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/mmls"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/local/bin/mmls"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/mmls"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "caine": {
+      "tool": "dc3dd",
+      "selected": {
+        "profile": "caine",
+        "path": "/usr/bin/dc3dd"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/dc3dd"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/dc3dd"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/dc3dd"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/dc3dd"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/dc3dd"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "tsurugi": {
+      "tool": "fls",
+      "selected": {
+        "profile": "tsurugi",
+        "path": "/usr/bin/fls"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/fls"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/fls"
+        },
+        {
+          "profile": "remnux",
+          "path": "/usr/bin/fls"
+        },
+        {
+          "profile": "sift",
+          "path": "/usr/bin/fls"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/fls"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/local/bin/fls"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/fls"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    }
+  },
+  "preference_restore": [
+    {
+      "tool": "fls",
+      "restored": true
+    },
+    {
+      "tool": "dc3dd",
+      "restored": true
+    },
+    {
+      "tool": "mmls",
+      "restored": true
+    },
+    {
+      "tool": "foremost",
+      "restored": true
+    },
+    {
+      "tool": "yara",
+      "restored": true
+    },
+    {
+      "tool": "nmap",
+      "restored": true
+    },
+    {
+      "tool": "exiftool",
+      "restored": true
+    }
+  ],
+  "inventory": {
+    "refreshed_at": "2026-10-17T22:31:21.278534+00:00",
+    "unique_commands": 11307,
+    "commands_per_provider": {
+      "kali": 5765,
+      "parrot": 3100,
+      "remnux": 2945,
+      "backbox": 1762,
+      "sift": 3020,
+      "caine": 5605,
+      "tsurugi": 5659
+    }
+  },
+  "container_identities": [
+    "73bb7505530b852ea83d23c8b1be0b33709821c0bdc58d0067af38a515039d68 flagship-kali 9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f",
+    "12c47c7418d3e86cca6f376c1452440cbad9706011419b1b038c951692879e85 flagship-parrot d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90",
+    "439c9866c9fc02de448157b7a2d8b0b2e737dde2e117b63a50b0a12a418f54e1 flagship-remnux 5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087",
+    "d655523691f825d0cc7aa24cecc31817bcbf7d7583b1d1992fe53da00ca9d3d9 flagship-backbox ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa",
+    "85f9c492b12e2a9fc9cd4f491ffab5f5f9870a3bb632a2f23039ca827890d74b flagship-sift 8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832",
+    "f41678d1c2bfd4bc84f98be88103a022bb11bf25c56f2edc0f67838c8a7da798 flagship-caine 8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5",
+    "15bbe13c988936f0225849f8c681e5ded6e26042529d81a5bd0d4d7f7b2fd682 flagship-tsurugi b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd"
+  ],
+  "observed_private_shims": {
+    "nmap": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/nmap",
+    "exiftool": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/exiftool",
+    "yara": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/yara",
+    "foremost": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/foremost",
+    "mmls": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/mmls",
+    "dc3dd": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/dc3dd",
+    "fls": "/home/flagship-test/.local/share/flagship/shells/session-2zfwffai/fls"
+  },
+  "collision": {
+    "tool": "nmap",
+    "first": {
+      "tool": "nmap",
+      "selected": {
+        "profile": "kali",
+        "path": "/usr/bin/nmap"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/nmap"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    },
+    "second": {
+      "tool": "nmap",
+      "selected": {
+        "profile": "parrot",
+        "path": "/usr/bin/nmap"
+      },
+      "candidates": [
+        {
+          "profile": "kali",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "parrot",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "backbox",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "caine",
+          "path": "/usr/bin/nmap"
+        },
+        {
+          "profile": "tsurugi",
+          "path": "/usr/bin/nmap"
+        }
+      ],
+      "selection": "preference",
+      "host_command": null
+    }
+  },
+  "shared_evidence": {
+    "source_name": "evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt",
+    "copy_name": "copied evidence with spaces.txt",
+    "bytes": 75,
+    "sha256": "079e28378d25c70d57f9ab189fd544b3ae9fd230d6b26bd56ff2c5ac15b6e307",
+    "identical_copy": true,
+    "pipeline": "caine:dc3dd stdout -> kali:exiftool stdin",
+    "yara_match": "FlagshipFixture copied evidence with spaces.txt"
+  },
+  "absolute_workspace_paths": {
+    "evidence": "/home/flagship-test/flagship/flagship-seven-provider-vgst0e21/copied evidence with spaces.txt",
+    "kali_metadata": true,
+    "remnux_rule_and_evidence": true,
+    "scope": "This actual workspace path; arbitrary host paths are not inferred to be accessible"
+  },
+  "failure_status": {
+    "direct": 1,
+    "bare": 1,
+    "preserved": true
+  },
+  "finished_at": "2026-10-17T22:34:43.919610+00:00"
+}

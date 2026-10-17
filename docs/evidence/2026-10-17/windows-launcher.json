@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "observed_at": "2026-10-17T22:38:41.0131396Z",
+  "method": "Actual Codex PTY execution of the delivered Windows launcher",
+  "launcher": "Open Flagship OS.cmd",
+  "launcher_sha256": "52a82deb2c70b758cb2a70db1bcb3f78b278460b626e21845d44ba2c2494d246",
+  "source_commit": "901390333414145a6d84c1ef466f4b9dc33f6c2d",
+  "checks": {
+    "bare_hashcat_device_query_found": "NVIDIA RTX A5000 Laptop GPU",
+    "opened_flagship_shell": true,
+    "flagship_executable": "/home/flagship-test/.local/bin/flagship",
+    "cwd": "/home/flagship-test/flagship",
+    "launcher_exit_code": 0,
+    "hashcat_provider": "kali"
+  },
+  "captured_output_sha256": "9736f35e8b6c480148a7b4dc755143310f28f4e983e86a68ff4c355672852d9b",
+  "capture_scope": "Command submission and subsequent PTY output; initial launcher banner was observed separately. Carriage returns normalized for local storage."
+}

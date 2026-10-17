@@ -2,7 +2,24 @@
 
 These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 environment. Paths in receipts identify the disposable verification account. They are not installation instructions.
 
-The [code verification receipt](code-verification.json) records 143 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+The [MCP-enabled code verification receipt](code-verification-mcp.json) records 159 passing tests with no skips, wheel installation, a real MCP connection against the installed wheel, the seven-profile catalog and all five bundled recipe hashes. Its code/configuration/test fingerprint matches published commit `9013903`. The [earlier code receipt](code-verification.json) retains the prior 143-test result. These source/package checks are separate from live acceptance.
+
+## Completed seven-provider acceptance
+
+- [Acceptance summary with source revisions, scope, limitations and receipt hashes](acceptance-summary.json)
+- [Combined full package audit: all seven providers passed after GPU setup and startup repairs](seven-collection-package-audit.json)
+- [All seven CUDA memory checks and installed application device queries](gpu-seven-collections.json)
+- [SIFT: all 823 full desktop installer states succeeded](sift-installer-results.json)
+- [Actual seven-provider shell demonstration, shared files, pipeline, provider switching and failure status](seven-provider-demo.json)
+- [Captured shell demonstration output with labeled generated annotations](seven-provider-transcript.txt)
+- [First combined attempt: package/GPU checks passed; the initial demonstration assumption failed](first-seven-acceptance-attempt.json)
+- [Original demonstration failure: ExifTool was absent from Parrot's full collection](first-seven-provider-demo.json)
+- [Live MCP: eight operations and 27 successful protocol calls across seven providers](mcp-seven-providers.json)
+- [Actual Windows-to-WSL MCP connection](windows-mcp.json)
+- [Actual interactive Windows launcher and bare Hashcat GPU discovery](windows-launcher.json)
+- [Installed MCP-enabled package bytes match the public source](published-install-mcp.json)
+
+The corrected demonstration uses tools already present: Kali ExifTool and Parrot Nmap. It installed no substitute tools. It ran the published `e13fbe9` dispatcher with the corrected test fixture subsequently published in `9013903`; the CLI routing implementation is unchanged between those commits. Discovery found 11,307 unique command names across the seven providers. These are installation and bounded interoperability results, not every-tool certification.
 
 ## GPU and startup diagnostics
 
@@ -32,7 +49,7 @@ The locale report records package-managed configuration drift separately: the pa
 - [Parrot passing package-preservation audit](four-collection-audit-parrot.json), retaining the separate exact-version differences from Distrobox's upgrades.
 - [BackBox passing profile result](four-collection-audit-backbox.json); this earlier snapshot also retains Parrot's original strict-version failure, so its overall `passed` remains false.
 
-The original bytes and observations are retained. The older four-collection audits precede GPU runtime additions; CAINE and Tsurugi's later audit includes their GPU setup and startup repairs. Final acceptance must audit all completed environments together. These reports are not the seven-provider demonstration.
+The original bytes and observations are retained. The older four-collection audits precede GPU runtime additions; CAINE and Tsurugi's later audit includes their GPU setup and startup repairs. The completed seven-provider audit above covers all environments together. These intermediate reports are separate from the seven-provider demonstration.
 
 ## REMnux full installer
 
@@ -65,4 +82,4 @@ These files establish archive fidelity. They do not establish a successful conta
 - [Verified explicit owner conversion](tsurugi-owner-conversion.json)
 - [Independent comparison of the owner-adjusted archive](tsurugi-mapped-manifest-audit.json)
 
-The archive contains 1,006,847 entries and matches all 4,147 records from an independent direct read of the verified source SquashFS package database: 4,129 installed and 18 configuration-only records. The ISO's publisher manifest is empty, so the derived baseline is explicitly identified as such. Source and archive package-database hashes match. Exactly 26 verified Unix sockets were omitted. These are archive-fidelity results; runtime acceptance remains pending.
+The archive contains 1,006,847 entries and matches all 4,147 records from an independent direct read of the verified source SquashFS package database: 4,129 installed and 18 configuration-only records. The ISO's publisher manifest is empty, so the derived baseline is explicitly identified as such. Source and archive package-database hashes match. Exactly 26 verified Unix sockets were omitted. These archive-fidelity results are supplemented by the successful managed runtime checks above.

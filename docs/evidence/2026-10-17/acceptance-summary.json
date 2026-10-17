@@ -1,0 +1,94 @@
+{
+  "completed_at": "2026-10-17T22:41:04.018631+00:00",
+  "passed": true,
+  "scope": "Seven full collection installations, package preservation, bounded CUDA tests, shared-shell interoperability, and local MCP inspection",
+  "environment": {
+    "wsl_distribution": "FlagshipOS-Full",
+    "ubuntu": "26.10",
+    "ordinary_user": "flagship-test",
+    "storage_drive": "D:"
+  },
+  "installed_commit": "901390333414145a6d84c1ef466f4b9dc33f6c2d",
+  "code_fingerprint_sha256": "f860c0faffd3559facf6e17ef5807933c534a6d0f9e767e4aefa205909a731c1",
+  "package_audit_and_shell_dispatcher_commit": "e13fbe93774b71583ed8646ea83ec9b371150fb9",
+  "corrected_shell_fixture_commit": "901390333414145a6d84c1ef466f4b9dc33f6c2d",
+  "source_binding_note": "MCP and the corrected shell fixture were added after the complete installation audit; provider recipes and CLI routing implementation are unchanged.",
+  "installed_package_counts": {
+    "kali": 4412,
+    "parrot": 2076,
+    "backbox": 1234,
+    "remnux": 2207,
+    "sift": 2253,
+    "caine": 4475,
+    "tsurugi": 4156
+  },
+  "unique_indexed_commands": 11307,
+  "automated_tests": {
+    "count": 159,
+    "seconds": 13.838,
+    "skipped": 0,
+    "passed": true
+  },
+  "mcp_tools": 8,
+  "limitations": [
+    "Representative local interoperability checks do not certify every installed application, GUI, service, device or kernel feature.",
+    "All seven CUDA memory checks pass; all seven OpenCL GPU lists are empty.",
+    "CAINE Hashcat 5.1.0 device discovery fails; Hashcat is absent in REMnux and SIFT.",
+    "The MCP interface exposes inspection and fixed diagnostics, not general shell execution.",
+    "No production-readiness or independent clean rebuild guarantee is inferred from these results."
+  ],
+  "receipts": {
+    "seven-collection-package-audit.json": {
+      "bytes": 5739456,
+      "sha256": "be439c683e67d61d1c98199128a9d67087c4e021ec61611c415c86065a11f6fa"
+    },
+    "gpu-seven-collections.json": {
+      "bytes": 15526,
+      "sha256": "4583c410e11cd0d425702ae21a6b0c344567d0d3ace616fe328235bcc59ad275"
+    },
+    "seven-provider-demo.json": {
+      "bytes": 72130,
+      "sha256": "78a76b855baa5e92a35e77f41b4c9a6e197146eb6041eaa843f242a4f0d90b35"
+    },
+    "seven-provider-transcript.txt": {
+      "bytes": 40328,
+      "sha256": "0a2289f946f0919641426430687226386997f7678e0b48966896cb1f24fcb3b1"
+    },
+    "sift-installer-results.json": {
+      "bytes": 139818,
+      "sha256": "d43251acd6dd963e0bd1a09afbea6c651acca46b6a33a533cd8fe8ac02912189"
+    },
+    "remnux-installer-results.json": {
+      "bytes": 195637,
+      "sha256": "3ffc0104e91922895d00743c1e61fa73d85f7351564b62ab0f763dc2a2c5ee67"
+    },
+    "mcp-seven-providers.json": {
+      "bytes": 52462,
+      "sha256": "e70f3e0ea99927c685d125a52ceb8140e24d37dafcdd0a3dcb238c5f02fb4a61"
+    },
+    "code-verification-mcp.json": {
+      "bytes": 5691,
+      "sha256": "f160da8b4ce9e67a689822ddf14a4cc2a04b174fcffea2b5c17e685c9b8b7526"
+    },
+    "windows-mcp.json": {
+      "bytes": 26251,
+      "sha256": "28df17848155d935dc3447450a801a335e7724a6437b638a46646ccbf554c347"
+    },
+    "windows-launcher.json": {
+      "bytes": 911,
+      "sha256": "174dcd2abf9fbdce67f2b5d5b9d88094a127ab356092caa11f58eaa184d735d2"
+    },
+    "published-install-mcp.json": {
+      "bytes": 2076,
+      "sha256": "6284b701a30e88c98859bb1eb160fd1debbc9666b278d7b0eb10710f9d531039"
+    },
+    "first-seven-acceptance-attempt.json": {
+      "bytes": 22044,
+      "sha256": "7e9b9e541354fea3107e077fb792f233403bac010dba5770d675ec4a186f890a"
+    },
+    "first-seven-provider-demo.json": {
+      "bytes": 16538,
+      "sha256": "eed04fc83f3733cfce2b597d573cc29b9f1a2fee6b45a95ec3e852da2f021686"
+    }
+  }
+}

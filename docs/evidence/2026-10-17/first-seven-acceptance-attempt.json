@@ -1,0 +1,562 @@
+{
+  "started_at": "2026-10-17T22:04:38.487427+00:00",
+  "published_commit": "e13fbe93774b71583ed8646ea83ec9b371150fb9",
+  "passed": false,
+  "steps": [
+    {
+      "name": "kali-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "kali",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-kali-gpu.log",
+      "log_sha256": "c00cc63db11c3a79868695c850c64f0545fc84d04f14381000d2dbbb1368079e"
+    },
+    {
+      "name": "parrot-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "parrot",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-parrot-gpu.log",
+      "log_sha256": "5d40bbcdec1b9117ad95ae043865c9f506a7ead99a5d9dd42e6bab629f962bba"
+    },
+    {
+      "name": "remnux-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "remnux",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-remnux-gpu.log",
+      "log_sha256": "236ff407c7e4145cc1c7f5e8b5fa8b92cfbf48bd42ef9fac89703b47f1b46f08"
+    },
+    {
+      "name": "backbox-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "backbox",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-backbox-gpu.log",
+      "log_sha256": "3e7629dd965512cb9e2938ead1bbcb8d0f858bfcacca5862454849a0e147f28f"
+    },
+    {
+      "name": "sift-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "sift",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-sift-gpu.log",
+      "log_sha256": "d9f921be6e4ed81c15399781f930821ea8d26e1442a5757a95d7a5602ec8277b"
+    },
+    {
+      "name": "caine-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "caine",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-caine-gpu.log",
+      "log_sha256": "742e1727ecaba8e15c70412b008eb0278b769191c3c7418de0a6d0aa885d36fc"
+    },
+    {
+      "name": "tsurugi-gpu",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "gpu",
+        "tsurugi",
+        "--setup",
+        "--json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-tsurugi-gpu.log",
+      "log_sha256": "0948766527dbeeea415fd7b80b4241f9d54365ffd6fa304cfcecd43a1015cbb4"
+    },
+    {
+      "name": "sift-original-results",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "run",
+        "sift",
+        "--",
+        "sudo",
+        "cat",
+        "/var/cache/cast/installer/logs/results.yaml"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-sift-original-results.log",
+      "log_sha256": "4fbaafbe4f2e21912c75d0e872f849927c60329c8a52093776ea83f37e360474"
+    },
+    {
+      "name": "all-package-audits",
+      "argv": [
+        "/home/flagship-test/.local/share/flagship/venv/bin/python",
+        "/home/flagship-test/FlagshipOS-release/tests/integration/full_collection_audit.py",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "--manifest",
+        "caine=/home/flagship-test/flagship-artifacts/caine-filesystem.manifest",
+        "--manifest",
+        "tsurugi=/home/flagship-test/flagship-artifacts/tsurugi-squashfs-package-baseline.manifest",
+        "--iso-receipt",
+        "caine=/home/flagship-test/flagship-artifacts/caine14-manifest-audit-20261017T183034Z.json",
+        "--iso-receipt",
+        "tsurugi=/home/flagship-test/flagship-artifacts/tsurugi26-mapped-manifest-audit-20261017T195923Z.json",
+        "--iso-inventory",
+        "caine=/home/flagship-test/flagship-artifacts/caine14-dpkg-inventory-20261017T183034Z.json",
+        "--iso-inventory",
+        "tsurugi=/home/flagship-test/flagship-artifacts/tsurugi26-dpkg-inventory-20261017T191110Z.json",
+        "--output",
+        "/home/flagship-test/flagship-validation/seven-collection-audit-20261017T220438Z.json"
+      ],
+      "exit_code": 0,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-all-package-audits.log",
+      "log_sha256": "874649792e8274025e397e2640a32f69e58c625b2df0658885468930410da4e4"
+    },
+    {
+      "name": "shared-shell-demonstration",
+      "argv": [
+        "/home/flagship-test/.local/share/flagship/venv/bin/python",
+        "/home/flagship-test/FlagshipOS-release/tests/integration/seven_provider_demo.py",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "--flagship",
+        "/home/flagship-test/.local/bin/flagship"
+      ],
+      "exit_code": 1,
+      "log": "/home/flagship-test/flagship-validation/final-seven-20261017T220438Z-shared-shell-demonstration.log",
+      "log_sha256": "1b3224f1b110a8b71396ea309749fdad290d9ccc0d7e03dee6d5ccef5cdfbd0b"
+    }
+  ],
+  "gpu_profiles": {
+    "kali": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": []
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "kali"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v7.1.2) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #01\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Preferred.Thrd.: 32\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Memory.Unified.: 0\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\nOpenCL Info:\n============\n\nOpenCL Platform ID #1\n  Vendor..: The pocl project\n  Name....: Portable Computing Language\n  Version.: OpenCL 3.0 PoCL 7.1+debian  Linux, None+Asserts, RELOC, SPIR-V, LLVM 21.1.8, SLEEF, DISTRO, POCL_DEBUG\n\n  Backend Device ID #02\n    Type...........: CPU\n    Vendor.ID......: 128\n    Vendor.........: GenuineIntel\n    Name...........: cpu-skylake-avx512-Intel(R) Xeon(R) W-11855M CPU @ 3.20GHz\n    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-pc-linux-gnu-skylake-avx512\n    Processor(s)...: 12\n    Preferred.Thrd.: 1\n    Clock..........: 3187\n    Memory.Total...: 68270 MB (limited to 34135 MB allocatable in one block)\n    Memory.Free....: 34135 MB\n    Memory.Unified.: 1\n    Local.Memory...: 1280 KB\n    OpenCL.Version.: OpenCL C 1.2 PoCL\n    Driver.Version.: 7.1+debian\n\n",
+          "stderr": "nvmlDeviceGetFanSpeed(): Not Supported\n\n"
+        },
+        "john": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "help[:WHAT], subformats, inc-modes, rules, externals, ext-modes, ext-hybrids,\next-filters, ext-filters-only, build-info, encodings, formats, format-classes,\nformat-details, format-all-details, format-methods[:WHICH], format-tests,\nsections, parameters:SECTION, list-data:SECTION, <conf section name>\n",
+          "stderr": "Section [opencl-devices] not found.\n"
+        }
+      }
+    },
+    "parrot": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": []
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "parrot"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v6.2.6) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #1\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\nOpenCL Info:\n============\n\nOpenCL Platform ID #1\n  Vendor..: The pocl project\n  Name....: Portable Computing Language\n  Version.: OpenCL 3.0 PoCL 6.0+debian  Linux, None+Asserts, RELOC, SPIR-V, LLVM 18.1.8, SLEEF, DISTRO, POCL_DEBUG\n\n  Backend Device ID #2\n    Type...........: CPU\n    Vendor.ID......: 128\n    Vendor.........: GenuineIntel\n    Name...........: cpu-skylake-avx512-Intel(R) Xeon(R) W-11855M CPU @ 3.20GHz\n    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-pc-linux-gnu-skylake-avx512\n    Processor(s)...: 12\n    Clock..........: 3187\n    Memory.Total...: 70318 MB (limited to 16384 MB allocatable in one block)\n    Memory.Free....: 35127 MB\n    Local.Memory...: 1280 KB\n    OpenCL.Version.: OpenCL C 1.2 PoCL\n    Driver.Version.: 6.0+debian\n\n",
+          "stderr": ""
+        },
+        "john": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "help[:WHAT], subformats, inc-modes, rules, externals, ext-modes, ext-hybrids,\next-filters, ext-filters-only, build-info, encodings, formats, format-classes,\nformat-details, format-all-details, format-methods[:WHICH], format-tests,\nsections, parameters:SECTION, list-data:SECTION, <conf section name>\n",
+          "stderr": "Section [opencl-devices] not found.\n"
+        }
+      }
+    },
+    "remnux": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": null,
+          "john": null,
+          "clinfo": null
+        },
+        "profile": "remnux"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        }
+      }
+    },
+    "backbox": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": []
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "backbox"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v6.2.6) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #1\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\nOpenCL Info:\n============\n\nOpenCL Platform ID #1\n  Vendor..: The pocl project\n  Name....: Portable Computing Language\n  Version.: OpenCL 3.0 PoCL 5.0+debian  Linux, None+Asserts, RELOC, SPIR, LLVM 16.0.6, SLEEF, DISTRO, POCL_DEBUG\n\n  Backend Device ID #2\n    Type...........: CPU\n    Vendor.ID......: 128\n    Vendor.........: GenuineIntel\n    Name...........: cpu-skylake-avx512-Intel(R) Xeon(R) W-11855M CPU @ 3.20GHz\n    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-pc-linux-gnu-skylake-avx512\n    Processor(s)...: 12\n    Clock..........: 3187\n    Memory.Total...: 70318 MB (limited to 16384 MB allocatable in one block)\n    Memory.Free....: 35127 MB\n    Local.Memory...: 1280 KB\n    OpenCL.Version.: OpenCL C 1.2 PoCL\n    Driver.Version.: 5.0+debian\n\n",
+          "stderr": ""
+        },
+        "john": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Unknown option: \"--list=opencl-devices\"\n"
+        }
+      }
+    },
+    "sift": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": null,
+          "john": null,
+          "clinfo": null
+        },
+        "profile": "sift"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        }
+      }
+    },
+    "caine": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/local/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": null
+        },
+        "profile": "caine"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 255,
+          "stdout": "hashcat (v5.1.0) starting...\n\n",
+          "stderr": "\u001b[31mclGetPlatformIDs(): CL_PLATFORM_NOT_FOUND_KHR\u001b[0m\n\n"
+        },
+        "john": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Unknown option: \"--list=opencl-devices\"\n"
+        }
+      }
+    },
+    "tsurugi": {
+      "gpu": {
+        "scope": "CUDA device discovery and a 4 KiB device-memory round trip; OpenCL GPU enumeration, not all application functionality",
+        "cuda": {
+          "passed": true,
+          "devices": [
+            {
+              "ordinal": 0,
+              "name": "NVIDIA RTX A5000 Laptop GPU",
+              "memory_bytes": 17179344896,
+              "device_memory_round_trip_bytes": 4096,
+              "passed": true
+            }
+          ],
+          "driver_api_version": 13040
+        },
+        "opencl": {
+          "gpu_devices": [],
+          "error": "clGetPlatformIDs returned -1001"
+        },
+        "tools": {
+          "nvidia-smi": "/usr/local/bin/nvidia-smi",
+          "hashcat": "/usr/bin/hashcat",
+          "john": "/usr/sbin/john",
+          "clinfo": "/usr/bin/clinfo"
+        },
+        "profile": "tsurugi"
+      },
+      "application_checks": {
+        "nvidia-smi": {
+          "argv": [
+            "nvidia-smi",
+            "--query-gpu=name,driver_version,memory.total",
+            "--format=csv,noheader"
+          ],
+          "exit_code": 0,
+          "stdout": "NVIDIA RTX A5000 Laptop GPU, 616.92, 16384 MiB\n",
+          "stderr": ""
+        },
+        "hashcat": {
+          "argv": [
+            "hashcat",
+            "-I"
+          ],
+          "exit_code": 0,
+          "stdout": "hashcat (v7.0.0) starting in backend information mode\n\nCUDA Info:\n==========\n\nCUDA.Version.: 13.4\n\nBackend Device ID #01\n  Name...........: NVIDIA RTX A5000 Laptop GPU\n  Processor(s)...: 48\n  Preferred.Thrd.: 32\n  Clock..........: 1455\n  Memory.Total...: 16383 MB\n  Memory.Free....: 15249 MB\n  Memory.Unified.: 0\n  Local.Memory...: 99 KB\n  PCI.Addr.BDFe..: 0000:01:00.0\n\n",
+          "stderr": "clGetPlatformIDs(): CL_PLATFORM_NOT_FOUND_KHR\n\n"
+        },
+        "john": {
+          "argv": [
+            "john",
+            "--list=opencl-devices"
+          ],
+          "exit_code": 1,
+          "stdout": "",
+          "stderr": "Unknown option: \"--list=opencl-devices\"\n"
+        },
+        "clinfo": {
+          "argv": [
+            "clinfo",
+            "-l"
+          ],
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      }
+    }
+  },
+  "lifecycle_receipts": {
+    "caine": {
+      "path": "/home/flagship-test/flagship-validation/caine-completed-lifecycle-20261017T215524Z.json",
+      "sha256": "ba04eb46fb512176bf0cad996c499b4956745421da478cce25faaa9619b861a2"
+    },
+    "tsurugi": {
+      "path": "/home/flagship-test/flagship-validation/tsurugi-skeleton-lifecycle-20261017T213914Z.json",
+      "sha256": "1162e4ebf4b5421e7237e15ae212bd9449abfd06e8931aa91d221a72faa34474"
+    },
+    "sift": {
+      "path": "/home/flagship-test/flagship-validation/sift-timezone-lifecycle-20261017T204623Z.json",
+      "sha256": "f044ef6d24694c398eab769c1bdc89966707b3cfeab53a741b6ba66434618536"
+    }
+  },
+  "installed_package_matches_public_checkout": true,
+  "gpu_report": "/home/flagship-test/flagship-validation/gpu-seven-collections-20261017T220438Z.json",
+  "sift_installer_results": "/home/flagship-test/flagship-validation/sift-installer-results-20261017T220438Z.json",
+  "package_audit": "/home/flagship-test/flagship-validation/seven-collection-audit-20261017T220438Z.json",
+  "error": "shared-shell-demonstration failed; inspect /home/flagship-test/flagship-validation/final-seven-20261017T220438Z-shared-shell-demonstration.log",
+  "finished_at": "2026-10-17T22:27:12.311549+00:00"
+}

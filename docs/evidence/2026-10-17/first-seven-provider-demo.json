@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-17T22:24:08.888654+00:00",
+  "passed": false,
+  "workspace": "/home/flagship-test/flagship",
+  "artifacts": "/home/flagship-test/flagship/flagship-seven-provider-p4dm_qks",
+  "scope": "Seven real providers; version checks and newly generated local text fixtures only",
+  "transcript_kind": "Captured output with labeled generated annotations; not a PTY recording",
+  "steps": [
+    {
+      "label": "Require all seven real managed containers",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "status",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 3.731,
+      "stdout": {
+        "bytes": 1563,
+        "sha256": "c5de1314b3918d4f8a796c94fb659a8de1886858647e9e908a570618d51a743d",
+        "excerpt": "{\n  \"containers\": [\n    {\n      \"profile\": \"kali\",\n      \"name\": \"flagship-kali\",\n      \"image\": \"sha256:9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"parrot\",\n      \"name\": \"flagship-parrot\",\n      \"image\": \"sha256:d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"remnux\",\n      \"name\": \"flagship-remnux\",\n      \"image\": \"sha256:5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"sift\",\n      \"name\": \"flagship-sift\",\n      \"image\": \"sha256:8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"backbox\",\n      \"name\": \"flagship-backbox\",\n      \"image\": \"sha256:ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"caine\",\n      \"name\": \"flagship-caine\",\n      \"image\": \"sha256:8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5\",\n      \"status\": \"running\",\n      \"managed\": true\n    },\n    {\n      \"profile\": \"tsurugi\",\n      \"name\": \"flagship-tsurugi\",\n      \"image\": \"sha256:b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd\",\n      \"status\": \"running\",\n      \"managed\": true\n    }\n  ],\n  \"state_dir\": \"/home/flagship-test/.local/share/flagship\"\n}\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Refresh real executable inventory",
+      "argv": [
+        "/home/flagship-test/.local/bin/flagship",
+        "--state-dir",
+        "/home/flagship-test/.local/share/flagship",
+        "--workspace",
+        "/home/flagship-test/flagship",
+        "tools",
+        "--refresh",
+        "--json"
+      ],
+      "exit_code": 0,
+      "seconds": 179.009,
+      "stdout": {
+        "bytes": 4884810,
+        "sha256": "91217338e8fcd82b90af6a900d08572617192edd6af91e52384b0c6a65f3cb7b",
+        "excerpt": "{\n  \"refreshed_at\": \"2026-10-17T22:27:11.432046+00:00\",\n  \"tools\": [\n    {\n      \"tool\": \"0trace.sh\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/0trace.sh\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/0trace.sh\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/0trace.sh\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"1768.py\",\n      \"selected\": {\n        \"profile\": \"remnux\",\n        \"path\": \"/usr/local/bin/1768.py\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/local/bin/1768.py\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"1password2john\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/1password2john\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/1password2john\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/1password2john\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2ping\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/2ping\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/2ping\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2ping6\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/2ping6\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/2ping6\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/local/bin/2to3\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/local/bin/2to3\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3-2.7\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/2to3-2.7\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/2to3-2.7\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"2to3-3.10\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/local/bin/2to3-3.10\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/local/bin/2to3-3.10\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"3cpio\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/3cpio\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/3cpio\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"411toppm\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/411toppm\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"sift\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/411toppm\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/411toppm\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"7z\",\n      \"selected\": {\n        \"profile\": \"kali\",\n        \"path\": \"/usr/bin/7z\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"kali\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"remnux\",\n          \"path\": \"/usr/bin/7z\"\n        },\n        {\n          \"profile\": \"sift\",\n          \"path\": \"/usr/bin/7z\"\n        },\n     \n[output excerpt truncated]\n\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/sbin/zstream\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zstream\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zstreamdump\",\n      \"selected\": {\n        \"profile\": \"caine\",\n        \"path\": \"/usr/sbin/zstreamdump\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/sbin/zstreamdump\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zstreamdump\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zui\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/bin/zui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluCrypt-cli\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluCrypt-cli\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluCrypt-cli\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluCrypt-gui\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluCrypt-gui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluCrypt-gui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluMount-cli\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluMount-cli\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluMount-cli\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluMount-cli\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluMount-gui\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluMount-gui\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluMount-gui\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluMount-gui\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zuluPolkit\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zuluPolkit\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        },\n        {\n          \"profile\": \"caine\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        },\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/bin/zuluPolkit\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zutty\",\n      \"selected\": {\n        \"profile\": \"parrot\",\n        \"path\": \"/usr/bin/zutty\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"parrot\",\n          \"path\": \"/usr/bin/zutty\"\n        },\n        {\n          \"profile\": \"backbox\",\n          \"path\": \"/usr/bin/zutty\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    },\n    {\n      \"tool\": \"zvol_wait\",\n      \"selected\": {\n        \"profile\": \"tsurugi\",\n        \"path\": \"/usr/sbin/zvol_wait\"\n      },\n      \"candidates\": [\n        {\n          \"profile\": \"tsurugi\",\n          \"path\": \"/usr/sbin/zvol_wait\"\n        }\n      ],\n      \"selection\": \"catalog-priority\"\n    }\n  ],\n  \"profiles\": [\n    \"kali\",\n    \"parrot\",\n    \"remnux\",\n    \"sift\",\n    \"backbox\",\n    \"caine\",\n    \"tsurugi\"\n  ]\n}\n",
+        "truncated": true
+      },
+      "stderr": {
+        "bytes": 235,
+        "sha256": "57ceb878ed6f3e45eb427867be4d369fbb3c92dd0882d91133ae17aa04d2ee35",
+        "excerpt": "Discovering commands in kali...\nDiscovering commands in parrot...\nDiscovering commands in remnux...\nDiscovering commands in sift...\nDiscovering commands in backbox...\nDiscovering commands in caine...\nDiscovering commands in tsurugi...\n",
+        "truncated": false
+      }
+    },
+    {
+      "label": "Record actual container identities",
+      "argv": [
+        "podman",
+        "container",
+        "inspect",
+        "--format",
+        "{{.Id}} {{.Name}} {{.Image}}",
+        "flagship-kali",
+        "flagship-parrot",
+        "flagship-remnux",
+        "flagship-backbox",
+        "flagship-sift",
+        "flagship-caine",
+        "flagship-tsurugi"
+      ],
+      "exit_code": 0,
+      "seconds": 0.568,
+      "stdout": {
+        "bytes": 1019,
+        "sha256": "71a69cd6748018e4f61e3f4a16d865ff5f3883a2fa7ad6a819f0428925936ac4",
+        "excerpt": "73bb7505530b852ea83d23c8b1be0b33709821c0bdc58d0067af38a515039d68 flagship-kali 9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f\n12c47c7418d3e86cca6f376c1452440cbad9706011419b1b038c951692879e85 flagship-parrot d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90\n439c9866c9fc02de448157b7a2d8b0b2e737dde2e117b63a50b0a12a418f54e1 flagship-remnux 5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087\nd655523691f825d0cc7aa24cecc31817bcbf7d7583b1d1992fe53da00ca9d3d9 flagship-backbox ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa\n85f9c492b12e2a9fc9cd4f491ffab5f5f9870a3bb632a2f23039ca827890d74b flagship-sift 8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832\nf41678d1c2bfd4bc84f98be88103a022bb11bf25c56f2edc0f67838c8a7da798 flagship-caine 8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5\n15bbe13c988936f0225849f8c681e5ded6e26042529d81a5bd0d4d7f7b2fd682 flagship-tsurugi b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd\n",
+        "truncated": false
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "excerpt": "",
+        "truncated": false
+      }
+    }
+  ],
+  "providers": {},
+  "preference_restore": [],
+  "inventory": {
+    "refreshed_at": "2026-10-17T22:27:11.432046+00:00",
+    "unique_commands": 11307,
+    "commands_per_provider": {
+      "kali": 5765,
+      "parrot": 3100,
+      "remnux": 2945,
+      "backbox": 1762,
+      "sift": 3020,
+      "caine": 5605,
+      "tsurugi": 5659
+    }
+  },
+  "container_identities": [
+    "73bb7505530b852ea83d23c8b1be0b33709821c0bdc58d0067af38a515039d68 flagship-kali 9ae09bb7b9e529e96523232dcd9866872f3382e99d47a777bfb904460051c21f",
+    "12c47c7418d3e86cca6f376c1452440cbad9706011419b1b038c951692879e85 flagship-parrot d768ca2e29ffa159d509b28436fbfc0f0a60f34fac2bb6a349283ce06a682b90",
+    "439c9866c9fc02de448157b7a2d8b0b2e737dde2e117b63a50b0a12a418f54e1 flagship-remnux 5c09722ad4b8944e6f95761bb62a2a3591740872c057f7e19bd248432358d087",
+    "d655523691f825d0cc7aa24cecc31817bcbf7d7583b1d1992fe53da00ca9d3d9 flagship-backbox ad40c4b37fcbef5932d93d90bae409dccaedc2a987f8b71abc9af7eafd7906aa",
+    "85f9c492b12e2a9fc9cd4f491ffab5f5f9870a3bb632a2f23039ca827890d74b flagship-sift 8310ed0d8f10fe9a13cecb7acde09bf32be5835f0329f7549a8cd656be6ca832",
+    "f41678d1c2bfd4bc84f98be88103a022bb11bf25c56f2edc0f67838c8a7da798 flagship-caine 8903f8579d4efb94b36a3081420e4788dbe65be70d72c4dd378a761a64c70ca5",
+    "15bbe13c988936f0225849f8c681e5ded6e26042529d81a5bd0d4d7f7b2fd682 flagship-tsurugi b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd"
+  ],
+  "finished_at": "2026-10-17T22:27:12.286398+00:00",
+  "failure": "AcceptanceFailure: Required command exiftool is missing from parrot; no substitute will be installed or selected"
+}

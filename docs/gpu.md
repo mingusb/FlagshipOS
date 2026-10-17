@@ -28,9 +28,9 @@ OpenCL enumeration is reported separately, including errors and the actual GPU d
 
 For an installed application, use its device-information command and retain the result. Hashcat's `-I`, John's `--list=opencl-devices` when supported by that build, and `clinfo -l` are discovery checks. They do not test cracking workloads, performance or all application features. A missing application is reported as absent; Flagship does not substitute another collection's binary for a profile-specific check.
 
-The [validation record](validation.md) distinguishes actual device checks from pending environments and untested application behavior. There is no claim that every GPU tool in all seven collections works under WSL.
+The [validation record](validation.md) distinguishes actual device checks from untested application behavior. There is no claim that every GPU tool in all seven collections works under WSL.
 
-The [six-environment device report](evidence/2026-10-17/gpu-six-collections.json) preserves actual CUDA memory checks and application device listings with their original timestamps and source hashes:
+The [seven-environment device report](evidence/2026-10-17/gpu-seven-collections.json) preserves a fresh complete run of actual CUDA memory checks and application device listings on the RTX A5000 Laptop GPU:
 
 | Collection | CUDA memory test | Hashcat GPU discovery | OpenCL GPU discovery |
 | --- | --- | --- | --- |
@@ -40,6 +40,6 @@ The [six-environment device report](evidence/2026-10-17/gpu-six-collections.json
 | BackBox | Passed | RTX A5000 found through CUDA | No GPU |
 | CAINE | Passed | Bundled 5.1.0 fails: no OpenCL platform | No GPU |
 | Tsurugi | Passed | RTX A5000 found through CUDA | No GPU |
-| SIFT | Pending full installation | Not yet checked | Not yet checked |
+| SIFT | Passed | Hashcat absent | No GPU |
 
 The installed John commands did not provide a working OpenCL-device listing. CAINE's older Hashcat is an explicit compatibility failure, even though the CUDA memory test passes there. These are discovery and memory checks, not application workload or performance tests.

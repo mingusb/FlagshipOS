@@ -1,0 +1,4131 @@
+{
+  "profile": "sift",
+  "upstream_release": "v2026.04.21",
+  "mode": "desktop",
+  "recipe_sha256": "5c294248891710cab53fd23f19f820fd4b1ef888722b6cb6cca7f835191e0367",
+  "scope": "Complete upstream installer result; managed runtime and shared-shell acceptance are recorded separately",
+  "results_yaml_sha256": "4fbaafbe4f2e21912c75d0e872f849927c60329c8a52093776ea83f37e360474",
+  "counts": {
+    "total": 823,
+    "successful": 823,
+    "failed": 0,
+    "other": 0
+  },
+  "states": [
+    {
+      "id": "archive_|-aws-cli-extract_|-/tmp/_|-extracted",
+      "state": "sift.packages.aws-cli",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-AmcacheParser_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-AppCompatCacheParser_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-EvtxECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-JLECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-LECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-MFTECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-RBCmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-RECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-RecentFileCacheParser_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-SBECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-SQLECmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-WxTCmd_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-bstrings_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-iisGeolocate_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-extract-rla_|-/opt/zimmermantools/_|-extracted",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "archive_|-sift-exiftool-extracted_|-/usr/local/src/exiftool-13.59_|-extracted",
+      "state": "sift.scripts.exiftool",
+      "result": true
+    },
+    {
+      "id": "archive_|-sift-scripts-cyberchef_|-/var/www/html/cyberchef_|-extracted",
+      "state": "sift.scripts.cyberchef",
+      "result": true
+    },
+    {
+      "id": "archive_|-sift-tool-densityscout-archive_|-/usr/local/src/densityscout/densityscout_build_45_linux_|-extracted",
+      "state": "sift.scripts.densityscout",
+      "result": true
+    },
+    {
+      "id": "cmd_|-aws-cli-install_|-/tmp/aws/install -u_|-run",
+      "state": "sift.packages.aws-cli",
+      "result": true
+    },
+    {
+      "id": "cmd_|-hostname-set-hostname_|-hostname f04727890bf0_|-run",
+      "state": "sift.config.hostname",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-config-terminal-profiles-install_|-dconf load /org/gnome/terminal/legacy/profiles:/ < /usr/share/sift/terminal-profiles.txt_|-run",
+      "state": "sift.config.user.terminal",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-config-theme-set-background-file-gsettings_|-gsettings set org.gnome.desktop.background picture-uri file:///usr/share/backgrounds/sift.png_|-run",
+      "state": "sift.config.user.theme",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-config-theme-set-background-file-gsettings_|-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM_|-run",
+      "state": "sift.config.user.theme",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-exiftool-install_|-make install_|-run",
+      "state": "sift.scripts.exiftool",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-exiftool-makefile_|-perl Makefile.PL_|-run",
+      "state": "sift.scripts.exiftool",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-package-perl-cpan-configure_|-perl -MCPAN -e 'my $c = \"CPAN::HandleConfig\"; $c->load(doit => 1, autoconfig => 1); $c->edit(prerequisites_policy => \"follow\"); $c->edit(build_requires_install_policy => \"yes\"); $c->commit'_|-wait",
+      "state": "sift.packages.perl",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-perl-package-quicktable_|-cpanm --no-man-pages install HTML::QuickTable_|-run",
+      "state": "sift.perl-packages.quicktable",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-all_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"All\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/all_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-ntuser_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"NTUSER\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/ntuser_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-sam_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"SAM\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/sam_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-security_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"Security\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/security_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-software_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"Software\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/software_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-system_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"System\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/system_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "cmd_|-sift-scripts-regripper-plugins-usrclass_|-grep -R \"my %config = (hive\" /usr/share/regripper/plugins | grep \"USRCLASS\" | cut -f1 -d: | xargs -n1 -I{} basename {} | sed 's/.pl$//' > /usr/share/regripper/plugins/usrclass_|-wait",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "environ_|-export-keyring-backend-setenv_|-PYTHON_KEYRING_BACKEND_|-setenv",
+      "state": "sift.python3-packages.python3-keyring",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/aff_|-/mnt/aff_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/bde_|-/mnt/bde_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/e01_|-/mnt/e01_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/ewf_mount_|-/mnt/ewf_mount_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/ewf_|-/mnt/ewf_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/iscsi_|-/mnt/iscsi_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss10_|-/mnt/shadow_mount/vss10_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss11_|-/mnt/shadow_mount/vss11_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss12_|-/mnt/shadow_mount/vss12_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss13_|-/mnt/shadow_mount/vss13_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss14_|-/mnt/shadow_mount/vss14_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss15_|-/mnt/shadow_mount/vss15_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss16_|-/mnt/shadow_mount/vss16_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss17_|-/mnt/shadow_mount/vss17_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss18_|-/mnt/shadow_mount/vss18_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss19_|-/mnt/shadow_mount/vss19_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss1_|-/mnt/shadow_mount/vss1_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss20_|-/mnt/shadow_mount/vss20_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss21_|-/mnt/shadow_mount/vss21_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss22_|-/mnt/shadow_mount/vss22_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss23_|-/mnt/shadow_mount/vss23_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss24_|-/mnt/shadow_mount/vss24_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss25_|-/mnt/shadow_mount/vss25_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss26_|-/mnt/shadow_mount/vss26_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss27_|-/mnt/shadow_mount/vss27_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss28_|-/mnt/shadow_mount/vss28_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss29_|-/mnt/shadow_mount/vss29_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss2_|-/mnt/shadow_mount/vss2_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss30_|-/mnt/shadow_mount/vss30_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss3_|-/mnt/shadow_mount/vss3_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss4_|-/mnt/shadow_mount/vss4_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss5_|-/mnt/shadow_mount/vss5_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss6_|-/mnt/shadow_mount/vss6_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss7_|-/mnt/shadow_mount/vss7_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss8_|-/mnt/shadow_mount/vss8_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount/vss9_|-/mnt/shadow_mount/vss9_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/shadow_mount_|-/mnt/shadow_mount_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/usb_|-/mnt/usb_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/vss_|-/mnt/vss_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/windows_mount1_|-/mnt/windows_mount1_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/windows_mount2_|-/mnt/windows_mount2_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/windows_mount3_|-/mnt/windows_mount3_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/windows_mount4_|-/mnt/windows_mount4_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/windows_mount5_|-/mnt/windows_mount5_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-/mnt/windows_mount_|-/mnt/windows_mount_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-AmcacheParser-wrapper_|-/usr/local/bin/AmcacheParser_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-AmcacheParser-wrapper_|-/usr/local/bin/amcacheparser_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-AppCompatCacheParser-wrapper_|-/usr/local/bin/AppCompatCacheParser_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-AppCompatCacheParser-wrapper_|-/usr/local/bin/appcompatcacheparser_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-EvtxECmd-wrapper_|-/usr/local/bin/EvtxECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-EvtxECmd-wrapper_|-/usr/local/bin/evtxecmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-JLECmd-wrapper_|-/usr/local/bin/JLECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-JLECmd-wrapper_|-/usr/local/bin/jlecmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-LECmd-wrapper_|-/usr/local/bin/LECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-LECmd-wrapper_|-/usr/local/bin/lecmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-MFTECmd-wrapper_|-/usr/local/bin/MFTECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-MFTECmd-wrapper_|-/usr/local/bin/mftecmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-RBCmd-wrapper_|-/usr/local/bin/RBCmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-RBCmd-wrapper_|-/usr/local/bin/rbcmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-RECmd-wrapper_|-/usr/local/bin/RECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-RECmd-wrapper_|-/usr/local/bin/recmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-RecentFileCacheParser-wrapper_|-/usr/local/bin/RecentFileCacheParser_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-RecentFileCacheParser-wrapper_|-/usr/local/bin/recentfilecacheparser_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-SBECmd-wrapper_|-/usr/local/bin/SBECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-SBECmd-wrapper_|-/usr/local/bin/sbecmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-SQLECmd-wrapper_|-/usr/local/bin/SQLECmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-SQLECmd-wrapper_|-/usr/local/bin/sqlecmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-WxTCmd-wrapper_|-/usr/local/bin/WxTCmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-WxTCmd-wrapper_|-/usr/local/bin/wxtcmd_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-aws-cli-cleanup_|-/tmp/aws/_|-absent",
+      "state": "sift.packages.aws-cli",
+      "result": true
+    },
+    {
+      "id": "file_|-aws-cli-cleanup_|-/tmp/awscli-exe-linux-x86_64-2.15.24.zip_|-absent",
+      "state": "sift.packages.aws-cli",
+      "result": true
+    },
+    {
+      "id": "file_|-aws-cli-download_|-/tmp/awscli-exe-linux-x86_64-2.15.24.zip_|-managed",
+      "state": "sift.packages.aws-cli",
+      "result": true
+    },
+    {
+      "id": "file_|-bstrings-wrapper_|-/usr/local/bin/bstrings_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-config-folder-cases_|-/cases_|-directory",
+      "state": "sift.config.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-download-AmcacheParser_|-/tmp/AmcacheParser.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-AppCompatCacheParser_|-/tmp/AppCompatCacheParser.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-EvtxECmd_|-/tmp/EvtxECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-JLECmd_|-/tmp/JLECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-LECmd_|-/tmp/LECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-MFTECmd_|-/tmp/MFTECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-RBCmd_|-/tmp/RBCmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-RECmd_|-/tmp/RECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-RecentFileCacheParser_|-/tmp/RecentFileCacheParser.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-SBECmd_|-/tmp/SBECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-SQLECmd_|-/tmp/SQLECmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-WxTCmd_|-/tmp/WxTCmd.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-bstrings_|-/tmp/bstrings.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-iisGeolocate_|-/tmp/iisGeolocate.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-download-rla_|-/tmp/rla.zip_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-folders-config-autostart_|-/home/sift/.config/autostart_|-directory",
+      "state": "sift.config.user.folders",
+      "result": true
+    },
+    {
+      "id": "file_|-hostname-managed_|-/etc/hostname_|-managed",
+      "state": "sift.config.hostname",
+      "result": true
+    },
+    {
+      "id": "file_|-iisGeolocate-wrapper_|-/usr/local/bin/iisGeolocate_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-iisGeolocate-wrapper_|-/usr/local/bin/iisgeolocate_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-rc-noclobber_|-/home/sift/.bashrc_|-append",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-rc-root-noclobber_|-/root/.bashrc_|-append",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-rekall-path_|-/home/sift/.bashrc_|-append",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-AmcacheParser-zip_|-/tmp/AmcacheParser.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-AppCompatCacheParser-zip_|-/tmp/AppCompatCacheParser.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-EvtxECmd-zip_|-/tmp/EvtxECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-JLECmd-zip_|-/tmp/JLECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-LECmd-zip_|-/tmp/LECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-MFTECmd-zip_|-/tmp/MFTECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-RBCmd-zip_|-/tmp/RBCmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-RECmd-zip_|-/tmp/RECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-RecentFileCacheParser-zip_|-/tmp/RecentFileCacheParser.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-SBECmd-zip_|-/tmp/SBECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-SQLECmd-zip_|-/tmp/SQLECmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-WxTCmd-zip_|-/tmp/WxTCmd.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-bstrings-zip_|-/tmp/bstrings.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-iisGeolocate-zip_|-/tmp/iisGeolocate.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-remove-rla-zip_|-/tmp/rla.zip_|-absent",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-rla-wrapper_|-/usr/local/bin/rla_|-managed",
+      "state": "sift.scripts.zimmerman",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sift-resources-audio_|-/usr/share/sift/audio_|-directory",
+      "state": "sift.scripts.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sift-resources-images_|-/usr/share/sift/images_|-directory",
+      "state": "sift.scripts.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sift-resources-other_|-/usr/share/sift/other_|-directory",
+      "state": "sift.scripts.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sift-resources-resources_|-/usr/share/sift/resources_|-directory",
+      "state": "sift.scripts.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sift-resources-scripts_|-/usr/share/sift/scripts_|-directory",
+      "state": "sift.scripts.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sorter-directory_|-/usr/share/tsk/sorter_|-directory",
+      "state": "sift.scripts.sorter",
+      "result": true
+    },
+    {
+      "id": "file_|-scripts-sorter-files_|-/usr/share/tsk/sorter_|-recurse",
+      "state": "sift.scripts.sorter",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-root-prompt-remove_|-/root/.bashrc_|-line",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-root-prompt_|-/root/.bashrc_|-line",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-terminal-profiles-file_|-/usr/share/sift/terminal-profiles.txt_|-managed",
+      "state": "sift.config.user.terminal",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-theme-manage-autostart_|-/home/sift/.config/autostart/_|-directory",
+      "state": "sift.config.user.theme",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-theme-manage-gnome-terminal_|-/home/sift/.config/autostart/gnome-terminal.desktop_|-managed",
+      "state": "sift.config.user.theme",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-theme-set-background-directory_|-/usr/share/backgrounds_|-directory",
+      "state": "sift.config.user.theme",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-theme-set-background-file_|-/usr/share/backgrounds/sift.png_|-managed",
+      "state": "sift.config.user.theme",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-bash-aliases-user-root_|-/root/.bash_aliases_|-append",
+      "state": "sift.config.user.bash-aliases",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-bash-aliases-user_|-/home/sift/.bash_aliases_|-append",
+      "state": "sift.config.user.bash-aliases",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-bash-aliases_|-/home/sift/.bash_aliases_|-managed",
+      "state": "sift.config.user.bash-aliases",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-prompt-command-remove-old1_|-/home/sift/.bashrc_|-line",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-prompt-command-remove-old2_|-/home/sift/.bashrc_|-line",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-prompt-command_|-/home/sift/.bashrc_|-append",
+      "state": "sift.config.user.bash-rc",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-ssh-config-gssapi_|-/home/sift/.ssh/config_|-replace",
+      "state": "sift.config.user.ssh",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-ssh-config_|-/home/sift/.ssh/config_|-touch",
+      "state": "sift.config.user.ssh",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-config-user-ssh-permissions_|-/home/sift/.ssh_|-directory",
+      "state": "sift.config.user.ssh",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-docker-key_|-/usr/share/keyrings/DOCKER-PGP-KEY.asc_|-managed",
+      "state": "sift.repos.docker",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-docker-repo_|-/etc/apt/sources.list.d/docker.sources_|-managed",
+      "state": "sift.repos.docker",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-exiftool-source_|-/var/cache/sift/archives/Image-ExifTool-13.59.tar.gz_|-managed",
+      "state": "sift.scripts.exiftool",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-gift-repo-preferences_|-/etc/apt/preferences.d/gift_|-managed",
+      "state": "sift.repos.gift",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-microsoft-key_|-/usr/share/keyrings/MICROSOFT.asc_|-managed",
+      "state": "sift.repos.microsoft",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-microsoft-list-absent_|-/etc/apt/sources.list.d/microsoft.list_|-absent",
+      "state": "sift.repos.microsoft",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-microsoft-repo_|-/etc/apt/sources.list.d/microsoft.sources_|-managed",
+      "state": "sift.repos.microsoft",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-microsoft-sources-absent_|-/etc/apt/sources.list.d/microsoft.sources_|-absent",
+      "state": "sift.repos.microsoft",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-multiverse-repo_|-/etc/apt/sources.list.d/ubuntu.sources_|-replace",
+      "state": "sift.repos.ubuntu-multiverse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-package-powershell-source_|-/var/cache/sift/archives/powershell_7.4.6-1.deb_amd64.deb_|-managed",
+      "state": "sift.packages.powershell",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-package-radare2-download_|-/var/cache/sift/archives/radare2_5.9.6_amd64.deb_|-managed",
+      "state": "sift.packages.radare2",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-cheatsheet-hexfile-regex_|-/home/sift/Desktop/Hex-File-Regex-Cheatsheet.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-cheatsheet-sift_|-/home/sift/Desktop/SIFT-Cheatsheet.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-cheatsheet-sqlite_|-/home/sift/Desktop/SQLite-Pocket-Reference.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-cheatsheet-windows-to-unix_|-/home/sift/Desktop/Windows-to-Unix-Cheatsheet.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-dfir-smartphone_|-/home/sift/Desktop/DFIR-Smartphone-Forensics-Poster.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-hunt-evil_|-/home/sift/Desktop/Hunt-Evil.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-ios-third-pary-apps_|-/home/sift/Desktop/iOS-3rd-Party-Apps-Poster.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-network-forensics_|-/home/sift/Desktop/Network-Forensics-Poster.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-sift-remnux_|-/home/sift/Desktop/SIFT-REMnux-Poster.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-threat-intelligence_|-/home/sift/Desktop/Poster_Threat-Intelligence-Consumption.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-windows-forensics_|-/home/sift/Desktop/Windows-Forensics-Poster.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-pdf-poster-zimmerman-tools_|-/home/sift/Desktop/Zimmerman-Tools-Poster.pdf_|-managed",
+      "state": "sift.config.user.pdfs",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-WP8_AppPerms.py_|-/opt/4n6-scripts/bin/WP8_AppPerms.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-bing-bar-parser.pl_|-/usr/local/bin/bing-bar-parser.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-chunkymonkey.py_|-/opt/4n6-scripts/bin/chunkymonkey.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-dextract.def_|-/usr/local/bin/dextract.def_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-dextract.py_|-/opt/4n6-scripts/bin/dextract.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-docx-font-extractor.pl_|-/usr/local/bin/docx-font-extractor.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-exif2map.pl_|-/usr/local/bin/exif2map.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-fbmsg-extractor.py_|-/opt/4n6-scripts/bin/fbmsg-extractor.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-gRecordsActivity_ijson_date.py_|-/opt/4n6-scripts/bin/gRecordsActivity_ijson_date.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-gis4cookie.pl_|-/usr/local/bin/gis4cookie.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-google-ei-time.py_|-/opt/4n6-scripts/bin/google-ei-time.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-imgcache-parse-mod.py_|-/opt/4n6-scripts/bin/imgcache-parse-mod.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-imgcache-parse.py_|-/opt/4n6-scripts/bin/imgcache-parse.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-ios14_maps_history.py_|-/opt/4n6-scripts/bin/ios14_maps_history.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-java-hashcode.py_|-/opt/4n6-scripts/bin/java-hashcode.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-json-printer.pl_|-/usr/local/bin/json-printer.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-msoffice-pic-extractor.py_|-/opt/4n6-scripts/bin/msoffice-pic-extractor.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-parse_garmin56LM.py_|-/opt/4n6-scripts/bin/parse_garmin56LM.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-plist2db.py_|-/opt/4n6-scripts/bin/plist2db.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-print_apk_perms.py_|-/opt/4n6-scripts/bin/print_apk_perms.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-s2-cellid2latlong.py_|-/opt/4n6-scripts/bin/s2-cellid2latlong.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-s2-latlong2cellid.py_|-/opt/4n6-scripts/bin/s2-latlong2cellid.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-samsung_gallery3d_filesysmon_parser_v11.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_filesysmon_parser_v11.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-samsung_gallery3d_log_parser_v10.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_log_parser_v10.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-samsung_gallery3d_log_parser_v11.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_log_parser_v11.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-samsung_gallery3d_trash_parser_v10.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_trash_parser_v10.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sms-grep-sample-config.txt_|-/usr/local/bin/sms-grep-sample-config.txt_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sms-grep.pl_|-/usr/local/bin/sms-grep.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sqlite-base64-decode.py_|-/opt/4n6-scripts/bin/sqlite-base64-decode.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sqlite-blob-dumper.py_|-/opt/4n6-scripts/bin/sqlite-blob-dumper.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sqlite-parser.pl_|-/usr/local/bin/sqlite-parser.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-squirrelgripper-README.txt_|-/usr/local/bin/squirrelgripper-README.txt_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-squirrelgripper.pl_|-/usr/local/bin/squirrelgripper.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sync3-unisearch.py_|-/opt/4n6-scripts/bin/sync3-unisearch.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-sync3-unisearch2kml.py_|-/opt/4n6-scripts/bin/sync3-unisearch2kml.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-timediff32.pl_|-/usr/local/bin/timediff32.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-vmail-db-2-html.pl_|-/usr/local/bin/vmail-db-2-html.pl_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-1-callhistory.py_|-/opt/4n6-scripts/bin/wp8-1-callhistory.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-1-contacts.py_|-/opt/4n6-scripts/bin/wp8-1-contacts.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-1-mms-filesort.py_|-/opt/4n6-scripts/bin/wp8-1-mms-filesort.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-1-mms.py_|-/opt/4n6-scripts/bin/wp8-1-mms.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-1-sms.py_|-/opt/4n6-scripts/bin/wp8-1-sms.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-callhistory.py_|-/opt/4n6-scripts/bin/wp8-callhistory.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-contacts.py_|-/opt/4n6-scripts/bin/wp8-contacts.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-fb-msg.py_|-/opt/4n6-scripts/bin/wp8-fb-msg.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-sha256-pin-finder.py_|-/opt/4n6-scripts/bin/wp8-sha256-pin-finder.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wp8-sms.py_|-/opt/4n6-scripts/bin/wp8-sms.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-copy-wwf-chat-parser.py_|-/opt/4n6-scripts/bin/wwf-chat-parser.py_|-copy",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-WP8_AppPerms.py-bak_|-/opt/4n6-scripts/bin/WP8_AppPerms.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-chunkymonkey.py-bak_|-/opt/4n6-scripts/bin/chunkymonkey.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-dextract.py-bak_|-/opt/4n6-scripts/bin/dextract.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-fbmsg-extractor.py-bak_|-/opt/4n6-scripts/bin/fbmsg-extractor.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-gRecordsActivity_ijson_date.py-bak_|-/opt/4n6-scripts/bin/gRecordsActivity_ijson_date.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-google-ei-time.py-bak_|-/opt/4n6-scripts/bin/google-ei-time.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-imgcache-parse-mod.py-bak_|-/opt/4n6-scripts/bin/imgcache-parse-mod.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-imgcache-parse.py-bak_|-/opt/4n6-scripts/bin/imgcache-parse.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-ios14_maps_history.py-bak_|-/opt/4n6-scripts/bin/ios14_maps_history.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-java-hashcode.py-bak_|-/opt/4n6-scripts/bin/java-hashcode.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-msoffice-pic-extractor.py-bak_|-/opt/4n6-scripts/bin/msoffice-pic-extractor.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-parse_garmin56LM.py-bak_|-/opt/4n6-scripts/bin/parse_garmin56LM.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-plist2db.py-bak_|-/opt/4n6-scripts/bin/plist2db.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-print_apk_perms.py-bak_|-/opt/4n6-scripts/bin/print_apk_perms.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-s2-cellid2latlong.py-bak_|-/opt/4n6-scripts/bin/s2-cellid2latlong.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-s2-latlong2cellid.py-bak_|-/opt/4n6-scripts/bin/s2-latlong2cellid.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-samsung_gallery3d_filesysmon_parser_v11.py-bak_|-/opt/4n6-scripts/bin/samsung_gallery3d_filesysmon_parser_v11.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-samsung_gallery3d_log_parser_v10.py-bak_|-/opt/4n6-scripts/bin/samsung_gallery3d_log_parser_v10.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-samsung_gallery3d_log_parser_v11.py-bak_|-/opt/4n6-scripts/bin/samsung_gallery3d_log_parser_v11.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-samsung_gallery3d_trash_parser_v10.py-bak_|-/opt/4n6-scripts/bin/samsung_gallery3d_trash_parser_v10.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-sqlite-base64-decode.py-bak_|-/opt/4n6-scripts/bin/sqlite-base64-decode.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-sqlite-blob-dumper.py-bak_|-/opt/4n6-scripts/bin/sqlite-blob-dumper.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-sync3-unisearch.py-bak_|-/opt/4n6-scripts/bin/sync3-unisearch.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-sync3-unisearch2kml.py-bak_|-/opt/4n6-scripts/bin/sync3-unisearch2kml.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-1-callhistory.py-bak_|-/opt/4n6-scripts/bin/wp8-1-callhistory.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-1-contacts.py-bak_|-/opt/4n6-scripts/bin/wp8-1-contacts.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-1-mms-filesort.py-bak_|-/opt/4n6-scripts/bin/wp8-1-mms-filesort.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-1-mms.py-bak_|-/opt/4n6-scripts/bin/wp8-1-mms.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-1-sms.py-bak_|-/opt/4n6-scripts/bin/wp8-1-sms.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-callhistory.py-bak_|-/opt/4n6-scripts/bin/wp8-callhistory.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-contacts.py-bak_|-/opt/4n6-scripts/bin/wp8-contacts.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-fb-msg.py-bak_|-/opt/4n6-scripts/bin/wp8-fb-msg.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-sha256-pin-finder.py-bak_|-/opt/4n6-scripts/bin/wp8-sha256-pin-finder.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wp8-sms.py-bak_|-/opt/4n6-scripts/bin/wp8-sms.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-remove-wwf-chat-parser.py-bak_|-/opt/4n6-scripts/bin/wwf-chat-parser.py.bak_|-absent",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-WP8_AppPerms.py_|-/opt/4n6-scripts/bin/WP8_AppPerms.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-chunkymonkey.py_|-/opt/4n6-scripts/bin/chunkymonkey.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-dextract.py_|-/opt/4n6-scripts/bin/dextract.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-fbmsg-extractor.py_|-/opt/4n6-scripts/bin/fbmsg-extractor.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-gRecordsActivity_ijson_date.py_|-/opt/4n6-scripts/bin/gRecordsActivity_ijson_date.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-google-ei-time.py_|-/opt/4n6-scripts/bin/google-ei-time.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-imgcache-parse-mod.py_|-/opt/4n6-scripts/bin/imgcache-parse-mod.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-imgcache-parse.py_|-/opt/4n6-scripts/bin/imgcache-parse.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-ios14_maps_history.py_|-/opt/4n6-scripts/bin/ios14_maps_history.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-java-hashcode.py_|-/opt/4n6-scripts/bin/java-hashcode.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-msoffice-pic-extractor.py_|-/opt/4n6-scripts/bin/msoffice-pic-extractor.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-parse_garmin56LM.py_|-/opt/4n6-scripts/bin/parse_garmin56LM.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-plist2db.py_|-/opt/4n6-scripts/bin/plist2db.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-print_apk_perms.py_|-/opt/4n6-scripts/bin/print_apk_perms.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-s2-cellid2latlong.py_|-/opt/4n6-scripts/bin/s2-cellid2latlong.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-s2-latlong2cellid.py_|-/opt/4n6-scripts/bin/s2-latlong2cellid.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-samsung_gallery3d_filesysmon_parser_v11.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_filesysmon_parser_v11.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-samsung_gallery3d_log_parser_v10.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_log_parser_v10.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-samsung_gallery3d_log_parser_v11.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_log_parser_v11.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-samsung_gallery3d_trash_parser_v10.py_|-/opt/4n6-scripts/bin/samsung_gallery3d_trash_parser_v10.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-sqlite-base64-decode.py_|-/opt/4n6-scripts/bin/sqlite-base64-decode.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-sqlite-blob-dumper.py_|-/opt/4n6-scripts/bin/sqlite-blob-dumper.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-sync3-unisearch.py_|-/opt/4n6-scripts/bin/sync3-unisearch.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-sync3-unisearch2kml.py_|-/opt/4n6-scripts/bin/sync3-unisearch2kml.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-1-callhistory.py_|-/opt/4n6-scripts/bin/wp8-1-callhistory.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-1-contacts.py_|-/opt/4n6-scripts/bin/wp8-1-contacts.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-1-mms-filesort.py_|-/opt/4n6-scripts/bin/wp8-1-mms-filesort.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-1-mms.py_|-/opt/4n6-scripts/bin/wp8-1-mms.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-1-sms.py_|-/opt/4n6-scripts/bin/wp8-1-sms.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-callhistory.py_|-/opt/4n6-scripts/bin/wp8-callhistory.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-contacts.py_|-/opt/4n6-scripts/bin/wp8-contacts.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-fb-msg.py_|-/opt/4n6-scripts/bin/wp8-fb-msg.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-sha256-pin-finder.py_|-/opt/4n6-scripts/bin/wp8-sha256-pin-finder.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wp8-sms.py_|-/opt/4n6-scripts/bin/wp8-sms.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-shebang-wwf-chat-parser.py_|-/opt/4n6-scripts/bin/wwf-chat-parser.py_|-replace",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-WP8_AppPerms.py_|-/usr/local/bin/WP8_AppPerms.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-chunkymonkey.py_|-/usr/local/bin/chunkymonkey.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-dextract.py_|-/usr/local/bin/dextract.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-fbmsg-extractor.py_|-/usr/local/bin/fbmsg-extractor.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-gRecordsActivity_ijson_date.py_|-/usr/local/bin/gRecordsActivity_ijson_date.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-google-ei-time.py_|-/usr/local/bin/google-ei-time.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-imgcache-parse-mod.py_|-/usr/local/bin/imgcache-parse-mod.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-imgcache-parse.py_|-/usr/local/bin/imgcache-parse.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-ios14_maps_history.py_|-/usr/local/bin/ios14_maps_history.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-java-hashcode.py_|-/usr/local/bin/java-hashcode.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-msoffice-pic-extractor.py_|-/usr/local/bin/msoffice-pic-extractor.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-parse_garmin56LM.py_|-/usr/local/bin/parse_garmin56LM.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-plist2db.py_|-/usr/local/bin/plist2db.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-print_apk_perms.py_|-/usr/local/bin/print_apk_perms.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-s2-cellid2latlong.py_|-/usr/local/bin/s2-cellid2latlong.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-s2-latlong2cellid.py_|-/usr/local/bin/s2-latlong2cellid.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-samsung_gallery3d_filesysmon_parser_v11.py_|-/usr/local/bin/samsung_gallery3d_filesysmon_parser_v11.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-samsung_gallery3d_log_parser_v10.py_|-/usr/local/bin/samsung_gallery3d_log_parser_v10.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-samsung_gallery3d_log_parser_v11.py_|-/usr/local/bin/samsung_gallery3d_log_parser_v11.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-samsung_gallery3d_trash_parser_v10.py_|-/usr/local/bin/samsung_gallery3d_trash_parser_v10.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-sqlite-base64-decode.py_|-/usr/local/bin/sqlite-base64-decode.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-sqlite-blob-dumper.py_|-/usr/local/bin/sqlite-blob-dumper.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-sync3-unisearch.py_|-/usr/local/bin/sync3-unisearch.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-sync3-unisearch2kml.py_|-/usr/local/bin/sync3-unisearch2kml.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-1-callhistory.py_|-/usr/local/bin/wp8-1-callhistory.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-1-contacts.py_|-/usr/local/bin/wp8-1-contacts.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-1-mms-filesort.py_|-/usr/local/bin/wp8-1-mms-filesort.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-1-mms.py_|-/usr/local/bin/wp8-1-mms.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-1-sms.py_|-/usr/local/bin/wp8-1-sms.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-callhistory.py_|-/usr/local/bin/wp8-callhistory.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-contacts.py_|-/usr/local/bin/wp8-contacts.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-fb-msg.py_|-/usr/local/bin/wp8-fb-msg.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-sha256-pin-finder.py_|-/usr/local/bin/wp8-sha256-pin-finder.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wp8-sms.py_|-/usr/local/bin/wp8-sms.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-4n6-scripts-symlink-wwf-chat-parser.py_|-/usr/local/bin/wwf-chat-parser.py_|-symlink",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-amcache-shebang_|-/opt/amcache/bin/amcache.py_|-replace",
+      "state": "sift.scripts.amcache",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-amcache-symlink_|-/usr/local/bin/amcache.py_|-symlink",
+      "state": "sift.scripts.amcache",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-amcache_|-/opt/amcache/bin/_|-recurse",
+      "state": "sift.scripts.amcache",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-analyzemft-symlink_|-/usr/local/bin/analyzemft_|-symlink",
+      "state": "sift.python3-packages.analyzemft",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-imagemounter-symlink_|-/usr/local/bin/imount_|-symlink",
+      "state": "sift.python3-packages.imagemounter",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-rename-fuse-mft_|-/opt/indxparse/lib/python3.12/site-packages/indxparse/fuse_mft.py_|-managed",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-INDXParse.py_|-/usr/local/bin/INDXParse.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-MFTINDX.py_|-/usr/local/bin/MFTINDX.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-MFTView.py_|-/usr/local/bin/MFTView.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-SDS_get_index.py_|-/usr/local/bin/SDS_get_index.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-extract_mft_record_slack.py_|-/usr/local/bin/extract_mft_record_slack.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-fuse-mft.py_|-/usr/local/bin/fuse-mft.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-get_file_info.py_|-/usr/local/bin/get_file_info.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-list_mft.py_|-/usr/local/bin/list_mft.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-indxparse-symlink-tree_mft.py_|-/usr/local/bin/tree_mft.py_|-symlink",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-ioc-writer-symlink-iocdump_|-/usr/local/bin/iocdump_|-symlink",
+      "state": "sift.python3-packages.ioc-writer",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-ioc-writer-symlink-openioc_10_to_11_|-/usr/local/bin/openioc_10_to_11_|-symlink",
+      "state": "sift.python3-packages.ioc-writer",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-ioc-writer-symlink-openioc_11_to_10_|-/usr/local/bin/openioc_11_to_10_|-symlink",
+      "state": "sift.python3-packages.ioc-writer",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-java-idx-parser-symlink_|-/usr/local/bin/idx-parser_|-symlink",
+      "state": "sift.python3-packages.java-idx-parser",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-chmod-extract_apfs_fs.py_|-/opt/mac-apt/bin/mac_apt_git/extract_apfs_fs.py_|-managed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-chmod-ios_apt.py_|-/opt/mac-apt/bin/mac_apt_git/ios_apt.py_|-managed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-chmod-mac_apt.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt.py_|-managed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-chmod-mac_apt_artifact_only.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt_artifact_only.py_|-managed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-chmod-mac_apt_mounted_sys_data.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt_mounted_sys_data.py_|-managed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-fix-crlf-extract_apfs_fs.py_|-/opt/mac-apt/bin/mac_apt_git/extract_apfs_fs.py_|-replace",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-fix-crlf-ios_apt.py_|-/opt/mac-apt/bin/mac_apt_git/ios_apt.py_|-replace",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-fix-crlf-mac_apt.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt.py_|-replace",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-fix-crlf-mac_apt_artifact_only.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt_artifact_only.py_|-replace",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-fix-crlf-mac_apt_mounted_sys_data.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt_mounted_sys_data.py_|-replace",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-prepend-extract_apfs_fs.py_|-/opt/mac-apt/bin/mac_apt_git/extract_apfs_fs.py_|-prepend",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-prepend-ios_apt.py_|-/opt/mac-apt/bin/mac_apt_git/ios_apt.py_|-prepend",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-prepend-mac_apt.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt.py_|-prepend",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-prepend-mac_apt_artifact_only.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt_artifact_only.py_|-prepend",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-prepend-mac_apt_mounted_sys_data.py_|-/opt/mac-apt/bin/mac_apt_git/mac_apt_mounted_sys_data.py_|-prepend",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-symlink-extract_apfs_fs.py_|-/usr/local/bin/extract_apfs_fs.py_|-symlink",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-symlink-ios_apt.py_|-/usr/local/bin/ios_apt.py_|-symlink",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-symlink-mac_apt.py_|-/usr/local/bin/mac_apt.py_|-symlink",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-symlink-mac_apt_artifact_only.py_|-/usr/local/bin/mac_apt_artifact_only.py_|-symlink",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mac-apt-symlink-mac_apt_mounted_sys_data.py_|-/usr/local/bin/mac_apt_mounted_sys_data.py_|-symlink",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-machinae-symlink_|-/usr/local/bin/machinae_|-symlink",
+      "state": "sift.python3-packages.machinae",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-machine-config_|-/etc/machinae.yml_|-managed",
+      "state": "sift.python3-packages.machinae",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mvt-symlink-mvt-android_|-/usr/local/bin/mvt-android_|-symlink",
+      "state": "sift.python3-packages.mvt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-mvt-symlink-mvt-ios_|-/usr/local/bin/mvt-ios_|-symlink",
+      "state": "sift.python3-packages.mvt",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-packerid-shebang_|-/opt/packerid/bin/packerid.py_|-replace",
+      "state": "sift.scripts.packerid",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-packerid-symlink_|-/usr/local/bin/packerid.py_|-symlink",
+      "state": "sift.scripts.packerid",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-packerid_|-/opt/packerid/bin/packerid.py_|-managed",
+      "state": "sift.scripts.packerid",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-page-brute-symlink_|-/usr/local/bin/page-brute_|-symlink",
+      "state": "sift.python3-packages.page-brute",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-mPDF.py_|-/usr/local/bin/mPDF.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-make-pdf-embedded.py_|-/usr/local/bin/make-pdf-embedded.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-make-pdf-helloworld.py_|-/usr/local/bin/make-pdf-helloworld.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-make-pdf-javascript.py_|-/usr/local/bin/make-pdf-javascript.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-pdf-parser.py_|-/usr/local/bin/pdf-parser.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-pdfid.py_|-/usr/local/bin/pdfid.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-pdftool.py_|-/usr/local/bin/pdftool.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-plugin_embeddedfile.py_|-/usr/local/bin/plugin_embeddedfile.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-plugin_nameobfuscation.py_|-/usr/local/bin/plugin_nameobfuscation.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools-symlink-plugin_triage.py_|-/usr/local/bin/plugin_triage.py_|-symlink",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pdf-tools_|-/opt/pdf-tools/bin/_|-recurse",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pe-carver-symlink_|-/usr/local/bin/pe-carver_|-symlink",
+      "state": "sift.python3-packages.pe-carver",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pe-scanner-symlink_|-/usr/local/bin/pe-scanner_|-symlink",
+      "state": "sift.python3-packages.pe-scanner",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pyhindsight-chmod-hindsight.py_|-/opt/pyhindsight/bin/hindsight.py_|-managed",
+      "state": "sift.python3-packages.hindsight",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pyhindsight-chmod-hindsight_gui.py_|-/opt/pyhindsight/bin/hindsight_gui.py_|-managed",
+      "state": "sift.python3-packages.hindsight",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pyhindsight-symlink-hindsight.py_|-/usr/local/bin/hindsight.py_|-symlink",
+      "state": "sift.python3-packages.hindsight",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-pyhindsight-symlink-hindsight_gui.py_|-/usr/local/bin/hindsight_gui.py_|-symlink",
+      "state": "sift.python3-packages.hindsight",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-import-fix_|-/opt/python-evtx/lib/python3.12/site-packages/evtx_scripts/evtx_eid_record_numbers.py_|-replace",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_dump_chunk_slack_|-/usr/local/bin/evtx_dump_chunk_slack.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_dump_json_|-/usr/local/bin/evtx_dump_json.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_dump_|-/usr/local/bin/evtx_dump.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_eid_record_numbers_|-/usr/local/bin/evtx_eid_record_numbers.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_extract_record_|-/usr/local/bin/evtx_extract_record.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_filter_records_|-/usr/local/bin/evtx_filter_records.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_info_|-/usr/local/bin/evtx_info.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_record_structure_|-/usr/local/bin/evtx_record_structure.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_structure_|-/usr/local/bin/evtx_structure.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-python-evtx-symlink-evtx_templates_|-/usr/local/bin/evtx_templates.py_|-symlink",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-sqlite-carver-symlink_|-/usr/local/bin/sqlite-carver_|-symlink",
+      "state": "sift.python3-packages.sqlite-carver",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-stix-validator-symlink_|-/usr/local/bin/stix-validator_|-symlink",
+      "state": "sift.python3-packages.stix-validator",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-ufade-permissions_|-/opt/ufade/UFADE/ufade_gui.py_|-managed",
+      "state": "sift.python3-packages.ufade",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-ufade-shebang_|-/opt/ufade/UFADE/ufade_gui.py_|-replace",
+      "state": "sift.python3-packages.ufade",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-ufade-symlink_|-/usr/local/bin/ufade_|-managed",
+      "state": "sift.python3-packages.ufade",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-usbdeviceforensics-symlink_|-/usr/local/bin/usbdeviceforensics_|-symlink",
+      "state": "sift.python3-packages.usbdeviceforensics",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-usnparser-symlink_|-/usr/local/bin/usnparser_|-symlink",
+      "state": "sift.python3-packages.usnparser",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-volatility3-symlink-vol_|-/usr/local/bin/vol_|-symlink",
+      "state": "sift.python3-packages.volatility3",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-python3-package-volatility3-symlink-volshell_|-/usr/local/bin/volshell_|-symlink",
+      "state": "sift.python3-packages.volatility3",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-remove-docker-list_|-/etc/apt/sources.list.d/docker.list_|-absent",
+      "state": "sift.repos.docker",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-remove-docker-sources_|-/etc/apt/sources.list.d/docker.sources_|-absent",
+      "state": "sift.repos.docker",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-repo-preferences_|-/etc/apt/preferences.d/sift_|-managed",
+      "state": "sift.repos.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-resources_|-/usr/share/sift_|-recurse",
+      "state": "sift.scripts.sift",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-samba-global-config_|-/etc/samba/smb.conf_|-managed",
+      "state": "sift.config.samba",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-cyberchef-index_|-/var/www/html/cyberchef/index.html_|-rename",
+      "state": "sift.scripts.cyberchef",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-dump-mft-entry-shebang_|-/usr/local/bin/dump-mft-entry.pl_|-replace",
+      "state": "sift.scripts.dump-mft-entry",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-dump-mft-entry_|-/usr/local/bin/dump-mft-entry.pl_|-managed",
+      "state": "sift.scripts.dump-mft-entry",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-foremost-config-usr-local_|-/usr/local/etc/foremost.conf_|-managed",
+      "state": "sift.config.tools.foremost",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-foremost-config_|-/etc/foremost.conf_|-managed",
+      "state": "sift.config.tools.foremost",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-JumpList.pm_|-/usr/share/perl5/JumpList.pm_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-LNK.pm_|-/usr/share/perl5/LNK.pm_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-Reg.pm_|-/usr/share/perl5/Reg.pm_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-bodyfile.pl_|-/usr/local/bin/bodyfile.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-evtparse.pl_|-/usr/local/bin/evtparse.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-evtrpt.pl_|-/usr/local/bin/evtrpt.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-evtxparse.pl_|-/usr/local/bin/evtxparse.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-fb.pl_|-/usr/local/bin/fb.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-ff.pl_|-/usr/local/bin/ff.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-ff_signons.pl_|-/usr/local/bin/ff_signons.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-ftkparse.pl_|-/usr/local/bin/ftkparse.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-idx.pl_|-/usr/local/bin/idx.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-idxparse.pl_|-/usr/local/bin/idxparse.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-jl.pl_|-/usr/local/bin/jl.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-jobparse.pl_|-/usr/local/bin/jobparse.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-lfle.pl_|-/usr/local/bin/lfle.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-lnk.pl_|-/usr/local/bin/lnk.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-mft.pl_|-/usr/local/bin/mft.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-parse.pl_|-/usr/local/bin/parse.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-parsei30.pl_|-/usr/local/bin/parsei30.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-parseie.pl_|-/usr/local/bin/parseie.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-pie.pl_|-/usr/local/bin/pie.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-pref-pm_|-/usr/share/perl5/Pref.pm_|-rename",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-pref.pl_|-/usr/local/bin/pref.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-pref.pm_|-/usr/share/perl5/pref.pm_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-rawie.pl_|-/usr/local/bin/rawie.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-recbin.pl_|-/usr/local/bin/recbin.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-regslack.pl_|-/usr/local/bin/regslack.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-regtime.pl_|-/usr/local/bin/regtime.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-rfc.pl_|-/usr/local/bin/rfc.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-rlo.pl_|-/usr/local/bin/rlo.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-bodyfile.pl_|-/usr/local/bin/bodyfile.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-evtparse.pl_|-/usr/local/bin/evtparse.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-evtrpt.pl_|-/usr/local/bin/evtrpt.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-evtxparse.pl_|-/usr/local/bin/evtxparse.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-fb.pl_|-/usr/local/bin/fb.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-ff.pl_|-/usr/local/bin/ff.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-ff_signons.pl_|-/usr/local/bin/ff_signons.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-ftkparse.pl_|-/usr/local/bin/ftkparse.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-idx.pl_|-/usr/local/bin/idx.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-idxparse.pl_|-/usr/local/bin/idxparse.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-jl.pl_|-/usr/local/bin/jl.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-jobparse.pl_|-/usr/local/bin/jobparse.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-lfle.pl_|-/usr/local/bin/lfle.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-lnk.pl_|-/usr/local/bin/lnk.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-mft.pl_|-/usr/local/bin/mft.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-parse.pl_|-/usr/local/bin/parse.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-parsei30.pl_|-/usr/local/bin/parsei30.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-parseie.pl_|-/usr/local/bin/parseie.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-pie.pl_|-/usr/local/bin/pie.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-pref.pl_|-/usr/local/bin/pref.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-rawie.pl_|-/usr/local/bin/rawie.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-recbin.pl_|-/usr/local/bin/recbin.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-regslack.pl_|-/usr/local/bin/regslack.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-regtime.pl_|-/usr/local/bin/regtime.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-rfc.pl_|-/usr/local/bin/rfc.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-rlo.pl_|-/usr/local/bin/rlo.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-tln.pl_|-/usr/local/bin/tln.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-shebang-usnj.pl_|-/usr/local/bin/usnj.pl_|-replace",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-tln.pl_|-/usr/local/bin/tln.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-keydet-tools-usnj.pl_|-/usr/local/bin/usnj.pl_|-copy",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-basepm_|-/usr/share/perl5/Parse/Win32Registry/Base.pm_|-managed",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-binary-symlink_|-/usr/local/bin/rip.pl_|-symlink",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-binary_|-/usr/share/regripper/rip.pl_|-managed",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-directory_|-/usr/share/regripper_|-directory",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-filepm_|-/usr/share/perl5/Parse/Win32Registry/WinNT/File.pm_|-managed",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-keypm_|-/usr/share/perl5/Parse/Win32Registry/WinNT/Key.pm_|-managed",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-perl-header_|-/usr/share/regripper/rip.pl_|-replace",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-plugins-cleanup-2_|-/usr/share/regripper/rip.pl_|-replace",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-plugins-path-cleanup_|-/usr/share/regripper/rip.pl_|-replace",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-plugins-path_|-/usr/share/regripper/rip.pl_|-replace",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-regripper-plugins-symlink_|-/usr/share/regripper/plugins_|-symlink",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-scripts-screen-scale_|-/usr/local/bin/set-display-scale_|-managed",
+      "state": "sift.scripts.screen-scale",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-security-repo_|-/etc/apt/sources.list.d/ubuntu.sources_|-append",
+      "state": "sift.repos.ubuntu-multiverse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-tool-densityscout-binary_|-/usr/local/bin/densityscout-build-45_|-copy",
+      "state": "sift.scripts.densityscout",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-tool-densityscout-link_|-/usr/local/bin/densityscout_|-symlink",
+      "state": "sift.scripts.densityscout",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-ubuntu-repo-multiverse_|-/etc/apt/sources.list.d/ubuntu.sources_|-append",
+      "state": "sift.repos.ubuntu-multiverse",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-ubuntu-repo-universe_|-/etc/apt/sources.list.d/ubuntu.sources_|-append",
+      "state": "sift.repos.ubuntu-universe",
+      "result": true
+    },
+    {
+      "id": "file_|-sift-universe-repo_|-/etc/apt/sources.list.d/ubuntu.sources_|-replace",
+      "state": "sift.repos.ubuntu-universe",
+      "result": true
+    },
+    {
+      "id": "file_|-symlinks-cases_|-/home/sift/Desktop/cases_|-symlink",
+      "state": "sift.config.user.symlinks",
+      "result": true
+    },
+    {
+      "id": "file_|-symlinks-mount-points_|-/home/sift/Desktop/mount_points_|-symlink",
+      "state": "sift.config.user.symlinks",
+      "result": true
+    },
+    {
+      "id": "file_|-symlinks-user-desktop-directory_|-/home/sift/Desktop_|-directory",
+      "state": "sift.config.user.symlinks",
+      "result": true
+    },
+    {
+      "id": "git_|-sift-python3-package-4n6-scripts-git_|-https://github.com/digitalsleuth/4n6-scripts.git_|-latest",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "git_|-sift-python3-package-mac-apt-git_|-https://github.com/ydkhatri/mac_apt.git_|-latest",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "git_|-sift-python3-package-ufade-git_|-https://github.com/prosch88/UFADE.git_|-latest",
+      "state": "sift.python3-packages.ufade",
+      "result": true
+    },
+    {
+      "id": "git_|-sift-scripts-keydet-tools-git_|-https://github.com/keydet89/Tools.git_|-latest",
+      "state": "sift.scripts.keydet-tools",
+      "result": true
+    },
+    {
+      "id": "git_|-sift-scripts-regripper-git_|-https://github.com/keydet89/RegRipper3.0.git_|-latest",
+      "state": "sift.scripts.regripper",
+      "result": true
+    },
+    {
+      "id": "host_|-hostname-set-hosts_|-f04727890bf0_|-present",
+      "state": "sift.config.hostname",
+      "result": true
+    },
+    {
+      "id": "module_|-sift-refresh-repos_|-pkg.refresh_db_|-run",
+      "state": "sift.repos.refresh",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-analyzemft_|-git+https://github.com/rowingdude/analyzemft.git@b1d0e6a0aa58d42000bfdb8e6588513bd62eaeab_|-installed",
+      "state": "sift.python3-packages.analyzemft",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-imagemounter_|-imagemounter_|-installed",
+      "state": "sift.python3-packages.imagemounter",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-indxparse_|-git+https://github.com/williballenthin/INDXParse.git@038e8ec836cf23600124db74b40757b7184c08c5_|-installed",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-ioc-writer_|-ioc_writer_|-installed",
+      "state": "sift.python3-packages.ioc-writer",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-java-idx-parser_|-git+https://github.com/digitalsleuth/Java_IDX_Parser.git_|-installed",
+      "state": "sift.python3-packages.java-idx-parser",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-mac-apt-requirements_|-sift-python3-package-mac-apt-requirements_|-installed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-machinae_|-machinae_|-installed",
+      "state": "sift.python3-packages.machinae",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-mvt_|-mvt_|-installed",
+      "state": "sift.python3-packages.mvt",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-page-brute_|-page-brute_|-installed",
+      "state": "sift.python3-packages.page-brute",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-pe-carver_|-pe-carver_|-installed",
+      "state": "sift.python3-packages.pe-carver",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-pe-scanner_|-git+https://github.com/digitalsleuth/pe-scanner.git_|-installed",
+      "state": "sift.python3-packages.pe-scanner",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-pyhindsight_|-pyhindsight_|-installed",
+      "state": "sift.python3-packages.hindsight",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-python-evtx_|-git+https://github.com/williballenthin/python-evtx.git@1a1357accd3a75524794a6d6dcdec03c09e1660d_|-installed",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-sqlite-carver_|-sqlite-carver_|-installed",
+      "state": "sift.python3-packages.sqlite-carver",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-stix-validator_|-stix-validator_|-installed",
+      "state": "sift.python3-packages.stix-validator",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-usbdeviceforensics_|-git+https://github.com/digitalsleuth/usbdeviceforensics.git_|-installed",
+      "state": "sift.python3-packages.usbdeviceforensics",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-usnparser_|-git+https://github.com/digitalsleuth/USN-Journal-Parser.git_|-installed",
+      "state": "sift.python3-packages.usnparser",
+      "result": true
+    },
+    {
+      "id": "pip_|-sift-python3-package-volatility3_|-volatility3_|-installed",
+      "state": "sift.python3-packages.volatility3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-afflib-tools_|-afflib-tools_|-installed",
+      "state": "sift.packages.afflib-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-apache2_|-apache2_|-installed",
+      "state": "sift.packages.apache2",
+      "result": true
+    },
+    {
+      "id": "pkg_|-arp-scan_|-arp-scan_|-installed",
+      "state": "sift.packages.arp-scan",
+      "result": true
+    },
+    {
+      "id": "pkg_|-autopsy_|-autopsy_|-installed",
+      "state": "sift.packages.autopsy",
+      "result": true
+    },
+    {
+      "id": "pkg_|-blt_|-blt_|-installed",
+      "state": "sift.packages.blt",
+      "result": true
+    },
+    {
+      "id": "pkg_|-build-essential_|-build-essential_|-installed",
+      "state": "sift.packages.build-essential",
+      "result": true
+    },
+    {
+      "id": "pkg_|-cabextract_|-cabextract_|-installed",
+      "state": "sift.packages.cabextract",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ccrypt_|-ccrypt_|-installed",
+      "state": "sift.packages.ccrypt",
+      "result": true
+    },
+    {
+      "id": "pkg_|-cifs-utils_|-cifs-utils_|-installed",
+      "state": "sift.packages.cifs-utils",
+      "result": true
+    },
+    {
+      "id": "pkg_|-clamav_|-clamav_|-installed",
+      "state": "sift.packages.clamav",
+      "result": true
+    },
+    {
+      "id": "pkg_|-cryptsetup_|-cryptsetup_|-installed",
+      "state": "sift.packages.cryptsetup",
+      "result": true
+    },
+    {
+      "id": "pkg_|-curl_|-curl_|-installed",
+      "state": "sift.packages.curl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-dbus-x11_|-dbus-x11_|-installed",
+      "state": "sift.packages.dbus-x11",
+      "result": true
+    },
+    {
+      "id": "pkg_|-dc3dd_|-dc3dd_|-installed",
+      "state": "sift.packages.dc3dd",
+      "result": true
+    },
+    {
+      "id": "pkg_|-dcfldd_|-dcfldd_|-installed",
+      "state": "sift.packages.dcfldd",
+      "result": true
+    },
+    {
+      "id": "pkg_|-dconf-cli_|-dconf-cli_|-installed",
+      "state": "sift.packages.dconf-cli",
+      "result": true
+    },
+    {
+      "id": "pkg_|-driftnet_|-driftnet_|-installed",
+      "state": "sift.packages.driftnet",
+      "result": true
+    },
+    {
+      "id": "pkg_|-dsniff_|-dsniff_|-installed",
+      "state": "sift.packages.dsniff",
+      "result": true
+    },
+    {
+      "id": "pkg_|-e2fsprogs_|-e2fsprogs_|-installed",
+      "state": "sift.packages.e2fsprogs",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ent_|-ent_|-installed",
+      "state": "sift.packages.ent",
+      "result": true
+    },
+    {
+      "id": "pkg_|-epic5_|-epic5_|-installed",
+      "state": "sift.packages.epic5",
+      "result": true
+    },
+    {
+      "id": "pkg_|-etherape_|-etherape_|-installed",
+      "state": "sift.packages.etherape",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ettercap-graphical_|-ettercap-graphical_|-installed",
+      "state": "sift.packages.ettercap-graphical",
+      "result": true
+    },
+    {
+      "id": "pkg_|-exfat-fuse_|-exfat-fuse_|-installed",
+      "state": "sift.packages.exfat-fuse",
+      "result": true
+    },
+    {
+      "id": "pkg_|-exfatprogs_|-exfatprogs_|-installed",
+      "state": "sift.packages.exfat-extras",
+      "result": true
+    },
+    {
+      "id": "pkg_|-exif_|-exif_|-installed",
+      "state": "sift.packages.exif",
+      "result": true
+    },
+    {
+      "id": "pkg_|-extundelete_|-extundelete_|-installed",
+      "state": "sift.packages.extundelete",
+      "result": true
+    },
+    {
+      "id": "pkg_|-fdupes_|-fdupes_|-installed",
+      "state": "sift.packages.fdupes",
+      "result": true
+    },
+    {
+      "id": "pkg_|-feh_|-feh_|-installed",
+      "state": "sift.packages.feh",
+      "result": true
+    },
+    {
+      "id": "pkg_|-flex_|-flex_|-installed",
+      "state": "sift.packages.flex",
+      "result": true
+    },
+    {
+      "id": "pkg_|-foremost_|-foremost_|-installed",
+      "state": "sift.packages.foremost",
+      "result": true
+    },
+    {
+      "id": "pkg_|-g++_|-g++_|-installed",
+      "state": "sift.packages.g++",
+      "result": true
+    },
+    {
+      "id": "pkg_|-gawk_|-gawk_|-installed",
+      "state": "sift.packages.gawk",
+      "result": true
+    },
+    {
+      "id": "pkg_|-gcc_|-gcc_|-installed",
+      "state": "sift.packages.gcc",
+      "result": true
+    },
+    {
+      "id": "pkg_|-gdb_|-gdb_|-installed",
+      "state": "sift.packages.gdb",
+      "result": true
+    },
+    {
+      "id": "pkg_|-gddrescue_|-gddrescue_|-installed",
+      "state": "sift.packages.gddrescue",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ghex_|-ghex_|-installed",
+      "state": "sift.packages.ghex",
+      "result": true
+    },
+    {
+      "id": "pkg_|-git_|-git_|-installed",
+      "state": "sift.packages.git",
+      "result": true
+    },
+    {
+      "id": "pkg_|-graphviz_|-graphviz_|-installed",
+      "state": "sift.packages.graphviz",
+      "result": true
+    },
+    {
+      "id": "pkg_|-gthumb_|-gthumb_|-installed",
+      "state": "sift.packages.gthumb",
+      "result": true
+    },
+    {
+      "id": "pkg_|-gzrt_|-gzrt_|-installed",
+      "state": "sift.packages.gzrt",
+      "result": true
+    },
+    {
+      "id": "pkg_|-hexedit_|-hexedit_|-installed",
+      "state": "sift.packages.hexedit",
+      "result": true
+    },
+    {
+      "id": "pkg_|-htop_|-htop_|-installed",
+      "state": "sift.packages.htop",
+      "result": true
+    },
+    {
+      "id": "pkg_|-hydra-gtk_|-hydra-gtk_|-installed",
+      "state": "sift.packages.hydra-gtk",
+      "result": true
+    },
+    {
+      "id": "pkg_|-hydra_|-hydra_|-installed",
+      "state": "sift.packages.hydra",
+      "result": true
+    },
+    {
+      "id": "pkg_|-jq_|-jq_|-installed",
+      "state": "sift.packages.jq",
+      "result": true
+    },
+    {
+      "id": "pkg_|-kdiff3_|-kdiff3_|-installed",
+      "state": "sift.packages.kdiff3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-kpartx_|-kpartx_|-installed",
+      "state": "sift.packages.kpartx",
+      "result": true
+    },
+    {
+      "id": "pkg_|-lft_|-lft_|-installed",
+      "state": "sift.packages.lft",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libafflib-dev_|-libafflib-dev_|-installed",
+      "state": "sift.packages.libafflib-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libevt-tools_|-libevt-tools_|-installed",
+      "state": "sift.packages.libevt-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libevt_|-libevt_|-installed",
+      "state": "sift.packages.libevt",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libevtx-tools_|-libevtx-tools_|-installed",
+      "state": "sift.packages.libevtx-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libevtx_|-libevtx_|-installed",
+      "state": "sift.packages.libevtx",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libffi-dev_|-libffi-dev_|-installed",
+      "state": "sift.packages.libffi-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libfuse-dev_|-libfuse-dev_|-installed",
+      "state": "sift.packages.libfuse-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libfvde-tools_|-libfvde-tools_|-installed",
+      "state": "sift.packages.libfvde-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libfvde_|-libfvde_|-installed",
+      "state": "sift.packages.libfvde",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libglib2.0-bin_|-libglib2.0-bin_|-installed",
+      "state": "sift.packages.libglib2-bin",
+      "result": true
+    },
+    {
+      "id": "pkg_|-liblightgrep_|-liblightgrep_|-installed",
+      "state": "sift.packages.liblightgrep",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libmsiecf_|-libmsiecf_|-installed",
+      "state": "sift.packages.libmsiecf",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libnet1_|-libnet1_|-installed",
+      "state": "sift.packages.libnet1",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libparse-win32registry-perl_|-libparse-win32registry-perl_|-installed",
+      "state": "sift.packages.libparse-win32registry-perl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libplist-utils_|-libplist-utils_|-installed",
+      "state": "sift.packages.libplist-utils",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libssl-dev_|-libssl-dev_|-installed",
+      "state": "sift.packages.libssl-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libtext-csv-perl_|-libtext-csv-perl_|-installed",
+      "state": "sift.packages.libtext-csv-perl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libxml2-dev_|-libxml2-dev_|-installed",
+      "state": "sift.packages.libxml2-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-libxslt-dev_|-libxslt1-dev_|-installed",
+      "state": "sift.packages.libxslt-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-magnus_|-magnus_|-installed",
+      "state": "sift.packages.magnus",
+      "result": true
+    },
+    {
+      "id": "pkg_|-nbd-client_|-nbd-client_|-installed",
+      "state": "sift.packages.nbd-client",
+      "result": true
+    },
+    {
+      "id": "pkg_|-nbtscan_|-nbtscan_|-installed",
+      "state": "sift.packages.nbtscan",
+      "result": true
+    },
+    {
+      "id": "pkg_|-netpbm_|-netpbm_|-installed",
+      "state": "sift.packages.netpbm",
+      "result": true
+    },
+    {
+      "id": "pkg_|-netsed_|-netsed_|-installed",
+      "state": "sift.packages.netsed",
+      "result": true
+    },
+    {
+      "id": "pkg_|-netwox_|-netwox_|-installed",
+      "state": "sift.packages.netwox",
+      "result": true
+    },
+    {
+      "id": "pkg_|-nfdump_|-nfdump_|-installed",
+      "state": "sift.packages.nfdump",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ngrep_|-ngrep_|-installed",
+      "state": "sift.packages.ngrep",
+      "result": true
+    },
+    {
+      "id": "pkg_|-okular_|-okular_|-installed",
+      "state": "sift.packages.okular",
+      "result": true
+    },
+    {
+      "id": "pkg_|-onboard_|-onboard_|-installed",
+      "state": "sift.packages.onboard",
+      "result": true
+    },
+    {
+      "id": "pkg_|-open-iscsi_|-open-iscsi_|-installed",
+      "state": "sift.packages.open-iscsi",
+      "result": true
+    },
+    {
+      "id": "pkg_|-openjdk_|-openjdk-8-jdk_|-installed",
+      "state": "sift.packages.openjdk",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ophcrack-cli_|-ophcrack-cli_|-installed",
+      "state": "sift.packages.ophcrack-cli",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ophcrack_|-ophcrack_|-installed",
+      "state": "sift.packages.ophcrack",
+      "result": true
+    },
+    {
+      "id": "pkg_|-orca_|-orca_|-installed",
+      "state": "sift.packages.orca",
+      "result": true
+    },
+    {
+      "id": "pkg_|-outguess_|-outguess_|-installed",
+      "state": "sift.packages.outguess",
+      "result": true
+    },
+    {
+      "id": "pkg_|-p0f_|-p0f_|-installed",
+      "state": "sift.packages.p0f",
+      "result": true
+    },
+    {
+      "id": "pkg_|-p7zip-full_|-p7zip-full_|-installed",
+      "state": "sift.packages.p7zip-full",
+      "result": true
+    },
+    {
+      "id": "pkg_|-pev_|-pev_|-installed",
+      "state": "sift.packages.pev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-pkg-config_|-pkg-config_|-installed",
+      "state": "sift.packages.pkg-config",
+      "result": true
+    },
+    {
+      "id": "pkg_|-pst-utils_|-pst-utils_|-installed",
+      "state": "sift.packages.pst-utils",
+      "result": true
+    },
+    {
+      "id": "pkg_|-pv_|-pv_|-installed",
+      "state": "sift.packages.pv",
+      "result": true
+    },
+    {
+      "id": "pkg_|-python3-debian_|-python3-debian_|-installed",
+      "state": "sift.packages.python3-debian",
+      "result": true
+    },
+    {
+      "id": "pkg_|-python3-redis_|-python3-redis_|-installed",
+      "state": "sift.packages.python3-redis",
+      "result": true
+    },
+    {
+      "id": "pkg_|-qemu-utils_|-qemu-utils_|-installed",
+      "state": "sift.packages.qemu-utils",
+      "result": true
+    },
+    {
+      "id": "pkg_|-rsakeyfind_|-rsakeyfind_|-installed",
+      "state": "sift.packages.rsakeyfind",
+      "result": true
+    },
+    {
+      "id": "pkg_|-safecopy_|-safecopy_|-installed",
+      "state": "sift.packages.safecopy",
+      "result": true
+    },
+    {
+      "id": "pkg_|-samba_|-samba_|-installed",
+      "state": "sift.packages.samba",
+      "result": true
+    },
+    {
+      "id": "pkg_|-scalpel_|-scalpel_|-installed",
+      "state": "sift.packages.scalpel",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-default-jre_|-default-jre_|-installed",
+      "state": "sift.packages.default-jre",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-libbcprov-java_|-libbcprov-java_|-installed",
+      "state": "sift.packages.libbcprov-java",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-libcommons-lang3-java_|-libcommons-lang3-java_|-installed",
+      "state": "sift.packages.libcommons-lang3-java",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-nikto_|-nikto_|-installed",
+      "state": "sift.packages.nikto",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-pacakge-silversearcher-ag_|-silversearcher-ag_|-installed",
+      "state": "sift.packages.silversearcher-ag",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-aeskeyfind_|-aeskeyfind_|-installed",
+      "state": "sift.packages.aeskeyfind",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-aircrack-ng_|-aircrack-ng_|-installed",
+      "state": "sift.packages.aircrack-ng",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-android-sdk-platform-tools_|-android-sdk-platform-tools_|-installed",
+      "state": "sift.packages.android-sdk-platform-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-at_|-at_|-installed",
+      "state": "sift.packages.at",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-avfs_|-avfs_|-installed",
+      "state": "sift.packages.avfs",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-bulk-extractor_|-bulk-extractor_|-installed",
+      "state": "sift.packages.bulk-extractor",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-chromium-browser_|-chromium-browser_|-installed",
+      "state": "sift.packages.chromium-browser",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-cmospwd_|-cmospwd_|-installed",
+      "state": "sift.packages.cmospwd",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-cpanminus_|-cpanminus_|-installed",
+      "state": "sift.packages.perl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-disktype_|-disktype_|-installed",
+      "state": "sift.packages.disktype",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-dislocker_|-dislocker_|-installed",
+      "state": "sift.packages.dislocker",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-docker_|-docker-ce_|-installed",
+      "state": "sift.packages.docker",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-dotnet9_|-dotnet-sdk-9.0_|-installed",
+      "state": "sift.packages.dotnet",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-file_|-file_|-installed",
+      "state": "sift.packages.file",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-grepcidr_|-grepcidr_|-installed",
+      "state": "sift.packages.grepcidr",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-hashdeep_|-hashdeep_|-installed",
+      "state": "sift.packages.hashdeep",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-ipython3_|-ipython3_|-installed",
+      "state": "sift.packages.ipython3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libafflib_|-libafflib0t64_|-installed",
+      "state": "sift.packages.libafflib",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libasound2-dev_|-libasound2-dev_|-installed",
+      "state": "sift.packages.libasound2-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libbde-tools_|-libbde-tools_|-installed",
+      "state": "sift.packages.libbde-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libbde_|-libbde_|-installed",
+      "state": "sift.packages.libbde",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libbz2-dev_|-libbz2-dev_|-installed",
+      "state": "sift.packages.libbz2-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libcairo2-dev_|-libcairo2-dev_|-installed",
+      "state": "sift.packages.libcairo2-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libdatetime-perl_|-libdatetime-perl_|-installed",
+      "state": "sift.packages.libdatetime-perl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libesedb-tools_|-libesedb-tools_|-installed",
+      "state": "sift.packages.libesedb-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libesedb_|-libesedb_|-installed",
+      "state": "sift.packages.libesedb",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libewf-dev_|-libewf-dev_|-installed",
+      "state": "sift.packages.libewf-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libewf-python3_|-libewf-python3_|-installed",
+      "state": "sift.packages.libewf-python3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libewf-tools_|-libewf-tools_|-installed",
+      "state": "sift.packages.libewf-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libewf_|-libewf_|-installed",
+      "state": "sift.packages.libewf2",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libext2fs2_|-libext2fs2t64_|-installed",
+      "state": "sift.packages.libext2fs2",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libfsapfs-tools_|-libfsapfs-tools_|-installed",
+      "state": "sift.packages.libfsapfs-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libgirepository_|-libgirepository-2.0-dev_|-installed",
+      "state": "sift.packages.libgirepository",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libgtk-3-dev_|-libgtk-3-dev_|-installed",
+      "state": "sift.packages.libgtk-3-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libicu_|-libicu74_|-installed",
+      "state": "sift.packages.libicu",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libncurses_|-libncurses-dev_|-installed",
+      "state": "sift.packages.libncurses",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libolecf_|-libolecf_|-installed",
+      "state": "sift.packages.libolecf",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libpff-dev_|-libpff-dev_|-installed",
+      "state": "sift.packages.libpff-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libpff1_|-libpff1t64_|-installed",
+      "state": "sift.packages.libpff",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libregf-dev_|-libregf-dev_|-installed",
+      "state": "sift.packages.libregf-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libregf-python3_|-libregf-python3_|-installed",
+      "state": "sift.packages.libregf-python3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libregf-tools_|-libregf-tools_|-installed",
+      "state": "sift.packages.libregf-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libregf_|-libregf_|-installed",
+      "state": "sift.packages.libregf",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libvmdk_|-libvmdk_|-installed",
+      "state": "sift.packages.libvmdk",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libvshadow-dev_|-libvshadow-dev_|-installed",
+      "state": "sift.packages.libvshadow-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libvshadow-python3_|-libvshadow-python3_|-installed",
+      "state": "sift.packages.libvshadow-python3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libvshadow-tools_|-libvshadow-tools_|-installed",
+      "state": "sift.packages.libvshadow-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-libvshadow_|-libvshadow_|-installed",
+      "state": "sift.packages.libvshadow",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-lvm2_|-lvm2_|-installed",
+      "state": "sift.packages.lvm2",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-mdadm_|-mdadm_|-installed",
+      "state": "sift.packages.mdadm",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-mtd-utils_|-mtd-utils_|-installed",
+      "state": "sift.packages.mtd-utils",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-net-tools_|-net-tools_|-installed",
+      "state": "sift.packages.net-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-netcat-openbsd_|-netcat-openbsd_|-installed",
+      "state": "sift.packages.netcat",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-ntfs-3g_|-ntfs-3g_|-installed",
+      "state": "sift.packages.ntfs-3g",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-perl_|-perl_|-installed",
+      "state": "sift.packages.perl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-pff-tools_|-pff-tools_|-installed",
+      "state": "sift.packages.pff-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-phonon_|-phonon4qt5_|-installed",
+      "state": "sift.packages.phonon",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-plaso-tools_|-plaso-tools_|-latest",
+      "state": "sift.packages.plaso-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-powershell_|-sift-package-powershell_|-installed",
+      "state": "sift.packages.powershell",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python-is-python3_|-python-is-python3_|-installed",
+      "state": "sift.packages.python3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python-pyqt_|-python3-pyqt5_|-installed",
+      "state": "sift.packages.python3-pyqt5",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-dev_|-python3-dev_|-installed",
+      "state": "sift.packages.python3-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-dfvfs_|-python3-dfvfs_|-installed",
+      "state": "sift.packages.python3-dfvfs",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-fuse_|-python3-fuse_|-installed",
+      "state": "sift.packages.python3-fuse",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-magic_|-python3-magic_|-installed",
+      "state": "sift.packages.python3-magic",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-pefile_|-python3-pefile_|-installed",
+      "state": "sift.packages.python3-pefile",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-pip_|-python3-pip_|-installed",
+      "state": "sift.packages.python3-pip",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-pypff_|-python3-pypff_|-installed",
+      "state": "sift.packages.python3-pypff",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-pytsk3_|-python3-pytsk3_|-installed",
+      "state": "sift.packages.python3-pytsk3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-setuptools-rust_|-python3-setuptools-rust_|-installed",
+      "state": "sift.packages.python3-setuptools-rust",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-setuptools_|-python3-setuptools_|-installed",
+      "state": "sift.packages.python3-setuptools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-tk_|-python3-tk_|-installed",
+      "state": "sift.packages.python3-tk",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-virtualenv_|-python3-virtualenv_|-installed",
+      "state": "sift.packages.python3-virtualenv",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-wheel_|-python3-wheel_|-installed",
+      "state": "sift.packages.python3-wheel",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-wxgtk4_|-python3-wxgtk4.0_|-installed",
+      "state": "sift.packages.python3-wxgtk4",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3-yara_|-python3-yara_|-installed",
+      "state": "sift.packages.python3-yara",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-python3_|-python3_|-installed",
+      "state": "sift.packages.python3",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-qemu-system_|-qemu-system_|-installed",
+      "state": "sift.packages.qemu",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-samdump2_|-samdump2_|-installed",
+      "state": "sift.packages.samdump2",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-sleuthkit_|-sleuthkit_|-latest",
+      "state": "sift.packages.sleuthkit",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-squashfs-tools_|-squashfs-tools_|-installed",
+      "state": "sift.packages.squashfs-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-wine_|-wine-stable_|-latest",
+      "state": "sift.packages.wine",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-wireshark_|-wireshark_|-installed",
+      "state": "sift.packages.wireshark",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-xmount_|-xmount_|-latest",
+      "state": "sift.packages.xmount",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-package-zlib1g-dev_|-zlib1g-dev_|-installed",
+      "state": "sift.packages.zlib1g-dev",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-packages-pdftk-java_|-pdftk-java_|-installed",
+      "state": "sift.packages.pdftk-java",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-perl-package-libcgi-pm-perl_|-libcgi-pm-perl_|-installed",
+      "state": "sift.perl-packages.cgi",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-perl-package-libdate-calc-perl_|-libdate-calc-perl_|-installed",
+      "state": "sift.perl-packages.datecalc",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-perl-package-libdbi-perl_|-libdbi-perl_|-installed",
+      "state": "sift.perl-packages.dbi",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-perl-package-libimage-exiftool-perl_|-libimage-exiftool-perl_|-installed",
+      "state": "sift.perl-packages.exiftool",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-perl-package-libjson-perl_|-libjson-perl_|-installed",
+      "state": "sift.perl-packages.json",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-perl-package-libxml-xpath-perl_|-libxml-xpath-perl_|-installed",
+      "state": "sift.perl-packages.xpath",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-python3-xlsxwriter_|-python3-xlsxwriter_|-installed",
+      "state": "sift.packages.python3-xlsxwriter",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-radare2_|-sift-radare2_|-installed",
+      "state": "sift.packages.radare2",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sift-unrar_|-unrar-free_|-installed",
+      "state": "sift.packages.unrar",
+      "result": true
+    },
+    {
+      "id": "pkg_|-socat_|-socat_|-installed",
+      "state": "sift.packages.socat",
+      "result": true
+    },
+    {
+      "id": "pkg_|-software-properties-common_|-software-properties-common_|-installed",
+      "state": "sift.packages.software-properties-common",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ssdeep_|-ssdeep_|-installed",
+      "state": "sift.packages.ssdeep",
+      "result": true
+    },
+    {
+      "id": "pkg_|-ssldump_|-ssldump_|-installed",
+      "state": "sift.packages.ssldump",
+      "result": true
+    },
+    {
+      "id": "pkg_|-sslsniff_|-sslsniff_|-installed",
+      "state": "sift.packages.sslsniff",
+      "result": true
+    },
+    {
+      "id": "pkg_|-stunnel4_|-stunnel4_|-installed",
+      "state": "sift.packages.stunnel4",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcl_|-tcl_|-installed",
+      "state": "sift.packages.tcl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcpflow_|-tcpflow_|-installed",
+      "state": "sift.packages.tcpflow",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcpick_|-tcpick_|-installed",
+      "state": "sift.packages.tcpick",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcpreplay_|-tcpreplay_|-installed",
+      "state": "sift.packages.tcpreplay",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcpslice_|-tcpslice_|-installed",
+      "state": "sift.packages.tcpslice",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcpstat_|-tcpstat_|-installed",
+      "state": "sift.packages.tcpstat",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcptrace_|-tcptrace_|-installed",
+      "state": "sift.packages.tcptrace",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcptrack_|-tcptrack_|-installed",
+      "state": "sift.packages.tcptrack",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tcpxtract_|-tcpxtract_|-installed",
+      "state": "sift.packages.tcpxtract",
+      "result": true
+    },
+    {
+      "id": "pkg_|-testdisk_|-testdisk_|-installed",
+      "state": "sift.packages.testdisk",
+      "result": true
+    },
+    {
+      "id": "pkg_|-tofrodos_|-tofrodos_|-installed",
+      "state": "sift.packages.tofrodos",
+      "result": true
+    },
+    {
+      "id": "pkg_|-transmission_|-transmission_|-installed",
+      "state": "sift.packages.transmission",
+      "result": true
+    },
+    {
+      "id": "pkg_|-unity-control-center_|-unity-control-center_|-installed",
+      "state": "sift.packages.unity-control-center",
+      "result": true
+    },
+    {
+      "id": "pkg_|-upx-ucl_|-upx-ucl_|-installed",
+      "state": "sift.packages.upx-ucl",
+      "result": true
+    },
+    {
+      "id": "pkg_|-vbindiff_|-vbindiff_|-installed",
+      "state": "sift.packages.vbindiff",
+      "result": true
+    },
+    {
+      "id": "pkg_|-vim_|-vim_|-installed",
+      "state": "sift.packages.vim",
+      "result": true
+    },
+    {
+      "id": "pkg_|-virtuoso-minimal_|-virtuoso-minimal_|-installed",
+      "state": "sift.packages.virtuoso-minimal",
+      "result": true
+    },
+    {
+      "id": "pkg_|-vmfs-tools_|-vmfs-tools_|-installed",
+      "state": "sift.packages.vmfs-tools",
+      "result": true
+    },
+    {
+      "id": "pkg_|-winbind_|-winbind_|-installed",
+      "state": "sift.packages.winbind",
+      "result": true
+    },
+    {
+      "id": "pkg_|-xdot_|-xdot_|-installed",
+      "state": "sift.packages.xdot",
+      "result": true
+    },
+    {
+      "id": "pkg_|-xfsprogs_|-xfsprogs_|-installed",
+      "state": "sift.packages.xfsprogs",
+      "result": true
+    },
+    {
+      "id": "pkg_|-zenity_|-zenity_|-installed",
+      "state": "sift.packages.zenity",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-gift-repo_|-gift_|-managed",
+      "state": "sift.repos.gift",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-openjdk-repo_|-openjdk-repo_|-managed",
+      "state": "sift.repos.openjdk",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-sift-dev_|-sift-dev_|-absent",
+      "state": "sift.repos.sift",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-sift-dotnet-backports-repo_|-dotnet-backports_|-managed",
+      "state": "sift.repos.dotnet-backports",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-sift-gift-dev_|-sift-gift-dev_|-absent",
+      "state": "sift.repos.gift",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-sift-microsoft-repo-cleanup_|-deb https://packages.microsoft.com/ubuntu/24.04/prod noble main_|-absent",
+      "state": "sift.repos.microsoft",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-sift-remove-docker-ppa_|-sift-remove-docker-ppa_|-absent",
+      "state": "sift.repos.docker",
+      "result": true
+    },
+    {
+      "id": "pkgrepo_|-sift-repo_|-sift-repo_|-managed",
+      "state": "sift.repos.sift",
+      "result": true
+    },
+    {
+      "id": "service_|-samba-service-nmbd_|-nmbd_|-running",
+      "state": "sift.config.samba",
+      "result": true
+    },
+    {
+      "id": "service_|-samba-service-smbd_|-smbd_|-running",
+      "state": "sift.config.samba",
+      "result": true
+    },
+    {
+      "id": "test_|-Bless is not available on Noble_|-Bless is not available on Noble_|-nop",
+      "state": "sift.packages.bless",
+      "result": true
+    },
+    {
+      "id": "test_|-Cryptcat is not available in Noble_|-Cryptcat is not available in Noble_|-nop",
+      "state": "sift.packages.cryptcat",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-config-tools_|-sift-config-tools_|-nop",
+      "state": "sift.config.tools",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-config-user_|-sift-config-user_|-nop",
+      "state": "sift.config.user",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-config_|-sift-config_|-nop",
+      "state": "sift.config",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-desktop-include_|-sift-desktop-include_|-nop",
+      "state": "sift.include-desktop",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-desktop-version-file_|-install-complete_|-nop",
+      "state": "sift.desktop",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-package-python-flowgrep_|-sift-package-python-flowgrep_|-nop",
+      "state": "sift.packages.python-flowgrep",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-packages_|-sift-packages_|-nop",
+      "state": "sift.packages",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-python3-packages_|-sift-python3-packages_|-nop",
+      "state": "sift.python3-packages",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-rar_|-sift-rar_|-nop",
+      "state": "sift.packages.rar",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-repos_|-sift-repos_|-nop",
+      "state": "sift.repos",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-scripts_|-sift-scripts_|-nop",
+      "state": "sift.scripts",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-server-include_|-sift-server-include_|-nop",
+      "state": "sift.include-server",
+      "result": true
+    },
+    {
+      "id": "test_|-sift-server-version-file_|-install-complete_|-nop",
+      "state": "sift.server",
+      "result": true
+    },
+    {
+      "id": "timezone_|-Etc/UTC_|-Etc/UTC_|-system",
+      "state": "sift.config.timezone",
+      "result": true
+    },
+    {
+      "id": "user_|-sift-user-sift_|-sift_|-present",
+      "state": "sift.config.user.user",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-4n6-scripts-venv_|-/opt/4n6-scripts_|-managed",
+      "state": "sift.scripts.4n6",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-amcache-venv_|-/opt/amcache_|-managed",
+      "state": "sift.scripts.amcache",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-analyzemft-virtualenv_|-/opt/analyzemft_|-managed",
+      "state": "sift.python3-packages.analyzemft",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-imagemounter-venv_|-/opt/imagemounter_|-managed",
+      "state": "sift.python3-packages.imagemounter",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-indxparse-venv_|-/opt/indxparse_|-managed",
+      "state": "sift.python3-packages.indxparse",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-ioc-writer-venv_|-/opt/ioc_writer_|-managed",
+      "state": "sift.python3-packages.ioc-writer",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-java-idx-parser-venv_|-/opt/java-idx-parser_|-managed",
+      "state": "sift.python3-packages.java-idx-parser",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-mac-apt-venv_|-/opt/mac-apt_|-managed",
+      "state": "sift.python3-packages.mac-apt",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-machinae-venv_|-/opt/machinae_|-managed",
+      "state": "sift.python3-packages.machinae",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-mvt-virtualenv_|-/opt/mvt_|-managed",
+      "state": "sift.python3-packages.mvt",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-packerid-venv_|-/opt/packerid_|-managed",
+      "state": "sift.scripts.packerid",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-page-brute-venv_|-/opt/page-brute_|-managed",
+      "state": "sift.python3-packages.page-brute",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-pdf-tools-venv_|-/opt/pdf-tools_|-managed",
+      "state": "sift.scripts.pdf-tools",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-pe-carver-venv_|-/opt/pe-carver_|-managed",
+      "state": "sift.python3-packages.pe-carver",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-pe-scanner-venv_|-/opt/pe-scanner_|-managed",
+      "state": "sift.python3-packages.pe-scanner",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-pyhindsight-venv_|-/opt/pyhindsight_|-managed",
+      "state": "sift.python3-packages.hindsight",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-python-evtx-venv_|-/opt/python-evtx_|-managed",
+      "state": "sift.python3-packages.python-evtx",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-sqlite-carver-venv_|-/opt/sqlite-carver_|-managed",
+      "state": "sift.python3-packages.sqlite-carver",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-stix-validator-venv_|-/opt/stix-validator_|-managed",
+      "state": "sift.python3-packages.stix-validator",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-ufade-virtualenv_|-/opt/ufade_|-managed",
+      "state": "sift.python3-packages.ufade",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-usbdeviceforensics-venv_|-/opt/usbdeviceforensics_|-managed",
+      "state": "sift.python3-packages.usbdeviceforensics",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-usnparser-venv_|-/opt/usnparser_|-managed",
+      "state": "sift.python3-packages.usnparser",
+      "result": true
+    },
+    {
+      "id": "virtualenv_|-sift-python3-package-volatility3-venv_|-/opt/volatility3_|-managed",
+      "state": "sift.python3-packages.volatility3",
+      "result": true
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "completed_at": "2026-10-17T22:35:16.340958+00:00",
+  "published_commit": "901390333414145a6d84c1ef466f4b9dc33f6c2d",
+  "checkout": "/home/flagship-test/FlagshipOS-release",
+  "executable": "/home/flagship-test/.local/bin/flagship",
+  "installed_package": "/home/flagship-test/.local/share/flagship/venv/lib/python3.14/site-packages/flagship",
+  "all_package_bytes_match": true,
+  "source_sha256": {
+    "gpu.py": "217f311275cb545c5b05c02b091542be1201336401053138ce4df68e71428929",
+    "mcp_server.py": "3b8221d701a6d1ac0ec6dc3109024e5ec371eb5e4d61ac1b4a35dad1f15b9d9e",
+    "repository_keys.py": "0a0ff298af866f07fe062d17d9f4f0b656270a2dd718e1cfc087b7e8bfc956b1",
+    "profiles.json": "dfdd656827fd7edc1a5f5d9a09a7056834c61a70b06a6f4c44f2a8597fe4bd0d",
+    "integration.py": "9861a448d8b2b41cea2de576a4242fc292e3ca3bfdc4a27b47ba037e8268e041",
+    "__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "live_packages.py": "1e70c98838494658a73b6692b2f4a9c6907e1f55c4b0d8cc51e02d70a53684b8",
+    "cli.py": "ba3991d23fc85330eb78f9a0582f548a2faba370eb90970b76b329a02038c817",
+    "gpu_nvrtc.py": "3840c89c7abdb7599d6fb9685bdceb7e555f5a17232f62d831e339f19dc7ac99",
+    "tooling.py": "599b4a2143fd97ea66f3a056ce88d11029e15c5ee891171336a3ae1c76d47fc1",
+    "preparation.py": "169df703c5843c20333393b7ab7517ddf00cd8a967c58f975f0311cae65b957e",
+    "__init__.py": "8447cfdd739fd1f59e3810a28542b2f861dd7e4459df8a74233bf31db2d87a79",
+    "recipes/parrot.Containerfile": "ff4966d23858b0615b6b98b90b8b6dffc7be98dfe56f457dc12e1cd1a48c805e",
+    "recipes/sift.Containerfile": "5c294248891710cab53fd23f19f820fd4b1ef888722b6cb6cca7f835191e0367",
+    "recipes/backbox.Containerfile": "4404d703639973305bec20c063d51b4a2c46572a4fe6ca1458a48e0d36b11887",
+    "recipes/kali.Containerfile": "7301d266f67c4ccff2b8c2da0cafc7c0c52f72eef557ac2977942f675a2389da",
+    "recipes/remnux.Containerfile": "ef3460a5fc44dc8125c71889faaa17480cf1ba738130fd974068d63ab3b21cdc"
+  },
+  "bootstrap_log_sha256": "854ab2b49fe54b787571013873c72b89047d31cb195ff157edc1f2fe4942882b"
+}
