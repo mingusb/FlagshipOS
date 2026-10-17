@@ -9,9 +9,13 @@ The [code verification receipt](code-verification.json) records 140 passing test
 - [Four real environments: CUDA memory round trips and application device listings](gpu-four-collections.json)
 - [SIFT timezone: reproduced failure and actual Salt-state success after correction](sift-timezone-check.json)
 - [CAINE password database: reproduced failure and successful standard conversion](caine-password-database-check.json)
+- [CAINE default home: reproduced filename failure and preserved all 7,554 files](caine-skeleton-check.json)
 - [Tsurugi repository key: exact pre-init repair and authenticated APT update](tsurugi-repository-check.json)
+- [Tsurugi precompiled locales: all 326 original variants actually activate](tsurugi-locales-check.json)
 
 The GPU report retains absent tools and failed OpenCL-device commands. It establishes neither universal GPU-tool compatibility nor performance. The startup diagnostics are bounded tests; full managed-container acceptance is recorded separately.
+
+The locale report records package-managed configuration drift separately: the package update removes `ks_IN@devanagari` from the generation selection, but the precompiled package still provides it and the actual activation check passes. The original and updated configuration hashes and complete selection difference are retained.
 
 ## Intermediate full-collection package audits
 

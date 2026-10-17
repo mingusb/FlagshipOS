@@ -65,6 +65,19 @@ done
 printf '%s\n' 'Flagship application directories belong to the mapped user.'
 '''
 
+# Tsurugi enables hundreds of locales. Its normal locales post-install script
+# explicitly accepts locales-all to retain those languages without recompiling
+# every locale during container setup.
+PRECOMPILED_LOCALES_SCRIPT = r'''
+set -eu
+if [ "$(dpkg-query -W -f='${db:Status-Status}' locales-all 2>/dev/null || :)" != installed ]; then
+    apt-get update
+    DEBIAN_FRONTEND=noninteractive apt-get install --yes --no-remove --no-install-recommends locales-all
+fi
+test "$(dpkg-query -W -f='${db:Status-Status}' locales-all)" = installed
+printf '%s\n' 'Flagship retained all supported languages using distribution-provided precompiled locales.'
+'''
+
 # Executed inside imported live-release containers, before Distrobox runs APT.
 # Keep a byte-for-byte backup; network repositories and installed packages stay intact.
 MEDIA_SOURCE_SCRIPT = r'''
@@ -124,6 +137,8 @@ def live_release_hook(profile=None):
         from . import repository_keys
         payload = base64.b64encode(Path(repository_keys.__file__).read_bytes()).decode('ascii')
         hook += ' && printf %s ' + payload + ' | base64 --decode | python3'
+        payload = base64.b64encode(PRECOMPILED_LOCALES_SCRIPT.encode()).decode('ascii')
+        hook += ' && printf %s ' + payload + ' | base64 --decode | sh'
     return hook
 
 

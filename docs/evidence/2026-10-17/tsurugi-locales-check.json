@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-17T21:38:34.018495+00:00",
+  "image_id": "sha256:b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd",
+  "hook_sha256": "158846ed2c39051b7fe47b1985c9a58effdeafe849ef6e569f3aaf82dbfae61e",
+  "exit_code": 0,
+  "log_sha256": "d0d85e88caa46e35aea35c113d7a504b1d3a2492e3b9e4064d0284dbc69c9e9a",
+  "log": "/home/flagship-test/flagship-validation/tsurugi-locales-check-20261017T213612Z.log",
+  "proof": {
+    "passed": true,
+    "seconds": 137.117,
+    "scope": "Every originally requested locale must remain discoverable and actually activate; package-managed configuration changes are recorded separately",
+    "requested_locales": 326,
+    "available_locales": 511,
+    "missing": [],
+    "activation_failures": {},
+    "activated_original_locales": 326,
+    "original_selection_preserved": false,
+    "selection_removed": [
+      "ks_IN@devanagari"
+    ],
+    "selection_added": [],
+    "configuration_bytes_unchanged": false,
+    "before_configuration_sha256": "b91a9c29be71a6539a987519879f40091ddacd5a22d1f30329f1c411d8a7a9ad",
+    "after_configuration_sha256": "5ec911179824b8236ca558493e523bed3bace0904feb021787b01a9c721fd348",
+    "package": "locales-all",
+    "version": "2.39-0ubuntu8.9"
+  }
+}
