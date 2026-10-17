@@ -179,6 +179,34 @@ def compare_packages(expected, rows, installed_only=True):
             "meaning": "Package/version multiset comparison; additions are reported and allowed, changed versions are gaps"}
 
 
+def package_preservation(baseline, rows):
+    """Require every originally installed package/architecture at its version or newer.
+
+    Distrobox installs integration dependencies and can upgrade base packages.
+    Exact version fidelity is reported separately, never silently called equal.
+    Debian's own comparator handles epochs, tildes and distribution revisions.
+    """
+    actual = {(row["package"], row["architecture"]): row for row in rows}
+    required = [row for row in baseline if row["installed"]]
+    changes, failures = [], []
+    for old in required:
+        new = actual.get((old["package"], old["architecture"]))
+        identity = {"package": old["package"], "architecture": old["architecture"], "baseline_version": old["version"]}
+        if not new or not new["installed"]:
+            failures.append(dict(identity, reason="Package/architecture missing or no longer installed"))
+        elif old["version"] != new["version"]:
+            comparison = subprocess.run(["dpkg", "--compare-versions", new["version"], "ge", old["version"]],
+                                        stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=10, check=False)
+            item = dict(identity, installed_version=new["version"], comparator_exit=comparison.returncode)
+            if comparison.returncode == 0:
+                changes.append(item)
+            else:
+                failures.append(dict(item, reason="Downgrade or invalid version comparison"))
+    return {"status": "pass" if required and not failures else "fail", "required_installed_packages": len(required),
+            "upgraded_packages": changes, "failures": failures,
+            "meaning": "Every originally installed package and architecture remains installed at the same or a newer Debian version; exact baseline differences are reported separately"}
+
+
 def iso_binding(profile, receipt, record, manifest_sha256):
     expected = ISO_RELEASES[profile]
     archive_matches = bool(receipt.get("archive_sha256") and receipt["archive_sha256"] == record.get("archive_sha256"))
@@ -259,7 +287,7 @@ def observe(argv, timeout=180):
     return json.loads(result.stdout)
 
 
-def audit_profile(ctx, profile, manifests, receipts):
+def audit_profile(ctx, profile, manifests, receipts, inventories=None):
     report = {"profile": profile, "checks": {}, "limitations": [
         "Installation evidence does not establish runtime functionality of every tool."]}
     checks = report["checks"]
@@ -315,8 +343,10 @@ def audit_profile(ctx, profile, manifests, receipts):
     if profile not in ("caine", "tsurugi"):
         baseline = observed["files"][INVENTORY]
         if baseline["status"] == "present":
-            expected = Counter((row["package"], row["version"]) for row in inventory(baseline["text"], True) if row["installed"])
-            checks["build_inventory"] = compare_packages(expected, rows)
+            baseline_rows = inventory(baseline["text"], True)
+            expected = Counter((row["package"], row["version"]) for row in baseline_rows if row["installed"])
+            report.setdefault("exact_version_fidelity", {})["build_inventory"] = compare_packages(expected, rows)
+            checks["build_package_preservation"] = package_preservation(baseline_rows, rows)
         else:
             checks["build_inventory"] = {"status": "unavailable", "reason": "No full-build package inventory"}
         recipe = files("flagship").joinpath("recipes", f"{profile}.Containerfile").read_bytes()
@@ -359,6 +389,22 @@ def audit_profile(ctx, profile, manifests, receipts):
             checks["iso_manifest"]["baseline_origin"] = checks["iso_conversion"]["package_baseline_origin"]
             if checks["iso_conversion"]["package_baseline_origin"] == "verified-source-squashfs-dpkg-status":
                 checks["iso_manifest"]["provenance"] = "Generated from an independent direct read of the verified source SquashFS package database; not a publisher manifest"
+            if inventories and profile in inventories:
+                inventory_data = inventories[profile].read_bytes()
+                inventory_hash = hashlib.sha256(inventory_data).hexdigest()
+                if inventory_hash != receipt.get("dpkg_inventory_sha256"):
+                    raise ValueError("ISO package inventory does not match the conversion receipt")
+                baseline_rows = []
+                for item in json.loads(inventory_data):
+                    baseline_rows.append({"package": item["Package"], "architecture": item["Architecture"],
+                                          "version": item["Version"], "installed": item["Status"] in
+                                          ("install ok installed", "hold ok installed")})
+                baseline_pairs = Counter((row["package"], row["version"]) for row in baseline_rows)
+                if baseline_pairs != manifest(manifests[profile].read_text()):
+                    raise ValueError("ISO package inventory and package baseline disagree")
+                report.setdefault("exact_version_fidelity", {})["iso_manifest"] = checks.pop("iso_manifest")
+                checks["iso_package_preservation"] = dict(package_preservation(baseline_rows, rows),
+                    path=str(inventories[profile]), sha256=inventory_hash)
         report["limitations"].append("The package baseline does not enumerate all custom non-package files or establish forensic write-blocking behavior.")
     final, final_record = core.managed_container(ctx, profile)
     checks["stable_environment"] = {"status": "pass" if final["Id"] == identity and final_record == record
@@ -386,12 +432,17 @@ def main(argv=None):
     parser.add_argument("--workspace", type=Path, required=True)
     parser.add_argument("--manifest", action="append", default=[], metavar="PROFILE=PATH")
     parser.add_argument("--iso-receipt", action="append", default=[], metavar="PROFILE=PATH")
+    parser.add_argument("--iso-inventory", action="append", default=[], metavar="PROFILE=PATH",
+                        help="Conversion-bound package/architecture inventory; accepts recorded upgrades while retaining exact-version differences")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
         if sys.platform != "linux" or os.geteuid() == 0:
             raise ValueError("Run as the ordinary Linux user who owns the environments")
         manifests, receipts = assignments(args.manifest), assignments(args.iso_receipt)
+        inventories = assignments(args.iso_inventory)
+        if not set(inventories) <= set(manifests) & set(receipts):
+            raise ValueError("ISO inventories also require the matching manifest and conversion receipt")
         ctx = core.Context(args.state_dir.expanduser().resolve(strict=True), args.workspace.expanduser().resolve(strict=True))
         core.validate_paths(ctx)
         core.validate_backend_configuration()
@@ -405,7 +456,7 @@ def main(argv=None):
                   "state_dir": str(ctx.state_dir), "workspace": str(ctx.workspace), "profiles": {}}
         for profile in PROFILES:
             try:
-                report["profiles"][profile] = audit_profile(ctx, profile, manifests, receipts)
+                report["profiles"][profile] = audit_profile(ctx, profile, manifests, receipts, inventories)
             except (core.CommandError, OSError, ValueError, TypeError, KeyError, subprocess.SubprocessError) as error:
                 report["profiles"][profile] = {"profile": profile, "status": "unavailable", "reason": str(error)}
         report["passed"] = all(value["status"] == "pass" for value in report["profiles"].values())

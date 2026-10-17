@@ -19,7 +19,7 @@ Testing uses an ordinary UID 1000 account, rootless Podman and a native Linux ch
 Verified on this fresh environment:
 
 - Bootstrap installation and repeated package installation succeeded.
-- **114 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing and container startup compatibility.
+- **120 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings and container startup compatibility.
 - Compilation, wheel creation, installation outside the checkout, all seven catalog entries, and the exact bytes of all five bundled recipes passed verification.
 - The first actual toolkit build exposed a missing `pasta` dependency in bootstrap. Podman stopped before Kali's package installation. Installing Ubuntu's `passt` package resolved that missing executable; bootstrap and readiness checks have been updated. A successful dependency check alone did not establish that image builds worked.
 - Strict CAINE conversion correctly refused a Unix socket in the release filesystem. The converter now offers an explicit, audited socket-only omission mode. A small real ISO fixture verified that this mode preserves file bytes, numeric ownership, permissions, hard links and a FIFO while recording the omitted socket. The full CAINE archive subsequently passed independent checksum and package-fidelity checks described below.
@@ -33,15 +33,17 @@ This work is **in progress**. A green unit suite or a base-container smoke test 
 
 | Collection | Required full installation | Acceptance result |
 | --- | --- | --- |
-| Kali | kali-linux-everything, including recommendations | Package installation finished; image completion and managed runtime audit pending |
+| Kali | kali-linux-everything, including recommendations | Full image built; managed runtime audit pending |
 | Parrot | parrot-tools-full, including recommendations | Full image built; managed runtime audit pending |
-| REMnux | Upstream full dedicated installer | Installer failed; diagnosis and successful full retry required |
-| BackBox | BackBox 9 backbox-tools, including recommendations | Full image built; isolated browser integration passed; managed runtime audit pending |
-| SIFT | Pinned upstream Cast release in desktop mode | Full installer running |
+| REMnux | Upstream full dedicated installer | Retry passed all 1,091 installer states; image completion and runtime acceptance pending |
+| BackBox | BackBox 9 backbox-tools, including recommendations | Full image, managed runtime/package audit and isolated browser integration passed |
+| SIFT | Pinned upstream Cast release in desktop mode | First installer failed; corrected full retry running |
 | CAINE | Complete verified CAINE 14 release filesystem | Archive verified and imported; first startup failed; compatibility retry pending |
-| Tsurugi | Complete verified LAB 26.03 release filesystem | Publisher signature/checksum verified; full filesystem conversion running |
+| Tsurugi | Complete verified LAB 26.03 release filesystem | Original archive verified; import found 22 files with unmappable owner IDs; explicit owner conversion running |
 
 Shared-shell acceptance must run actual commands from all seven providers, preserve literal arguments and exit codes, work with shared files and directories containing spaces, demonstrate a pipeline, and record collision preferences and provider provenance. It has not yet passed.
+
+The installation audit now distinguishes exact version fidelity from package preservation. Parrot's first Distrobox startup upgraded 30 base packages. The audit retains the original strict version differences and separately requires every originally installed package and architecture to remain installed at the same or a newer version, using Debian's version comparator. Missing packages, changed architectures and downgrades fail. ISO inventories must also match the conversion receipt and package baseline before this comparison is available.
 
 ### BackBox build corrections
 
@@ -55,7 +57,9 @@ The explicit omission receipt lists exactly 31 Unix sockets from heartbeat and p
 
 ### Tsurugi package baseline
 
-The verified LAB 26.03 ISO contains an empty `filesystem.manifest`. The acceptance pipeline therefore reads `/var/lib/dpkg/status` directly from an independently extracted source SquashFS and records 4,147 package/version entries as a derived baseline. This is not a publisher manifest. The auditor requires the source ISO checksum, source SquashFS hash, matching source/archive package-database hashes, and the derived baseline hash before accepting this evidence. Full archive and runtime comparison remain pending.
+The verified LAB 26.03 ISO contains an empty `filesystem.manifest`. The acceptance pipeline therefore reads `/var/lib/dpkg/status` directly from an independently extracted source SquashFS and records 4,147 package/version entries as a derived baseline. This is not a publisher manifest. The converted archive passed comparison against that baseline, with 4,129 installed records and 18 configuration-only records. Its package-database hash matches the source database exactly.
+
+The 34,581,695,488-byte archive contains 1,006,847 entries, with exactly 26 verified Unix sockets omitted. Its SHA-256 is `25a641c3dd132e5276392c07331f060e02e8ce4cdec6f51ce448130321e2ab38`. [Source verification, package inventories and conversion receipts](evidence/2026-10-17/README.md) retain the evidence. Runtime acceptance remains pending.
 
 ### Full-filesystem startup corrections
 
@@ -65,7 +69,11 @@ Tests execute the corrected detection in a real POSIX shell with both package co
 
 ### REMnux installer failure
 
-The first full dedicated installation reported 1,079 successful and 12 failed Salt states. Its first reported failure depended on the Thug package state. The failed image was not registered as prepared. Dependency diagnostics and a successful complete installation are required before REMnux can pass acceptance.
+The first full dedicated installation reported 1,079 successful and 12 failed Salt states. Its first reported failure depended on the Thug package state. The failed image was not registered as prepared. A second complete installation with the same recipe passed all 1,091 states with zero failures. The [parsed result receipt](evidence/2026-10-17/remnux-installer-results.json) records every state result and the original YAML hash. The first failure's cause was not conclusively reproduced; this success does not establish an identified repair for it. Image completion and managed runtime acceptance remain separate checks.
+
+### SIFT full desktop retry
+
+The first desktop installation reported 810 successful and 13 failed states. Its log contained an ExifTool archive download returning HTTP 404. The recipe now seeds the exact author-checksummed archive from the author's SourceForge distribution; Salt still performs its own verification and full installation. The upstream desktop states also require a real UID 1000 D-Bus session and Ubuntu Dock's schema. A disposable Ubuntu check reproduced the missing-session error and verified persistent settings with a real session. The corrected recipe supplies that session and the Dock package. The full retry is running; these bounded diagnostics do not establish that all 13 original failures are fixed.
 
 Full installation is distinct from every tool working under WSL. Kernel modules, device access, live-system write blocking, desktop integration and long-running services require their own validation. SIFT's default UID 1000 path has specific integration support; arbitrary host UIDs and migration of original distro home configuration remain unverified.
 
@@ -77,6 +85,6 @@ Some preliminary unit tests ran on an existing Ubuntu 26.04 distribution. All ac
 
 ## Continuous integration
 
-[Package CI](https://github.com/mingusb/FlagshipOS/actions/runs/39060765637) and the [real Kali base-container smoke test](https://github.com/mingusb/FlagshipOS/actions/runs/39060775984) passed commit `53f9559`, including the BackBox dependency/browser recipe correction. Those runs predate the Tsurugi derived-baseline audit change. See [GitHub Actions](https://github.com/mingusb/FlagshipOS/actions) for later exact-commit results.
+[Package CI](https://github.com/mingusb/FlagshipOS/actions/runs/39063357715) and the [real Kali base-container smoke test](https://github.com/mingusb/FlagshipOS/actions/runs/39063360455) passed commit `741e383`, including the Tsurugi derived-baseline audit and private Distrobox startup correction. See [GitHub Actions](https://github.com/mingusb/FlagshipOS/actions) for later exact-commit results.
 
 The hosted container job uses Ubuntu 24.04 and a pinned Distrobox version. It validates a base container with harmless local commands; it does not prove seven full collections work on WSL.

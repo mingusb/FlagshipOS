@@ -7,7 +7,7 @@
 
 FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
-**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 114 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `53f9559`](https://github.com/mingusb/FlagshipOS/actions/runs/39060775984) also passed. The full BackBox image has built and passed a local browser integration check. These checks do not establish complete toolkit installation or production readiness. See [validation scope](docs/validation.md).
+**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 120 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `741e383`](https://github.com/mingusb/FlagshipOS/actions/runs/39063360455) also passed. BackBox's full image, managed package audit and local browser integration passed. REMnux's full installer passed all 1,091 states. These checks do not establish complete seven-collection installation or production readiness. See [validation scope](docs/validation.md).
 
 ## Start on Ubuntu WSL2
 

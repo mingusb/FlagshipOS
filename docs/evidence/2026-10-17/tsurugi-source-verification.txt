@@ -1,0 +1,11 @@
+version=Tsurugi LAB 26.03
+file=/home/flagship-test/flagship-artifacts/tsurugi_linux_26.03.iso
+url=http://ia801402.us.archive.org/9/items/tsurugi_linux_26.03/tsurugi_linux_26.03.iso
+bytes=11786315776
+download_mirror=http://ia801402.us.archive.org/9/items/tsurugi_linux_26.03/tsurugi_linux_26.03.iso
+download_mirror=http://ia601402.us.archive.org/9/items/tsurugi_linux_26.03/tsurugi_linux_26.03.iso
+download_mirror=http://last-public-tsurugi.snap.mirrors.ovh.net/01.Tsurugi_Linux_%5bLAB%5d/tsurugi_linux_26.03.iso
+publisher_sha512=1284c3b4145ef2201e831350fde20a1445171be66ca34ab909cbd22eb77d5f19ec28a26275955538bddf7abb77ec5ac0c05f3383502c2ac83770150be1c31d8c
+sha256=ce22c08d5e3b3c63185b68607e1f4b706f9452fc2ead9a46e9bbf3285f1c13c3
+verified_utc=2026-10-17T19:09:36Z
+signing_fingerprint=68A60308FCD7BCA0F81E75016DF20CE124289711

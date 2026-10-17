@@ -81,6 +81,23 @@ For Tsurugi, replace `--sha256 VERIFIED_ISO_SHA256` with `--sha512 VERIFIED_ISO_
 
 The default conversion stops on unsupported filesystem entries. CAINE 14 contains a Unix socket, which tar cannot represent. For that case, explicitly add `--omit-runtime-sockets`: the helper independently verifies every omitted inode is a socket, rejects other omissions or ambiguous metadata, and writes `rootfs.tar.omissions.json` with the exact paths and archive hash. Retain this receipt with the rootfs. This option does not omit packages or regular tool files; it also does not recreate the corresponding running services.
 
+### Tsurugi owner IDs
+
+The verified LAB 26.03 filesystem has 22 bundled Node-package files with numeric owners outside the standard rootless range. Its unmodified archive fails Podman import. The explicit helper below maps only those three owner identities to distinct unused IDs. It retains the original archive, refuses collisions with existing archive owners, and verifies every regular file's content and all effective tar metadata after rewriting. Ownership names are cleared for changed IDs. Sparse files, ACL metadata and unmapped out-of-range owners are rejected rather than silently changed.
+
+```bash
+python3 scripts/remap-rootfs-owners.py \
+  --input /path/to/tsurugi-rootfs.tar --sha256 PRINTED_ORIGINAL_ROOTFS_SHA256 \
+  --output /path/to/tsurugi-rootfs-mapped.tar \
+  --uid-map 1146479719:60000 --uid-map 120012366:60001 --uid-map 110779:60002 \
+  --gid-map 1490099278:60000 --gid-map 120012366:60001
+
+flagship import-rootfs tsurugi /path/to/tsurugi-rootfs-mapped.tar \
+  --sha256 PRINTED_MAPPED_ROOTFS_SHA256
+```
+
+Retain `tsurugi-rootfs-mapped.tar.owners.json`, the original conversion receipt and both archive hashes. The mapped archive is explicitly a modified ownership representation of the release. Allow space for another private input copy and output tar. Consult the [validation record](validation.md) for the actual full-run result; fixture tests alone do not establish successful Tsurugi startup.
+
 ## Verification boundaries
 
 `check` runs representative local version commands. `tools --refresh` inventories discovered executables in created environments. Neither establishes complete application functionality. Live package repositories also mean a source pin does not make the final build reproducible.

@@ -37,6 +37,23 @@ class CollectionAuditTests(unittest.TestCase):
         self.assertEqual(result["missing_or_changed"], [{"package": "one", "version": "1.0", "count": 1}])
         self.assertEqual(len(result["additional_or_changed"]), 2)
 
+    @unittest.skipUnless(os.name == "posix", "Debian version comparator requires the Linux test environment")
+    def test_package_preservation_accepts_real_debian_upgrades_and_keeps_exact_diff(self):
+        baseline = audit.inventory("one\tone\tamd64\t1:2.0~rc1-1\tii \n")
+        current = audit.inventory("one\tone\tamd64\t1:2.0-1\tii \nextra\textra\tall\t1\tii \n")
+        result = audit.package_preservation(baseline, current)
+        self.assertEqual(result["status"], "pass")
+        self.assertEqual(len(result["upgraded_packages"]), 1)
+        self.assertEqual(audit.compare_packages(audit.manifest("one 1:2.0~rc1-1\n"), current)["status"], "fail")
+
+    @unittest.skipUnless(os.name == "posix", "Debian version comparator requires the Linux test environment")
+    def test_package_preservation_rejects_downgrade_missing_architecture_and_uninstall(self):
+        baseline = audit.inventory("one\tone\tamd64\t1:2.0-1\tii \n")
+        for text in ("one\tone\tamd64\t9.0\tii \n", "one\tone\ti386\t1:2.0-1\tii \n",
+                     "one\tone\tamd64\t1:2.0-1\trc \n", "other\tother\tamd64\t1\tii \n"):
+            with self.subTest(text=text):
+                self.assertEqual(audit.package_preservation(baseline, audit.inventory(text))["status"], "fail")
+
     def test_cast_receipt_requires_exact_full_mode_and_release(self):
         text = ("installations:\n    teamdfir/sift-saltstack:\n"
                 "        distro_name: teamdfir/sift-saltstack\n"
