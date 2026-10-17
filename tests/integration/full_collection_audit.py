@@ -18,9 +18,12 @@ Manifest files use the live ISO's `Package Version` format. Duplicate package
 records are retained because publisher manifests can omit architecture. Their
 local hashes and supplied conversion receipts are evidence, not independent
 authentication of the publisher. Keep checksum/signature verification receipts.
-An ISO audit receipt binds archive_sha256, publisher_manifest_sha256 and the
-source_checksum/source_checksum_algorithm. The socket-only conversion sidecar
-alone has no package-manifest binding and is reported as insufficient evidence.
+An ISO audit receipt binds archive_sha256, the package baseline hash and the
+source_checksum/source_checksum_algorithm. If the ISO's manifest is empty, an
+independent direct read of its verified SquashFS package database can supply the
+baseline. That origin must include matching source/archive database hashes and
+the source SquashFS hash. It is not described as a publisher manifest. The
+socket-only conversion sidecar alone is insufficient evidence.
 
 Exit 0 means the requested installation checks have sufficient passing evidence;
 1 means failures or unavailable evidence; 2 means invalid arguments. This is not
@@ -179,14 +182,27 @@ def compare_packages(expected, rows, installed_only=True):
 def iso_binding(profile, receipt, record, manifest_sha256):
     expected = ISO_RELEASES[profile]
     archive_matches = bool(receipt.get("archive_sha256") and receipt["archive_sha256"] == record.get("archive_sha256"))
-    manifest_matches = bool(manifest_sha256 and receipt.get("publisher_manifest_sha256") == manifest_sha256)
+    origin = receipt.get("package_baseline_origin", "publisher-iso-manifest")
+    baseline_hash = receipt.get("package_baseline_sha256", receipt.get("publisher_manifest_sha256"))
+    manifest_matches = bool(manifest_sha256 and baseline_hash == manifest_sha256)
+    origin_valid = origin == "publisher-iso-manifest"
+    if origin == "verified-source-squashfs-dpkg-status":
+        database_hash = receipt.get("source_package_database_sha256")
+        origin_valid = (isinstance(database_hash, str) and bool(re.fullmatch(r"[a-f0-9]{64}", database_hash))
+                        and receipt.get("archive_package_database_sha256") == database_hash
+                        and receipt.get("source_package_database_member") == "/var/lib/dpkg/status"
+                        and receipt.get("source_squashfs_iso_member") == "/casper/filesystem.squashfs"
+                        and isinstance(receipt.get("source_squashfs_sha256"), str)
+                        and bool(re.fullmatch(r"[a-f0-9]{64}", receipt["source_squashfs_sha256"]))
+                        and receipt.get("publisher_iso_manifest_bytes") == 0)
     source_matches = (receipt.get("source_checksum_algorithm") == expected["algorithm"]
                       and receipt.get("source_checksum") == expected["checksum"])
-    sufficient = archive_matches and manifest_matches and source_matches
+    sufficient = archive_matches and manifest_matches and source_matches and origin_valid
     return {"status": "pass" if sufficient else "unavailable", "matches_imported_archive": archive_matches,
             "matches_supplied_manifest": manifest_matches, "matches_published_source_checksum": source_matches,
+            "package_baseline_origin": origin, "baseline_origin_has_required_evidence": origin_valid,
             "expected_release": expected, "receipt": receipt,
-            "meaning": "Local conversion-audit receipt binds source checksum, manifest and imported archive; publisher signature verification is retained separately"}
+            "meaning": "Local conversion-audit receipt binds source checksum, package baseline and imported archive; a derived baseline is identified separately from a publisher manifest; publisher signature verification is retained separately"}
 
 
 def cast_state(text, expected):
@@ -340,7 +356,10 @@ def audit_profile(ctx, profile, manifests, receipts):
                 raise ValueError("ISO receipt must be an object")
             checks["iso_conversion"] = dict(iso_binding(profile, receipt, record, checks["iso_manifest"].get("sha256")),
                                              path=str(path), sha256=hashlib.sha256(data).hexdigest())
-        report["limitations"].append("The package manifest does not enumerate all custom non-package files or establish forensic write-blocking behavior.")
+            checks["iso_manifest"]["baseline_origin"] = checks["iso_conversion"]["package_baseline_origin"]
+            if checks["iso_conversion"]["package_baseline_origin"] == "verified-source-squashfs-dpkg-status":
+                checks["iso_manifest"]["provenance"] = "Generated from an independent direct read of the verified source SquashFS package database; not a publisher manifest"
+        report["limitations"].append("The package baseline does not enumerate all custom non-package files or establish forensic write-blocking behavior.")
     final, final_record = core.managed_container(ctx, profile)
     checks["stable_environment"] = {"status": "pass" if final["Id"] == identity and final_record == record
                                     and final.get("Mounts") == container.get("Mounts") else "fail"}

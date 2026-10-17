@@ -69,6 +69,24 @@ class CollectionAuditTests(unittest.TestCase):
             self.assertEqual(result["preparation_record"], record)
             observe.assert_not_called()
 
+    def test_empty_iso_manifest_needs_independent_source_database_evidence(self):
+        expected = audit.ISO_RELEASES["tsurugi"]
+        receipt = {"archive_sha256": "a" * 64, "package_baseline_sha256": "b" * 64,
+                   "source_checksum_algorithm": expected["algorithm"], "source_checksum": expected["checksum"],
+                   "package_baseline_origin": "verified-source-squashfs-dpkg-status",
+                   "source_package_database_sha256": "c" * 64, "archive_package_database_sha256": "c" * 64,
+                   "source_package_database_member": "/var/lib/dpkg/status",
+                   "source_squashfs_iso_member": "/casper/filesystem.squashfs",
+                   "source_squashfs_sha256": "d" * 64, "publisher_iso_manifest_bytes": 0}
+        record = {"archive_sha256": "a" * 64}
+        result = audit.iso_binding("tsurugi", receipt, record, "b" * 64)
+        self.assertEqual(result["status"], "pass")
+        self.assertEqual(result["package_baseline_origin"], "verified-source-squashfs-dpkg-status")
+        for field in receipt:
+            with self.subTest(field=field):
+                altered = dict(receipt, **{field: "incorrect"})
+                self.assertNotEqual(audit.iso_binding("tsurugi", altered, record, "b" * 64)["status"], "pass")
+
     def test_manifest_rejects_empty_and_malformed_rows(self):
         for text in ("", "package", "package version extra", "../invalid 1"):
             with self.subTest(text=text), self.assertRaises(ValueError):
