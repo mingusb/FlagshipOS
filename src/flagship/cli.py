@@ -366,7 +366,7 @@ def managed_container(ctx, profile, verify=True):
 
 
 def create_argv(ctx, profile, image, instance):
-    from . import integration
+    from . import gpu, integration
     flags = " ".join([f"--label={LABEL}.managed=true",
                       f"--label={LABEL}.installation={instance}",
                       f"--label={LABEL}.profile={profile}"])
@@ -375,7 +375,9 @@ def create_argv(ctx, profile, image, instance):
             "--image", image, "--home", str(ctx.home(profile)),
             "--volume", f"{ctx.workspace}:/workspace:rw", "--additional-flags", flags]
     if profile in ("caine", "tsurugi"):
-        argv += ["--pre-init-hooks", integration.media_source_hook()]
+        argv += ["--pre-init-hooks", integration.live_release_hook()]
+    if gpu.host_available():
+        argv += ["--init-hooks", gpu.setup_hook(with_runtime=True)]
     return argv
 
 
@@ -490,6 +492,8 @@ def create(ctx, profile, definition):
     image_id = image_identity(image, registry=False)
     ctx.workspace.mkdir(mode=0o700, parents=True, exist_ok=True)
     ctx.home(profile).mkdir(mode=0o700, parents=True, exist_ok=True)
+    for relative in (".config", ".cache", ".local/share", ".local/state"):
+        (ctx.home(profile) / relative).mkdir(mode=0o700, parents=True, exist_ok=True)
     record.update({"schema_version": 1, "profile": profile, "container": name,
                    "installation_id": install["installation_id"], "image": image, "image_id": image_id,
                    "workspace": str(ctx.workspace), "home": str(ctx.home(profile)),
@@ -646,13 +650,15 @@ def build_parser():
     common(parser, root=True)
     subparsers = parser.add_subparsers(dest="command", required=True)
     for name in ("profiles", "doctor", "status", "plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove",
-                 "tools", "which", "exec", "shell", "prefer"):
+                 "tools", "which", "exec", "shell", "prefer", "gpu"):
         sub = subparsers.add_parser(name)
         common(sub)
-        if name in ("profiles", "doctor", "status", "tools", "which"):
+        if name in ("profiles", "doctor", "status", "tools", "which", "gpu"):
             sub.add_argument("--json", action="store_true")
-        if name in ("plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove"):
+        if name in ("plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove", "gpu"):
             sub.add_argument("profile")
+        if name == "gpu":
+            sub.add_argument("--setup", action="store_true", help="Connect the WSL driver and add a distribution NVRTC runtime when Hashcat needs it")
         if name == "run":
             sub.add_argument("argv", nargs=argparse.REMAINDER)
         if name == "import-rootfs":
@@ -699,6 +705,9 @@ def main(argv=None):
         if args.command == "run":
             command_arguments(args)
         validate_backend_configuration()
+        if args.command == "gpu":
+            from . import gpu
+            return gpu.main(ctx, args.profile, args.setup, args.json)
         if args.command == "prepare":
             from . import preparation
             return preparation.main(ctx, args.profile)

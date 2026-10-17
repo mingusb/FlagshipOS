@@ -1,0 +1,29 @@
+# NVIDIA GPU checks on WSL
+
+Flagship can connect the Windows-provided WSL CUDA driver to each managed environment. GPU support remains specific to an API and application: a working CUDA application does not establish working OpenCL, graphics, video encoding or every upstream tool.
+
+## Setup and diagnosis
+
+On a WSL host with `/dev/dxg` and the NVIDIA libraries under `/usr/lib/wsl`, newly created environments receive the connection automatically. Existing environments can be updated individually:
+
+```bash
+flagship gpu parrot --setup
+flagship gpu parrot --json
+flagship run parrot -- hashcat -I
+```
+
+Repeat the first two commands for each installed profile. Without `--setup`, the command performs checks without installing packages. `--dry-run gpu parrot --setup` describes the operation without contacting a container. The usual managed-container ownership and mount checks apply.
+
+The setup links the existing read-only WSL driver files into the environment and refreshes its library loader. If Hashcat is installed and lacks its NVRTC compiler library, setup obtains the collection's `libnvrtc` runtime package with package removals disabled, then supplies the unversioned loader name used by packaged Hashcat builds. It does not install a Linux NVIDIA display or kernel driver. Existing conflicting paths cause an explicit failure instead of replacement. Network access is needed when a runtime package is missing.
+
+NVIDIA documents that WSL receives its CUDA driver from Windows and warns against installing a Linux GPU driver inside WSL. See the [CUDA on WSL guide](https://docs.nvidia.com/cuda/wsl-user-guide/index.html).
+
+## What a passing check establishes
+
+The CUDA check opens a context on each visible device, allocates 4 KiB of device memory, fills it with a known value, copies it back and compares every word before freeing the memory. The report includes device names, memory sizes and the driver API version. Its exit status reflects this bounded CUDA test.
+
+OpenCL enumeration is reported separately, including errors and the actual GPU devices returned by the installed OpenCL loader. An empty GPU list does not mean CUDA failed. Conversely, `nvidia-smi` output alone does not establish either application compatibility or OpenCL support.
+
+For an installed application, use its device-information command and retain the result. Hashcat's `-I`, John's `--list=opencl-devices` when supported by that build, and `clinfo -l` are discovery checks. They do not test cracking workloads, performance or all application features. A missing application is reported as absent; Flagship does not substitute another collection's binary for a profile-specific check.
+
+The [validation record](validation.md) distinguishes actual device checks from pending environments and untested application behavior. There is no claim that every GPU tool in all seven collections works under WSL.

@@ -51,6 +51,8 @@ The inventory is bound to installation, container, image and managed-home identi
 
 ## Failures and updates
 
+For NVIDIA WSL integration, use `flagship gpu PROFILE --setup` on an existing environment, followed by the application's own device-information command. New environments receive the WSL driver connection automatically when the host interface is available. [GPU checks and their limits](gpu.md) explain CUDA memory verification, OpenCL discovery and the optional distribution compiler runtime.
+
 Mutating operations hold a state lock and replace state files atomically. Creation records intended identity before Distrobox runs so a retry can recognize a matching container. Failed builds are not registered as prepared; checksum failures stop imports. Review the error and retry the same operation. Podman may reuse completed build layers.
 
 First entry may install Distrobox prerequisites and take time. Avoid concurrent APT operations in one environment. Inspect `flagship status --json` and `podman logs flagship-PROFILE`. Version checks are bounded checks, not exhaustive acceptance tests.

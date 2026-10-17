@@ -2,7 +2,15 @@
 
 These are observations from the fresh Ubuntu 26.10 `FlagshipOS-Full` WSL2 environment. Paths in receipts identify the disposable verification account. They are not installation instructions.
 
-The [code verification receipt](code-verification.json) records 121 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+The [code verification receipt](code-verification.json) records 132 passing tests, wheel installation, the seven-profile catalog and all five bundled recipe hashes. It explicitly records that the live seven-environment acceptance test was not run.
+
+## Intermediate full-collection package audits
+
+- [Kali and REMnux passing profile results](four-collection-audit-kali-remnux.json); the same snapshot records unavailable CAINE, so its overall `passed` remains false.
+- [Parrot passing package-preservation audit](four-collection-audit-parrot.json), retaining the separate exact-version differences from Distrobox's upgrades.
+- [BackBox passing profile result](four-collection-audit-backbox.json); this earlier snapshot also retains Parrot's original strict-version failure, so its overall `passed` remains false.
+
+The original bytes and observations are retained. These audits precede the later GPU runtime additions; final acceptance must audit the completed environments again. They are not the seven-provider demonstration.
 
 ## REMnux full installer
 
@@ -32,5 +40,7 @@ These files establish archive fidelity. They do not establish a successful conta
 - [Derived source package baseline](tsurugi-package-baseline.manifest)
 - [All package records from the converted filesystem](tsurugi-package-inventory.json)
 - [Exact omitted runtime sockets](tsurugi-socket-omissions.json)
+- [Verified explicit owner conversion](tsurugi-owner-conversion.json)
+- [Independent comparison of the owner-adjusted archive](tsurugi-mapped-manifest-audit.json)
 
 The archive contains 1,006,847 entries and matches all 4,147 records from an independent direct read of the verified source SquashFS package database: 4,129 installed and 18 configuration-only records. The ISO's publisher manifest is empty, so the derived baseline is explicitly identified as such. Source and archive package-database hashes match. Exactly 26 verified Unix sockets were omitted. These are archive-fidelity results; runtime acceptance remains pending.

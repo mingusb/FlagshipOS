@@ -19,7 +19,7 @@ Testing uses an ordinary UID 1000 account, rootless Podman and a native Linux ch
 Verified on this fresh environment:
 
 - Bootstrap installation and repeated package installation succeeded.
-- **121 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings and container startup compatibility.
+- **132 automated tests passed**, with no skips. They cover argument boundaries, private state, ownership and configuration drift, immutable image receipts, checksum snapshots, selected network helpers, provider selection, workspace mapping, failure cleanup, installation-evidence parsing, explicit rootfs owner mappings, container startup compatibility and guarded WSL GPU integration.
 - Compilation, wheel creation, installation outside the checkout, all seven catalog entries, and the exact bytes of all five bundled recipes passed verification.
 - The first actual toolkit build exposed a missing `pasta` dependency in bootstrap. Podman stopped before Kali's package installation. Installing Ubuntu's `passt` package resolved that missing executable; bootstrap and readiness checks have been updated. A successful dependency check alone did not establish that image builds worked.
 - Strict CAINE conversion correctly refused a Unix socket in the release filesystem. The converter now offers an explicit, audited socket-only omission mode. A small real ISO fixture verified that this mode preserves file bytes, numeric ownership, permissions, hard links and a FIFO while recording the omitted socket. The full CAINE archive subsequently passed independent checksum and package-fidelity checks described below.
@@ -33,17 +33,19 @@ This work is **in progress**. A green unit suite or a base-container smoke test 
 
 | Collection | Required full installation | Acceptance result |
 | --- | --- | --- |
-| Kali | kali-linux-everything, including recommendations | Full image built; managed runtime audit pending |
-| Parrot | parrot-tools-full, including recommendations | Full image built; managed runtime audit pending |
-| REMnux | Upstream full dedicated installer | Retry passed all 1,091 installer states; image completion and runtime acceptance pending |
+| Kali | kali-linux-everything, including recommendations | Full image and managed package audit passed; 4,412 installed packages |
+| Parrot | parrot-tools-full, including recommendations | Full image and package-preservation audit passed; 2,074 installed packages |
+| REMnux | Upstream full dedicated installer | All 1,091 installer states, full image and managed package audit passed; 2,207 installed packages |
 | BackBox | BackBox 9 backbox-tools, including recommendations | Full image, managed runtime/package audit and isolated browser integration passed |
-| SIFT | Pinned upstream Cast release in desktop mode | First installer failed; corrected full retry running |
-| CAINE | Complete verified CAINE 14 release filesystem | Archive verified and imported; first startup failed; compatibility retry pending |
-| Tsurugi | Complete verified LAB 26.03 release filesystem | Original archive verified; import found 22 files with unmappable owner IDs; explicit owner conversion running |
+| SIFT | Pinned upstream Cast release in desktop mode | Second installer passed 821/823 states; remaining timezone failure under repair |
+| CAINE | Complete verified CAINE 14 release filesystem | Archive verified and imported; missing password dictionary cache identified; corrected startup queued |
+| Tsurugi | Complete verified LAB 26.03 release filesystem | Explicit conversion of 22 unmappable owners verified; full import completed; first startup running |
 
 Shared-shell acceptance must run actual commands from all seven providers, preserve literal arguments and exit codes, work with shared files and directories containing spaces, demonstrate a pipeline, and record collision preferences and provider provenance. It has not yet passed.
 
 The installation audit now distinguishes exact version fidelity from package preservation. Parrot's first Distrobox startup upgraded 30 base packages. The audit retains the original strict version differences and separately requires every originally installed package and architecture to remain installed at the same or a newer version, using Debian's version comparator. Missing packages, changed architectures and downgrades fail. ISO inventories must also match the conversion receipt and package baseline before this comparison is available.
+
+The [intermediate audit receipts](evidence/2026-10-17/README.md) retain both successful profile results and the original failed or unavailable profiles. Their overall `passed` fields have not been rewritten. These snapshots precede GPU runtime setup; the final audit must be repeated after remaining installation changes.
 
 ### BackBox build corrections
 
@@ -61,21 +63,31 @@ The verified LAB 26.03 ISO contains an empty `filesystem.manifest`. The acceptan
 
 The 34,581,695,488-byte archive contains 1,006,847 entries, with exactly 26 verified Unix sockets omitted. Its SHA-256 is `25a641c3dd132e5276392c07331f060e02e8ce4cdec6f51ce448130321e2ab38`. [Source verification, package inventories and conversion receipts](evidence/2026-10-17/README.md) retain the evidence. Runtime acceptance remains pending.
 
+Rootless import found 22 files whose numeric owner IDs exceed the available user namespace. Explicit, collision-checked one-to-one mappings produced a second archive, SHA-256 `88c88766bc71e0594f9c4da584dfc2c9f6bd22550fcbe0c1e50cc3b001490ad2`. The converter verified all file bytes and metadata other than the requested owner/name changes, including binary extended attributes. Independent verification retained the same package database and 1,006,847 entries. The mapped archive imported successfully as image `sha256:b1e49931c17fa2b8c124f4027afaa37ebe3ae64c1792dd9ff01656ec1db7c3fd`; first startup remains separate.
+
 ### Full-filesystem startup corrections
 
 CAINE's first startup failed because its APT configuration still referred to installation media. Its logs also showed Distrobox choosing APT-RPM because the complete toolkit includes `rpm`, despite using a Debian package database. The startup adapter now prefers `dpkg-query` in the two affected Distrobox 1.8.2.5 branches. It preserves the installed host scripts and writes a verified private copy for container mounts, retaining upstream license notices. The live-release pre-init hook disables CD-ROM entries with exact original-file backups; network repositories remain configured.
 
 Tests execute the corrected detection in a real POSIX shell with both package commands present, check the private runtime's integrity, and exercise source-file changes and Distrobox's additional shell parsing. CAINE's corrected real startup has not yet passed; those tests alone do not establish it.
 
+The next CAINE attempt exposed a missing `/var/cache/cracklib` dictionary required by the release's existing PAM password-quality checks. A real networkless run rebuilt the dictionary from installed word lists and verified lookup. The live-release startup hook now rebuilds a missing cache with `update-cracklib`; it retains the password-quality checks. Another managed startup is queued.
+
 ### REMnux installer failure
 
-The first full dedicated installation reported 1,079 successful and 12 failed Salt states. Its first reported failure depended on the Thug package state. The failed image was not registered as prepared. A second complete installation with the same recipe passed all 1,091 states with zero failures. The [parsed result receipt](evidence/2026-10-17/remnux-installer-results.json) records every state result and the original YAML hash. The first failure's cause was not conclusively reproduced; this success does not establish an identified repair for it. Image completion and managed runtime acceptance remain separate checks.
+The first full dedicated installation reported 1,079 successful and 12 failed Salt states. Its first reported failure depended on the Thug package state. The failed image was not registered as prepared. A second complete installation with the same recipe passed all 1,091 states with zero failures. The [parsed result receipt](evidence/2026-10-17/remnux-installer-results.json) records every state result and the original YAML hash. The first failure's cause was not conclusively reproduced; this success does not establish an identified repair for it. The resulting full image and managed package audit also passed; the shared-shell demonstration remains pending.
 
 ### SIFT full desktop retry
 
-The first desktop installation reported 810 successful and 13 failed states. Its log contained an ExifTool archive download returning HTTP 404. The recipe now seeds the exact author-checksummed archive from the author's SourceForge distribution; Salt still performs its own verification and full installation. The upstream desktop states also require a real UID 1000 D-Bus session and Ubuntu Dock's schema. A disposable Ubuntu check reproduced the missing-session error and verified persistent settings with a real session. The corrected recipe supplies that session and the Dock package. The full retry is running; these bounded diagnostics do not establish that all 13 original failures are fixed.
+The first desktop installation reported 810 successful and 13 failed states. Its log contained an ExifTool archive download returning HTTP 404. The recipe now seeds the exact author-checksummed archive from the author's SourceForge distribution; Salt still performs its own verification and full installation. The upstream desktop states also require a real UID 1000 D-Bus session and Ubuntu Dock's schema. A disposable Ubuntu check reproduced the missing-session error and verified persistent settings with a real session. The corrected recipe supplies that session and the Dock package. Its complete retry passed 821 states and failed two: a timezone query attempted to use `timedatectl` without systemd as PID 1, and the aggregate configuration state depended on it. A file-based timezone correction is being tested; no failed installer has been registered as prepared.
 
 Full installation is distinct from every tool working under WSL. Kernel modules, device access, live-system write blocking, desktop integration and long-running services require their own validation. SIFT's default UID 1000 path has specific integration support; arbitrary host UIDs and migration of original distro home configuration remain unverified.
+
+## NVIDIA GPU verification
+
+Windows and the fresh Ubuntu host identify an NVIDIA RTX A5000 Laptop GPU with 16 GiB of memory and Windows driver 616.92. Initial Parrot and BackBox checks exposed `/dev/dxg` but could not load `libcuda.so.1`. Connecting the existing Windows-provided WSL libraries made CUDA device discovery succeed in both.
+
+BackBox's Hashcat 6.2.6 then required its distribution NVRTC runtime and the unversioned library name used by that build. After setup, its real `hashcat -I` output identified the RTX A5000 through CUDA. The same output listed only a CPU through OpenCL. The host passed the separate 4 KiB CUDA device-memory round trip. Checks for every environment and each installed application's backend remain in progress; these results do not establish that all GPU tools work. See [GPU setup and diagnosis](gpu.md).
 
 ## Earlier bounded checks
 

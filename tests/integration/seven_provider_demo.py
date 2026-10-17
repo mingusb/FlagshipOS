@@ -16,7 +16,8 @@ exiftool collision preference, and performs this local evidence workflow:
   CAINE dc3dd writes a shared file -> Parrot reads metadata -> REMnux YARA reads it.
 The source filename contains spaces and literal shell syntax. A missing YARA
 rules file checks that the bare command preserves the direct command's failure
-status. Only newly generated text and a harmless matching YARA rule are used.
+status. The same evidence is also opened using its absolute host workspace path.
+Only newly generated text and a harmless matching YARA rule are used.
 
 Run in a dedicated verification state/workspace, without concurrent preference
 changes. Touched preferences are restored in finally. A unique private workspace
@@ -292,6 +293,19 @@ class Demo:
         self.proof["shared_evidence"] = {"source_name": source_name, "copy_name": copy_name,
             "bytes": len(evidence), "sha256": hashlib.sha256(evidence).hexdigest(), "identical_copy": True,
             "pipeline": "caine:dc3dd stdout -> parrot:exiftool stdin", "yara_match": yara.strip()}
+
+        absolute_copy = str(self.directory / copy_name)
+        _, absolute_metadata, _ = self.shell("Bare exiftool reads the absolute host workspace filename",
+            ["exiftool", "-j", "-FileName", absolute_copy])
+        if json.loads(absolute_metadata)[0].get("FileName") != copy_name:
+            raise AcceptanceFailure("Parrot could not read the evidence by its absolute host workspace path")
+        _, absolute_yara, _ = self.shell("Bare yara reads absolute host workspace filenames",
+            ["yara", str(self.directory / "fixture rules.yar"), absolute_copy])
+        if f"FlagshipFixture {absolute_copy}" not in absolute_yara.splitlines():
+            raise AcceptanceFailure("REMnux could not read the evidence and rule by their absolute host workspace paths")
+        self.proof["absolute_workspace_paths"] = {"evidence": absolute_copy,
+            "parrot_metadata": True, "remnux_rule_and_evidence": True,
+            "scope": "This actual workspace path; arbitrary host paths are not inferred to be accessible"}
 
         # The rules file deliberately does not exist. Neither call can run a scan.
         missing = "rules file deliberately absent.yar"

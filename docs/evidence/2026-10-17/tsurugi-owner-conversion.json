@@ -1,0 +1,178 @@
+{
+  "archive_entries": 1006847,
+  "ownership_changes": [
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/.npmignore",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/Readme.md",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/examples/async3000/example.js",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/examples/async3000/package.json",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/module.js",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/package.json",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/test/test.js",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.jscsrc",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.jshintrc",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.npmignore",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.travis.yml",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/README.md",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/lib/ip.js",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/package.json",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/test/api-test.js",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/CHANGELOG.md",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/LICENSE",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/README.md",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/lib/help.js",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/lib/index.js",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/lib/util.js",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/package.json",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    }
+  ],
+  "semantic_sha256": "f8d7bd7fbd1e421600280492b0cc831fe378314a763ecb0045a76867db5b0036",
+  "content_and_metadata_verified": true,
+  "header_encoding_note": "PAX hdrcharset may be added for binary xattrs; decoded attribute values are compared exactly, including their surrogateescaped bytes",
+  "verification": "Ordered effective tar metadata and SHA256 of every regular file, allowing only the explicit numeric owner changes and clearing their textual owner names",
+  "schema_version": 1,
+  "source_archive": "/home/flagship-test/flagship-artifacts/tsurugi26-rootfs.tar",
+  "source_archive_sha256": "25a641c3dd132e5276392c07331f060e02e8ce4cdec6f51ce448130321e2ab38",
+  "archive": "/home/flagship-test/flagship-artifacts/tsurugi26-rootfs-mapped.tar",
+  "archive_sha256": "88c88766bc71e0594f9c4da584dfc2c9f6bd22550fcbe0c1e50cc3b001490ad2",
+  "archive_bytes": 34573486080,
+  "uid_map": {
+    "1146479719": 60000,
+    "120012366": 60001,
+    "110779": 60002
+  },
+  "gid_map": {
+    "1490099278": 60000,
+    "120012366": 60001
+  }
+}

@@ -112,6 +112,25 @@ class IntegrationTests(unittest.TestCase):
                 self.run_media_fixture(root)
 
     @unittest.skipUnless(os.name == "posix", "requires POSIX shell parsing")
+    def test_live_release_rebuilds_missing_dictionary_once(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            cache = root / 'cache'
+            binary = root / 'bin'
+            binary.mkdir()
+            updater = binary / 'update-cracklib'
+            updater.write_text('#!/bin/sh\nprintf dictionary > "' + str(cache / 'cracklib_dict.pwd')
+                               + '"\nprintf updated\\n\n')
+            updater.chmod(0o755)
+            script = integration.CRACKLIB_CACHE_SCRIPT.replace('/var/cache/cracklib', str(cache))
+            environment = dict(os.environ, PATH=str(binary) + os.pathsep + os.environ['PATH'])
+            first = subprocess.run(['/bin/sh', '-c', script], env=environment, capture_output=True, text=True, check=True)
+            self.assertIn('updated', first.stdout)
+            second = subprocess.run(['/bin/sh', '-c', script], env=environment, capture_output=True, text=True, check=True)
+            self.assertEqual(second.stdout, '')
+            self.assertEqual((cache / 'cracklib_dict.pwd').read_text(), 'dictionary')
+
+    @unittest.skipUnless(os.name == "posix", "requires POSIX shell parsing")
     def test_hook_survives_distrobox_double_quoted_shell_layer(self):
         with patch.object(integration, 'MEDIA_SOURCE_SCRIPT', "print('fixture hook ran')\n"):
             hook = integration.media_source_hook()

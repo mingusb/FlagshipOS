@@ -16,6 +16,17 @@ from . import cli as core
 RPM_PROBE = b"if command -v rpm; then"
 DEBIAN_FIRST_PROBE = b"if ! command -v dpkg-query >/dev/null 2>&1 && command -v rpm; then"
 
+# Live releases can omit /var/cache while retaining PAM's dictionary policy.
+# Rebuild the installed dictionary rather than disabling the password policy.
+CRACKLIB_CACHE_SCRIPT = r'''
+set -eu
+if command -v update-cracklib >/dev/null 2>&1 && [ ! -s /var/cache/cracklib/cracklib_dict.pwd ]; then
+    mkdir -p /var/cache/cracklib
+    update-cracklib
+    test -s /var/cache/cracklib/cracklib_dict.pwd
+fi
+'''
+
 # Executed inside imported live-release containers, before Distrobox runs APT.
 # Keep a byte-for-byte backup; network repositories and installed packages stay intact.
 MEDIA_SOURCE_SCRIPT = r'''
@@ -60,6 +71,11 @@ def media_source_hook():
     # the fixed program so quotes, dollars and newlines cannot escape that layer.
     payload = base64.b64encode(MEDIA_SOURCE_SCRIPT.encode()).decode("ascii")
     return "printf %s " + payload + " | base64 --decode | python3"
+
+
+def live_release_hook():
+    payload = base64.b64encode(CRACKLIB_CACHE_SCRIPT.encode()).decode("ascii")
+    return media_source_hook() + " && printf %s " + payload + " | base64 --decode | sh"
 
 
 def patch_init(source):

@@ -1,0 +1,313 @@
+{
+  "archive": "/home/flagship-test/flagship-artifacts/tsurugi26-rootfs-mapped.tar",
+  "archive_sha256": "88c88766bc71e0594f9c4da584dfc2c9f6bd22550fcbe0c1e50cc3b001490ad2",
+  "archive_bytes": 34573486080,
+  "archive_entries": 1006847,
+  "source_iso": "/home/flagship-test/flagship-artifacts/tsurugi_linux_26.03.iso",
+  "source_checksum_algorithm": "sha512",
+  "source_checksum": "1284c3b4145ef2201e831350fde20a1445171be66ca34ab909cbd22eb77d5f19ec28a26275955538bddf7abb77ec5ac0c05f3383502c2ac83770150be1c31d8c",
+  "publisher_manifest": "/home/flagship-test/flagship-artifacts/tsurugi-squashfs-package-baseline.manifest",
+  "publisher_manifest_iso_member": "/casper/filesystem.manifest",
+  "publisher_manifest_sha256": "45edcb8acc43a599e9114688d9d62f28ec80efae6e6f7def76ea94f0744fbf4d",
+  "package_baseline_origin": "verified-source-squashfs-dpkg-status",
+  "source_squashfs_iso_member": "/casper/filesystem.squashfs",
+  "source_squashfs_sha256": "03bbd8de24708dfb11d8b1894bc7f3e180aa87016d09e6e55482ff5457da7ac0",
+  "source_package_database_member": "/var/lib/dpkg/status",
+  "source_package_database_sha256": "6afa3fe552e1c6f677801b64c44897b267b4d3784ec4aeab74875fd235aa2783",
+  "archive_package_database_sha256": "6afa3fe552e1c6f677801b64c44897b267b4d3784ec4aeab74875fd235aa2783",
+  "publisher_iso_manifest_bytes": 0,
+  "package_baseline_note": "The publisher ISO manifest is empty. Baseline rows were generated from an independent direct read of the verified source SquashFS package database; they are not claimed to be a publisher manifest.",
+  "publisher_manifest_records": 4147,
+  "dpkg_status_records": 4147,
+  "dpkg_installed_records": 4129,
+  "all_status_manifest_match": true,
+  "manifest_not_in_status": [],
+  "status_not_in_manifest": [],
+  "dpkg_inventory": "/home/flagship-test/flagship-artifacts/tsurugi26-dpkg-inventory-20261017T191110Z.json",
+  "dpkg_inventory_sha256": "9751b255bc7d8087ebe66274e1aa8f4e78c9bd5b8cea2c8b35f2b21820b96c7e",
+  "custom_directory_observations": {
+    "entries": 507533,
+    "regular_files": 431849,
+    "regular_file_bytes": 20913328346
+  },
+  "os_release": "PRETTY_NAME=\"Tsurugi Linux 26.03\"\nNAME=\"Tsurugi\"\nVERSION_ID=\"26.03\"\nVERSION=\"26.O3 (Shingan)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://tsurugi-linux.org/\"\nSUPPORT_URL=\"https://tsurugi-linux.org/\"\nBUG_REPORT_URL=\"https://tsurugi-linux.org/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+  "omitted_runtime_sockets": [
+    {
+      "path": "./var/spool/postfix/dev/log",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/anvil",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/bounce",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/defer",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/discard",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/error",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/lmtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/local",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxymap",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/proxywrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/relay",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/retry",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/rewrite",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/scache",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/smtp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/tlsmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/trace",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/uucp",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/verify",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/private/virtual",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/cleanup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/flush",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/pickup",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/postlog",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/qmgr",
+      "type": "socket"
+    },
+    {
+      "path": "./var/spool/postfix/public/showq",
+      "type": "socket"
+    }
+  ],
+  "checked_at": "2026-10-17T20:16:10.120447+00:00",
+  "inspection": "Independent owner-adjusted tar checksum, entry count, account collision and unchanged package-database hash check; original source fidelity and full content/metadata transformation receipts retained",
+  "original_archive": "/home/flagship-test/flagship-artifacts/tsurugi26-rootfs.tar",
+  "original_archive_sha256": "25a641c3dd132e5276392c07331f060e02e8ce4cdec6f51ce448130321e2ab38",
+  "original_audit_sha256": "a1136236df01570e969e0af15116e0ed5ea54a1ae43d0e45c5d8f220e92550d0",
+  "owner_mapping_receipt": "/home/flagship-test/flagship-artifacts/tsurugi26-rootfs-mapped.tar.owners.json",
+  "owner_mapping_receipt_sha256": "9c1d6aa83b9a97cdf24450af00fbf029225001dcbe43f994325f7c6d5d2930dd",
+  "ownership_changes": [
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/.npmignore",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/Readme.md",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/examples/async3000/example.js",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/examples/async3000/package.json",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/module.js",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/package.json",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/expand-url/test/test.js",
+      "old_uid": 1146479719,
+      "old_gid": 1490099278,
+      "new_uid": 60000,
+      "new_gid": 60000
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.jscsrc",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.jshintrc",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.npmignore",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/.travis.yml",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/README.md",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/lib/ip.js",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/package.json",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./opt/vichiti/node_modules/ip/test/api-test.js",
+      "old_uid": 120012366,
+      "old_gid": 120012366,
+      "new_uid": 60001,
+      "new_gid": 60001
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/CHANGELOG.md",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/LICENSE",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/README.md",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/lib/help.js",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/lib/index.js",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/lib/util.js",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    },
+    {
+      "path": "./usr/local/lib/node_modules/box-js/node_modules/optionator/package.json",
+      "old_uid": 110779,
+      "old_gid": 100,
+      "new_uid": 60002,
+      "new_gid": 100
+    }
+  ],
+  "accounts": {
+    "etc/group": {
+      "sha256": "16a0a9d36363cdb777e3b6e049c0c22d9342d728731e9965f79f4285e0c6db26",
+      "mapped_source_and_target_ids_are_unnamed": true
+    },
+    "etc/passwd": {
+      "sha256": "76e40293589f4558bc8f769233b6482cd952df5b476ea564b0bea7540cb06ac9",
+      "mapped_source_and_target_ids_are_unnamed": true
+    }
+  }
+}

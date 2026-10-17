@@ -7,7 +7,7 @@
 
 FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
-**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 121 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `20f7225`](https://github.com/mingusb/FlagshipOS/actions/runs/39064740823) also passed. BackBox's full image, managed package audit and local browser integration passed. REMnux's full installer passed all 1,091 states. These checks do not establish complete seven-collection installation or production readiness. See [validation scope](docs/validation.md).
+**Status: experimental.** Full collection recipes and the unified interface are implemented; complete seven-collection acceptance remains in progress. The latest code passes 132 automated tests on fresh Ubuntu 26.10. A [manual Kali base smoke run at `a90b908`](https://github.com/mingusb/FlagshipOS/actions/runs/39065750224) also passed. Kali, Parrot, REMnux and BackBox have passed full managed package audits. REMnux's full installer passed all 1,091 states, and BackBox's local browser integration passed. These checks do not establish complete seven-collection installation or production readiness. See [validation scope](docs/validation.md).
 
 ## Start on Ubuntu WSL2
 
@@ -81,6 +81,7 @@ The default workspace is `~/flagship`, mounted as `/workspace` in every environm
 | `provision PROFILE` | Install that profile's listed packages in an existing container |
 | `run PROFILE -- COMMAND ...` | Run directly in one environment |
 | `check PROFILE` | Run representative local version checks |
+| `gpu PROFILE [--setup] [--json]` | Connect the WSL NVIDIA driver when requested; check CUDA and report OpenCL GPU discovery |
 | `tools --refresh`, `tools --json` | Refresh or inspect the executable inventory |
 | `which TOOL`, `which --profile PROFILE TOOL` | Explain selection; supports `--json` |
 | `exec [--profile PROFILE] TOOL -- ARG ...` | Run the selected indexed executable |
@@ -93,7 +94,9 @@ Put `--state-dir`, `--workspace` and `--dry-run` before the subcommand. For `exe
 
 ## Boundaries and license
 
-Full collection startup currently targets Distrobox 1.8.2.5. Flagship retains a private, content-addressed copy of the installed scripts with a narrow package-manager detection correction: Debian installations can include the `rpm` analysis tool without being mistaken for RPM-based systems. CAINE and Tsurugi startup disables unavailable CD-ROM package sources and retains the original source files as backups.
+Full collection startup currently targets Distrobox 1.8.2.5. Flagship retains a private, content-addressed copy of the installed scripts with a narrow package-manager detection correction: Debian installations can include the `rpm` analysis tool without being mistaken for RPM-based systems. CAINE and Tsurugi startup disables unavailable CD-ROM package sources, retains the original source files as backups and rebuilds a missing password-quality dictionary cache from the release's installed word lists.
+
+On an NVIDIA-capable WSL host, new environments connect the Windows-provided CUDA driver automatically. Existing environments use `flagship gpu PROFILE --setup`. CUDA, OpenCL and individual application support are checked separately; see [GPU setup and verification](docs/gpu.md).
 
 Linux home, state and workspace paths must contain only letters, digits, `/`, `_`, `.` and `-`. Custom Distrobox configuration and remote Podman connections are rejected. Containers are named `flagship-PROFILE`; state defaults to `${XDG_DATA_HOME:-$HOME/.local/share}/flagship`. Use consistent state/workspace options.
 
