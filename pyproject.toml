@@ -19,6 +19,9 @@ classifiers = [
 [project.scripts]
 flagship = "flagship.cli:main"
 
+[project.optional-dependencies]
+mcp = ["mcp==2.3.0"]
+
 [project.urls]
 Homepage = "https://github.com/mingusb/FlagshipOS"
 Issues = "https://github.com/mingusb/FlagshipOS/issues"

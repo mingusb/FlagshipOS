@@ -24,7 +24,7 @@ jobs:
       - name: Install into a disposable Python environment
         run: |
           python3 -m venv .venv
-          .venv/bin/python -m pip install --disable-pip-version-check -e .
+          .venv/bin/python -m pip install --disable-pip-version-check -e '.[mcp]'
       - name: Unit and command-line tests
         run: .venv/bin/python -m unittest discover -s tests -v
       - name: Compile Python sources
@@ -40,3 +40,8 @@ jobs:
           cd "$RUNNER_TEMP"
           "$RUNNER_TEMP/flagship-wheel/bin/flagship" profiles --json > profiles.json
           "$RUNNER_TEMP/flagship-wheel/bin/python" -c 'import json; data = json.load(open("profiles.json")); assert data, "empty installed catalog"'
+      - name: Verify MCP from the installed wheel
+        run: |
+          "$RUNNER_TEMP/flagship-wheel/bin/python" -m pip install --disable-pip-version-check 'mcp==2.3.0'
+          cd "$RUNNER_TEMP"
+          "$RUNNER_TEMP/flagship-wheel/bin/python" "$GITHUB_WORKSPACE/tests/test_mcp.py"

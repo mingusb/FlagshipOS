@@ -3,15 +3,17 @@
 set -Eeuo pipefail
 
 usage() {
-  printf '%s\n' 'Usage: bash scripts/bootstrap.sh [--yes] [--skip-system-packages]' \
+  printf '%s\n' 'Usage: bash scripts/bootstrap.sh [--yes] [--skip-system-packages] [--with-mcp]' \
     'Run as your normal Ubuntu user. --yes accepts the APT package installation.'
 }
 accept=()
 system_packages=1
+with_mcp=0
 for argument in "$@"; do
   case "$argument" in
     --yes) accept=(-y) ;;
     --skip-system-packages) system_packages=0 ;;
+    --with-mcp) with_mcp=1 ;;
     -h|--help) usage; exit 0 ;;
     *) usage >&2; exit 2 ;;
   esac
@@ -61,7 +63,9 @@ python3 -c 'import sys; sys.exit(0 if sys.version_info >= (3, 11) else "Python 3
 umask 077
 mkdir -p -- "$data_dir" "$bin_dir"
 python3 -m venv "$data_dir/venv"
-"$data_dir/venv/bin/python" -m pip install --disable-pip-version-check "$source_dir"
+install_source="$source_dir"
+if (( with_mcp )); then install_source+='[mcp]'; fi
+"$data_dir/venv/bin/python" -m pip install --disable-pip-version-check "$install_source"
 if [[ ! -L "$bin_dir/flagship" ]]; then
   ln -s -- "$target" "$bin_dir/flagship"
 fi

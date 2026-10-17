@@ -72,9 +72,14 @@ The default workspace is `~/flagship`, mounted as `/workspace` in every environm
 
 ## Commands
 
+For assistants, the optional [Flagship MCP server](docs/mcp.md) exposes structured discovery, fixed diagnostics and read-only shared-workspace inspection. Install with `bash scripts/bootstrap.sh --skip-system-packages --with-mcp`, then connect the client's stdio transport to `flagship mcp`.
+
+[AGENTS.md](AGENTS.md) provides operating and development instructions for assistants reading the repository. Connected MCP clients receive server instructions and can read `flagship://capabilities` without opening the checkout.
+
 | Command | Purpose |
 | --- | --- |
 | `profiles`, `doctor`, `status` | Inspect metadata, prerequisites and state; each accepts `--json` |
+| `mcp` | Start the optional local MCP server for an assistant client |
 | `plan PROFILE` | Preview container creation |
 | `prepare PROFILE` | Build and register a bundled full collection recipe |
 | `create PROFILE` | Create or reuse a matching managed container |

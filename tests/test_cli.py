@@ -66,6 +66,15 @@ class CliTests(unittest.TestCase):
         runtime.assert_not_called()
         self.assertFalse(self.ctx.state_dir.exists())
 
+    def test_mcp_dry_run_does_not_open_workspace_or_start_backend(self):
+        with patch("flagship.mcp_server.Workspace") as workspace, patch.object(cli, "require_runtime") as runtime:
+            code, output, _ = self.invoke("--dry-run", "mcp")
+        self.assertEqual(code, 0)
+        self.assertEqual(json.loads(output)["transport"], "stdio")
+        workspace.assert_not_called()
+        runtime.assert_not_called()
+        self.assertFalse(self.ctx.state_dir.exists())
+
     def test_unknown_and_unsafe_profiles_fail_before_any_mutation(self):
         with patch.object(cli, "require_runtime") as runtime, patch.object(cli, "stream") as stream:
             for profile in ("unknown", "../kali", "kali;echo-literal", "Kali", "kali/other"):

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-17T22:32:58.189190+00:00",
+  "passed": true,
+  "environment": "FlagshipOS-Full / ordinary flagship-test / separate temporary checkout and venvs",
+  "steps": [
+    {
+      "name": "create_source_venv",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_bytes": 0
+    },
+    {
+      "name": "install_source",
+      "exit_code": 0,
+      "output_sha256": "04119b1ba85893156cbb05cab356e78e877dfc2b1d638cbb472ad67889a90321",
+      "output_bytes": 7914
+    },
+    {
+      "name": "unit_tests",
+      "exit_code": 0,
+      "output_sha256": "ce7a2018d6366b06ff69da21eea0a0cf819908e62b4bdecf71c4ea8390bf33a2",
+      "output_bytes": 24944
+    },
+    {
+      "name": "compile_sources",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_bytes": 0
+    },
+    {
+      "name": "build_wheel",
+      "exit_code": 0,
+      "output_sha256": "444e323a2222bea661c6d45e8a4d582c5a80ead28093d05f1c059d02efb9014d",
+      "output_bytes": 846
+    },
+    {
+      "name": "check_wheel",
+      "exit_code": 0,
+      "output_sha256": "50f697d6679681280a6814a4cedd548f3ed716acbe099087f746bccbb642b668",
+      "output_bytes": 108
+    },
+    {
+      "name": "create_wheel_venv",
+      "exit_code": 0,
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "output_bytes": 0
+    },
+    {
+      "name": "install_wheel",
+      "exit_code": 0,
+      "output_sha256": "b2265e1114ba3ae1a85732ea6f8061ddb4265dc3effda94dd7a1976583074cf0",
+      "output_bytes": 134
+    },
+    {
+      "name": "install_wheel_mcp_extra",
+      "exit_code": 0,
+      "output_sha256": "7362b70c54bf4e8a7b141200c448be9feed370f9a1d2f747c7f52ee46dfce40f",
+      "output_bytes": 6270
+    },
+    {
+      "name": "installed_mcp_protocol_tests",
+      "exit_code": 0,
+      "output_sha256": "5f64d8c520e86f0b849469cc43672beab7b978b4ccac993329d1c0ab48056206",
+      "output_bytes": 468
+    },
+    {
+      "name": "installed_catalog_outside_checkout",
+      "exit_code": 0,
+      "output_sha256": "1b881396ef9620ae38d8debc0ceba553dadbc75fede8a3bede5f4878790242a3",
+      "output_bytes": 8426
+    },
+    {
+      "name": "installed_recipe_hashes_outside_checkout",
+      "exit_code": 0,
+      "output_sha256": "089ae9d1fa38ec724d73b4fd5998950f9002ae6853473cc86c99aa60e2fb67d8",
+      "output_bytes": 388
+    }
+  ],
+  "live_seven_environment_acceptance_run": false,
+  "source": {
+    "path": "/mnt/c/Users/refle/Documents/Codex/2026-10-17/fior/outputs/FlagshipOS",
+    "head": "e13fbe93774b71583ed8646ea83ec9b371150fb9",
+    "tree_sha256": "12d7b0ec099af387542746664e781c032f9b3c1d43e8b5d4f165e8e1ce8e43cd",
+    "files": 87,
+    "bytes": 9681757,
+    "fingerprint_format": "SHA256 of sorted UTF8 relative path + NUL + content SHA256 hex + LF; tracked and nonignored untracked files",
+    "code_tree_sha256": "f860c0faffd3559facf6e17ef5807933c534a6d0f9e767e4aefa205909a731c1",
+    "changed_files": [
+      "AGENTS.md",
+      "PROJECT_GUIDE.md",
+      "docs/mcp.md"
+    ],
+    "unchanged_during_verification": false,
+    "final_tree_sha256": "c64286657638f45bbe5f4ee11f6ab8e2611a05e4543612df925483879997bb56",
+    "final_code_tree_sha256": "f860c0faffd3559facf6e17ef5807933c534a6d0f9e767e4aefa205909a731c1",
+    "code_unchanged_during_verification": true
+  },
+  "recipe_sha256": {
+    "backbox": "4404d703639973305bec20c063d51b4a2c46572a4fe6ca1458a48e0d36b11887",
+    "kali": "7301d266f67c4ccff2b8c2da0cafc7c0c52f72eef557ac2977942f675a2389da",
+    "parrot": "ff4966d23858b0615b6b98b90b8b6dffc7be98dfe56f457dc12e1cd1a48c805e",
+    "remnux": "ef3460a5fc44dc8125c71889faaa17480cf1ba738130fd974068d63ab3b21cdc",
+    "sift": "5c294248891710cab53fd23f19f820fd4b1ef888722b6cb6cca7f835191e0367"
+  },
+  "catalog_sha256": "dfdd656827fd7edc1a5f5d9a09a7056834c61a70b06a6f4c44f2a8597fe4bd0d",
+  "tests": {
+    "count": 159,
+    "seconds": 13.838,
+    "skipped": 0,
+    "passed": true
+  },
+  "wheel": {
+    "filename": "flagshipos-0.1.0-py3-none-any.whl",
+    "bytes": 49128,
+    "sha256": "fda4b0227e340f89323c9900cd52a035f0a45b6ce51519e01d606f3cf97ca3b1",
+    "exact_source_recipes_and_catalog": true,
+    "sift_remnux_offline_setting_invocation_only": true
+  },
+  "installed_catalog_profiles": [
+    "backbox",
+    "caine",
+    "kali",
+    "parrot",
+    "remnux",
+    "sift",
+    "tsurugi"
+  ],
+  "installed_recipe_sha256": {
+    "kali": "7301d266f67c4ccff2b8c2da0cafc7c0c52f72eef557ac2977942f675a2389da",
+    "parrot": "ff4966d23858b0615b6b98b90b8b6dffc7be98dfe56f457dc12e1cd1a48c805e",
+    "backbox": "4404d703639973305bec20c063d51b4a2c46572a4fe6ca1458a48e0d36b11887",
+    "sift": "5c294248891710cab53fd23f19f820fd4b1ef888722b6cb6cca7f835191e0367",
+    "remnux": "ef3460a5fc44dc8125c71889faaa17480cf1ba738130fd974068d63ab3b21cdc"
+  },
+  "iso_audit_review": {
+    "config_only_metadata": "ISO comparison includes all dpkg status records; installed package count is separate.",
+    "pure_additions": "Reported in additional_or_changed and permitted when no original package/version records are missing.",
+    "version_changes": "Old version appears in missing_or_changed, new version in additional_or_changed; reported as exact-release drift, not silently accepted.",
+    "missing_evidence": "Absent manifest/receipt/source binding reports unavailable; prepared or stopped providers are not started.",
+    "interpretation": "Normal Distrobox upgrades can produce an audit failure for version drift despite a healthy dependency database; inspect paired before/after records."
+  },
+  "finished_at": "2026-10-17T22:33:41.682256+00:00"
+}

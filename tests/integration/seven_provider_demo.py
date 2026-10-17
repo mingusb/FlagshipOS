@@ -11,9 +11,9 @@ simulated providers, scan targets, or execute exploits. Missing environments,
 tools or a host command that would shadow a specialist command are failures.
 
 The real unified shell runs all seven version checks, changes an actual
-exiftool collision preference, and performs this local evidence workflow:
-  CAINE dc3dd -> Parrot exiftool over a pipe;
-  CAINE dc3dd writes a shared file -> Parrot reads metadata -> REMnux YARA reads it.
+nmap collision preference, and performs this local evidence workflow:
+  CAINE dc3dd -> Kali exiftool over a pipe;
+  CAINE dc3dd writes a shared file -> Kali reads metadata -> REMnux YARA reads it.
 The source filename contains spaces and literal shell syntax. A missing YARA
 rules file checks that the bare command preserves the direct command's failure
 status. The same evidence is also opened using its absolute host workspace path.
@@ -46,8 +46,8 @@ import time
 
 
 TOOLS = {
-    "kali": ("nmap", "--version"),
-    "parrot": ("exiftool", "-ver"),
+    "kali": ("exiftool", "-ver"),
+    "parrot": ("nmap", "--version"),
     "remnux": ("yara", "--version"),
     "backbox": ("foremost", "-V"),
     "sift": ("mmls", "-V"),
@@ -71,10 +71,10 @@ for tool in nmap exiftool yara foremost mmls dc3dd fls; do
     test -x "${resolved%/*}/.dispatch"
     printf 'FLAGSHIP_SHIM_PROOF\t%s\t%s\n' "$tool" "$resolved"
 done
-printf '\n[annotation: Kali / nmap]\n'
-nmap --version
-printf '\n[annotation: Parrot / exiftool]\n'
+printf '\n[annotation: Kali / exiftool]\n'
 exiftool -ver
+printf '\n[annotation: Parrot / nmap]\n'
+nmap --version
 printf '\n[annotation: REMnux / yara]\n'
 yara --version
 printf '\n[annotation: BackBox / foremost]\n'
@@ -90,13 +90,13 @@ fls -V
 WORKFLOW_SCRIPT = r'''#!/bin/bash
 set -euo pipefail
 cd -- "$1"
-printf '\n[annotation: CAINE -> Parrot, real stdin/stdout pipeline]\n'
+printf '\n[annotation: CAINE -> Kali, real stdin/stdout pipeline]\n'
 dc3dd "if=$2" hash=sha256 'log=dc3dd pipeline.log' \
     | exiftool -j -FileType -FileSize - \
     | tee 'pipeline metadata.json'
 printf '\n[annotation: CAINE writes the shared evidence copy]\n'
 dc3dd "if=$2" "of=$3" hash=sha256 'log=dc3dd copy.log'
-printf '\n[annotation: Parrot reads metadata from the same shared file]\n'
+printf '\n[annotation: Kali reads metadata from the same shared file]\n'
 exiftool -j -FileName -FileType "$3" | tee 'shared file metadata.json'
 printf '\n[annotation: REMnux matches a harmless text marker in the same file]\n'
 yara 'fixture rules.yar' "$3" | tee 'YARA result.txt'
@@ -242,9 +242,9 @@ class Demo:
         for profile, (tool, _) in TOOLS.items():
             if not any(item["profile"] == profile for item in rows.get(tool, {}).get("candidates", [])):
                 raise AcceptanceFailure(f"Required command {tool} is missing from {profile}; no substitute will be installed or selected")
-        collision = rows["exiftool"]["candidates"]
+        collision = rows["nmap"]["candidates"]
         if not {"kali", "parrot"}.issubset({item["profile"] for item in collision}):
-            raise AcceptanceFailure("The collision demonstration requires real exiftool installations in both Kali and Parrot")
+            raise AcceptanceFailure("The collision demonstration requires real nmap installations in both Kali and Parrot")
         for profile, (tool, _) in TOOLS.items():
             self.prefer(tool, profile)
             self.proof["providers"][profile] = self.provenance(tool, profile)
@@ -261,12 +261,13 @@ class Demo:
         if set(observed_shims) != {tool for tool, _ in TOOLS.values()}:
             raise AcceptanceFailure("The real shell did not verify all seven private dispatcher shims")
         self.proof["observed_private_shims"] = observed_shims
-        self.prefer("exiftool", "kali")
-        selected_kali = self.provenance("exiftool", "kali")
-        self.shell("Same bare exiftool name now runs Kali", ["exiftool", "-ver"])
-        self.prefer("exiftool", "parrot")
-        selected_parrot = self.provenance("exiftool", "parrot")
-        self.proof["collision"] = {"tool": "exiftool", "first": selected_kali, "second": selected_parrot}
+        self.prefer("nmap", "kali")
+        selected_kali = self.provenance("nmap", "kali")
+        self.shell("Same bare nmap name now runs Kali", ["nmap", "--version"])
+        self.prefer("nmap", "parrot")
+        selected_parrot = self.provenance("nmap", "parrot")
+        self.shell("Same bare nmap name now runs Parrot", ["nmap", "--version"])
+        self.proof["collision"] = {"tool": "nmap", "first": selected_kali, "second": selected_parrot}
 
         source_name = "evidence with spaces ; $(touch SHOULD_NOT_EXIST).txt"
         copy_name = "copied evidence with spaces.txt"
@@ -286,25 +287,25 @@ class Demo:
         pipeline = json.loads((self.directory / "pipeline metadata.json").read_text())
         metadata = json.loads((self.directory / "shared file metadata.json").read_text())
         if pipeline[0].get("FileType") != "TXT" or metadata[0].get("FileName") != copy_name:
-            raise AcceptanceFailure("Parrot did not identify the piped and shared text evidence correctly")
+            raise AcceptanceFailure("Kali did not identify the piped and shared text evidence correctly")
         yara = (self.directory / "YARA result.txt").read_text()
         if f"FlagshipFixture {copy_name}" not in yara.splitlines():
             raise AcceptanceFailure("REMnux did not match the fixture rule against the shared evidence file")
         self.proof["shared_evidence"] = {"source_name": source_name, "copy_name": copy_name,
             "bytes": len(evidence), "sha256": hashlib.sha256(evidence).hexdigest(), "identical_copy": True,
-            "pipeline": "caine:dc3dd stdout -> parrot:exiftool stdin", "yara_match": yara.strip()}
+            "pipeline": "caine:dc3dd stdout -> kali:exiftool stdin", "yara_match": yara.strip()}
 
         absolute_copy = str(self.directory / copy_name)
         _, absolute_metadata, _ = self.shell("Bare exiftool reads the absolute host workspace filename",
             ["exiftool", "-j", "-FileName", absolute_copy])
         if json.loads(absolute_metadata)[0].get("FileName") != copy_name:
-            raise AcceptanceFailure("Parrot could not read the evidence by its absolute host workspace path")
+            raise AcceptanceFailure("Kali could not read the evidence by its absolute host workspace path")
         _, absolute_yara, _ = self.shell("Bare yara reads absolute host workspace filenames",
             ["yara", str(self.directory / "fixture rules.yar"), absolute_copy])
         if f"FlagshipFixture {absolute_copy}" not in absolute_yara.splitlines():
             raise AcceptanceFailure("REMnux could not read the evidence and rule by their absolute host workspace paths")
         self.proof["absolute_workspace_paths"] = {"evidence": absolute_copy,
-            "parrot_metadata": True, "remnux_rule_and_evidence": True,
+            "kali_metadata": True, "remnux_rule_and_evidence": True,
             "scope": "This actual workspace path; arbitrary host paths are not inferred to be accessible"}
 
         # The rules file deliberately does not exist. Neither call can run a scan.

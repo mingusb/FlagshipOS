@@ -652,7 +652,7 @@ def build_parser():
     common(parser, root=True)
     subparsers = parser.add_subparsers(dest="command", required=True)
     for name in ("profiles", "doctor", "status", "plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove",
-                 "tools", "which", "exec", "shell", "prefer", "gpu"):
+                 "tools", "which", "exec", "shell", "prefer", "gpu", "mcp"):
         sub = subparsers.add_parser(name)
         common(sub)
         if name in ("profiles", "doctor", "status", "tools", "which", "gpu"):
@@ -697,6 +697,9 @@ def main(argv=None):
         validate_paths(ctx)
         if args.command == "status":
             return status(ctx, catalog, args.json)
+        if args.command == "mcp":
+            from . import mcp_server
+            return mcp_server.main(ctx)
         if args.command in ("tools", "which", "exec", "shell", "prefer"):
             from . import tooling
             validate_backend_configuration()
