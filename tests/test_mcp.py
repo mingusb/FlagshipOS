@@ -12,7 +12,18 @@ import unittest
 from unittest.mock import patch
 
 from flagship import cli
-from flagship.mcp_server import Backend, FILE_LIMIT, Workspace, bounded_process
+from flagship.mcp_server import Backend, FILE_LIMIT, Workspace, bounded_process, parse_package_rows, plain_manual
+
+
+class PackageAndDocsTests(unittest.TestCase):
+    def test_installed_package_filter_and_summary(self):
+        records = "ii \ttshark\t4.0\tpacket analyzer\nrc \told\t1\tremoved\nhi \tyara\t2\tmalware scanner\n"
+        self.assertEqual(parse_package_rows(records, "kali"), [
+            {"profile": "kali", "package": "tshark", "version": "4.0", "summary": "packet analyzer"},
+            {"profile": "kali", "package": "yara", "version": "2", "summary": "malware scanner"}])
+
+    def test_manual_overstrikes_and_color_are_removed(self):
+        self.assertEqual(plain_manual("_\bN N\bN \x1b[31mred\x1b[0m"), "N N red")
 
 
 @unittest.skipUnless(sys.platform == "linux", "Linux descriptor and process semantics")
@@ -110,6 +121,26 @@ class ProcessTests(unittest.IsolatedAsyncioTestCase):
         with self.assertRaisesRegex(ValueError, "byte limit"):
             await bounded_process([sys.executable, "-c", "print('x' * 10000)"], limit=100)
 
+    async def test_unlimited_capture_preserves_complete_output(self):
+        result = await bounded_process([sys.executable, "-c",
+            "import sys; sys.stdout.write('x' * 10000); sys.stderr.write('y' * 2000)"],
+            limit=None)
+        self.assertEqual(result["exit_code"], 0)
+        self.assertEqual(result["stdout"], "x" * 10000)
+        self.assertEqual(result["stderr"], "y" * 2000)
+
+    async def test_optional_output_cap_reports_original_lengths(self):
+        result = await bounded_process([sys.executable, "-c",
+            "import sys; sys.stdout.write('x' * 10000); sys.stderr.write('y' * 2000)"],
+            limit=1024, truncate=True)
+        self.assertEqual(result["exit_code"], 0)
+        self.assertEqual(result["stdout"], "x" * 1024)
+        self.assertEqual(result["stderr"], "y" * 1024)
+        self.assertTrue(result["stdout_truncated"])
+        self.assertTrue(result["stderr_truncated"])
+        self.assertEqual(result["stdout_bytes"], 10000)
+        self.assertEqual(result["stderr_bytes"], 2000)
+
     async def test_deadline_terminates_sleeping_process(self):
         with self.assertRaises(TimeoutError):
             await bounded_process([sys.executable, "-c", "import time; time.sleep(30)"], timeout=0.1)
@@ -157,9 +188,16 @@ class ProtocolTests(unittest.IsolatedAsyncioTestCase):
             async with Client(parameters, read_timeout_seconds=20) as client:
                 tools = (await client.list_tools()).tools
                 self.assertEqual({tool.name for tool in tools}, {
-                    "flagship_status", "flagship_find_tools", "flagship_resolve_tool", "flagship_gpu_check",
-                    "flagship_tool_info", "flagship_list_files", "flagship_inspect_file", "flagship_read_text"})
-                self.assertTrue(all(tool.annotations.read_only_hint for tool in tools))
+                    "flagship_status", "flagship_find_tools", "flagship_search_packages",
+                    "flagship_search_manuals", "flagship_resolve_tool", "flagship_gpu_check", "flagship_tool_info",
+                    "flagship_tool_docs", "flagship_exec", "flagship_list_files",
+                    "flagship_inspect_file", "flagship_read_text"})
+                self.assertTrue(all(tool.annotations.read_only_hint for tool in tools
+                                    if tool.name not in ("flagship_exec", "flagship_tool_docs")))
+                for name in ("flagship_exec", "flagship_tool_docs"):
+                    command_tool = next(tool for tool in tools if tool.name == name)
+                    self.assertFalse(command_tool.annotations.read_only_hint)
+                    self.assertTrue(command_tool.annotations.destructive_hint)
                 status = await client.call_tool("flagship_status", {})
                 self.assertFalse(status.is_error)
                 self.assertEqual(len(status.structured_content["providers"]), 7)
@@ -173,6 +211,14 @@ class ProtocolTests(unittest.IsolatedAsyncioTestCase):
                     ("flagship_gpu_check", {"profile": "foreign"}),
                     ("flagship_tool_info", {"tool": "bash", "profile": "kali"}),
                     ("flagship_tool_info", {"tool": "nmap", "profile": "kali", "detail": "devices"}),
+                    ("flagship_exec", {"tool": "bash; echo bad", "profile": "kali"}),
+                    ("flagship_search_packages", {"query": " "}),
+                    ("flagship_search_manuals", {"query": " "}),
+                    ("flagship_tool_docs", {"tool": "bash; echo bad", "profile": "kali"}),
+                    ("flagship_exec", {"tool": "bash", "profile": "foreign"}),
+                    ("flagship_exec", {"tool": "bash", "timeout_seconds": 121}),
+                    ("flagship_exec", {"tool": "bash", "max_output_bytes": 0}),
+                    ("flagship_exec", {"tool": "bash", "arguments": ["x"] * 129}),
                 ):
                     with self.subTest(name=name, arguments=arguments):
                         result = await client.call_tool(name, arguments)

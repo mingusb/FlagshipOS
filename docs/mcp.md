@@ -1,6 +1,6 @@
 # Flagship MCP server
 
-Flagship's local [Model Context Protocol](https://modelcontextprotocol.io/docs/learn/server-concepts) server gives an assistant structured access to provider status, executable discovery, bounded diagnostics and the shared workspace. It uses the [official Python SDK](https://github.com/modelcontextprotocol/python-sdk), pinned to the tested 2.3.0 release, over standard input/output.
+Flagship's local [Model Context Protocol](https://modelcontextprotocol.io/docs/learn/server-concepts) server gives an assistant structured access to provider status, executable discovery, command execution and the shared workspace. It uses the [official Python SDK](https://github.com/modelcontextprotocol/python-sdk), pinned to the tested 2.3.0 release, over standard input/output.
 
 [AGENTS.md](../AGENTS.md) explains how repository-aware assistants should use Flagship. MCP clients receive operational instructions during connection and through `flagship://capabilities`; those instructions do not depend on the client reading repository files.
 
@@ -43,9 +43,13 @@ Use the ordinary Linux account that created the collections. A different account
 | --- | --- |
 | `flagship_status` | All seven providers, current ownership/configuration status and shared workspace |
 | `flagship_find_tools` | Paginated substring search with provider filters, alternatives and inventory timestamp |
+| `flagship_search_packages` | Search installed dpkg package names and summaries across one or all running collections; cached for 15 minutes with refresh option |
+| `flagship_search_manuals` | Search man-page names and summaries using each collection's apropos index, with pagination and a 15-minute cache |
 | `flagship_resolve_tool` | Selected provider, explicit provider override, saved preference and host-command priority |
 | `flagship_gpu_check` | Bounded CUDA memory test and separate OpenCL enumeration for a running provider |
 | `flagship_tool_info` | Fixed version queries for eight representative tools; Hashcat device discovery with `detail: "devices"` |
+| `flagship_tool_docs` | Read a selected executable's man page or help output, or search lines with context and pagination; cached for 15 minutes |
+| `flagship_exec` | Run any indexed collection command with literal argument strings and an optional explicit provider; return exit status and complete stdout and stderr |
 | `flagship_list_files` | Paginated entries in one workspace directory |
 | `flagship_inspect_file` | SHA-256, size and first 64 bytes as hex for a file up to 256 MiB |
 | `flagship_read_text` | Up to 64 KiB of UTF-8 text, with an explicit truncation flag |
@@ -56,11 +60,13 @@ Try asking the connected assistant: “Which providers have Hashcat?”, “Chec
 
 ## Access and verification scope
 
-This interface provides inspection and fixed diagnostics. It does not expose general shell execution, arbitrary command arguments, installation, container lifecycle changes or preference writes. GPU diagnostics require an already-running managed container and never request GPU setup. Provider selection is an explicit argument and does not change the user's default.
+Package search reads installed dpkg records, including short descriptions and versions. It excludes pip-installed, standalone and unpackaged programs; use `flagship_find_tools` for executable discovery. The first scan of all seven collections can take time, while subsequent searches reuse the 15-minute in-memory cache. `flagship_search_manuals` queries each collection's existing apropos index; availability and freshness depend on the provider's man database. `flagship_tool_docs` selects a specific indexed tool, prefers its manual when `source: "auto"`, falls back to help output, and returns the complete text when no query is given. With a query, it returns paginated matching lines and nearby context. Help flags can invoke a tool, so this operation carries command-execution annotations.
 
-Workspace reads walk directory descriptors and reject traversal, symlinks, multiple hard links, special files and cross-filesystem paths. Names containing spaces or literal shell syntax are treated as filenames. Responses are bounded; backend processes have deadlines, bounded output and cancellation cleanup. The server uses the host account's permissions and is not an isolation boundary against another process running as that same account. A connected client can read eligible files in the configured workspace; use a dedicated workspace for material intended for that client.
+The `flagship_exec` operation runs any executable in the validated inventory with caller-supplied literal arguments. It defaults to the normal provider selection and accepts an explicit provider. It does not parse a shell command string; to use a shell, select an indexed shell executable explicitly. Execution is capped at 120 seconds, 128 arguments and 32,768 total argument characters. The result includes complete stdout, stderr and nonzero exit codes by default. Callers can set `max_output_bytes` to cap each stream at a chosen byte count; when set, the result also reports which streams were truncated and their original byte counts. Commands can read or change files and access networks with the provider account's permissions. The server does not expose package installation, container lifecycle changes or preference writes as dedicated operations. GPU diagnostics require an already-running managed container and never request GPU setup. Provider selection is an explicit argument and does not change the user's default.
 
-All operations carry read-only annotations. File contents and upstream command output are labeled untrusted data. The server listens only on stdio, with no network listener or credentials of its own. CUDA success means the documented small memory test passed; [application-specific GPU limitations](gpu.md) still apply.
+Workspace reads walk directory descriptors and reject traversal, symlinks, multiple hard links, special files and cross-filesystem paths. Names containing spaces or literal shell syntax are treated as filenames. Inspection responses are bounded. Backend processes have deadlines and cancellation cleanup; command output is complete unless the caller sets `max_output_bytes`. The server uses the host account's permissions and is not an isolation boundary against another process running as that same account. A connected client can read eligible files in the configured workspace; use a dedicated workspace for material intended for that client.
+
+Inspection and diagnostic operations carry read-only annotations. `flagship_exec` and `flagship_tool_docs` are marked as an operation that may modify state or access networks. File contents and upstream command output are labeled untrusted data. The server listens only on stdio, with no network listener or credentials of its own. A connected client can invoke any indexed provider command through `flagship_exec`, so connect only clients trusted with that account's workspace and provider access. CUDA success means the documented small memory test passed; [application-specific GPU limitations](gpu.md) still apply.
 
 ## Tests
 

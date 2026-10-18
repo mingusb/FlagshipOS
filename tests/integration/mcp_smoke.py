@@ -29,7 +29,7 @@ async def verify(args, report):
         tools = (await client.list_tools()).tools
         report["tools"] = [{"name": item.name, "input_schema": item.input_schema,
                             "output_schema": item.output_schema} for item in tools]
-        assert len(tools) == 8 and all(item.output_schema for item in tools)
+        assert len(tools) == 12 and all(item.output_schema for item in tools)
 
         async def call(name, arguments):
             result = await client.call_tool(name, arguments)

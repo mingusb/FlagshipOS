@@ -7,7 +7,7 @@
 
 FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
-**Status: experimental, with seven-collection acceptance completed on fresh Ubuntu 26.10 WSL2.** All seven full installations pass the combined managed package audit and bounded CUDA memory check. The actual shared-shell demonstration passes all seven providers, a cross-provider pipeline, shared files, provider switching and failure-code preservation. Discovery indexes 11,307 unique command names. The MCP-enabled package passes 159 automated tests, including a real protocol connection and installed-wheel checks. These bounded results do not establish universal tool compatibility or production readiness. See [validation and receipts](docs/validation.md), the [captured demonstration](docs/evidence/2026-10-17/seven-provider-transcript.txt) and [application-specific GPU results](docs/gpu.md).
+**Status: experimental, with seven-collection acceptance completed on fresh Ubuntu 26.10 WSL2.** All seven full installations pass the combined managed package audit and bounded CUDA memory check. The actual shared-shell demonstration passes all seven providers, a cross-provider pipeline, shared files, provider switching and failure-code preservation. Discovery indexes 11,307 unique command names. The MCP-enabled package passes 163 automated tests, including a real protocol connection and installed-wheel checks. These bounded results do not establish universal tool compatibility or production readiness. See [validation and receipts](docs/validation.md), the [captured demonstration](docs/evidence/2026-10-17/seven-provider-transcript.txt) and [application-specific GPU results](docs/gpu.md).
 
 ## Start on Ubuntu WSL2
 
@@ -72,7 +72,7 @@ The default workspace is `~/flagship`, mounted as `/workspace` in every environm
 
 ## Commands
 
-For assistants, the optional [Flagship MCP server](docs/mcp.md) exposes structured discovery, fixed diagnostics and read-only shared-workspace inspection. Install with `bash scripts/bootstrap.sh --skip-system-packages --with-mcp`, then connect the client's stdio transport to `flagship mcp`.
+For assistants, the optional [Flagship MCP server](docs/mcp.md) exposes executable and installed-package search, man-page discovery and man/help inspection, bounded execution of indexed collection tools, fixed diagnostics and shared-workspace inspection. Command execution can modify files or access networks as the provider user. Install with `bash scripts/bootstrap.sh --skip-system-packages --with-mcp`, then connect the client's stdio transport to `flagship mcp`.
 
 [AGENTS.md](AGENTS.md) provides operating and development instructions for assistants reading the repository. Connected MCP clients receive server instructions and can read `flagship://capabilities` without opening the checkout.
 
