@@ -83,6 +83,8 @@ For assistants, the optional [Flagship MCP server](docs/mcp.md) exposes executab
 | Command | Purpose |
 | --- | --- |
 | `profiles`, `doctor`, `status` | Inspect metadata, prerequisites and state; each accepts `--json` |
+| `boot`, `shutdown`, `restart` | Start, stop or restart all seven managed providers as one set |
+| `autostart enable [--linger]`, `autostart disable`, `autostart status` | Control provider startup with the systemd user manager |
 | `mcp` | Start the optional local MCP server for an assistant client |
 | `plan PROFILE` | Preview container creation |
 | `prepare PROFILE` | Build and register a bundled full collection recipe |

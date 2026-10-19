@@ -10,6 +10,29 @@ Keep storage and working files in the Linux filesystem. A WSL virtual disk may r
 
 State defaults to `${XDG_DATA_HOME:-$HOME/.local/share}/flagship`, workspace to `~/flagship`. Home, state and workspace paths allow letters, digits, `/`, `_`, `.` and `-`. Keep `--state-dir` and `--workspace` consistent. Another state directory has a different installation identity and cannot adopt same-name containers.
 
+## Boot, shutdown and restart
+
+FlagshipOS treats its seven providers as one running set. After all seven managed containers have been created, use:
+
+```bash
+flagship boot
+flagship status
+flagship restart
+flagship shutdown
+```
+
+`boot` verifies the ownership, image and shared-workspace configuration of every provider before starting any service. Each provider runs under a systemd user service and restarts if its long-lived process exits. `restart` stops and starts the full set. `shutdown` stops the seven managed containers and preserves their images, homes, state and shared workspace. It does not remove environments.
+
+To start the set automatically whenever the FlagshipOS user systemd manager starts, enable the target once:
+
+```bash
+flagship autostart enable
+```
+
+On WSL, systemd must be enabled for the distribution. Add `systemd=true` under `[boot]` in `/etc/wsl.conf` if needed, then shut down and relaunch that distribution to apply it. To start the user manager before an interactive login, use `flagship autostart enable --linger`; this runs `sudo loginctl enable-linger` for the current Linux user when lingering is not already enabled. `flagship autostart status` reports the target and each provider service. `flagship autostart disable` disables future automatic starts without stopping a currently running set; use `flagship shutdown` to stop it.
+
+Lifecycle commands require a working systemd user manager. They refuse to start a partial or foreign provider set and do not create, replace or remove containers.
+
 ## Prepare and replace
 
 Use `prepare PROFILE`, `create PROFILE`, `check PROFILE`, then `tools --refresh`. For CAINE/Tsurugi, verified `import-rootfs` replaces `prepare`. A successful build records its recipe hash and immutable image ID. Creation verifies ownership, image and workspace/home mounts.

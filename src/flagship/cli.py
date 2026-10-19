@@ -650,8 +650,10 @@ def build_parser():
         target.add_argument("--workspace", default=default, help="Shared directory mounted at /workspace")
         target.add_argument("--dry-run", action="store_true", default=False if root else argparse.SUPPRESS)
     common(parser, root=True)
-    subparsers = parser.add_subparsers(dest="command", required=True)
+    parser.add_argument("--_service-stop", metavar="PROFILE", help=argparse.SUPPRESS)
+    subparsers = parser.add_subparsers(dest="command")
     for name in ("profiles", "doctor", "status", "plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove",
+                 "boot", "shutdown", "restart", "autostart",
                  "tools", "which", "exec", "shell", "prefer", "gpu", "mcp"):
         sub = subparsers.add_parser(name)
         common(sub)
@@ -659,6 +661,10 @@ def build_parser():
             sub.add_argument("--json", action="store_true")
         if name in ("plan", "prepare", "create", "provision", "run", "check", "import-rootfs", "remove", "gpu"):
             sub.add_argument("profile")
+        if name == "autostart":
+            sub.add_argument("action", choices=("enable", "disable", "status"))
+            sub.add_argument("--linger", action="store_true",
+                             help="Enable login lingering so WSL starts providers before an interactive login (uses sudo)")
         if name == "gpu":
             sub.add_argument("--setup", action="store_true", help="Connect the WSL driver and add a verified NVRTC runtime when Hashcat needs it")
         if name == "run":
@@ -686,6 +692,15 @@ def main(argv=None):
     args = build_parser().parse_args(argv)
     try:
         catalog = load_catalog()
+        if args._service_stop is not None:
+            if args.command is not None:
+                raise CommandError("Internal service-stop mode cannot be combined with a public command.", 2)
+            if not NAME_RE.fullmatch(args._service_stop) or args._service_stop not in catalog:
+                raise CommandError("Unknown provider in FlagshipOS service request.", 2)
+            if args.dry_run:
+                raise CommandError("Internal service-stop mode does not support dry runs.", 2)
+        elif args.command is None:
+            raise CommandError("A command is required; use --help to see the available commands.", 2)
         if args.command == "profiles":
             return profiles(catalog, args.json)
         if args.command == "doctor":
@@ -695,6 +710,11 @@ def main(argv=None):
         workspace = Path(args.workspace).expanduser() if args.workspace else Path.home() / "flagship"
         ctx = Context(state_dir.absolute(), workspace.absolute(), args.dry_run)
         validate_paths(ctx)
+        if args._service_stop is not None:
+            from . import lifecycle
+            args.command = "_service-stop"
+            args.profile = args._service_stop
+            return lifecycle.main(ctx, args, catalog)
         if args.command == "status":
             return status(ctx, catalog, args.json)
         if args.command == "mcp":
@@ -704,6 +724,16 @@ def main(argv=None):
             from . import tooling
             validate_backend_configuration()
             return tooling.main(ctx, args, catalog)
+        if args.command in ("boot", "shutdown", "restart", "autostart"):
+            from . import lifecycle
+            if args.command == "autostart" and args.linger and args.action != "enable":
+                raise CommandError("--linger is only valid with 'autostart enable'.", 2)
+            if args.dry_run:
+                return lifecycle.main(ctx, args, catalog)
+            if args.command in ("boot", "restart") or (args.command == "autostart" and args.action == "enable"):
+                validate_backend_configuration()
+                require_runtime()
+            return lifecycle.main(ctx, args, catalog)
         if not NAME_RE.fullmatch(args.profile) or args.profile not in catalog:
             raise CommandError("Unknown profile; use 'flagship profiles' to list available names.", 2)
         definition = catalog[args.profile]
