@@ -2,7 +2,7 @@
 
 The Ubuntu WSL host keeps its Ubuntu repositories. Each environment has its own libraries, package database and repositories. Recipes build images before Distrobox connects them to your workspace.
 
-**Full builds and a live unified seven-profile demonstration are pending.** The methods below describe implemented recipes and verified upstream sources, not completed installation results.
+**All seven full installations passed the 2026-10-17 managed package audit and shared-shell demonstration on Ubuntu 26.10 / WSL2.** See the [tested collection versions](../PROJECT_GUIDE.md#prepare-collections) and [validation record](validation.md) for the exact baselines and scope.
 
 ## Five build recipes
 
@@ -16,7 +16,7 @@ Use `flagship prepare PROFILE`, then `flagship create PROFILE` and `flagship che
 | SIFT | Ubuntu 24.04, Cast `v1.0.42`, SIFT [`v2026.04.21` desktop mode](https://github.com/teamdfir/sift-saltstack/releases/download/v2026.04.21/manifest.yml) | Release manifest supports Ubuntu 22.04 and 24.04; current recipe requires amd64. Some introductory SANS instructions still name 22.04 |
 | BackBox | Ubuntu 24.04 plus the official [BackBox nine/noble archive](https://api.launchpad.net/1.0/~backbox/+archive/ubuntu/nine) and [Rapid7 package repository](https://github.com/rapid7/metasploit-omnibus/blob/master/USAGE.md), `backbox-tools` with recommends | Full tool metapackage, observed version 9.0.1 on 2026-10-17; Rapid7 supplies the required `metasploit-framework` dependency; desktop appearance/settings are separate |
 
-Inspect the bundled [Containerfiles](../src/flagship/recipes). Recipes check APT dependencies and pending dpkg problems and save `/usr/local/share/flagship/package-inventory.tsv`. This does not enumerate every custom `/opt` or user-installed tool. REMnux/SIFT installer service and home assumptions still need live verification.
+Inspect the bundled [Containerfiles](../src/flagship/recipes). Recipes check APT dependencies and pending dpkg problems and save `/usr/local/share/flagship/package-inventory.tsv`. This does not enumerate every custom `/opt` or user-installed tool. The full REMnux and SIFT installers passed with the adaptations recorded in the [validation record](validation.md); individual service and desktop behavior requires separate testing.
 
 BackBox's repository key fingerprint is `F10FF8AFAF205A39312C0A20F2B4C9A44882013D`, checked against official Launchpad metadata. Rapid7's key fingerprint is `97B32012EA1176F053727A95C048F0B49DEEC457`, checked against the key embedded in its [upstream installer](https://github.com/rapid7/metasploit-omnibus/blob/25a202b4e6226631cb0f24716b2fff0136312805/config/templates/metasploit-framework-wrappers/msfupdate.erb). Rapid7 deliberately uses the suite name `lucid main` for its bundled-package repository; this does not add Ubuntu Lucid's operating-system repositories. Each source uses its own `Signed-By` keyring inside the BackBox image. Never add these sources to the Ubuntu host or another collection.
 

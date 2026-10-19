@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "flagshipos"
 version = "0.1.0"
-description = "A rootless Debian-family CTF workbench for Ubuntu WSL"
+description = "Seven Debian-family tool collections for Ubuntu 26.10 on WSL2, with MCP and NVIDIA CUDA support"
 requires-python = ">=3.11"
 license = "MIT"
 license-files = ["LICENSE"]

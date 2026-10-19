@@ -3,13 +3,15 @@
 [![CI](https://github.com/mingusb/FlagshipOS/actions/workflows/ci.yml/badge.svg)](https://github.com/mingusb/FlagshipOS/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Seven Debian-family tool collections, one workspace and shell, on Ubuntu WSL2.**
+**Seven Debian-family tool collections on Ubuntu 26.10 / WSL2, with MCP and NVIDIA CUDA GPU support.**
 
 FlagshipOS manages Kali, Parrot, REMnux, SIFT, BackBox, CAINE and Tsurugi through rootless Podman and Distrobox. Each collection keeps its own libraries and package database. Ubuntu's APT sources stay Ubuntu-only. Executable discovery and routing make installed tools available from one terminal.
 
+The [MCP server](docs/mcp.md) connects AI assistants to tool discovery, package and manual searches, diagnostics and the shared workspace. [NVIDIA GPU support](docs/gpu.md) connects the Windows-provided CUDA driver to the collections; a CUDA memory round trip passed in all seven. The supported and verified host configuration is **Ubuntu 26.10 on WSL2**. Other Linux hosts have not received the same acceptance testing.
+
 **Status: experimental, with seven-collection acceptance completed on fresh Ubuntu 26.10 WSL2.** All seven full installations pass the combined managed package audit and bounded CUDA memory check. The actual shared-shell demonstration passes all seven providers, a cross-provider pipeline, shared files, provider switching and failure-code preservation. Discovery indexes 11,307 unique command names. The MCP-enabled package passes 163 automated tests, including a real protocol connection and installed-wheel checks. These bounded results do not establish universal tool compatibility or production readiness. See [validation and receipts](docs/validation.md), the [captured demonstration](docs/evidence/2026-10-17/seven-provider-transcript.txt) and [application-specific GPU results](docs/gpu.md).
 
-## Start on Ubuntu WSL2
+## Start on Ubuntu 26.10 / WSL2
 
 Use a fresh **Ubuntu 26.10 WSL2** installation and a normal Linux user. Follow [Ubuntu's WSL instructions](https://documentation.ubuntu.com/wsl/latest/guides/install-ubuntu-wsl2/) and verify the image from the [official release directory](https://releases.ubuntu.com/26.10/). Keep the checkout, container storage and workspace in the Linux filesystem. Python 3.11 or newer is required.
 
@@ -37,15 +39,17 @@ flagship check kali
 
 Repeat `prepare` and `create` for `parrot`, `remnux`, `sift` and `backbox`. Creation uses the recorded immutable image ID; repeating `create` reuses a matching managed container.
 
-| Profile | Full collection method |
-| --- | --- |
-| `kali` | Official pinned Kali base plus `kali-linux-everything`, including recommends |
-| `parrot` | Official pinned Security base plus `parrot-tools-full`, including recommends |
-| `remnux` | Official pinned Noble container expanded with the upstream full installer |
-| `sift` | Ubuntu 24.04 plus the upstream SIFT desktop installation through Cast |
-| `backbox` | Ubuntu 24.04 plus the signed BackBox 9 repository and `backbox-tools`, including recommends |
-| `caine` | Extract and import the verified CAINE 14 release filesystem |
-| `tsurugi` | Extract and import the verified Tsurugi LAB 26.03 release filesystem |
+| Profile | Tested collection version | Full collection method |
+| --- | --- | --- |
+| `kali` | **Kali 2026.3 rolling** | Official pinned Kali base plus `kali-linux-everything` **2026.3.9**, including recommends |
+| `parrot` | **Parrot Security 7.2 (Echo)** | Official pinned Security base plus `parrot-tools-full` **7.1.2**, including recommends |
+| `remnux` | **REMnux installer v2026.42.3** | Official pinned Ubuntu 24.04 Noble container expanded with the full dedicated installer |
+| `sift` | **SIFT installer v2026.04.21** | Ubuntu 24.04 plus the full desktop installation through Cast |
+| `backbox` | **BackBox 9** | Ubuntu 24.04 plus the signed BackBox 9 repository and `backbox-tools` **9.0.1**, including recommends |
+| `caine` | **CAINE 14 (Lightstream)** | Extract and import the verified CAINE 14 release filesystem |
+| `tsurugi` | **Tsurugi LAB 26.03 (Shingan)** | Extract and import the verified Tsurugi LAB 26.03 release filesystem |
+
+These are the baselines verified in the [2026-10-17 seven-collection package audit](docs/evidence/2026-10-17/seven-collection-package-audit.json), with installer pins recorded in the [recipes](src/flagship/recipes). REMnux and SIFT use installer release numbers; BackBox identifies the tool collection. The Ubuntu 26.10 host remains separate from the Ubuntu 24.04 bases used by several providers. Rolling repositories can supply newer packages on a subsequent build.
 
 Only CAINE and Tsurugi need official ISO extraction in this workflow. Follow the [profile and import guide](docs/profiles.md). Full collection means the selected upstream collection or release filesystem, not every historical package or guaranteed WSL functionality.
 

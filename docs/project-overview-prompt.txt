@@ -1,43 +1,64 @@
-Generation method: built-in image_gen tool, followed by two targeted edits.
-Style references:
+Updated: 2026-10-18
+Generation method: built-in image_gen tool, editing the existing project-overview.png.
+The source poster already matches the owner's repository visual identity:
 https://github.com/mingusb/goalkeeper/blob/main/project-overview.png
 https://github.com/mingusb/decision-programs/blob/main/project-overview.png
 
-Use case: style-transfer.
-Asset type: a full GitHub README project-overview poster, portrait 2:3, matching the owner's existing repository posters.
-Edit the supplied first reference poster into a new FlagshipOS poster. The second reference reinforces the exact same brand style. Preserve this precise visual family and layout: deep midnight navy almost-black background; cinematic photorealistic polished chrome and clear optical glass 3D objects on glossy black marble plinths; electric cyan illuminated edges and fine cyan dividers; restrained warm amber accents; enormous condensed bold white uppercase title; clean highly legible white sans-serif body copy; three evenly spaced feature columns; a rounded dark terminal panel; outlined cyan call-to-action; small repo/author/license footer. Produce an entirely new project-specific hero scene and replace all old text and icons. No old Goalkeeper or Decision Programs text.
-Top hero: a beautiful precision-engineered chrome-and-glass central command console with a small raised elegant flag emblem, connected by exactly seven flowing cyan light conduits to seven distinct compact glass tool modules on a single black marble platform. It must suggest seven collections cooperating through one workspace. Premium physically rendered studio lighting, real reflections, strong depth, clean and confident composition. No hooded hackers, skulls, padlocks, OS mascots, or busy fake code.
-Use this exact text, with deliberate hierarchy and ample breathing room:
-Main title: "FLAGSHIPOS"
-Subtitle: "Seven collections. One workspace. One shell."
-Collection names on two centered lines:
-"Kali • Parrot • REMnux • BackBox"
-"SIFT • CAINE • Tsurugi"
-Three columns with distinct premium 3D glass/chrome icons:
-"COLLECT"
-"Full upstream tool collections."
-"CONNECT"
-"Shared files and command pipelines."
-"COMMAND"
-"Run tools from one terminal."
-Technology strip:
-"Ubuntu WSL2 / Podman / Distrobox"
-Terminal panel heading:
+Use case: text-localization and precise-object-edit.
+Asset type: the single image used as the FlagshipOS GitHub README, portrait 2:3, 1024 by 1536.
+Input image 1 is the existing README poster and the edit target. Refresh its copy and feature icons while preserving its unmistakable visual identity: midnight navy background, photoreal polished chrome and optical glass, glossy black marble, electric cyan conduits and fine dividers, restrained warm amber accents, enormous condensed bold white headline, crisp white sans-serif text, three feature columns, rounded terminal, cyan outlined guide button and small footer. This must look like the same repository's updated poster, not a new brand.
+
+Preserve the beautiful top hero concept: exactly SEVEN distinct outer glass tool modules around ONE central flag-bearing chrome hub, connected by cyan light conduits on a marble platform. Reduce its vertical space moderately if needed to accommodate the new text without crowding. Keep the giant main title as "FLAGSHIP OS" with an unmistakable word space. Keep the footer repository identifier "mingusb/FlagshipOS" without a space.
+
+Replace the poster's explanatory content with the following exact text, in this hierarchy. Use all seven version labels exactly, and make the platform line and MCP/GPU headings prominent and readable. The versions are tested baselines, not claims to be the newest upstream releases.
+
+Main headline:
+"FLAGSHIP OS"
+Subtitle:
+"Seven collections. One workspace. One shell."
+
+Prominent platform strip:
+"BUILT FOR UBUNTU 26.10 ON WSL2"
+
+Version block heading:
+"TESTED COLLECTION VERSIONS"
+Three centered lines:
+"Kali 2026.3 rolling • Parrot Security 7.2"
+"REMnux v2026.42.3 • SIFT v2026.04.21"
+"BackBox 9 • CAINE 14 • Tsurugi LAB 26.03"
+Small but legible qualifier:
+"Verified 2026-10-17 • REMnux / SIFT: installer releases"
+
+Three equally spaced feature columns with premium glass/chrome icons:
+1. Small terminal or stacked toolkit icon
+"ONE SHELL"
+"Shared files and"
+"command pipelines."
+2. Connected nodes icon, matching the existing middle icon
+"MCP SERVER"
+"AI tool discovery,"
+"manuals and diagnostics."
+3. Elegant GPU chip icon
+"NVIDIA GPU"
+"CUDA memory checks"
+"passed in all 7 collections."
+
+Thin technology strip:
+"Rootless Podman + Distrobox"
+
+Terminal heading:
 "ENTER THE WORKBENCH"
 Terminal text in cyan monospace:
-"flagship tools --refresh"
 "flagship shell"
-Call to action, a wide cyan-outline button:
+"flagship mcp"
+
+Wide cyan-outline guide button:
 "CLICK THIS IMAGE TO OPEN THE GUIDE"
-Small supporting line:
-"Setup • Collections • Usage • Validation"
+Supporting line:
+"Setup • Versions • MCP • GPU • Validation"
+
 Footer:
 "mingusb/FlagshipOS"
 "By Brian Mingus • MIT license • Experimental"
-Keep all copy exactly spelled, especially FlagshipOS, REMnux, BackBox, Tsurugi and Distrobox. The poster presents project intent and honest experimental status; do not claim production-ready or all tests completed. The existing references are style/layout references, not text to preserve. Make all text crisp and readable at 1024 pixels wide. Match the reference quality and proportions closely. No watermark.
 
-Targeted refinement:
-Precise edit of this FlagshipOS README poster. Preserve the entire poster's typography, every word, spelling, all text layout, colors, lighting, dark navy background, chrome/glass materials, black marble platform, all six existing outer glass modules and the central flag-bearing hub exactly. Change only the top hero illustration: add one additional small separate chrome-and-clear-glass tool module on the front-center of the marble platform, between the two current foreground modules, connected to the central flag-bearing hub by a cyan light conduit. The new seventh outer module has an elegant cyan magnifying-glass icon for forensics. There must be exactly SEVEN separate outer tool modules plus the existing central flag-bearing hub, representing the seven collections around one Ubuntu host. Fit this added module in the existing hero region without covering the title or any text. Keep the flag, central hub, existing six modules, and all poster text unchanged. Do not add extra labels or any other objects.
-
-User-requested title-spacing edit:
-Make one precise typography edit to this existing FlagshipOS GitHub README poster. Change only the enormous main white headline from "FLAGSHIPOS" to "FLAGSHIP OS" with a clearly visible ordinary word space between FLAGSHIP and OS. Keep the new headline on one centered line in the same very large bold condensed white sans-serif style; reduce its size slightly only as needed to fit within the existing left and right margins. Preserve every other word exactly, including the footer repository name "mingusb/FlagshipOS" without a space and both lowercase flagship terminal commands. Preserve the entire original poster's layout, dimensions, seven outer glass modules and central flag hub, photoreal chrome and glass, all icons, navy background, cyan and amber lighting, subtitle, collection names, feature columns, technology strip, terminal panel, guide button, and footer. Do not redesign, add, remove, or restyle anything else. The only requested change is the main headline reading "FLAGSHIP OS" with an unmistakable space.
+Layout constraints: retain the original high-end poster composition, portrait proportions, clean margins and confident typography. Fit the version block and platform strip between the main subtitle and the three feature columns, adjusting hero height and spacing as needed. Never overlap text or make it illegibly small. Keep the original cinematic lighting and polished rendering quality. Use a clearly visible space in FLAGSHIP OS. Spell REMnux, BackBox, Tsurugi, Distrobox, WSL2 and CUDA exactly. Do not claim universal application compatibility or full native operating systems. Do not add unrelated text, mascots, lock/skull imagery, OpenCL copy, badges or watermarks. Opaque navy background.
